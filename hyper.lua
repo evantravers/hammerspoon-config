@@ -1,11 +1,7 @@
 -- Set the key you want to be HYPER to F19 in karabiner or keyboard
 local hyper = hs.hotkey.modal.new({}, nil)
 
--- Hyper+key for all the below are handled in some other software
--- "fall through".
-hyperBindings = {'c', 'space', "\\", 'p'}
-
-for _, key in pairs(hyperBindings) do
+for _, key in pairs(config.hyper_fall_through) do
   hyper:bind({}, key, nil, function() hs.eventtap.keyStroke({'cmd','alt','shift','ctrl'}, key)
   end)
 end
@@ -26,22 +22,8 @@ launch = function(appname)
 end
 
 -- Apps that I want to jump to
-singleapps = {
-  {'j', 'iTerm'},
-  {'k', 'Google Chrome'},
-  {'u', 'Firefox'},
-  {'h', 'Dash'},
-  {'i', 'Slack'},
-  {'e', 'Microsoft Outlook'},
-  {'m', 'Microsoft Outlook'},
-  {'f', 'Finder'},
-  {'l', 'Discord'},
-  {'z', 'zoom.us'},
-  {'v', 'Sketch'},
-}
-
-for _, app in pairs(singleapps) do
-  hyper:bind({}, app[1], function() launch(app[2]); end)
+for _, app in pairs(config.applications) do
+  hyper:bind({}, app.hyper_shortcut, function() launch(app.name); end)
 end
 
 -- Shortcut to reload config
