@@ -48,7 +48,7 @@ screenMode:bind('cmd', 'l', function()
 end)
 
 screenMode:bind('', 'tab', function ()
-  hs.window:centerOnScreen()
+  hs.window:focusedWindow():centerOnScreen()
   screenMode:exit()
 end)
 
