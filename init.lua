@@ -54,9 +54,4 @@ config.applications = {
 require 'autolayout'
 require 'hyper'
 require 'movewindows'
-
-ctrlDoublePress = require("ctrlDoublePress")
-ctrlDoublePress.timeFrame = 1
-ctrlDoublePress.action = function()
-  hs.eventtap.keyStroke({}, "escape")
-end
+require 'keyboardhacks'
