@@ -15,7 +15,10 @@ autoLayout = function()
       application = hs.application.find(app_config.name)
 
       if application ~= nil then
-        application:mainWindow():moveToScreen(target_display(app_config.preferred_display), false, true, 0)
+        application
+        :mainWindow()
+        :moveToScreen(target_display(app_config.preferred_display), false, true, 0)
+        :moveToUnit(hs.layout.maximized)
       end
     end
   end
