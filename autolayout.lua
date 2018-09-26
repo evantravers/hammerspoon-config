@@ -23,3 +23,5 @@ autoLayout = function()
     end
   end
 end
+
+watcher = hs.screen.watcher.new(autoLayout):start()
