@@ -7,11 +7,13 @@ config.hyper_fall_through = {'c', 'space', '\\', 'p', '\''}
 config.applications = {
   {
     name = 'iTerm',
-    hyper_shortcut = 'j'
+    hyper_shortcut = 'j',
+    preferred_display = 1
   },
   {
     name = 'Google Chrome',
-    hyper_shortcut = 'k'
+    hyper_shortcut = 'k',
+    preferred_display = 1
   },
   {
     name = 'Dash',
@@ -19,11 +21,13 @@ config.applications = {
   },
   {
     name = 'Slack',
-    hyper_shortcut = 'i'
+    hyper_shortcut = 'i',
+    preferred_display = 2
   },
   {
     name = 'Microsoft Outlook',
-    hyper_shortcut = 'e'
+    hyper_shortcut = 'e',
+    preferred_display = 2
   },
   {
     name = 'Finder',
@@ -31,19 +35,23 @@ config.applications = {
   },
   {
     name = 'Discord',
-    hyper_shortcut = 'l'
+    hyper_shortcut = 'l',
+    preferred_display = 2
   },
   {
     name = 'zoom.us',
-    hyper_shortcut = 'z'
+    hyper_shortcut = 'z',
+    preferred_display = 2
   },
   {
     name = 'Sketch',
-    hyper_shortcut = 'v'
+    hyper_shortcut = 'v',
+    preferred_display = 1
   },
 }
 
 
+require 'autolayout'
 require 'hyper'
 require 'movewindows'
 

@@ -33,3 +33,4 @@ reload_config = function()
   hs.alert.show("Config loaded")
 end
 hyper:bind({}, 'r', nil, reload_config)
+hyper:bind({}, 'return', nil, autoLayout)
