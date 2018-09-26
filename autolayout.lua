@@ -14,7 +14,7 @@ autoLayout = function()
     if app_config.preferred_display ~= nil then
       application = hs.application.find(app_config.name)
 
-      if application ~= nil then
+      if application ~= nil and application:mainWindow() ~= nil then
         application
         :mainWindow()
         :moveToScreen(target_display(app_config.preferred_display), false, true, 0)
