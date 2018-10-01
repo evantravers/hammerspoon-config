@@ -25,3 +25,19 @@ To install: `git clone git@github.com:evantravers/hammerspoon.git ~/.hammerspoon
 
 - provide an emulated `ESC` key via doubletap on left control (which I usually
   have on capslock.)
+- TODO: work with other keys
+
+### pomodoro timer
+TODO:
+- should be under hyper-p
+- should be a little menu modal thing that pops up with instructions
+- if no timer started
+  - allows you to hit enter to start
+- if timer started
+  - shows you remaining time
+  - enter to stop
+  - space to pause
+
+- on start should close list of distractions
+- on pause/stop should open distractions back up
+- ideally changes the /etc/hosts too
