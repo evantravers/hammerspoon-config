@@ -10,18 +10,19 @@ To install: `git clone git@github.com:evantravers/hammerspoon.git ~/.hammerspoon
 
 ## Features
 
-## hyperkey
+### hyperkey
 
 - jump to app via config in `init.lua`
 - reload config
 - force autolayout
+- FIXME: Provide something that other apps can use better
 
-## autolayout
+### autolayout
 
 - listens to display changes and moves and maximizes windows based on screen
   preferences.
 
-## keyboardhacks
+### keyboardhacks
 
 - provide an emulated `ESC` key via doubletap on left control (which I usually
   have on capslock.)
