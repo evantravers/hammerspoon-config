@@ -4,15 +4,18 @@
 -- preferably puts a "25m..." menubar item, updates once a minute
 
 local hyper = require("hyper")
-
 local hsApp = require("hs.application")
 
 local pomoMode = hs.hotkey.modal.new()
-
 hyper:bind({}, 'p', nil, function() pomoMode:enter() end)
 
 local defaultPomodoroLength = 25
+
+local timer = hs.timer.new(1, function() update() end)
 local closedDistractions = {}
+local string = ""
+
+-- UI
 
 function showPrompt(str)
   hs.alert.closeAll()
@@ -22,8 +25,9 @@ function showPrompt(str)
 end
 
 function pomoMode:entered()
-  if timer then
-    showPrompt("🍅: " .. "25:00" .. "\nPress Enter to stop\nPress Space to pause")
+  if timerRunning then
+
+    showPrompt("🍅: " .. string .. "\nPress Enter to stop\nPress Space to pause")
   else
     showPrompt("🍅 Press Enter to start Pomorodo! 🍅")
   end
@@ -34,29 +38,62 @@ function pomoMode:exited()
 end
 
 function startOrStopPomodoro()
-  if timer then
-    showPrompt("Stopping pomodoro!")
-    timer = false
-    for _, app in pairs(closedDistractions) do
-      hsApp.launchOrFocus(app)
-    end
-    closedDistractions = {}
+  if not timerRunning then
+    startPomodoro()
   else
-    showPrompt("Starting pomodoro! 25 minutes to go!")
-    timer = true
-    for _, app in pairs(config.applications) do
-      pid = hsApp.find(app.name)
-      if pid and app.distraction then
-        table.insert(closedDistractions, app.name) -- keep track of it
-        pid:kill()
-      end
-    end
+    stopPomodoro()
   end
 end
 
+function stopPomodoro()
+  showPrompt("Stopping pomodoro!")
+  timerRunning = false
+  for _, app in pairs(closedDistractions) do
+    hsApp.launchOrFocus(app)
+  end
+  closedDistractions = {}
+  timer:stop()
+end
+
+function startPomodoro()
+  showPrompt("Pomodoro started...")
+  timerRunning = true
+  for _, app in pairs(config.applications) do
+    pid = hsApp.find(app.name)
+    if pid and app.distraction then
+      table.insert(closedDistractions, app.name) -- keep track of it
+      pid:kill()
+    end
+  end
+  setupTimer()
+  timer:start()
+end
+
 function pausePomodoro()
-  if timer then
+  if timer:running() then
     showPrompt("Pausing pomodoro...")
+    timer:stop()
+  else
+    showPrompt("Resuming pomodoro...")
+    timer:start()
+  end
+end
+
+function setupTimer()
+  timeLeft = hs.timer.minutes(defaultPomodoroLength)
+end
+
+-- Timer
+
+update = function()
+  local minutes = math.floor(timeLeft / 60)
+  local seconds = timeLeft - (minutes * 60)
+  string = string.format("%02d:%02d", minutes, seconds)
+
+  if not timer then return end
+  timeLeft = timeLeft - 1
+  if timeLeft <= 0 then
+    stopPomodoro()
   end
 end
 
