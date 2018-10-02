@@ -13,8 +13,7 @@ To install: `git clone git@github.com:evantravers/hammerspoon.git ~/.hammerspoon
 ### hyperkey
 
 - jump to app via config in `init.lua`
-- reload config
-- force autolayout
+- provides a modal layer for the other plugins
 
 ### autolayout
 
@@ -28,8 +27,7 @@ To install: `git clone git@github.com:evantravers/hammerspoon.git ~/.hammerspoon
 - TODO: work with other keys
 
 ### pomodoro timer
-TODO:
-
 - on start should close list of distractions
 - on pause/stop should open distractions back up
-- ideally changes the /etc/hosts too
+- TODO: ideally changes the /etc/hosts too
+- TODO: menubar timer?
