@@ -22,6 +22,7 @@ function showPrompt(str)
   hs.fnutils.imap(hs.screen.allScreens(), function(screen)
     return hs.alert.show(str, hs.alert.defaultStyle, screen, true)
   end)
+  hs.timer.doAfter(2, function() pomoMode:exit() end)
 end
 
 function pomoMode:entered()
