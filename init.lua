@@ -22,12 +22,14 @@ config.applications = {
   ['Slack'] = {
     name = 'Slack',
     hyper_shortcut = 'i',
-    preferred_display = 2
+    preferred_display = 2,
+    distraction = true
   },
   ['Microsoft Outlook'] = {
     name = 'Microsoft Outlook',
     hyper_shortcut = 'e',
-    preferred_display = 2
+    preferred_display = 2,
+    distraction = true
   },
   ['Finder'] = {
     name = 'Finder',
@@ -36,7 +38,8 @@ config.applications = {
   ['Discord'] = {
     name = 'Discord',
     hyper_shortcut = 'l',
-    preferred_display = 2
+    preferred_display = 2,
+    distraction = true
   },
   ['zoom.us'] = {
     name = 'zoom.us',
