@@ -10,6 +10,7 @@
 -- on start should close list of distractions
 -- on pause/stop should open distractions back up
 -- ideally changes the /etc/hosts too
+-- preferably puts a "25m..." menubar item, updates once a minute
 
 local hsApp = require("hs.application")
 
@@ -25,7 +26,11 @@ function showPrompt(str)
 end
 
 function pomoMode:entered()
-  showPrompt("Pomodoros!")
+  if timer then
+    showPrompt("🍅: " .. "25:00" .. "\nPress Enter to stop\nPress Space to pause")
+  else
+    showPrompt("🍅 Press Enter to start Pomorodo! 🍅")
+  end
 end
 
 function pomoMode:exited()
@@ -53,6 +58,12 @@ function startOrStopPomodoro()
   end
 end
 
-pomoMode:bind('', 'escape', function() pomoMode:exit() end)
+function pausePomodoro()
+  if timer then
+    showPrompt("Pausing pomodoro...")
+  end
+end
 
+pomoMode:bind('', 'escape', function() pomoMode:exit() end)
 pomoMode:bind('', 'return', startOrStopPomodoro)
+pomoMode:bind('', 'space', pausePomodoro)
