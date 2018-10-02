@@ -34,3 +34,5 @@ reload_config = function()
 end
 hyper:bind({}, 'r', nil, reload_config)
 hyper:bind({}, 'return', nil, autoLayout)
+
+return hyper

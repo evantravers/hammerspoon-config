@@ -12,9 +12,14 @@
 -- ideally changes the /etc/hosts too
 -- preferably puts a "25m..." menubar item, updates once a minute
 
+local hyper = require("hyper")
+
 local hsApp = require("hs.application")
 
-local pomoMode = hs.hotkey.modal.new('cmd', 'l')
+local pomoMode = hs.hotkey.modal.new()
+
+hyper:bind({}, 'p', nil, function() pomoMode:enter() end)
+
 local defaultPomodoroLength = 25
 local closedDistractions = {}
 
