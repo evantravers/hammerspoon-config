@@ -15,7 +15,6 @@ To install: `git clone git@github.com:evantravers/hammerspoon.git ~/.hammerspoon
 - jump to app via config in `init.lua`
 - reload config
 - force autolayout
-- FIXME: Provide something that other apps can use better
 
 ### autolayout
 
@@ -30,14 +29,6 @@ To install: `git clone git@github.com:evantravers/hammerspoon.git ~/.hammerspoon
 
 ### pomodoro timer
 TODO:
-- should be under hyper-p
-- should be a little menu modal thing that pops up with instructions
-- if no timer started
-  - allows you to hit enter to start
-- if timer started
-  - shows you remaining time
-  - enter to stop
-  - space to pause
 
 - on start should close list of distractions
 - on pause/stop should open distractions back up
