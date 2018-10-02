@@ -26,11 +26,17 @@ function showPrompt(str)
 end
 
 function pomoMode:entered()
+  prompt = "🍅 Press Enter to start Pomorodo! 🍅"
   if timerRunning then
-    showPrompt(string.format("🍅: %s\nPress Enter to stop\nPress Space to pause", string))
-  else
-    showPrompt("🍅 Press Enter to start Pomorodo! 🍅")
+    if timer:running() then
+      pauseOrResume = "pause"
+    else
+      pauseOrResume = "resume"
+    end
+
+    prompt = string.format("🍅: %s\nPress Enter to stop\nPress Space to %s", timeString, pauseOrResume)
   end
+  showPrompt(prompt)
 end
 
 function pomoMode:exited()
@@ -92,7 +98,7 @@ pomoMode:bind('', 'space', pausePomodoro)
 update = function()
   local minutes = math.floor(timeLeft / 60)
   local seconds = timeLeft - (minutes * 60)
-  string = string.format("%02d:%02d", minutes, seconds)
+  timeString = string.format("%02d:%02d", minutes, seconds)
 
   if not timer then return end
   timeLeft = timeLeft - 1
