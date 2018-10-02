@@ -2,11 +2,12 @@
 -- TODO: preferably puts a "25m..." menubar item, updates once a minute
 -- TODO: should set slack as away eventually...
 
+-- setup and vars
+
 local hyper = require("hyper")
 local hsApp = require("hs.application")
 
 local pomoMode = hs.hotkey.modal.new()
-hyper:bind({}, 'p', nil, function() pomoMode:enter() end)
 
 local defaultPomodoroLength = 25
 
@@ -25,8 +26,7 @@ end
 
 function pomoMode:entered()
   if timerRunning then
-
-    showPrompt("🍅: " .. string .. "\nPress Enter to stop\nPress Space to pause")
+    showPrompt(string.format("🍅: %s\nPress Enter to stop\nPress Space to pause", string))
   else
     showPrompt("🍅 Press Enter to start Pomorodo! 🍅")
   end
@@ -78,9 +78,13 @@ function pausePomodoro()
   end
 end
 
-function setupTimer()
-  timeLeft = hs.timer.minutes(defaultPomodoroLength)
-end
+-- Keyboard bindings
+
+hyper:bind({}, 'p', nil, function() pomoMode:enter() end)
+
+pomoMode:bind('', 'escape', function() pomoMode:exit() end)
+pomoMode:bind('', 'return', startOrStopPomodoro)
+pomoMode:bind('', 'space', pausePomodoro)
 
 -- Timer
 
@@ -96,6 +100,6 @@ update = function()
   end
 end
 
-pomoMode:bind('', 'escape', function() pomoMode:exit() end)
-pomoMode:bind('', 'return', startOrStopPomodoro)
-pomoMode:bind('', 'space', pausePomodoro)
+function setupTimer()
+  timeLeft = hs.timer.minutes(defaultPomodoroLength)
+end
