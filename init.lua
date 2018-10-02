@@ -53,9 +53,11 @@ config.applications = {
   },
 }
 
+local hyper = require 'hyper'
 
 require 'autolayout'
-require 'hyper'
 require 'movewindows'
 require 'keyboardhacks'
 require 'pomodoro'
+
+

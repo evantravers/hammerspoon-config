@@ -26,13 +26,4 @@ for _, app in pairs(config.applications) do
   hyper:bind({}, app.hyper_shortcut, function() launch(app.name); end)
 end
 
--- Shortcut to reload config
-
-reload_config = function()
-  hs.reload(j)
-  hs.alert.show("Config loaded")
-end
-hyper:bind({}, 'r', nil, reload_config)
-hyper:bind({}, 'return', nil, autoLayout)
-
 return hyper
