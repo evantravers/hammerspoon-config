@@ -60,4 +60,4 @@ require 'movewindows'
 require 'keyboardhacks'
 require 'pomodoro'
 
-
+hyper:bind({}, 'r', nil, function() hs.reload() end)
