@@ -1,7 +1,6 @@
--- on start should close list of distractions
--- on pause/stop should open distractions back up
--- ideally changes the /etc/hosts too
--- preferably puts a "25m..." menubar item, updates once a minute
+-- TODO: ideally changes the /etc/hosts too
+-- TODO: preferably puts a "25m..." menubar item, updates once a minute
+-- TODO: should set slack as away eventually...
 
 local hyper = require("hyper")
 local hsApp = require("hs.application")
