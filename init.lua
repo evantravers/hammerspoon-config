@@ -57,7 +57,6 @@ local hyper = require 'hyper'
 
 require 'autolayout'
 require 'movewindows'
-require 'keyboardhacks'
 require 'pomodoro'
 
 hyper:bind({}, 'r', nil, function() hs.reload() end)
