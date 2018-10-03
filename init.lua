@@ -5,8 +5,8 @@ config = {}
 config.hyper_fall_through = {'c', 'space', '\\', 'p', '\''}
 
 config.applications = {
-  ['iTerm'] = {
-    name = 'iTerm',
+  ['Kitty'] = {
+    name = 'Kitty',
     hyper_shortcut = 'j',
     preferred_display = 1
   },
