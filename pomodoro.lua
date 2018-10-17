@@ -15,6 +15,9 @@ local timer = hs.timer.new(1, function() update() end)
 local closedDistractions = {}
 local string = ""
 
+local startSound = hs.sound.getByName("Blow")
+local stopSound = hs.sound.getByName("Submarine")
+
 -- UI
 
 function showPrompt(str)
@@ -53,6 +56,7 @@ end
 
 function stopPomodoro()
   showPrompt("Stopping pomodoro!")
+  stopSound:play()
   timerRunning = false
   for _, app in pairs(closedDistractions) do
     hsApp.launchOrFocus(app)
@@ -63,6 +67,7 @@ end
 
 function startPomodoro()
   showPrompt("Pomodoro started...")
+  startSound:play()
   timerRunning = true
   for _, app in pairs(config.applications) do
     pid = hsApp.find(app.name)
