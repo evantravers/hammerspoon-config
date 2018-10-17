@@ -20,12 +20,6 @@ To install: `git clone git@github.com:evantravers/hammerspoon.git ~/.hammerspoon
 - listens to display changes and moves and maximizes windows based on screen
   preferences.
 
-### keyboardhacks
-
-- provide an emulated `ESC` key via doubletap on left control (which I usually
-  have on capslock.)
-- TODO: work with other keys
-
 ### pomodoro timer
 - on start should close list of distractions
 - on pause/stop should open distractions back up
