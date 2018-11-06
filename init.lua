@@ -51,6 +51,10 @@ config.applications = {
     hyper_shortcut = 'v',
     preferred_display = 1
   },
+  ['Tweetbot'] = {
+    name = 'Tweetbot',
+    distraction = true
+  },
 }
 
 local hyper = require 'hyper'
