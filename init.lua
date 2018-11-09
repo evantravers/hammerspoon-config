@@ -2,7 +2,7 @@ config = {}
 
 -- Hyper+key for all the below are handled in some other software
 -- "fall through".
-config.hyper_fall_through = {'c', 'space', '\\', 'p', '\'', 't'}
+config.hyper_fall_through = {'c', 'space', '\\', 'p', '\'', ';', '.', ','}
 
 config.applications = {
   ['Kitty'] = {
@@ -54,6 +54,11 @@ config.applications = {
   ['Tweetbot'] = {
     name = 'Tweetbot',
     distraction = true
+  },
+  ['Things3'] = {
+    name = 'Things3',
+    hyper_shortcut = 't',
+    preferred_display = 1
   },
 }
 
