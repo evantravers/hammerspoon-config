@@ -66,6 +66,11 @@ config.applications = {
     preferred_display = 1,
     local_bindings = {',', '.'}
   },
+  {
+    hint = "com.ulyssesapp.mac",
+    hyper_shortcut = 'u',
+    preferred_display = 1
+  },
 }
 
 local hyper = require 'hyper'
