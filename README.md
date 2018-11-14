@@ -25,3 +25,5 @@ To install: `git clone git@github.com:evantravers/hammerspoon.git ~/.hammerspoon
 - on pause/stop should open distractions back up
 - TODO: ideally changes the /etc/hosts too
 - TODO: menubar timer?
+- TODO: slack set away rather than close?
+- TODO: OSX DND mode
