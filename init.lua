@@ -2,7 +2,7 @@ config = {}
 
 -- Hyper+key for all the below are handled in some other software
 -- "fall through".
-config.hyper_fall_through = {'c', 'space', '\\', 'p', '\'', ';', '.', ','}
+config.hyper_fall_through = {'c', 'space', '\\', 'p', '\'', ';', '.', ',', '\''}
 
 config.applications = {
   ['Kitty'] = {
