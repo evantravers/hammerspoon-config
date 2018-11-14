@@ -1,64 +1,70 @@
 config = {}
 
--- Hyper+key for all the below are handled in some other software
--- "fall through".
-config.hyper_fall_through = {'c', 'space', '\\', 'p', '\'', ';', '.', ',', '\''}
-
 config.applications = {
-  ['Kitty'] = {
-    name = 'Kitty',
+  {
+    hint = 'com.runningwithcrayons.Alfred-3',
+    local_bindings = {'c', 'space', 'o'}
+  },
+  {
+    hint = 'com.agiletortoise.Drafts',
+    local_bindings = {'\''}
+  },
+  {
+    hint = 'net.kovidgoyal.kitty',
     hyper_shortcut = 'j',
     preferred_display = 1
   },
-  ['Google Chrome'] = {
-    name = 'Google Chrome',
+  {
+    hint = 'com.google.Chrome',
     hyper_shortcut = 'k',
     preferred_display = 1
   },
-  ['Dash'] = {
-    name = 'Dash',
+  {
+    hint = 'com.kapeli.dashdoc',
     hyper_shortcut = 'h'
   },
-  ['Slack'] = {
-    name = 'Slack',
+  {
+    hint = 'com.tinyspeck.slackmacgap',
     hyper_shortcut = 'i',
     preferred_display = 2,
     distraction = true
   },
-  ['Microsoft Outlook'] = {
-    name = 'Microsoft Outlook',
+  {
+    hint = 'com.microsoft.Outlook',
     hyper_shortcut = 'e',
     preferred_display = 2,
     distraction = true
   },
-  ['Finder'] = {
-    name = 'Finder',
+  {
+    hint = 'com.apple.finder',
     hyper_shortcut = 'f'
   },
-  ['Discord'] = {
-    name = 'Discord',
+  {
+    hint = 'com.hnc.Discord',
     hyper_shortcut = 'l',
     preferred_display = 2,
     distraction = true
   },
-  ['zoom.us'] = {
-    name = 'zoom.us',
+  {
+    hint = 'us.zoom.xos',
     hyper_shortcut = 'z',
     preferred_display = 2
   },
-  ['Sketch'] = {
-    name = 'Sketch',
+  {
+    hint = 'com.bohemiancoding.sketch3',
     hyper_shortcut = 'v',
     preferred_display = 1
   },
-  ['Tweetbot'] = {
-    name = 'Tweetbot',
-    distraction = true
+  {
+    hint = 'com.tapbots.Tweetbot3Mac',
+    distraction = true,
+    local_bindings = {';'}
   },
-  ['Things3'] = {
-    name = 'Things3',
+  {
+    hint = 'com.culturedcode.ThingsMac',
     hyper_shortcut = 't',
-    preferred_display = 1
+    preferred_display = 1,
+    local_bindings = {',', '.'}
   },
 }
 

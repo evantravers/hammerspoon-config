@@ -71,9 +71,9 @@ function startPomodoro()
   startSound:play()
   timerRunning = true
   for _, app in pairs(config.applications) do
-    pid = hsApp.find(app.name)
+    pid = hsApp.find(app.hint)
     if pid and app.distraction then
-      table.insert(closedDistractions, app.name) -- keep track of it
+      table.insert(closedDistractions, app.hint) -- keep track of it
       pid:kill()
     end
   end
