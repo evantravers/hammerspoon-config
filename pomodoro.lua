@@ -10,7 +10,7 @@ local hsApp = require("hs.application")
 
 local pomoMode = hs.hotkey.modal.new()
 
-local defaultPomodoroLength = 25
+local duration = 25
 
 local timer = hs.timer.new(1, function() update() end)
 local closedDistractions = {}
@@ -18,7 +18,6 @@ local string = ""
 
 local startSound = hs.sound.getByName("Blow")
 local stopSound = hs.sound.getByName("Submarine")
-
 -- UI
 
 function showPrompt(str)
@@ -26,11 +25,11 @@ function showPrompt(str)
   hs.fnutils.imap(hs.screen.allScreens(), function(screen)
     return hs.alert.show(str, hs.alert.defaultStyle, screen, true)
   end)
-  hs.timer.doAfter(2, function() pomoMode:exit() end)
+  hs.timer.doAfter(6, function() pomoMode:exit() end)
 end
 
 function pomoMode:entered()
-  prompt = "🍅 Press Enter to start Pomorodo! 🍅"
+  prompt = string.format("🍅 Press Enter to start Pomorodo for %sm! 🍅\n(Press ⬆ and ⬇ to change duration.)", duration)
   if timerRunning then
     if timer:running() then
       pauseOrResume = "pause"
@@ -91,6 +90,16 @@ function pausePomodoro()
   end
 end
 
+function increaseDuration()
+  duration = duration + 10
+  pomoMode:entered()
+end
+
+function decreaseDuration()
+  duration = duration - 10
+  pomoMode:entered()
+end
+
 -- Keyboard bindings
 
 hyper:bind({}, 'p', nil, function() pomoMode:enter() end)
@@ -98,6 +107,8 @@ hyper:bind({}, 'p', nil, function() pomoMode:enter() end)
 pomoMode:bind('', 'escape', function() pomoMode:exit() end)
 pomoMode:bind('', 'return', startOrStopPomodoro)
 pomoMode:bind('', 'space', pausePomodoro)
+pomoMode:bind('', 'up', increaseDuration)
+pomoMode:bind('', 'down', decreaseDuration)
 
 -- Timer
 
@@ -114,5 +125,5 @@ update = function()
 end
 
 function setupTimer()
-  timeLeft = hs.timer.minutes(defaultPomodoroLength)
+  timeLeft = hs.timer.minutes(duration)
 end
