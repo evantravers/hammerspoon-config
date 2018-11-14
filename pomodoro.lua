@@ -25,11 +25,11 @@ function showPrompt(str)
   hs.fnutils.imap(hs.screen.allScreens(), function(screen)
     return hs.alert.show(str, hs.alert.defaultStyle, screen, true)
   end)
-  hs.timer.doAfter(6, function() pomoMode:exit() end)
+  hs.timer.doAfter(10, function() pomoMode:exit() end)
 end
 
 function pomoMode:entered()
-  prompt = string.format("🍅 Press Enter to start Pomorodo for %sm! 🍅\n(Press ⬆ and ⬇ to change duration.)", duration)
+  prompt = string.format("🍅 Press Enter to start Pomorodo for %sm! 🍅\n(Press ⬆ and ⬇ to change duration, R to reset.)", duration)
   if timerRunning then
     if timer:running() then
       pauseOrResume = "pause"
@@ -100,6 +100,11 @@ function decreaseDuration()
   pomoMode:entered()
 end
 
+function resetDuration()
+  duration = 25
+  pomoMode:entered()
+end
+
 -- Keyboard bindings
 
 hyper:bind({}, 'p', nil, function() pomoMode:enter() end)
@@ -109,6 +114,7 @@ pomoMode:bind('', 'return', startOrStopPomodoro)
 pomoMode:bind('', 'space', pausePomodoro)
 pomoMode:bind('', 'up', increaseDuration)
 pomoMode:bind('', 'down', decreaseDuration)
+pomoMode:bind('', 'r', resetDuration)
 
 -- Timer
 
