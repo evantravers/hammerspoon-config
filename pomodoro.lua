@@ -18,12 +18,16 @@ local string = ""
 
 local startSound = hs.sound.getByName("Blow")
 local stopSound = hs.sound.getByName("Submarine")
+
+local alert = require("hs.alert")
+      alert.defaultStyle.textStyle =
+      { paragraphStyle = { alignment = "center" } }
 -- UI
 
 function showPrompt(str)
-  hs.alert.closeAll()
+  alert.closeAll()
   hs.fnutils.imap(hs.screen.allScreens(), function(screen)
-    return hs.alert.show(str, hs.alert.defaultStyle, screen, true)
+    return alert.show(str, alert.defaultStyle, screen, true)
   end)
   hs.timer.doAfter(10, function() pomoMode:exit() end)
 end
@@ -43,7 +47,7 @@ function pomoMode:entered()
 end
 
 function pomoMode:exited()
-  hs.alert.closeAll()
+  alert.closeAll()
 end
 
 function startOrStopPomodoro()
