@@ -10,7 +10,8 @@ local hsApp = require("hs.application")
 
 local pomoMode = hs.hotkey.modal.new()
 
-local duration = 25
+local numberOfPoms = 1
+local pomLength = 30
 
 local timer = hs.timer.new(1, function() update() end)
 local closedDistractions = {}
@@ -33,7 +34,7 @@ function showPrompt(str)
 end
 
 function pomoMode:entered()
-  prompt = string.format("🍅 Press Enter to start Pomorodo for %sm! 🍅\n(Press ⬆ and ⬇ to change duration, R to reset.)", duration)
+  prompt = string.format("Press Enter to start Pomorodo for %sm!\n%s\n(Press ⬆ and ⬇ to change duration, R to reset.)", numberOfPoms * pomLength, string.rep("🍅", numberOfPoms))
   if timerRunning then
     if timer:running() then
       pauseOrResume = "pause"
@@ -95,17 +96,19 @@ function pausePomodoro()
 end
 
 function increaseDuration()
-  duration = duration + 10
+  numberOfPoms = numberOfPoms + 1
   pomoMode:entered()
 end
 
 function decreaseDuration()
-  duration = duration - 10
-  pomoMode:entered()
+  if numberOfPoms > 1 then
+    numberOfPoms = numberOfPoms - 1
+    pomoMode:entered()
+  end
 end
 
 function resetDuration()
-  duration = 25
+  numberOfPoms = 1
   pomoMode:entered()
 end
 
@@ -135,5 +138,5 @@ update = function()
 end
 
 function setupTimer()
-  timeLeft = hs.timer.minutes(duration)
+  timeLeft = hs.timer.minutes(numberOfPoms * pomLength)
 end
