@@ -13,13 +13,13 @@ end
 hs.hotkey.bind({}, 'F19', pressedHyper, releasedHyper)
 
 launch = function(app)
-  hs.application.launchOrFocusByBundleID(app)
+  hs.application.launchOrFocusByBundleID(app.hint)
 end
 
 for _, app in pairs(config.applications) do
   -- Apps that I want to jump to
   if app.hyper_shortcut then
-    hyper:bind({}, app.hyper_shortcut, function() launch(app.hint); end)
+    hyper:bind({}, app.hyper_shortcut, function() launch(app); end)
   end
 
   -- I use hyper to power some shortcuts in different apps If the app is closed
@@ -31,7 +31,7 @@ for _, app in pairs(config.applications) do
         if hs.application.find(app.hint) then
           hs.eventtap.keyStroke({'cmd','alt','shift','ctrl'}, key)
         else
-          launch(app.hint)
+          launch(app)
           hs.eventtap.keyStroke({'cmd','alt','shift','ctrl'}, key)
         end
       end)
