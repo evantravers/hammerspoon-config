@@ -64,7 +64,7 @@ function stopPomodoro()
   stopSound:play()
   timerRunning = false
   for _, app in pairs(closedDistractions) do
-    hsApp.launchOrFocus(app)
+    hsApp.launchOrFocusByBundleID(app)
   end
   closedDistractions = {}
   timer:stop()
