@@ -32,7 +32,11 @@ for _, app in pairs(config.applications) do
           hs.eventtap.keyStroke({'cmd','alt','shift','ctrl'}, key)
         else
           launch(app)
-          hs.eventtap.keyStroke({'cmd','alt','shift','ctrl'}, key)
+          hs.timer.waitWhile(
+            function() return hs.application.find(app.hint) == nil end,
+            function()
+              hs.eventtap.keyStroke({'cmd','alt','shift','ctrl'}, key)
+            end)
         end
       end)
     end
