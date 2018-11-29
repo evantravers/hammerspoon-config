@@ -11,7 +11,7 @@ config.applications = {
     preferred_display = 1
   },
   {
-    hint = 'com.google.Chrome',
+    hint = 'org.mozilla.firefox',
     hyper_shortcut = 'k',
     preferred_display = 1
   },
@@ -20,7 +20,7 @@ config.applications = {
     hyper_shortcut = 'h'
   },
   {
-    hint = 'com.tinyspeck.slackmacgap',
+    hint = 'co.boxyapp.slack',
     hyper_shortcut = 'i',
     preferred_display = 2,
     distraction = true
