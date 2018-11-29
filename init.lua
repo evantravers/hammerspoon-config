@@ -16,6 +16,11 @@ config.applications = {
     preferred_display = 1
   },
   {
+    hint = 'com.google.chrome',
+    hyper_shortcut = 'o',
+    preferred_display = 1
+  },
+  {
     hint = 'com.kapeli.dashdoc',
     hyper_shortcut = 'h'
   },
