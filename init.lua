@@ -11,12 +11,12 @@ config.applications = {
     preferred_display = 1
   },
   {
-    hint = 'org.mozilla.firefox',
+    hint = 'com.google.chrome',
     hyper_shortcut = 'o',
     preferred_display = 1
   },
   {
-    hint = 'com.google.chrome',
+    hint = 'org.mozilla.firefox',
     hyper_shortcut = 'k',
     preferred_display = 1
   },
