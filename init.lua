@@ -32,12 +32,6 @@ config.applications = {
   },
   {
     hint = 'com.microsoft.Outlook',
-    hyper_shortcut = 'w',
-    preferred_display = 2,
-    distraction = true
-  },
-  {
-    hint = 'it.bloop.airmail2',
     hyper_shortcut = 'e',
     preferred_display = 2,
     distraction = true
