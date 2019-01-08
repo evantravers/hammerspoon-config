@@ -31,10 +31,16 @@ config.applications = {
     distraction = true
   },
   {
-    hint = 'com.microsoft.Outlook',
+    hint = 'it.bloop.airmail2',
     hyper_shortcut = 'e',
     preferred_display = 2,
     distraction = true
+  },
+  {
+    hint = 'com.flexibits.fantastical2.mac',
+    hyper_shortcut = 'w',
+    local_bindings = {']'},
+    preferred_display = 2,
   },
   {
     hint = 'com.apple.finder',
