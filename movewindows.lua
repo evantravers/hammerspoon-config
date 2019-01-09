@@ -2,6 +2,8 @@
 
 local hyper = require("hyper")
 local screenMode = hs.hotkey.modal.new()
+local window  = hs.window
+      window.animationDuration = 0
 
 hyper:bind({}, 'm', nil, function() screenMode:enter() end)
 
@@ -33,7 +35,7 @@ grid = {
 
 hs.fnutils.each(grid, function(entry)
   screenMode:bind('', entry.key, function()
-    hs.window.focusedWindow():moveToUnit(entry.unit)
+    window.focusedWindow():moveToUnit(entry.unit)
     screenMode:exit()
   end)
 end)
@@ -42,16 +44,16 @@ screenMode:bind('ctrl', '[', function() screenMode:exit() end)
 screenMode:bind('', 'escape', function() screenMode:exit() end)
 
 screenMode:bind('shift', 'h', function()
-  hs.window.focusedWindow():moveOneScreenWest()
+  window.focusedWindow():moveOneScreenWest()
   screenMode:exit()
 end)
 
 screenMode:bind('shift', 'l', function()
-  hs.window.focusedWindow():moveOneScreenEast()
+  window.focusedWindow():moveOneScreenEast()
   screenMode:exit()
 end)
 
 screenMode:bind('', 'tab', function ()
-  hs.window:focusedWindow():centerOnScreen()
+  window:focusedWindow():centerOnScreen()
   screenMode:exit()
 end)
