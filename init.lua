@@ -12,7 +12,7 @@ config.applications = {
   },
   {
     hint = 'com.google.chrome',
-    hyper_shortcut = 'o',
+    hyper_shortcut = 'w',
     preferred_display = 1
   },
   {
@@ -38,7 +38,7 @@ config.applications = {
   },
   {
     hint = 'com.flexibits.fantastical2.mac',
-    hyper_shortcut = 'w',
+    hyper_shortcut = 'y',
     local_bindings = {']'},
     preferred_display = 2,
   },
