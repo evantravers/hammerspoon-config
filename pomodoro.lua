@@ -74,6 +74,10 @@ function startPomodoro()
   showPrompt("Pomodoro started...")
   startSound:play()
   timerRunning = true
+  hs.urlevent.openURL(
+    string.format("x-fantastical2://parse?add=1&s=%s%sm",
+      hs.http.encodeForQuery("Focus Session starting now for "),
+      numberOfPoms * pomLength))
   for _, app in pairs(config.applications) do
     pid = hsApp.find(app.hint)
     if pid and app.distraction then
