@@ -34,7 +34,7 @@ function showPrompt(str)
 end
 
 function pomoMode:entered()
-  prompt = string.format("Press Enter to start Pomorodo for %sm!\n%s\n(Press ⬆ and ⬇ to change duration, R to reset.)", numberOfPoms * pomLength, string.rep("🍅", numberOfPoms))
+  prompt = string.format("Press Enter to start Pomorodo for %sm!\n%s\n(Press ⬆ and ⬇ to change duration\nPress R to reset.\nHold Shift to create calendar block.)", numberOfPoms * pomLength, string.rep("🍅", numberOfPoms))
   if timerRunning then
     if timer:running() then
       pauseOrResume = "pause"
@@ -51,9 +51,11 @@ function pomoMode:exited()
   alert.closeAll()
 end
 
-function startOrStopPomodoro()
+function startOrStopPomodoro(calendarEvent)
+  calendarEvent = calendarEvent or false
+
   if not timerRunning then
-    startPomodoro()
+    startPomodoro(calendarEvent)
   else
     stopPomodoro()
   end
@@ -70,14 +72,16 @@ function stopPomodoro()
   timer:stop()
 end
 
-function startPomodoro()
+function startPomodoro(makeCalendarEvent)
   showPrompt("Pomodoro started...")
   startSound:play()
   timerRunning = true
-  hs.urlevent.openURL(
-    string.format("x-fantastical2://parse?add=1&s=%s%sm",
-      hs.http.encodeForQuery("Focus Session starting now for "),
-      numberOfPoms * pomLength))
+  if makeCalendarEvent then
+    hs.urlevent.openURL(
+      string.format("x-fantastical2://parse?add=1&s=%s%sm",
+        hs.http.encodeForQuery("Focus Session starting now for "),
+        numberOfPoms * pomLength))
+  end
   for _, app in pairs(config.applications) do
     pid = hsApp.find(app.hint)
     if pid and app.distraction then
@@ -122,6 +126,7 @@ hyper:bind({}, 'p', nil, function() pomoMode:enter() end)
 
 pomoMode:bind('', 'escape', function() pomoMode:exit() end)
 pomoMode:bind('', 'return', startOrStopPomodoro)
+pomoMode:bind('shift', 'return', function() startOrStopPomodoro(true) end)
 pomoMode:bind('', 'space', pausePomodoro)
 pomoMode:bind('', 'up', increaseDuration)
 pomoMode:bind('', 'down', decreaseDuration)
