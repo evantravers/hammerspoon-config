@@ -9,7 +9,8 @@ hyper:bind({}, 'm', nil, function() screenMode:enter() end)
 
 function screenMode:entered()
   alertUuids = hs.fnutils.imap(hs.screen.allScreens(), function(screen)
-    return hs.alert.show('Move Window', hs.alert.defaultStyle, screen, true)
+    local prompt = string.format("Move: %s", window.focusedWindow():title())
+    return hs.alert.show(prompt, hs.alert.defaultStyle, screen, true)
   end)
 end
 
