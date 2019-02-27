@@ -11,7 +11,7 @@ config.applications = {
     preferred_display = 1
   },
   {
-    hint = 'com.google.chrome',
+    hint = 'com.brave.browser',
     hyper_shortcut = 'w',
     preferred_display = 1
   },
