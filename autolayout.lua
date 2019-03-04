@@ -1,4 +1,5 @@
 local hyper = require("hyper")
+local num_of_screens = 0
 
 target_display = function(display_int)
   -- detect the current number of monitors
@@ -26,6 +27,12 @@ autoLayout = function()
   end
 end
 
-watcher = hs.screen.watcher.new(autoLayout):start()
+watcher = hs.screen.watcher.new(function()
+  if num_of_screens ~= #hs.screen.allScreens() then
+    print("I'm autolayouting!")
+    autoLayout()
+    num_of_screens = #hs.screen.allScreens()
+  end
+end):start()
 
 hyper:bind({}, 'return', nil, autoLayout)
