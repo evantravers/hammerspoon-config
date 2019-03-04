@@ -70,7 +70,7 @@ config.applications = {
   {
     hint = 'com.culturedcode.ThingsMac',
     hyper_shortcut = 't',
-    preferred_display = 1,
+    preferred_display = 2,
     local_bindings = {',', '.'}
   },
 }
