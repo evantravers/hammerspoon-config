@@ -12,12 +12,12 @@ config.applications = {
   },
   {
     hint = 'com.brave.browser',
-    hyper_shortcut = 'w',
+    hyper_shortcut = 'k',
     preferred_display = 1
   },
   {
     hint = 'org.mozilla.firefox',
-    hyper_shortcut = 'k',
+    hyper_shortcut = 'w',
     preferred_display = 1
   },
   {
