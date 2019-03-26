@@ -3,7 +3,7 @@ config = {}
 config.applications = {
   {
     hint = 'com.runningwithcrayons.Alfred-3',
-    local_bindings = {'c', 'space', 'o', '\'', 'u'}
+    local_bindings = {'c', 'space', 'o', 'u'}
   },
   {
     hint = 'net.kovidgoyal.kitty',
@@ -72,6 +72,10 @@ config.applications = {
     hyper_shortcut = 't',
     preferred_display = 2,
     local_bindings = {',', '.'}
+  },
+  {
+    hint = 'com.agiletortoise.Drafts-OSX',
+    local_bindings = {'\''}
   },
 }
 
