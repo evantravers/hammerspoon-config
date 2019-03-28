@@ -84,5 +84,15 @@ local hyper = require 'hyper'
 require 'autolayout'
 require 'movewindows'
 require 'pomodoro'
+require 'airpods'
 
 hyper:bind({}, 'r', nil, function() hs.reload() end)
+
+hyper:bind({}, 'a', nil, function()
+  local ok, output = airPods('Evan’s AirPods')
+  if ok then
+    hs.alert.show(output)
+  else
+    hs.alert.show("Couldn't connect to AirPods!")
+  end
+end)
