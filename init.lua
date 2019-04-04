@@ -25,7 +25,7 @@ config.applications = {
     hyper_shortcut = 'h'
   },
   {
-    hint = 'co.boxyapp.slack',
+    hint = 'com.tinyspeck.slackmacgap',
     hyper_shortcut = 'i',
     preferred_display = 2,
     distraction = true
