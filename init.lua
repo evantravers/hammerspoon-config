@@ -77,6 +77,9 @@ config.applications = {
     hint = 'com.agiletortoise.Drafts-OSX',
     local_bindings = {'\''}
   },
+  {
+    hint = 'com.toggl.toggldesktop.TogglDesktop',
+  },
 }
 
 local hyper = require 'hyper'
