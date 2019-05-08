@@ -14,11 +14,18 @@ To install: `git clone git@github.com:evantravers/hammerspoon.git ~/.hammerspoon
 
 - jump to app via config in `init.lua`
 - provides a modal layer for the other plugins
+- allows an application to use "hyper shortcuts" by passing on ⌘+⌥+⌃+⇧+&lt;char&gt;
 
 ### autolayout
 
 - listens to display changes and moves and maximizes windows based on screen
   preferences.
+
+### airpods
+
+Using a script from
+[here](https://gist.githubusercontent.com/daGrevis/79b27b9c156ba828ad52976a118b29e0/raw/0e77383f4eb9301527caac3f0b71350e9499210b/init.lua),
+connect and disconnect my AirPods.
 
 ### pomodoro timer
 - on start should close list of distractions
