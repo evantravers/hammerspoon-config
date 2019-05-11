@@ -48,7 +48,6 @@ config.applications = {
   },
   {
     hint = 'com.hnc.Discord',
-    hyper_shortcut = 'l',
     preferred_display = 2,
     distraction = true
   },
@@ -79,6 +78,7 @@ config.applications = {
   },
   {
     hint = 'com.toggl.toggldesktop.TogglDesktop',
+    local_bindings = {'l'}
   },
 }
 
