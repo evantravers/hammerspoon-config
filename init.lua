@@ -74,7 +74,7 @@ config.applications = {
   },
   {
     hint = 'com.agiletortoise.Drafts-OSX',
-    local_bindings = {'\''}
+    local_bindings = {'d', 'x', '\''}
   },
   {
     hint = 'com.toggl.toggldesktop.TogglDesktop',
