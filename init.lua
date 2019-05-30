@@ -2,7 +2,7 @@ config = {}
 
 config.applications = {
   {
-    hint = 'com.runningwithcrayons.Alfred-3',
+    hint = 'com.runningwithcrayons.Alfred',
     local_bindings = {'c', 'space', 'o', 'u'}
   },
   {
