@@ -74,7 +74,8 @@ config.applications = {
   },
   {
     hint = 'com.agiletortoise.Drafts-OSX',
-    local_bindings = {'d', 'x', '\''}
+    hyper_shortcut ='d',
+    local_bindings = {'x', '\''}
   },
   {
     hint = 'com.toggl.toggldesktop.TogglDesktop',
