@@ -31,7 +31,7 @@ config.applications = {
     distraction = true
   },
   {
-    hint = 'it.bloop.airmail2',
+    hint = 'com.readdle.smartemail-Mac',
     hyper_shortcut = 'e',
     preferred_display = 2,
     distraction = true
