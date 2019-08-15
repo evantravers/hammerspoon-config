@@ -31,7 +31,7 @@ config.applications = {
     distraction = true
   },
   {
-    hint = 'com.readdle.smartemail-Mac',
+    hint = 'com.apple.mail',
     hyper_shortcut = 'e',
     preferred_display = 2,
     distraction = true
@@ -64,7 +64,7 @@ config.applications = {
   {
     hint = 'com.tapbots.Tweetbot3Mac',
     distraction = true,
-    local_bindings = {';'}
+    local_bindings = {'\\'}
   },
   {
     hint = 'com.culturedcode.ThingsMac',
@@ -75,7 +75,7 @@ config.applications = {
   {
     hint = 'com.agiletortoise.Drafts-OSX',
     hyper_shortcut ='d',
-    local_bindings = {'x', '\''}
+    local_bindings = {'x', ';'}
   },
   {
     hint = 'com.toggl.toggldesktop.TogglDesktop',
