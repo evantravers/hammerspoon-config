@@ -52,11 +52,6 @@ config.applications = {
     distraction = true
   },
   {
-    hint = 'us.zoom.xos',
-    hyper_shortcut = 'z',
-    preferred_display = 2
-  },
-  {
     hint = 'com.bohemiancoding.sketch3',
     hyper_shortcut = 'v',
     preferred_display = 1
