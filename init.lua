@@ -95,3 +95,25 @@ hyper:bind({}, 'a', nil, function()
     hs.alert.show("Couldn't connect to AirPods!")
   end
 end)
+
+-- Jump to google hangout
+hyper:bind({}, 'z', nil, function()
+  hs.osascript.javascript([[
+  (function() {
+    var brave = Application('Brave');
+    brave.activate();
+
+    for (win of brave.windows()) {
+      var tabIndex =
+        win.tabs().findIndex(tab => tab.url().match(/meet.google.com/));
+
+      if (tabIndex != -1) {
+        win.activeTabIndex = (tabIndex + 1);
+        win.visible = false;
+        win.visible = true;
+        win.index = 1;
+      }
+    }
+  })();
+  ]])
+end)
