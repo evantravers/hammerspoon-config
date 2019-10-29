@@ -109,8 +109,6 @@ hyper:bind({}, 'z', nil, function()
 
       if (tabIndex != -1) {
         win.activeTabIndex = (tabIndex + 1);
-        win.visible = false;
-        win.visible = true;
         win.index = 1;
       }
     }
