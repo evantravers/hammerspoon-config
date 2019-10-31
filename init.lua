@@ -99,5 +99,5 @@ end)
 
 -- Jump to google hangout
 hyper:bind({}, 'z', nil, function()
-  jumptab("meet.google.com")
+  jumptab("meet.google.com|hangouts.google.com.call")
 end)
