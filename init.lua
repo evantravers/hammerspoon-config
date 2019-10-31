@@ -84,6 +84,7 @@ require 'autolayout'
 require 'movewindows'
 require 'pomodoro'
 require 'airpods'
+require 'tabjump'
 
 hyper:bind({}, 'r', nil, function() hs.reload() end)
 
@@ -98,20 +99,5 @@ end)
 
 -- Jump to google hangout
 hyper:bind({}, 'z', nil, function()
-  hs.osascript.javascript([[
-  (function() {
-    var brave = Application('Brave');
-    brave.activate();
-
-    for (win of brave.windows()) {
-      var tabIndex =
-        win.tabs().findIndex(tab => tab.url().match(/meet.google.com/));
-
-      if (tabIndex != -1) {
-        win.activeTabIndex = (tabIndex + 1);
-        win.index = 1;
-      }
-    }
-  })();
-  ]])
+  jumptab("meet.google.com")
 end)
