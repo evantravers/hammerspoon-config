@@ -1,6 +1,6 @@
 local hyper = require("hyper")
 
-jumptab = function(url)
+tabjump = function(url)
   hs.osascript.javascript([[
   (function() {
     var brave = Application('Brave');
