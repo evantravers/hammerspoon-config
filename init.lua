@@ -97,7 +97,11 @@ hyper:bind({}, 'a', nil, function()
   end
 end)
 
--- Jump to google hangout
+-- Jump to google hangout or zoom
 hyper:bind({}, 'z', nil, function()
-  tabjump("meet.google.com|hangouts.google.com.call")
+  if hs.application.find('us.zoom.xos') then
+    hs.application.launchOrFocusByBundleID('us.zoom.xos')
+  else
+    tabjump("meet.google.com|hangouts.google.com.call")
+  end
 end)
