@@ -52,11 +52,6 @@ config.applications = {
     distraction = true
   },
   {
-    hint = 'com.bohemiancoding.sketch3',
-    hyper_shortcut = 'v',
-    preferred_display = 1
-  },
-  {
     hint = 'com.tapbots.Tweetbot3Mac',
     distraction = true,
     local_bindings = {'\\'}
@@ -75,10 +70,6 @@ config.applications = {
   {
     hint = 'com.toggl.toggldesktop.TogglDesktop',
     local_bindings = {'l'}
-  },
-  {
-    hint = 'com.figma.Desktop',
-    local_bindings = {'v'}
   },
 }
 
@@ -107,5 +98,14 @@ hyper:bind({}, 'z', nil, function()
     hs.application.launchOrFocusByBundleID('us.zoom.xos')
   else
     tabjump("meet.google.com|hangouts.google.com.call")
+  end
+end)
+
+-- Jump to figma
+hyper:bind({}, 'v', nil, function()
+  if hs.application.find('com.figma.Desktop') then
+    hs.application.launchOrFocusByBundleID('com.figma.Desktop')
+  else
+    tabjump("figma.com")
   end
 end)
