@@ -76,6 +76,10 @@ config.applications = {
     hint = 'com.toggl.toggldesktop.TogglDesktop',
     local_bindings = {'l'}
   },
+  {
+    hint = 'com.figma.Desktop',
+    local_bindings = {'v'}
+  },
 }
 
 local hyper = require 'hyper'
