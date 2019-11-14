@@ -2,73 +2,73 @@ config = {}
 
 config.applications = {
   {
-    hint = 'com.runningwithcrayons.Alfred',
+    bundleID = 'com.runningwithcrayons.Alfred',
     local_bindings = {'c', 'space', 'o'}
   },
   {
-    hint = 'net.kovidgoyal.kitty',
+    bundleID = 'net.kovidgoyal.kitty',
     hyper_shortcut = 'j',
     preferred_display = 1
   },
   {
-    hint = 'com.brave.browser',
+    bundleID = 'com.brave.browser',
     hyper_shortcut = 'k',
     preferred_display = 1
   },
   {
-    hint = 'org.mozilla.firefox',
+    bundleID = 'org.mozilla.firefox',
     hyper_shortcut = 'w',
     preferred_display = 1
   },
   {
-    hint = 'com.kapeli.dashdoc',
+    bundleID = 'com.kapeli.dashdoc',
     hyper_shortcut = 'h'
   },
   {
-    hint = 'com.tinyspeck.slackmacgap',
+    bundleID = 'com.tinyspeck.slackmacgap',
     hyper_shortcut = 'i',
     preferred_display = 2,
     distraction = true
   },
   {
-    hint = 'com.apple.mail',
+    bundleID = 'com.apple.mail',
     hyper_shortcut = 'e',
     preferred_display = 2,
     distraction = true
   },
   {
-    hint = 'com.flexibits.fantastical2.mac',
+    bundleID = 'com.flexibits.fantastical2.mac',
     hyper_shortcut = 'y',
     local_bindings = {']'},
     preferred_display = 2,
   },
   {
-    hint = 'com.apple.finder',
+    bundleID = 'com.apple.finder',
     hyper_shortcut = 'f'
   },
   {
-    hint = 'com.hnc.Discord',
+    bundleID = 'com.hnc.Discord',
     preferred_display = 2,
     distraction = true
   },
   {
-    hint = 'com.tapbots.Tweetbot3Mac',
+    bundleID = 'com.tapbots.Tweetbot3Mac',
     distraction = true,
     local_bindings = {'\\'}
   },
   {
-    hint = 'com.culturedcode.ThingsMac',
+    bundleID = 'com.culturedcode.ThingsMac',
     hyper_shortcut = 't',
     preferred_display = 1,
     local_bindings = {',', '.'}
   },
   {
-    hint = 'com.agiletortoise.Drafts-OSX',
+    bundleID = 'com.agiletortoise.Drafts-OSX',
     hyper_shortcut ='d',
     local_bindings = {'x', ';'}
   },
   {
-    hint = 'com.toggl.toggldesktop.TogglDesktop',
+    bundleID = 'com.toggl.toggldesktop.TogglDesktop',
     local_bindings = {'l'}
   },
 }

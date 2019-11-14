@@ -13,7 +13,7 @@ end
 hs.hotkey.bind({}, 'F19', pressedHyper, releasedHyper)
 
 launch = function(app)
-  hs.application.launchOrFocusByBundleID(app.hint)
+  hs.application.launchOrFocusByBundleID(app.bundleID)
 end
 
 for _, app in pairs(config.applications) do
@@ -28,12 +28,12 @@ for _, app in pairs(config.applications) do
   if app.local_bindings then
     for _, key in pairs(app.local_bindings) do
       hyper:bind({}, key, nil, function()
-        if hs.application.find(app.hint) then
+        if hs.application.find(app.bundleID) then
           hs.eventtap.keyStroke({'cmd','alt','shift','ctrl'}, key)
         else
           launch(app)
           hs.timer.waitWhile(
-            function() return hs.application.find(app.hint) == nil end,
+            function() return hs.application.find(app.bundleID) == nil end,
             function()
               hs.eventtap.keyStroke({'cmd','alt','shift','ctrl'}, key)
             end)
