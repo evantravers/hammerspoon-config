@@ -15,7 +15,7 @@ autoLayout = function()
   for _, app_config in pairs(config.applications) do
     -- if we have a preferred display
     if app_config.preferred_display ~= nil then
-      application = hs.application.find(app_config.hint)
+      application = hs.application.find(app_config.bundleID)
 
       if application ~= nil and application:mainWindow() ~= nil then
         application

@@ -83,9 +83,9 @@ function startPomodoro(makeCalendarEvent)
         numberOfPoms * pomLength))
   end
   for _, app in pairs(config.applications) do
-    pid = hsApp.find(app.hint)
+    pid = hsApp.find(app.bundleID)
     if pid and app.distraction then
-      table.insert(closedDistractions, app.hint) -- keep track of it
+      table.insert(closedDistractions, app.bundleID) -- keep track of it
       pid:kill()
     end
   end
