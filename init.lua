@@ -71,6 +71,10 @@ config.applications = {
     bundleID = 'com.toggl.toggldesktop.TogglDesktop',
     local_bindings = {'l'}
   },
+  {
+    bundleID = 'com.ideasoncanvas.mindnode.macos',
+    hyper_shortcut = 'u'
+  }
 }
 
 local hyper = require 'hyper'
