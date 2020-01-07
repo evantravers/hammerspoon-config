@@ -73,7 +73,8 @@ config.applications = {
   },
   {
     bundleID = 'com.ideasoncanvas.mindnode.macos',
-    hyper_shortcut = 'u'
+    hyper_shortcut = 'u',
+    preferred_display = 1
   }
 }
 
