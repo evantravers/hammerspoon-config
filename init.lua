@@ -108,11 +108,9 @@ end)
 
 -- Jump to figma
 hyper:bind({}, 'v', nil, function()
-  if hs.application.find('com.electron.realtimeboard') then
-    hs.application.launchOrFocusByBundleID('com.electron.realtimeboard')
-  elseif hs.application.find('com.figma.Desktop') then
+  if hs.application.find('com.figma.Desktop') then
     hs.application.launchOrFocusByBundleID('com.figma.Desktop')
   else
-    tabjump("figma.com")
+    tabjump("lucidchart.com|figma.com")
   end
 end)
