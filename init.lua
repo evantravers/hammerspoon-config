@@ -3,7 +3,7 @@ config = {}
 config.applications = {
   {
     bundleID = 'com.runningwithcrayons.Alfred',
-    local_bindings = {'c', 'space', 'o'}
+    local_bindings = {'c', 'space', 'o', 's'}
   },
   {
     bundleID = 'net.kovidgoyal.kitty',
