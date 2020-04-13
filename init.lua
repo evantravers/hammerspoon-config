@@ -17,7 +17,7 @@ config.applications = {
   },
   {
     bundleID = 'org.mozilla.firefox',
-    hyper_shortcut = 'w',
+    hyper_shortcut = 'b',
     preferred_display = 1
   },
   {
