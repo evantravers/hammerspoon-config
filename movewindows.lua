@@ -32,6 +32,9 @@ grid = {
   { key='b', unit=hs.geometry.rect(0, 0.5, 0.5, 0.5) },
   { key='n', unit=hs.geometry.rect(0.5, 0.5, 0.5, 0.5) },
 
+  { key='r', unit=hs.layout.left70 },
+  { key='t', unit=hs.layout.right30 },
+
   { key='space', unit=hs.layout.maximized },
 }
 
