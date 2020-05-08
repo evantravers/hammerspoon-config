@@ -114,3 +114,57 @@ hyper:bind({}, 'v', nil, function()
     tabjump("lucidchart.com|figma.com")
   end
 end)
+
+hyper:bind({}, 'q', nil, function()
+  local choices = {
+    {
+      ["text"] = "Review",
+      ["subText"] = "Setup a Things 3 Review Session",
+      ["func"] = "review",
+    },
+    {
+      ["text"] = "Plan a Focus Budget",
+      ["subText"] = "Setup Things 3 and Fantastical",
+      ["func"] = "focus_budget",
+    },
+  }
+  local chooser = hs.chooser.new(function(choice)
+    if choice["func"] == "review" then
+      hs.application.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
+      local things = hs.application.find('com.culturedcode.ThingsMac')
+
+      local today = things:focusedWindow()
+      today:moveToUnit(hs.layout.right30)
+      today:application():selectMenuItem("Hide Sidebar")
+      today:application():selectMenuItem("Today")
+      today:application():selectMenuItem("New Things Window")
+
+      local workspace = things:focusedWindow()
+      workspace:moveToUnit(hs.layout.left70)
+      workspace:application():selectMenuItem("Show Sidebar")
+      workspace:application():selectMenuItem("Anytime")
+    end
+
+    if choice["func"] == "focus_budget" then
+      hs.application.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
+      hs.application.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
+
+      local things = hs.application.find('com.culturedcode.ThingsMac')
+      local fantastical = hs.application.find('com.flexibits.fantastical2.mac')
+
+      local today = things:focusedWindow()
+      today:moveToUnit(hs.layout.right30)
+      today:application():selectMenuItem("Hide Sidebar")
+      today:application():selectMenuItem("Today")
+
+      local cal = fantastical:focusedWindow()
+      cal:moveToUnit(hs.layout.left70)
+      cal:application():selectMenuItem("Hide Sidebar")
+      cal:application():selectMenuItem("By Week")
+    end
+  end)
+
+  chooser:choices(choices)
+  chooser:show()
+end)
+
