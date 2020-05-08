@@ -133,13 +133,25 @@ hyper:bind({}, 'q', nil, function()
       hs.application.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
       local things = hs.application.find('com.culturedcode.ThingsMac')
 
-      local today = things:focusedWindow()
+      hs.fnutils.imap(things:allWindows(), function(v) v:close() end)
+      things:selectMenuItem("New Things Window")
+
+      local today = things:allWindows()[1]
+      today:focus()
       today:moveToUnit(hs.layout.right30)
       today:application():selectMenuItem("Hide Sidebar")
       today:application():selectMenuItem("Today")
       today:application():selectMenuItem("New Things Window")
 
-      local workspace = things:focusedWindow()
+      local workspace = hs.fnutils.ifilter(things:allWindows(), function(w)
+        if today == w then
+          return false
+        else
+          return true
+        end
+      end)[1]
+
+      workspace:focus()
       workspace:moveToUnit(hs.layout.left70)
       workspace:application():selectMenuItem("Show Sidebar")
       workspace:application():selectMenuItem("Anytime")
