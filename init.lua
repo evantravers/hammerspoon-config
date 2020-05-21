@@ -8,12 +8,14 @@ config.applications = {
   {
     bundleID = 'net.kovidgoyal.kitty',
     hyper_shortcut = 'j',
-    preferred_display = 1
+    preferred_display = 1,
+    tags = {'coding'}
   },
   {
     bundleID = 'com.brave.browser',
     hyper_shortcut = 'k',
-    preferred_display = 1
+    preferred_display = 1,
+    tags = {'coding', 'writing'}
   },
   {
     bundleID = 'org.mozilla.firefox',
@@ -22,24 +24,26 @@ config.applications = {
   },
   {
     bundleID = 'com.kapeli.dashdoc',
-    hyper_shortcut = 'h'
+    hyper_shortcut = 'h',
+    tags = {'coding'}
   },
   {
     bundleID = 'com.tinyspeck.slackmacgap',
     hyper_shortcut = 'i',
     preferred_display = 2,
-    distraction = true
+    tags = {'distraction', 'communication'}
   },
   {
     bundleID = 'com.apple.mail',
     hyper_shortcut = 'e',
     preferred_display = 2,
-    distraction = true
+    tags = {'distraction', 'communication'}
   },
   {
     bundleID = 'com.flexibits.fantastical2.mac',
     hyper_shortcut = 'y',
     local_bindings = {']'},
+    tags = {'planning', 'review'},
     preferred_display = 2,
   },
   {
@@ -49,22 +53,24 @@ config.applications = {
   {
     bundleID = 'com.hnc.Discord',
     preferred_display = 2,
-    distraction = true
+    tags = {'distraction'}
   },
   {
     bundleID = 'com.tapbots.Tweetbot3Mac',
-    distraction = true,
+    tags = {'distraction'},
     local_bindings = {'\\'}
   },
   {
     bundleID = 'com.culturedcode.ThingsMac',
     hyper_shortcut = 't',
     preferred_display = 1,
+    tags = {'planning', 'review'},
     local_bindings = {',', '.'}
   },
   {
     bundleID = 'com.agiletortoise.Drafts-OSX',
     hyper_shortcut ='d',
+    tags = {'review'},
     local_bindings = {'x', ';'}
   },
   {

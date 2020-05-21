@@ -7,6 +7,7 @@
 
 local hyper = require("hyper")
 local hsApp = require("hs.application")
+local fn    = require ("hs.fnutils")
 
 local pomoMode = hs.hotkey.modal.new()
 
@@ -72,6 +73,14 @@ function stopPomodoro()
   timer:stop()
 end
 
+function isDistraction(app)
+  if app.tags and fn.contains(app.tags, 'distraction') then
+    return true
+  else
+    return false
+  end
+end
+
 function startPomodoro(makeCalendarEvent)
   showPrompt("Pomodoro started...")
   startSound:play()
@@ -84,7 +93,7 @@ function startPomodoro(makeCalendarEvent)
   end
   for _, app in pairs(config.applications) do
     pid = hsApp.find(app.bundleID)
-    if pid and app.distraction then
+    if pid and isDistraction(app) then
       table.insert(closedDistractions, app.bundleID) -- keep track of it
       pid:kill()
     end
