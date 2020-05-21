@@ -102,9 +102,9 @@ function tagged(tag)
   fn.filter(config.applications, function(app) hasTag(app, tag) end)
 end
 
-local hyper = require 'hyper'
+local hyper      = require 'hyper'
+local autolayout = require 'autolayout'
 
-require 'autolayout'
 require 'movewindows'
 require 'airpods'
 require 'headspace'

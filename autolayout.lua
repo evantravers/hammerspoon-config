@@ -1,7 +1,8 @@
-local hyper = require("hyper")
-local num_of_screens = 0
+local autolayout = {}
 
-target_display = function(display_int)
+autolayout.num_of_screens = 0
+
+autolayout.target_display = function(display_int)
   -- detect the current number of monitors
   displays = hs.screen.allScreens()
   if displays[display_int] ~= nil then
@@ -11,7 +12,7 @@ target_display = function(display_int)
   end
 end
 
-autoLayout = function()
+autolayout.autoLayout = function()
   for _, app_config in pairs(config.applications) do
     -- if we have a preferred display
     if app_config.preferred_display ~= nil then
@@ -20,19 +21,22 @@ autoLayout = function()
       if application ~= nil and application:mainWindow() ~= nil then
         application
         :mainWindow()
-        :moveToScreen(target_display(app_config.preferred_display), false, true, 0)
+        :moveToScreen(autolayout.target_display(app_config.preferred_display), false, true, 0)
         :moveToUnit(hs.layout.maximized)
       end
     end
   end
 end
 
-watcher = hs.screen.watcher.new(function()
+-- initialize watchers
+local hyper = require("hyper")
+hs.screen.watcher.new(function()
   if num_of_screens ~= #hs.screen.allScreens() then
     print("I'm autolayouting!")
     autoLayout()
     num_of_screens = #hs.screen.allScreens()
   end
 end):start()
+hyper:bind({}, 'return', nil, autolayout.autoLayout)
 
-hyper:bind({}, 'return', nil, autoLayout)
+return autolayout
