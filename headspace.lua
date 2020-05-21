@@ -1,6 +1,7 @@
 -- The goal is to get into another space, even when working from home.
 
 -- Custom Desktop Background with prompts for focus, writing, code?
+-- DND status?
 -- Warnings set up for launching apps not tagged properly.
 -- Toggl timer and in built-in Pomodoro to help box time.
 -- Preset screens for working.
@@ -8,6 +9,7 @@
 
 local hyper = require('hyper')
 local hs_app = require('hs.application')
+local fn = require('hs.fnutils')
 
 local spaces = {
   review = {
@@ -15,7 +17,7 @@ local spaces = {
       hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
       local things = hs_app.find('com.culturedcode.ThingsMac')
 
-      hs.fnutils.imap(things:allWindows(), function(v) v:close() end)
+      fn.imap(things:allWindows(), function(v) v:close() end)
       things:selectMenuItem("New Things Window")
 
       local today = things:allWindows()[1]
@@ -25,7 +27,7 @@ local spaces = {
       today:application():selectMenuItem("Today")
       today:application():selectMenuItem("New Things Window")
 
-      local workspace = hs.fnutils.ifilter(things:allWindows(), function(w)
+      local workspace = fn.ifilter(things:allWindows(), function(w)
         if today == w then
           return false
         else
