@@ -107,6 +107,7 @@ local hyper       = require 'hyper'
 local autolayout  = require 'autolayout'
       autolayout.start()
 local movewindows = require 'movewindows'
+      movewindows.start()
 local airpods     = require 'airpods'
 local tabjump     = require 'tabjump'
 require 'headspace'

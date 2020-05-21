@@ -1,11 +1,6 @@
 -- Window shortcuts from @tmiller
 
-local hyper = require("hyper")
 local movewindows = hs.hotkey.modal.new()
-local window  = hs.window
-      window.animationDuration = 0
-
-hyper:bind({}, 'm', nil, function() movewindows:enter() end)
 
 function movewindows:entered()
   alertUuids = hs.fnutils.imap(hs.screen.allScreens(), function(screen)
@@ -38,27 +33,37 @@ movewindows.grid = {
   { key='space', unit=hs.layout.maximized },
 }
 
-hs.fnutils.each(movewindows.grid, function(entry)
-  movewindows:bind('', entry.key, function()
-    window.focusedWindow():moveToUnit(entry.unit)
-    movewindows:exit()
+movewindows.start = function()
+  local hyper = require("hyper")
+  local window  = hs.window
+  window.animationDuration = 0
+
+  hyper:bind({}, 'm', nil, function() movewindows:enter() end)
+
+  hs.fnutils.each(movewindows.grid, function(entry)
+    movewindows:bind('', entry.key, function()
+      window.focusedWindow():moveToUnit(entry.unit)
+      movewindows:exit()
+    end)
+
+    movewindows:bind('ctrl', '[', function() movewindows:exit() end)
+    movewindows:bind('', 'escape', function() movewindows:exit() end)
+
+    movewindows:bind('shift', 'h', function()
+      window.focusedWindow():moveOneScreenWest()
+      movewindows:exit()
+    end)
+
+    movewindows:bind('shift', 'l', function()
+      window.focusedWindow():moveOneScreenEast()
+      movewindows:exit()
+    end)
+
+    movewindows:bind('', 'tab', function ()
+      window:focusedWindow():centerOnScreen()
+      movewindows:exit()
+    end)
   end)
-end)
+end
 
-movewindows:bind('ctrl', '[', function() movewindows:exit() end)
-movewindows:bind('', 'escape', function() movewindows:exit() end)
-
-movewindows:bind('shift', 'h', function()
-  window.focusedWindow():moveOneScreenWest()
-  movewindows:exit()
-end)
-
-movewindows:bind('shift', 'l', function()
-  window.focusedWindow():moveOneScreenEast()
-  movewindows:exit()
-end)
-
-movewindows:bind('', 'tab', function ()
-  window:focusedWindow():centerOnScreen()
-  movewindows:exit()
-end)
+return movewindows
