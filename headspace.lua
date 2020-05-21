@@ -61,6 +61,8 @@ module.spaces = {
   },
   ["focus_budget"] = {
     setup = function()
+      toggl.start_timer(toggl.projects.planning, "Planning a Focus Budget")
+
       hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
       hs_app.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
 
