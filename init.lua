@@ -102,18 +102,17 @@ function tagged(tag)
   fn.filter(config.applications, function(app) hasTag(app, tag) end)
 end
 
-local hyper      = require 'hyper'
-local autolayout = require 'autolayout'
-
-require 'movewindows'
-require 'airpods'
+local hyper       = require 'hyper'
+local autolayout  = require 'autolayout'
+local movewindows = require 'movewindows'
+local airpods     = require 'airpods'
 require 'headspace'
 require 'tabjump'
 
 hyper:bind({}, 'r', nil, function() hs.reload() end)
 
 hyper:bind({}, 'a', nil, function()
-  local ok, output = airPods('Evan’s AirPods')
+  local ok, output = airpods.toggle('Evan’s AirPods')
   if ok then
     hs.alert.show(output)
   else
