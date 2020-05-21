@@ -7,9 +7,9 @@
 -- Preset screens for working.
 -- Musical cues?
 
-local hyper = require('hyper')
+local hyper  = require('hyper')
 local hs_app = require('hs.application')
-local fn = require('hs.fnutils')
+local fn     = require('hs.fnutils')
 
 local spaces = {
   review = {
@@ -62,7 +62,7 @@ local spaces = {
   }
 }
 
-hyper:bind({}, 'q', nil, function()
+hyper:bind({}, 'l', nil, function()
   local choices = {
     {
       text = "Review",

@@ -75,7 +75,7 @@ config.applications = {
   },
   {
     bundleID = 'com.toggl.toggldesktop.TogglDesktop',
-    local_bindings = {'l'}
+    local_bindings = {'p'}
   },
   {
     bundleID = 'com.ideasoncanvas.mindnode.macos',
@@ -106,7 +106,6 @@ local hyper = require 'hyper'
 
 require 'autolayout'
 require 'movewindows'
-require 'pomodoro'
 require 'airpods'
 require 'headspace'
 require 'tabjump'
