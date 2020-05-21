@@ -7,12 +7,27 @@
 -- Preset screens for working.
 -- Musical cues?
 
+local module = {}
+
 local hyper  = require('hyper')
 local hs_app = require('hs.application')
 local fn     = require('hs.fnutils')
 
-local spaces = {
-  review = {
+module.choices = {
+  {
+    text = "Review",
+    subText = "Setup a Things 3 Review Session",
+    key = 'review'
+  },
+  {
+    text = "Plan a Focus Budget",
+    subText = "Setup Things 3 and Fantastical",
+    key = 'focus_budget'
+  }
+}
+
+module.spaces = {
+  ['review'] = {
     setup = function()
       hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
       local things = hs_app.find('com.culturedcode.ThingsMac')
@@ -41,7 +56,7 @@ local spaces = {
       workspace:application():selectMenuItem("Anytime")
     end
   },
-  focus_budget = {
+  ["focus_budget"] = {
     setup = function()
       hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
       hs_app.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
@@ -62,25 +77,29 @@ local spaces = {
   }
 }
 
-hyper:bind({}, 'l', nil, function()
-  local choices = {
-    {
-      text = "Review",
-      subText = "Setup a Things 3 Review Session",
-      space = "review",
-    },
-    {
-      text = "Plan a Focus Budget",
-      subText = "Setup Things 3 and Fantastical",
-      space = "focus_budget",
-    },
-  }
-  local chooser = hs.chooser.new(function(choice)
-    if choice ~= nil then
-      spaces[choice["space"]]["setup"]()
-    end
-  end)
+module.start = function()
+  hyper:bind({}, 'l', nil, function()
+    local choices = {
+      {
+        text = "Review",
+        subText = "Setup a Things 3 Review Session",
+        space = "review",
+      },
+      {
+        text = "Plan a Focus Budget",
+        subText = "Setup Things 3 and Fantastical",
+        space = "focus_budget",
+      },
+    }
+    local chooser = hs.chooser.new(function(choice)
+      if choice ~= nil then
+        module.spaces[choice['key']].setup()
+      end
+    end)
 
-  chooser:choices(choices)
-  chooser:show()
-end)
+    chooser:choices(module.choices)
+    chooser:show()
+  end)
+end
+
+return module

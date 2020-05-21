@@ -110,7 +110,8 @@ local movewindows = require 'movewindows'
       movewindows.start()
 local airpods     = require 'airpods'
 local tabjump     = require 'tabjump'
-require 'headspace'
+local headspace   = require 'headspace'
+      headspace.start()
 
 hyper:bind({}, 'r', nil, function() hs.reload() end)
 
