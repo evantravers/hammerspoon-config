@@ -18,8 +18,8 @@ end
 
 for _, app in pairs(config.applications) do
   -- Apps that I want to jump to
-  if app.hyper_shortcut then
-    hyper:bind({}, app.hyper_shortcut, function() launch(app); end)
+  if app.hyper_key then
+    hyper:bind({}, app.hyper_key, function() launch(app); end)
   end
 
   -- I use hyper to power some shortcuts in different apps If the app is closed

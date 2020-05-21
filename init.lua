@@ -7,48 +7,48 @@ config.applications = {
   },
   {
     bundleID = 'net.kovidgoyal.kitty',
-    hyper_shortcut = 'j',
+    hyper_key = 'j',
     preferred_display = 1,
     tags = {'coding'}
   },
   {
     bundleID = 'com.brave.browser',
-    hyper_shortcut = 'k',
+    hyper_key = 'k',
     preferred_display = 1,
     tags = {'coding', 'writing'}
   },
   {
     bundleID = 'org.mozilla.firefox',
-    hyper_shortcut = 'b',
+    hyper_key = 'b',
     preferred_display = 1
   },
   {
     bundleID = 'com.kapeli.dashdoc',
-    hyper_shortcut = 'h',
+    hyper_key = 'h',
     tags = {'coding'}
   },
   {
     bundleID = 'com.tinyspeck.slackmacgap',
-    hyper_shortcut = 'i',
+    hyper_key = 'i',
     preferred_display = 2,
     tags = {'distraction', 'communication'}
   },
   {
     bundleID = 'com.apple.mail',
-    hyper_shortcut = 'e',
+    hyper_key = 'e',
     preferred_display = 2,
     tags = {'distraction', 'communication'}
   },
   {
     bundleID = 'com.flexibits.fantastical2.mac',
-    hyper_shortcut = 'y',
+    hyper_key = 'y',
     local_bindings = {']'},
     tags = {'planning', 'review'},
     preferred_display = 2,
   },
   {
     bundleID = 'com.apple.finder',
-    hyper_shortcut = 'f'
+    hyper_key = 'f'
   },
   {
     bundleID = 'com.hnc.Discord',
@@ -62,15 +62,15 @@ config.applications = {
   },
   {
     bundleID = 'com.culturedcode.ThingsMac',
-    hyper_shortcut = 't',
+    hyper_key = 't',
     preferred_display = 1,
     tags = {'planning', 'review'},
     local_bindings = {',', '.'}
   },
   {
     bundleID = 'com.agiletortoise.Drafts-OSX',
-    hyper_shortcut ='d',
-    tags = {'review'},
+    hyper_key ='d',
+    tags = {'review', 'writing'},
     local_bindings = {'x', ';'}
   },
   {
@@ -79,7 +79,7 @@ config.applications = {
   },
   {
     bundleID = 'com.ideasoncanvas.mindnode.macos',
-    hyper_shortcut = 'u',
+    hyper_key = 'u',
     preferred_display = 1
   }
 }
