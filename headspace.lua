@@ -30,6 +30,8 @@ module.choices = {
 module.spaces = {
   ['review'] = {
     setup = function()
+      toggl.start_timer(toggl.projects.planning, "Review")
+
       hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
       local things = hs_app.find('com.culturedcode.ThingsMac')
 
