@@ -106,8 +106,8 @@ local hyper       = require 'hyper'
 local autolayout  = require 'autolayout'
 local movewindows = require 'movewindows'
 local airpods     = require 'airpods'
+local tabjump     = require 'tabjump'
 require 'headspace'
-require 'tabjump'
 
 hyper:bind({}, 'r', nil, function() hs.reload() end)
 
@@ -125,7 +125,7 @@ hyper:bind({}, 'z', nil, function()
   if hs.application.find('us.zoom.xos') then
     hs.application.launchOrFocusByBundleID('us.zoom.xos')
   else
-    tabjump("meet.google.com|hangouts.google.com.call")
+    tabjump.jump("meet.google.com|hangouts.google.com.call")
   end
 end)
 
@@ -134,7 +134,7 @@ hyper:bind({}, 'v', nil, function()
   if hs.application.find('com.figma.Desktop') then
     hs.application.launchOrFocusByBundleID('com.figma.Desktop')
   else
-    tabjump("lucidchart.com|figma.com")
+    tabjump.jump("lucidchart.com|figma.com")
   end
 end)
 

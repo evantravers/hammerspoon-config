@@ -1,6 +1,8 @@
 local hyper = require("hyper")
 
-tabjump = function(url)
+local module = {}
+
+module.jump = function(url)
   hs.osascript.javascript([[
   (function() {
     var brave = Application('Brave');
@@ -18,3 +20,5 @@ tabjump = function(url)
   })();
   ]])
 end
+
+return module
