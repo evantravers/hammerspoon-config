@@ -9,13 +9,14 @@ releasedHyper = function()
   hyper:exit()
 end
 
--- Bind the Hyper key
+-- Bind the Hyper key to the hammerspoon modal
 hs.hotkey.bind({}, 'F19', pressedHyper, releasedHyper)
 
 launch = function(app)
   hs.application.launchOrFocusByBundleID(app.bundleID)
 end
 
+-- Use the hyper key with the application config to use the `hyper_key`
 for _, app in pairs(config.applications) do
   -- Apps that I want to jump to
   if app.hyper_key then
