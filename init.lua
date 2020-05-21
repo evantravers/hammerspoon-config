@@ -103,6 +103,7 @@ function tagged(tag)
 end
 
 local hyper       = require 'hyper'
+      hyper.start()
 local autolayout  = require 'autolayout'
       autolayout.start()
 local movewindows = require 'movewindows'
