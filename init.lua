@@ -84,6 +84,24 @@ config.applications = {
   }
 }
 
+local fn = require('hs.fnutils')
+
+function hasTag(app)
+  if app.tags then
+    if fn.contains(app.tags, tag) then
+      return true
+    else
+      return false
+    end
+  else
+    return false
+  end
+end
+
+function tagged(tag)
+  fn.filter(config.applications, function(app) hasTag(app, tag) end)
+end
+
 local hyper = require 'hyper'
 
 require 'autolayout'
