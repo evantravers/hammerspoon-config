@@ -12,6 +12,7 @@ local module = {}
 local hyper  = require('hyper')
 local hs_app = require('hs.application')
 local fn     = require('hs.fnutils')
+local toggl  = require('toggl')
 
 module.choices = {
   {

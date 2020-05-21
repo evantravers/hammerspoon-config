@@ -94,6 +94,8 @@ local airpods     = require 'airpods'
 local tabjump     = require 'tabjump'
 local headspace   = require 'headspace'
       headspace.start()
+local toggl       = require('toggl')
+      toggl.start()
 
 hyper:bind({}, 'r', nil, function() hs.reload() end)
 
