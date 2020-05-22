@@ -43,8 +43,8 @@ module.choices = {
 -- setup() is a function run automatically if it exists
 module.spaces = {
   ['review'] = {
-    toggl_project = toggl.projects.planning,
-    toggl_description = "Review",
+    toggl_proj = toggl.projects.planning,
+    toggl_desc = "Review",
     never = {'#communication', '#distraction'},
     setup = function()
       hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
@@ -76,8 +76,8 @@ module.spaces = {
   },
   ["focus_budget"] = {
     never = {'#communication', '#distraction'},
-    toggl_project = toggl.projects.planning,
-    toggl_description = "Focus Budget",
+    toggl_proj = toggl.projects.planning,
+    toggl_desc = "Focus Budget",
     setup = function()
       hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
       hs_app.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
@@ -98,12 +98,12 @@ module.spaces = {
   },
   ['communicate'] = {
     always = {'#communication'},
-    toggl_project = toggl.projects.communications
+    toggl_proj = toggl.projects.communications
   },
   ['meetings'] = {
     never = {'#distraction'},
     always = {'com.flexibits.fantastical2.mac'},
-    toggl_project = toggl.projects.meetings,
+    toggl_proj = toggl.projects.meetings,
     setup = function()
       -- turn on DND mode
       -- focus the meeting tab if it exists
@@ -118,12 +118,12 @@ module.start = function()
       if choice ~= nil then
         local space = module.spaces[choice['key']]
 
-        if space.toggl_project then
+        if space.toggl_proj then
           description = ""
-          if space.toggl_description then
-            description = space.toggl_description
+          if space.toggl_desc then
+            description = space.toggl_desc
           end
-          toggl.start_timer(space.toggl_project, description)
+          toggl.start_timer(space.toggl_proj, description)
         end
 
         if space.always then
