@@ -9,13 +9,13 @@ config.applications = {
     bundleID = 'net.kovidgoyal.kitty',
     hyper_key = 'j',
     preferred_display = 1,
-    tags = {'coding'}
+    tags = {'#coding'}
   },
   ['com.brave.browser'] = {
     bundleID = 'com.brave.browser',
     hyper_key = 'k',
     preferred_display = 1,
-    tags = {'coding', 'writing'}
+    tags = {'#coding', '#writing'}
   },
   ['org.mozilla.firefox'] = {
     bundleID = 'org.mozilla.firefox',
@@ -25,25 +25,25 @@ config.applications = {
   ['com.kapeli.dashdoc'] = {
     bundleID = 'com.kapeli.dashdoc',
     hyper_key = 'h',
-    tags = {'coding'}
+    tags = {'#coding'}
   },
   ['com.tinyspeck.slackmacgap'] = {
     bundleID = 'com.tinyspeck.slackmacgap',
     hyper_key = 'i',
     preferred_display = 2,
-    tags = {'distraction', 'communication'}
+    tags = {'#distraction', '#communication'}
   },
   ['com.apple.mail'] = {
     bundleID = 'com.apple.mail',
     hyper_key = 'e',
     preferred_display = 2,
-    tags = {'distraction', 'communication'}
+    tags = {'#distraction', '#communication'}
   },
   ['com.flexibits.fantastical2.mac'] = {
     bundleID = 'com.flexibits.fantastical2.mac',
     hyper_key = 'y',
     local_bindings = {']'},
-    tags = {'planning', 'review'},
+    tags = {'#planning', '#review'},
     preferred_display = 2,
   },
   ['com.apple.finder'] = {
@@ -53,24 +53,24 @@ config.applications = {
   ['com.hnc.Discord'] = {
     bundleID = 'com.hnc.Discord',
     preferred_display = 2,
-    tags = {'distraction'}
+    tags = {'#distraction'}
   },
   ['com.tapbots.Tweetbot3Mac'] = {
     bundleID = 'com.tapbots.Tweetbot3Mac',
-    tags = {'distraction'},
+    tags = {'#distraction'},
     local_bindings = {'\\'}
   },
   ['com.culturedcode.ThingsMac'] = {
     bundleID = 'com.culturedcode.ThingsMac',
     hyper_key = 't',
     preferred_display = 1,
-    tags = {'planning', 'review'},
+    tags = {'#planning', '#review'},
     local_bindings = {',', '.'}
   },
   ['com.agiletortoise.Drafts-OSX'] = {
     bundleID = 'com.agiletortoise.Drafts-OSX',
     hyper_key ='d',
-    tags = {'review', 'writing'},
+    tags = {'#review', '#writing'},
     local_bindings = {'x', ';'}
   },
   ['com.toggl.toggldesktop.TogglDesktop'] = {

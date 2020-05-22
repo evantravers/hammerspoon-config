@@ -24,14 +24,22 @@ module.choices = {
     text = "Plan a Focus Budget",
     subText = "Setup Things 3 and Fantastical",
     key = 'focus_budget'
+  },
+  {
+    text = "Communicate",
+    subText = "Intentionally engage with Slack and Email",
+    key = "communicate",
   }
 }
 
+-- Each space gets a key related to the keys above
+-- always launches by tag, or bundle name
+-- setup() is a function run automatically if it exists
 module.spaces = {
   ['review'] = {
+    toggl_project = toggl.projects.planning,
+    toggl_description = "Review",
     setup = function()
-      toggl.start_timer(toggl.projects.planning, "Review")
-
       hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
       local things = hs_app.find('com.culturedcode.ThingsMac')
 
@@ -60,9 +68,10 @@ module.spaces = {
     end
   },
   ["focus_budget"] = {
+    never = {'#communication'},
+    toggl_project = toggl.projects.planning,
+    toggl_description = "Focus Budget",
     setup = function()
-      toggl.start_timer(toggl.projects.planning, "Planning a Focus Budget")
-
       hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
       hs_app.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
 
@@ -79,26 +88,76 @@ module.spaces = {
       cal:application():selectMenuItem("Hide Sidebar")
       cal:application():selectMenuItem("By Week")
     end
+  },
+  ['communicate'] = {
+    always = {'#communication'},
+    toggl_project = toggl.projects.communications
   }
 }
 
 module.start = function()
   hyper:bind({}, 'l', nil, function()
-    local choices = {
-      {
-        text = "Review",
-        subText = "Setup a Things 3 Review Session",
-        space = "review",
-      },
-      {
-        text = "Plan a Focus Budget",
-        subText = "Setup Things 3 and Fantastical",
-        space = "focus_budget",
-      },
-    }
     local chooser = hs.chooser.new(function(choice)
       if choice ~= nil then
-        module.spaces[choice['key']].setup()
+        local space = module.spaces[choice['key']]
+
+        if space.toggl_project then
+          description = ""
+          if space.toggl_description then
+            description = space.toggl_description
+          end
+          toggl.start_timer(space.toggl_project, description)
+        end
+
+        if space.always then
+          fn.map(space.always, function(tag_or_bundle)
+            if string.find(tag_or_bundle, '#') == 1 then
+              -- tag
+              apps =
+                fn.filter(config.applications, function(app)
+                  if app.tags and fn.contains(app.tags, tag_or_bundle) then
+                    return true
+                  end
+                end)
+
+              fn.map(apps, function(app)
+                hs.application.launchOrFocusByBundleID(app.bundleID)
+              end)
+            else
+              -- bundle
+              hs.application.launchOrFocusByBundleID(tag_or_bundle)
+            end
+          end)
+        end
+
+        if space.never then
+          fn.map(space.never, function(tag_or_bundle)
+            if string.find(tag_or_bundle, '#') == 1 then
+              -- tag
+              apps =
+                fn.filter(config.applications, function(app)
+                  if app.tags and fn.contains(app.tags, tag_or_bundle) then
+                    return true
+                  end
+                end)
+
+              fn.map(apps, function(app)
+                fn.map(hs.application.applicationsForBundleID(app.bundleID), function(app)
+                  app:kill()
+                end)
+              end)
+            else
+              -- bundle
+              fn.map(hs.application.applicationsForBundleID(tag_or_bundle), function(app)
+                app:kill()
+              end)
+            end
+          end)
+        end
+
+        if space.setup then
+          space.setup()
+        end
       end
     end)
 
