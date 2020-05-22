@@ -102,6 +102,7 @@ module.spaces = {
   },
   ['meetings'] = {
     never = {'#distraction'},
+    always = {'com.flexibits.fantastical2.mac'},
     toggl_project = toggl.projects.meetings,
     setup = function()
       -- turn on DND mode
