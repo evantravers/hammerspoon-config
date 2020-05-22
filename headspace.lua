@@ -12,6 +12,7 @@ local module = {}
 local hyper  = require('hyper')
 local hs_app = require('hs.application')
 local fn     = require('hs.fnutils')
+local util   = require('util')
 local toggl  = require('toggl')
 
 module.choices = {
@@ -39,6 +40,7 @@ module.spaces = {
   ['review'] = {
     toggl_project = toggl.projects.planning,
     toggl_description = "Review",
+    never = {'#communication'},
     setup = function()
       hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
       local things = hs_app.find('com.culturedcode.ThingsMac')
@@ -106,53 +108,15 @@ module.start = function()
           if space.toggl_description then
             description = space.toggl_description
           end
-          toggl.start_timer(space.toggl_project, description)
+          -- toggl.start_timer(space.toggl_project, description)
         end
 
         if space.always then
-          fn.map(space.always, function(tag_or_bundle)
-            if string.find(tag_or_bundle, '#') == 1 then
-              -- tag
-              apps =
-                fn.filter(config.applications, function(app)
-                  if app.tags and fn.contains(app.tags, tag_or_bundle) then
-                    return true
-                  end
-                end)
-
-              fn.map(apps, function(app)
-                hs.application.launchOrFocusByBundleID(app.bundleID)
-              end)
-            else
-              -- bundle
-              hs.application.launchOrFocusByBundleID(tag_or_bundle)
-            end
-          end)
+          util.launch(space.always)
         end
 
         if space.never then
-          fn.map(space.never, function(tag_or_bundle)
-            if string.find(tag_or_bundle, '#') == 1 then
-              -- tag
-              apps =
-                fn.filter(config.applications, function(app)
-                  if app.tags and fn.contains(app.tags, tag_or_bundle) then
-                    return true
-                  end
-                end)
-
-              fn.map(apps, function(app)
-                fn.map(hs.application.applicationsForBundleID(app.bundleID), function(app)
-                  app:kill()
-                end)
-              end)
-            else
-              -- bundle
-              fn.map(hs.application.applicationsForBundleID(tag_or_bundle), function(app)
-                app:kill()
-              end)
-            end
-          end)
+          util.kill(space.never)
         end
 
         if space.setup then
