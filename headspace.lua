@@ -35,6 +35,11 @@ module.choices = {
     text = "Meetings",
     subText = "Collaborating and catching up.",
     key = "meetings"
+  },
+  {
+    text = "Write",
+    subText = "You are allowed to do anything you want, as long as you write.",
+    key = "write"
   }
 }
 
@@ -109,6 +114,9 @@ module.spaces = {
       -- focus the meeting tab if it exists
       -- close distractions?
     end
+  },
+  ['write'] = {
+    only = {'#writing'}
   }
 }
 
@@ -132,6 +140,13 @@ module.start = function()
 
         if space.never then
           util.kill(space.never)
+        end
+
+        if space.only then
+          fn.map(config.applications, function(app)
+            fn.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
+          end)
+          util.launch(space.only)
         end
 
         if space.setup then
