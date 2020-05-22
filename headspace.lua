@@ -45,7 +45,7 @@ module.spaces = {
   ['review'] = {
     toggl_project = toggl.projects.planning,
     toggl_description = "Review",
-    never = {'#communication'},
+    never = {'#communication', '#distraction'},
     setup = function()
       hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
       local things = hs_app.find('com.culturedcode.ThingsMac')
@@ -75,7 +75,7 @@ module.spaces = {
     end
   },
   ["focus_budget"] = {
-    never = {'#communication'},
+    never = {'#communication', '#distraction'},
     toggl_project = toggl.projects.planning,
     toggl_description = "Focus Budget",
     setup = function()
