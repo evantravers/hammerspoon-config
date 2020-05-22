@@ -108,7 +108,7 @@ module.start = function()
           if space.toggl_description then
             description = space.toggl_description
           end
-          -- toggl.start_timer(space.toggl_project, description)
+          toggl.start_timer(space.toggl_project, description)
         end
 
         if space.always then
