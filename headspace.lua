@@ -30,6 +30,11 @@ module.choices = {
     text = "Communicate",
     subText = "Intentionally engage with Slack and Email",
     key = "communicate",
+  },
+  {
+    text = "Meetings",
+    subText = "Collaborating and catching up.",
+    key = "meetings"
   }
 }
 
@@ -94,6 +99,15 @@ module.spaces = {
   ['communicate'] = {
     always = {'#communication'},
     toggl_project = toggl.projects.communications
+  },
+  ['meetings'] = {
+    never = {'#distraction'},
+    toggl_project = toggl.projects.meetings,
+    setup = function()
+      -- turn on DND mode
+      -- focus the meeting tab if it exists
+      -- close distractions?
+    end
   }
 }
 
