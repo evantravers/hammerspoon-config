@@ -3,7 +3,7 @@
 -- Custom Desktop Background with prompts for focus, writing, code?
 -- DND status?
 -- Warnings set up for launching apps not tagged properly.
--- Toggl timer and in built-in Pomodoro to help box time.
+-- timed sessions like a built-in Pomodoro to help box time.
 -- Preset screens for working.
 -- Musical cues?
 
