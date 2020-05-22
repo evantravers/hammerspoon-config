@@ -6,8 +6,8 @@ module.isTag = function(tag_or_bundle)
   return string.find(tag_or_bundle, '#') == 1
 end
 
-module.filterToTag = function(tag)
-  fn.filter(config.applications, function(app)
+module.appsTaggedWith = function(tag)
+  return fn.filter(config.applications, function(app)
     return app.tags and fn.contains(app.tags, tag_or_bundle)
   end)
 end
@@ -16,7 +16,7 @@ end
 module.launch = function(list)
   fn.map(list, function(tag_or_bundle)
     if module.isTag(tag_or_bundle) then -- tag
-      fn.map(module.filterToTag(tag_or_bundle), function(app)
+      fn.map(module.appsTaggedWith(tag_or_bundle), function(app)
         hs.application.launchOrFocusByBundleID(app.bundleID)
       end)
     else -- bundle
@@ -28,7 +28,7 @@ end
 module.kill = function(list)
   fn.map(list, function(tag_or_bundle)
     if module.isTag(tag_or_bundle) then -- tag
-      fn.map(module.filterToTag(tag_or_bundle), function(app)
+      fn.map(module.appsTaggedWith(tag_or_bundle), function(app)
         fn.map(hs.application.applicationsForBundleID(app.bundleID), function(app)
           app:kill()
         end)
