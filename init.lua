@@ -92,6 +92,21 @@ config.applications = {
   }
 }
 
+config.websites = {
+  ['twitter.com'] = {
+    url = 'twitter.com',
+    tags = {'#distraction', '#socialmedia'}
+  },
+  ['reddit.com'] = {
+    url = 'reddit.com',
+    tags = {'#distraction'}
+  },
+  ['instapaper.com'] = {
+    url = 'instapaper.com',
+    tags = {'#distraction', '#reading'}
+  }
+}
+
 local hyper       = require 'hyper'
       hyper.start()
 local autolayout  = require 'autolayout'
@@ -99,7 +114,7 @@ local autolayout  = require 'autolayout'
 local movewindows = require 'movewindows'
       movewindows.start()
 local airpods     = require 'airpods'
-local tabjump     = require 'tabjump'
+local brave       = require 'brave'
 local headspace   = require 'headspace'
       headspace.start()
 local toggl       = require('toggl')
@@ -121,7 +136,7 @@ hyper:bind({}, 'z', nil, function()
   if hs.application.find('us.zoom.xos') then
     hs.application.launchOrFocusByBundleID('us.zoom.xos')
   else
-    tabjump.jump("meet.google.com|hangouts.google.com.call")
+    brave.jump("meet.google.com|hangouts.google.com.call")
   end
 end)
 
@@ -130,7 +145,7 @@ hyper:bind({}, 'v', nil, function()
   if hs.application.find('com.figma.Desktop') then
     hs.application.launchOrFocusByBundleID('com.figma.Desktop')
   else
-    tabjump.jump("lucidchart.com|figma.com")
+    brave.jump("lucidchart.com|figma.com")
   end
 end)
 
