@@ -58,7 +58,7 @@ module.choices = {
 -- setup() is a function run automatically if it exists
 module.spaces = {
   ['review'] = {
-    toggl_proj = toggl.projects.planning,
+    toggl_proj = config.projects.planning,
     toggl_desc = "Review",
     never = {'#communication', '#distraction'},
     setup = function()
@@ -91,7 +91,7 @@ module.spaces = {
   },
   ["focus_budget"] = {
     never = {'#communication', '#distraction'},
-    toggl_proj = toggl.projects.planning,
+    toggl_proj = config.projects.planning,
     toggl_desc = "Focus Budget",
     setup = function()
       hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
@@ -113,12 +113,12 @@ module.spaces = {
   },
   ['communicate'] = {
     always = {'#communication'},
-    toggl_proj = toggl.projects.communications
+    toggl_proj = config.projects.communications
   },
   ['meetings'] = {
     never = {'#distraction'},
     always = {'com.flexibits.fantastical2.mac'},
-    toggl_proj = toggl.projects.meetings,
+    toggl_proj = config.projects.meetings,
     setup = function()
       -- turn on DND mode
       -- focus the meeting tab if it exists
@@ -130,11 +130,11 @@ module.spaces = {
   },
   ['design'] = {
     only = {'#design'},
-    toggl_proj = toggl.projects.design
+    toggl_proj = config.projects.design
   },
   ['research'] = {
     only = {'#research'},
-    toggl_proj = toggl.projects.research
+    toggl_proj = config.projects.research
   }
 }
 

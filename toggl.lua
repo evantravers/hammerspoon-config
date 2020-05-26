@@ -6,15 +6,6 @@ module.get_key = function()
   return io.read()
 end
 
-module.projects = {
-  communications = "160553883",
-  meetings = "160775332",
-  planning = "160831759",
-  reading  = "160934258",
-  design   = "160553877",
-  research = "160553882"
-}
-
 module.start_timer = function(project_id, description)
   command = [[curl -v -u ]] .. module.key .. [[:api_token \
   -H "Content-Type: application/json" \

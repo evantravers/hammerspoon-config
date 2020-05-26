@@ -120,6 +120,15 @@ config.websites = {
   }
 }
 
+config.projects = {
+  communications = "160553883",
+  meetings       = "160775332",
+  planning       = "160831759",
+  reading        = "160934258",
+  design         = "160553877",
+  research       = "160553882"
+}
+
 local hyper       = require 'hyper'
       hyper.start()
 local autolayout  = require 'autolayout'
