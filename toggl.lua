@@ -12,7 +12,7 @@ module.start_timer = function(project_id, description)
   -d '{"time_entry":{"description":"]] .. description .. [[","pid":]] .. project_id .. [[,"created_with":"curl"}}' \
   -X POST https://www.toggl.com/api/v8/time_entries/start]]
 
-   os.execute(command)
+  os.execute(command)
 end
 
 module.start = function()
