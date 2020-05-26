@@ -3,9 +3,9 @@
 local movewindows = hs.hotkey.modal.new()
 
 function movewindows:entered()
-  alertUuids = hs.fnutils.imap(hs.screen.allScreens(), function(screen)
+  alertUuids = hs.fnutils.map(hs.screen.allScreens(), function(screen)
     local prompt = string.format("◱ : %s",
-                                 window.focusedWindow():application():title())
+                                 hs.window.focusedWindow():application():title())
     return hs.alert.show(prompt, hs.alert.defaultStyle, screen, true)
   end)
 end
@@ -35,14 +35,13 @@ movewindows.grid = {
 
 movewindows.start = function()
   local hyper = require("hyper")
-  local window  = hs.window
-  window.animationDuration = 0
+  hs.window.animationDuration = 0
 
   hyper:bind({}, 'm', nil, function() movewindows:enter() end)
 
   hs.fnutils.each(movewindows.grid, function(entry)
     movewindows:bind('', entry.key, function()
-      window.focusedWindow():moveToUnit(entry.unit)
+      hs.window.focusedWindow():moveToUnit(entry.unit)
       movewindows:exit()
     end)
 
@@ -50,17 +49,17 @@ movewindows.start = function()
     movewindows:bind('', 'escape', function() movewindows:exit() end)
 
     movewindows:bind('shift', 'h', function()
-      window.focusedWindow():moveOneScreenWest()
+      hs.window.focusedWindow():moveOneScreenWest()
       movewindows:exit()
     end)
 
     movewindows:bind('shift', 'l', function()
-      window.focusedWindow():moveOneScreenEast()
+      hs.window.focusedWindow():moveOneScreenEast()
       movewindows:exit()
     end)
 
     movewindows:bind('', 'tab', function ()
-      window:focusedWindow():centerOnScreen()
+      hs.window.focusedWindow():centerOnScreen()
       movewindows:exit()
     end)
   end)
