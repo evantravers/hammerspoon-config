@@ -9,7 +9,10 @@ end
 module.projects = {
   communications = "160553883",
   meetings = "160775332",
-  planning = "160831759"
+  planning = "160831759",
+  reading  = "160934258",
+  design   = "160553877",
+  research = "160553882"
 }
 
 module.start_timer = function(project_id, description)

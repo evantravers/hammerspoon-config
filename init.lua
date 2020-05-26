@@ -70,7 +70,7 @@ config.applications = {
   ['com.agiletortoise.Drafts-OSX'] = {
     bundleID = 'com.agiletortoise.Drafts-OSX',
     hyper_key ='d',
-    tags = {'#review', '#writing'},
+    tags = {'#review', '#writing', '#research'},
     local_bindings = {'x', ';'}
   },
   ['com.toggl.toggldesktop.TogglDesktop'] = {
@@ -79,6 +79,7 @@ config.applications = {
   },
   ['com.ideasoncanvas.mindnode.macos'] = {
     bundleID = 'com.ideasoncanvas.mindnode.macos',
+    tags = {'#research'},
     hyper_key = 'u',
     preferred_display = 1
   },
@@ -93,6 +94,10 @@ config.applications = {
   },
   ['com.spotify.client'] = {
     bundleID = 'com.spotify.client'
+  },
+  ['com.figma.Desktop'] = {
+    bundleID = 'com.figma.Desktop',
+    tags = {'#design'}
   }
 }
 

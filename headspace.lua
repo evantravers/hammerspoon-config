@@ -40,6 +40,16 @@ module.choices = {
     text = "Write",
     subText = "You are allowed to do anything you want, as long as you write.",
     key = "write"
+  },
+  {
+    text = "Design",
+    subText = "Iterating and collaborating on Design artifacts in Figma",
+    key = "design"
+  },
+  {
+    text = "UX Research",
+    subText = "Engaged in uninterrupted user research",
+    key = "research"
   }
 }
 
@@ -117,6 +127,14 @@ module.spaces = {
   },
   ['write'] = {
     only = {'#writing'}
+  },
+  ['design'] = {
+    only = {'#design'},
+    toggl_proj = toggl.projects.design
+  },
+  ['research'] = {
+    only = {'#research'},
+    toggl_proj = toggl.projects.research
   }
 }
 
