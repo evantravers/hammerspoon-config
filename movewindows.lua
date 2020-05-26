@@ -62,7 +62,7 @@ movewindows.start = function()
   movewindows:bind('control', 'v', function()
     local windows = hs.fnutils.map(hs.window.filter.new():getWindows(), function(win)
       return {
-        text = win:title(),
+        text = win:application():name() .. " :: " .. win:title(),
         subText = win:application():title(),
         id = win:id()
       }
