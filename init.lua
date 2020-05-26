@@ -81,6 +81,14 @@ config.applications = {
     bundleID = 'com.ideasoncanvas.mindnode.macos',
     hyper_key = 'u',
     preferred_display = 1
+  },
+  ['com.apple.iChat'] = {
+    bundleID = 'com.apple.iChat',
+    tags = {'#communication'}
+  },
+  ['com.valvesoftware.steam'] = {
+    bundleID = 'com.valvesoftware.steam',
+    tags = {'#distraction'}
   }
 }
 
