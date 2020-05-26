@@ -59,6 +59,28 @@ movewindows.start = function()
     movewindows:exit()
   end)
 
+  movewindows:bind('control', 'v', function()
+    local windows = hs.fnutils.map(hs.window.filter.new():getWindows(), function(win)
+      return {
+        text = win:title(),
+        subText = win:application():title(),
+        id = win:id()
+      }
+    end)
+
+    local chooser = hs.chooser.new(function(choice)
+      hs.window.focusedWindow():moveToUnit(hs.layout.left50)
+      hs.window.find(choice.id)
+        :moveToUnit(hs.layout.right50)
+        :moveToScreen(hs.window.focusedWindow():screen())
+    end)
+
+    chooser:choices(windows)
+    chooser:show()
+
+    movewindows:exit()
+  end)
+
   movewindows:bind('', 'tab', function ()
     hs.window.focusedWindow():centerOnScreen()
     movewindows:exit()
