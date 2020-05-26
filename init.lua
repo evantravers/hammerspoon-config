@@ -57,7 +57,7 @@ config.applications = {
   },
   ['com.tapbots.Tweetbot3Mac'] = {
     bundleID = 'com.tapbots.Tweetbot3Mac',
-    tags = {'#distraction'},
+    tags = {'#distraction', '#socialmedia'},
     local_bindings = {'\\'}
   },
   ['com.culturedcode.ThingsMac'] = {
@@ -95,6 +95,10 @@ config.applications = {
 config.websites = {
   ['twitter.com'] = {
     url = 'twitter.com',
+    tags = {'#distraction', '#socialmedia'}
+  },
+  ['instagram.com'] = {
+    url = 'instagram.com',
     tags = {'#distraction', '#socialmedia'}
   },
   ['reddit.com'] = {
