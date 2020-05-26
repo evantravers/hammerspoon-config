@@ -84,6 +84,7 @@ config.applications = {
   },
   ['com.apple.iChat'] = {
     bundleID = 'com.apple.iChat',
+    hyper_key = 'q',
     tags = {'#communication'}
   },
   ['com.valvesoftware.steam'] = {
