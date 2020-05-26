@@ -89,6 +89,9 @@ config.applications = {
   ['com.valvesoftware.steam'] = {
     bundleID = 'com.valvesoftware.steam',
     tags = {'#distraction'}
+  },
+  ['com.spotify.client'] = {
+    bundleID = 'com.spotify.client'
   }
 }
 
