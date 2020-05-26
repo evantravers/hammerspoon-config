@@ -61,18 +61,23 @@ movewindows.start = function()
 
   movewindows:bind('control', 'v', function()
     local windows = hs.fnutils.map(hs.window.filter.new():getWindows(), function(win)
-      return {
-        text = win:application():name() .. " :: " .. win:title(),
-        subText = win:application():title(),
-        id = win:id()
-      }
+      if win ~= hs.window.focusedWindow() then
+        return {
+          text = win:application():name() .. " :: " .. win:title(),
+          subText = win:application():title(),
+          id = win:id()
+        }
+      end
     end)
 
     local chooser = hs.chooser.new(function(choice)
-      hs.window.focusedWindow():moveToUnit(hs.layout.left50)
-      hs.window.find(choice.id)
-        :moveToUnit(hs.layout.right50)
-        :moveToScreen(hs.window.focusedWindow():screen())
+      if choice ~= nil then
+        hs.window.focusedWindow():moveToUnit(hs.layout.left50)
+        hs.window.find(choice.id)
+          :moveToUnit(hs.layout.right50)
+          :moveToScreen(hs.window.focusedWindow():screen())
+          :raise()
+      end
     end)
 
     chooser:choices(windows)
