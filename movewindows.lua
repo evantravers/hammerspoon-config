@@ -59,7 +59,7 @@ movewindows.start = function()
     movewindows:exit()
   end)
 
-  movewindows:bind('control', 'v', function()
+  movewindows:bind('', 'v', function()
     local windows = hs.fnutils.map(hs.window.filter.new():getWindows(), function(win)
       if win ~= hs.window.focusedWindow() then
         return {
