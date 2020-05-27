@@ -30,14 +30,12 @@ end
 
 -- initialize watchers
 autolayout.start = function ()
-  local hyper = require("hyper")
   hs.screen.watcher.new(function()
     if num_of_screens ~= #hs.screen.allScreens() then
       autolayout.autoLayout()
       num_of_screens = #hs.screen.allScreens()
     end
   end):start()
-  hyper:bind({}, 'return', nil, autolayout.autoLayout)
 end
 
 return autolayout

@@ -136,10 +136,15 @@ movewindows.start()
 
 local autolayout = require 'autolayout'
       autolayout.start()
+      hyper:bind({}, 'return', nil, autolayout.autoLayout)
+
 local airpods    = require 'airpods'
+
 local brave      = require 'brave'
+
 local headspace  = require 'headspace'
       headspace.start()
+
 local toggl      = require('toggl')
       toggl.start()
 
