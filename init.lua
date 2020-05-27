@@ -129,7 +129,7 @@ config.projects = {
   research       = "160553882"
 }
 
-hyper       = require 'hyper'
+hyper = require 'hyper'
 hyper.start()
 movewindows = require 'movewindows'
 movewindows.start()
@@ -138,14 +138,14 @@ local autolayout = require 'autolayout'
       autolayout.start()
       hyper:bind({}, 'return', nil, autolayout.autoLayout)
 
-local airpods    = require 'airpods'
+local airpods = require 'airpods'
 
-local brave      = require 'brave'
+local brave = require 'brave'
 
-local headspace  = require 'headspace'
+local headspace = require 'headspace'
       headspace.start()
 
-local toggl      = require('toggl')
+local toggl = require('toggl')
       toggl.start()
 
 hyper:bind({}, 'r', nil, function() hs.reload() end)
