@@ -19,37 +19,44 @@ module.choices = {
   {
     text = "Review",
     subText = "Setup a Things 3 Review Session",
-    key = 'review'
+    key = 'review',
+    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac')
   },
   {
     text = "Plan a Focus Budget",
     subText = "Setup Things 3 and Fantastical",
-    key = 'focus_budget'
+    key = 'focus_budget',
+    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac')
   },
   {
     text = "Communicate",
     subText = "Intentionally engage with Slack and Email",
     key = "communicate",
+    image = hs.image.imageFromAppBundle('com.tinyspeck.slackmacgap')
   },
   {
     text = "Meetings",
     subText = "Collaborating and catching up.",
-    key = "meetings"
+    key = "meetings",
+    image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac')
   },
   {
     text = "Write",
     subText = "You are allowed to do anything you want, as long as you write.",
-    key = "write"
+    key = "write",
+    image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX')
   },
   {
     text = "Design",
     subText = "Iterating and collaborating on Design artifacts in Figma",
-    key = "design"
+    key = "design",
+    image = hs.image.imageFromAppBundle('com.figma.Desktop')
   },
   {
     text = "UX Research",
     subText = "Engaged in uninterrupted user research",
-    key = "research"
+    key = "research",
+    image = hs.image.imageFromAppBundle('com.ideasoncanvas.mindnode.macos')
   }
 }
 
