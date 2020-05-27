@@ -3,7 +3,7 @@ config = {}
 config.applications = {
   ['com.runningwithcrayons.Alfred'] = {
     bundleID = 'com.runningwithcrayons.Alfred',
-    local_bindings = {'c', 'space', 'o', 's'}
+    local_bindings = {'c', 'space', 'o'}
   },
   ['net.kovidgoyal.kitty'] = {
     bundleID = 'net.kovidgoyal.kitty',
@@ -177,3 +177,31 @@ hyper:bind({}, 'v', nil, function()
   end
 end)
 
+-- Snip current highlight in Brave
+hyper:bind({}, 's', nil, function()
+  hs.osascript.applescript([[
+    -- stolen from: https://gist.github.com/gabeanzelini/1931128eb233b0da8f51a8d165b418fa
+
+    if (count of theSelectionFromBrave()) is greater than 0 then
+      set str to "tags: #link\n\n" & theTitleFromBrave() & "\n\n> " & theSelectionFromBrave() & "\n\n[" & theTitleFromBrave() & "](" & theCurrentUrlInBrave() & ")"
+
+      tell application "Drafts"
+        make new draft with properties {content:str, tags: {"link"}}
+      end tell
+    end if
+
+
+    on theCurrentUrlInBrave()
+      tell application "Brave Browser" to get the URL of the active tab in the first window
+    end theCurrentUrlInBrave
+
+    on theSelectionFromBrave()
+      tell application "Brave Browser" to execute front window's active tab javascript "getSelection().toString();"
+    end theSelectionFromBrave
+
+    on theTitleFromBrave()
+      tell application "Brave Browser" to get the title of the active tab in the first window
+    end theTitleFromBrave
+  ]])
+  hs.notify.show("Snipped!", "The snippet has been sent to Drafts", "")
+end)
