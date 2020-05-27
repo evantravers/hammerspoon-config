@@ -180,8 +180,10 @@ module.start = function()
       end
     end)
 
-    chooser:choices(module.choices)
-    chooser:show()
+    chooser
+      :placeholderText("Select a headspace…")
+      :choices(module.choices)
+      :show()
   end)
 end
 
