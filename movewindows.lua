@@ -1,4 +1,4 @@
--- Window shortcuts from @tmiller
+-- Window shortcuts originally from @tmiller, now _heavily_ modified.
 
 local movewindows = hs.hotkey.modal.new()
 
