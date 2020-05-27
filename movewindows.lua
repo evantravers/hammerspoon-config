@@ -63,8 +63,9 @@ movewindows.start = function()
     local windows = hs.fnutils.map(hs.window.filter.new():getWindows(), function(win)
       if win ~= hs.window.focusedWindow() then
         return {
-          text = win:application():name() .. " :: " .. win:title(),
+          text = win:application():name() .. ": " .. win:title(),
           subText = win:application():title(),
+          image = hs.image.imageFromAppBundle(win:application():bundleID()),
           id = win:id()
         }
       end

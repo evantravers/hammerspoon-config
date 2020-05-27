@@ -1,6 +1,4 @@
-local hyper = require("hyper")
 local fn    = require('hs.fnutils')
-
 local module = {}
 
 module.jump = function(url)
