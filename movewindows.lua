@@ -91,7 +91,7 @@ movewindows.start = function()
     end)
 
     chooser
-      :placeholderText("Choose window for 50/50 split")
+      :placeholderText("Choose window for 50/50 split. Hold ⎇ for 70/30.")
       :choices(windows)
       :show()
 
