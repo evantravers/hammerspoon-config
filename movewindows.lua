@@ -80,8 +80,10 @@ movewindows.start = function()
       end
     end)
 
-    chooser:choices(windows)
-    chooser:show()
+    chooser
+      :placeholderText("Choose window for 50/50 split")
+      :choices(windows)
+      :show()
 
     movewindows:exit()
   end)
