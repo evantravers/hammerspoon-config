@@ -73,27 +73,22 @@ module.spaces = {
       local things = hs_app.find('com.culturedcode.ThingsMac')
 
       fn.imap(things:allWindows(), function(v) v:close() end)
+
       things:selectMenuItem("New Things Window")
 
-      local today = things:allWindows()[1]
-      today:focus()
-      today:moveToUnit(hs.layout.right30)
-      today:application():selectMenuItem("Hide Sidebar")
-      today:application():selectMenuItem("Today")
-      today:application():selectMenuItem("New Things Window")
+      things:selectMenuItem("Hide Sidebar")
+      things:selectMenuItem("Today")
+      things:selectMenuItem("New Things Window")
 
-      local workspace = fn.ifilter(things:allWindows(), function(w)
-        if today == w then
-          return false
-        else
-          return true
-        end
-      end)[1]
+      things:selectMenuItem("Show Sidebar")
+      things:selectMenuItem("Anytime")
 
-      workspace:focus()
-      workspace:moveToUnit(hs.layout.left70)
-      workspace:application():selectMenuItem("Show Sidebar")
-      workspace:application():selectMenuItem("Anytime")
+      hs.layout.apply(
+        {
+          {"Things", "Anytime", hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
+          {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
+        }
+      )
     end
   },
   ["focus_budget"] = {
@@ -108,14 +103,19 @@ module.spaces = {
       local fantastical = hs_app.find('com.flexibits.fantastical2.mac')
 
       local today = things:focusedWindow()
-      today:moveToUnit(hs.layout.right30)
       today:application():selectMenuItem("Hide Sidebar")
       today:application():selectMenuItem("Today")
 
       local cal = fantastical:focusedWindow()
-      cal:moveToUnit(hs.layout.left70)
       cal:application():selectMenuItem("Hide Sidebar")
       cal:application():selectMenuItem("By Week")
+
+      hs.layout.apply(
+        {
+          {"Fantastical", nil, hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
+          {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
+        }
+      )
     end
   },
   ['communicate'] = {
@@ -151,12 +151,14 @@ module.start = function()
       if choice ~= nil then
         local space = module.spaces[choice['key']]
 
-        if space.toggl_proj then
-          description = ""
-          if space.toggl_desc then
-            description = space.toggl_desc
+        if not hs.eventtap.checkKeyboardModifiers()['shift'] then
+          if space.toggl_proj then
+            description = ""
+            if space.toggl_desc then
+              description = space.toggl_desc
+            end
+            toggl.start_timer(space.toggl_proj, description)
           end
-          toggl.start_timer(space.toggl_proj, description)
         end
 
         if space.always then
