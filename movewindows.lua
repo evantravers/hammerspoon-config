@@ -74,19 +74,20 @@ movewindows.start = function()
     local chooser = hs.chooser.new(function(choice)
       if choice ~= nil then
         local layout = {}
+        local focused = hs.window.focusedWindow()
+        local toRead  = hs.window.find(choice.id)
         if hs.eventtap.checkKeyboardModifiers()['alt'] then
-          layout.left = hs.layout.left70
-          layout.right = hs.layout.right30
+          hs.layout.apply({
+            {nil, focused, focused:screen(), hs.layout.left70, 0, 0},
+            {nil, toRead, focused:screen(), hs.layout.right30, 0, 0}
+          })
         else
-          layout.left = hs.layout.left50
-          layout.right = hs.layout.right50
+          hs.layout.apply({
+            {nil, focused, focused:screen(), hs.layout.left50, 0, 0},
+            {nil, toRead, focused:screen(), hs.layout.right50, 0, 0}
+          })
         end
-
-        hs.window.focusedWindow():moveToUnit(layout.left)
-        hs.window.find(choice.id)
-          :moveToUnit(layout.right)
-          :moveToScreen(hs.window.focusedWindow():screen())
-          :raise()
+        toRead:raise()
       end
     end)
 
