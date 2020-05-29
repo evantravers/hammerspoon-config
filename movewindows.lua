@@ -46,63 +46,60 @@ movewindows.start = function()
     end)
   end)
 
-  movewindows:bind('ctrl', '[', function() movewindows:exit() end)
-  movewindows:bind('', 'escape', function() movewindows:exit() end)
-
-  movewindows:bind('shift', 'h', function()
-    hs.window.focusedWindow():moveOneScreenWest()
-    movewindows:exit()
-  end)
-
-  movewindows:bind('shift', 'l', function()
-    hs.window.focusedWindow():moveOneScreenEast()
-    movewindows:exit()
-  end)
-
-  movewindows:bind('', 'v', function()
-    local windows = hs.fnutils.map(hs.window.filter.new():getWindows(), function(win)
-      if win ~= hs.window.focusedWindow() then
-        return {
-          text = win:application():name() .. ": " .. win:title(),
-          subText = win:application():title(),
-          image = hs.image.imageFromAppBundle(win:application():bundleID()),
-          id = win:id()
-        }
-      end
+  movewindows
+    :bind('ctrl', '[', function() movewindows:exit() end)
+    :bind('', 'escape', function() movewindows:exit() end)
+    :bind('shift', 'h', function()
+      hs.window.focusedWindow():moveOneScreenWest()
+      movewindows:exit()
     end)
-
-    local chooser = hs.chooser.new(function(choice)
-      if choice ~= nil then
-        local layout = {}
-        local focused = hs.window.focusedWindow()
-        local toRead  = hs.window.find(choice.id)
-        if hs.eventtap.checkKeyboardModifiers()['alt'] then
-          hs.layout.apply({
-            {nil, focused, focused:screen(), hs.layout.left70, 0, 0},
-            {nil, toRead, focused:screen(), hs.layout.right30, 0, 0}
-          })
-        else
-          hs.layout.apply({
-            {nil, focused, focused:screen(), hs.layout.left50, 0, 0},
-            {nil, toRead, focused:screen(), hs.layout.right50, 0, 0}
-          })
+    :bind('shift', 'l', function()
+      hs.window.focusedWindow():moveOneScreenEast()
+      movewindows:exit()
+    end)
+    :bind('', 'v', function()
+      local windows = hs.fnutils.map(hs.window.filter.new():getWindows(), function(win)
+        if win ~= hs.window.focusedWindow() then
+          return {
+            text = win:application():name() .. ": " .. win:title(),
+            subText = win:application():title(),
+            image = hs.image.imageFromAppBundle(win:application():bundleID()),
+            id = win:id()
+          }
         end
-        toRead:raise()
-      end
+      end)
+
+      local chooser = hs.chooser.new(function(choice)
+        if choice ~= nil then
+          local layout = {}
+          local focused = hs.window.focusedWindow()
+          local toRead  = hs.window.find(choice.id)
+          if hs.eventtap.checkKeyboardModifiers()['alt'] then
+            hs.layout.apply({
+              {nil, focused, focused:screen(), hs.layout.left70, 0, 0},
+              {nil, toRead, focused:screen(), hs.layout.right30, 0, 0}
+            })
+          else
+            hs.layout.apply({
+              {nil, focused, focused:screen(), hs.layout.left50, 0, 0},
+              {nil, toRead, focused:screen(), hs.layout.right50, 0, 0}
+            })
+          end
+          toRead:raise()
+        end
+      end)
+
+      chooser
+        :placeholderText("Choose window for 50/50 split. Hold ⎇ for 70/30.")
+        :choices(windows)
+        :show()
+
+      movewindows:exit()
     end)
-
-    chooser
-      :placeholderText("Choose window for 50/50 split. Hold ⎇ for 70/30.")
-      :choices(windows)
-      :show()
-
-    movewindows:exit()
-  end)
-
-  movewindows:bind('', 'tab', function ()
-    hs.window.focusedWindow():centerOnScreen()
-    movewindows:exit()
-  end)
+    :bind('', 'tab', function ()
+      hs.window.focusedWindow():centerOnScreen()
+      movewindows:exit()
+    end)
 end
 
 return movewindows
