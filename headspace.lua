@@ -15,142 +15,119 @@ local fn     = require('hs.fnutils')
 local util   = require('util')
 local toggl  = require('toggl')
 
-module.choices = {
+module.spaces = {
   {
     text = "Review",
     subText = "Setup a Things 3 Review Session",
     key = 'review',
-    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac')
+    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
+    toggl_proj = config.projects.planning,
+    toggl_desc = "Review",
+    never = {'#communication', '#distraction'},
   },
   {
     text = "Plan a Focus Budget",
     subText = "Setup Things 3 and Fantastical",
     key = 'focus_budget',
-    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac')
+    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
+    never = {'#communication', '#distraction'},
+    toggl_proj = config.projects.planning,
+    toggl_desc = "Focus Budget",
   },
   {
     text = "Communicate",
     subText = "Intentionally engage with Slack and Email",
     key = "communicate",
-    image = hs.image.imageFromAppBundle('com.tinyspeck.slackmacgap')
+    image = hs.image.imageFromAppBundle('com.tinyspeck.slackmacgap'),
+    always = {'#communication'},
+    toggl_proj = config.projects.communications
   },
   {
     text = "Meetings",
     subText = "Collaborating and catching up.",
     key = "meetings",
-    image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac')
+    image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
+    never = {'#distraction'},
+    always = {'com.flexibits.fantastical2.mac'},
+    toggl_proj = config.projects.meetings,
   },
   {
     text = "Write",
     subText = "You are allowed to do anything you want, as long as you write.",
     key = "write",
-    image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX')
+    image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX'),
+    only = {'#writing'}
   },
   {
     text = "Design",
     subText = "Iterating and collaborating on Design artifacts in Figma",
     key = "design",
-    image = hs.image.imageFromAppBundle('com.figma.Desktop')
+    image = hs.image.imageFromAppBundle('com.figma.Desktop'),
+    only = {'#design'},
+    toggl_proj = config.projects.design
   },
   {
     text = "UX Research",
     subText = "Engaged in uninterrupted user research",
     key = "research",
-    image = hs.image.imageFromAppBundle('com.ideasoncanvas.mindnode.macos')
-  }
-}
-
--- Each space gets a key related to the keys above
--- always launches by tag, or bundle name
--- setup() is a function run automatically if it exists
-module.spaces = {
-  ['review'] = {
-    toggl_proj = config.projects.planning,
-    toggl_desc = "Review",
-    never = {'#communication', '#distraction'},
-    setup = function()
-      hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
-      local things = hs_app.find('com.culturedcode.ThingsMac')
-
-      fn.imap(things:allWindows(), function(v) v:close() end)
-
-      things:selectMenuItem("New Things Window")
-
-      things:selectMenuItem("Hide Sidebar")
-      things:selectMenuItem("Today")
-      things:selectMenuItem("New Things Window")
-
-      things:selectMenuItem("Show Sidebar")
-      things:selectMenuItem("Anytime")
-
-      hs.layout.apply(
-        {
-          {"Things", "Anytime", hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
-          {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
-        }
-      )
-    end
-  },
-  ["focus_budget"] = {
-    never = {'#communication', '#distraction'},
-    toggl_proj = config.projects.planning,
-    toggl_desc = "Focus Budget",
-    setup = function()
-      hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
-      hs_app.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
-
-      local things = hs_app.find('com.culturedcode.ThingsMac')
-      local fantastical = hs_app.find('com.flexibits.fantastical2.mac')
-
-      local today = things:focusedWindow()
-      today:application():selectMenuItem("Hide Sidebar")
-      today:application():selectMenuItem("Today")
-
-      local cal = fantastical:focusedWindow()
-      cal:application():selectMenuItem("Hide Sidebar")
-      cal:application():selectMenuItem("By Week")
-
-      hs.layout.apply(
-        {
-          {"Fantastical", nil, hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
-          {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
-        }
-      )
-    end
-  },
-  ['communicate'] = {
-    always = {'#communication'},
-    toggl_proj = config.projects.communications
-  },
-  ['meetings'] = {
-    never = {'#distraction'},
-    always = {'com.flexibits.fantastical2.mac'},
-    toggl_proj = config.projects.meetings,
-    setup = function()
-      -- turn on DND mode
-      -- focus the meeting tab if it exists
-      -- close distractions?
-    end
-  },
-  ['write'] = {
-    only = {'#writing'}
-  },
-  ['design'] = {
-    only = {'#design'},
-    toggl_proj = config.projects.design
-  },
-  ['research'] = {
+    image = hs.image.imageFromAppBundle('com.ideasoncanvas.mindnode.macos'),
     only = {'#research'},
     toggl_proj = config.projects.research
   }
 }
 
+module.setup = {}
+
+module.setup.review = function()
+  hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
+  local things = hs_app.find('com.culturedcode.ThingsMac')
+
+  fn.imap(things:allWindows(), function(v) v:close() end)
+
+  things:selectMenuItem("New Things Window")
+
+  things:selectMenuItem("Hide Sidebar")
+  things:selectMenuItem("Today")
+  things:selectMenuItem("New Things Window")
+
+  things:selectMenuItem("Show Sidebar")
+  things:selectMenuItem("Anytime")
+
+  hs.layout.apply(
+    {
+      {"Things", "Anytime", hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
+      {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
+    }
+  )
+end
+
+module.setup.focus_budget = function()
+  hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
+  hs_app.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
+
+  local things = hs_app.find('com.culturedcode.ThingsMac')
+  local fantastical = hs_app.find('com.flexibits.fantastical2.mac')
+
+  local today = things:focusedWindow()
+  today:application():selectMenuItem("Hide Sidebar")
+  today:application():selectMenuItem("Today")
+
+  local cal = fantastical:focusedWindow()
+  cal:application():selectMenuItem("Hide Sidebar")
+  cal:application():selectMenuItem("By Week")
+
+  hs.layout.apply(
+    {
+      {"Fantastical", nil, hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
+      {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
+    }
+  )
+end
+
 module.start = function()
   hyper:bind({}, 'l', nil, function()
-    local chooser = hs.chooser.new(function(choice)
-      if choice ~= nil then
-        local space = module.spaces[choice['key']]
-
+    local chooser = hs.chooser.new(function(space)
+      if space ~= nil then
         if not hs.eventtap.checkKeyboardModifiers()['shift'] then
           if space.toggl_proj then
             description = ""
@@ -176,15 +153,15 @@ module.start = function()
           util.launch(space.only)
         end
 
-        if space.setup then
-          space.setup()
+        if module.setup['key'] then
+          module.setup['key']()
         end
       end
     end)
 
     chooser
       :placeholderText("Select a headspace…")
-      :choices(module.choices)
+      :choices(module.spaces)
       :show()
   end)
 end
