@@ -153,8 +153,8 @@ module.start = function()
           util.launch(space.only)
         end
 
-        if module.setup['key'] then
-          module.setup['key']()
+        if module.setup[space.key] then
+          module.setup[space.key]()
         end
       end
     end)
