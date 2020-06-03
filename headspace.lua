@@ -56,7 +56,7 @@ module.spaces = {
     subText = "You are allowed to do anything you want, as long as you write.",
     image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX'),
     key = "write",
-    only = {'#writing'}
+    only = {'#writing', '#focusaid'}
   },
   {
     text = "Design",

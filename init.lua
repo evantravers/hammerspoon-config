@@ -79,7 +79,7 @@ config.applications = {
   },
   ['com.ideasoncanvas.mindnode.macos'] = {
     bundleID = 'com.ideasoncanvas.mindnode.macos',
-    tags = {'#research'},
+    tags = {'#research', '#focusaid'},
     hyper_key = 'u',
     preferred_display = 1
   },
@@ -93,7 +93,8 @@ config.applications = {
     tags = {'#distraction'}
   },
   ['com.spotify.client'] = {
-    bundleID = 'com.spotify.client'
+    bundleID = 'com.spotify.client',
+    tags = {'#focusaid'}
   },
   ['com.figma.Desktop'] = {
     bundleID = 'com.figma.Desktop',
