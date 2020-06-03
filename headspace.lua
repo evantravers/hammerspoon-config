@@ -136,6 +136,7 @@ end
 
 module.setup.standup = function()
   hs.urlevent.openURL(hs.settings.get("standupURL"))
+  hs.urlevent.openURL(hs.settings.get("standupCall"))
 end
 
 module.start = function()
