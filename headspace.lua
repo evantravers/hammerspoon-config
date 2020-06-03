@@ -19,8 +19,8 @@ module.spaces = {
   {
     text = "Review",
     subText = "Setup a Things 3 Review Session",
-    key = 'review',
     image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
+    key = 'review',
     toggl_proj = config.projects.planning,
     toggl_desc = "Review",
     never = {'#communication', '#distraction'},
@@ -28,8 +28,8 @@ module.spaces = {
   {
     text = "Plan a Focus Budget",
     subText = "Setup Things 3 and Fantastical",
-    key = 'focus_budget',
     image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
+    key = 'focus_budget',
     never = {'#communication', '#distraction'},
     toggl_proj = config.projects.planning,
     toggl_desc = "Focus Budget",
@@ -37,16 +37,16 @@ module.spaces = {
   {
     text = "Communicate",
     subText = "Intentionally engage with Slack and Email",
-    key = "communicate",
     image = hs.image.imageFromAppBundle('com.tinyspeck.slackmacgap'),
+    key = "communicate",
     always = {'#communication'},
     toggl_proj = config.projects.communications
   },
   {
     text = "Meetings",
     subText = "Collaborating and catching up.",
-    key = "meetings",
     image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
+    key = "meetings",
     never = {'#distraction'},
     always = {'com.flexibits.fantastical2.mac'},
     toggl_proj = config.projects.meetings,
@@ -54,23 +54,23 @@ module.spaces = {
   {
     text = "Write",
     subText = "You are allowed to do anything you want, as long as you write.",
-    key = "write",
     image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX'),
+    key = "write",
     only = {'#writing'}
   },
   {
     text = "Design",
     subText = "Iterating and collaborating on Design artifacts in Figma",
-    key = "design",
     image = hs.image.imageFromAppBundle('com.figma.Desktop'),
+    key = "design",
     only = {'#design'},
     toggl_proj = config.projects.design
   },
   {
     text = "UX Research",
     subText = "Engaged in uninterrupted user research",
-    key = "research",
     image = hs.image.imageFromAppBundle('com.ideasoncanvas.mindnode.macos'),
+    key = "research",
     only = {'#research'},
     toggl_proj = config.projects.research
   }
