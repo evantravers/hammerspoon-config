@@ -33,8 +33,8 @@ config.applications = {
     preferred_display = 2,
     tags = {'#distraction', '#communication'}
   },
-  ['com.apple.mail'] = {
-    bundleID = 'com.apple.mail',
+  ['com.readdle.smartemail-Mac'] = {
+    bundleID = 'com.readdle.smartemail-Mac',
     hyper_key = 'e',
     preferred_display = 2,
     tags = {'#distraction', '#communication'}
