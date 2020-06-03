@@ -79,7 +79,8 @@ module.spaces = {
     subText = "Run UX Standup",
     image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
     key = "standup",
-    never = {'#distraction', '#communication'},
+    always = {'#planning'},
+    never = {'#distraction', '#communication', '#coding'},
     toggl_proj = config.projects.meetings,
     toggl_desc = "UX Standup"
   }
