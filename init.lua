@@ -146,7 +146,6 @@ local headspace = require 'headspace'
       headspace.start()
 
 local toggl = require('toggl')
-      toggl.start()
 
 local secrets = require('secrets')
       secrets.start()
