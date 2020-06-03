@@ -91,16 +91,16 @@ module.setup = {}
 module.setup.review = function()
   hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
   local things = hs_app.find('com.culturedcode.ThingsMac')
+  things:selectMenuItem("Hide Sidebar")
 
   fn.imap(things:allWindows(), function(v) v:close() end)
-
   things:selectMenuItem("New Things Window")
-
-  things:selectMenuItem("Hide Sidebar")
   things:selectMenuItem("Today")
-  things:selectMenuItem("New Things Window")
 
-  things:selectMenuItem("Show Sidebar")
+  things:selectMenuItem("New Things Window")
+  if things:findMenuItem("Show Sidebar") then
+    things:selectMenuItem("Show Sidebar")
+  end
   things:selectMenuItem("Anytime")
 
   hs.layout.apply(
