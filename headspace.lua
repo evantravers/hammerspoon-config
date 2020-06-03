@@ -73,6 +73,15 @@ module.spaces = {
     key = "research",
     only = {'#research'},
     toggl_proj = config.projects.research
+  },
+  {
+    text = "Standup",
+    subText = "Run UX Standup",
+    image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
+    key = "standup",
+    never = {'#distraction', '#communication'},
+    toggl_proj = config.projects.meetings,
+    toggl_desc = "UX Standup"
   }
 }
 
@@ -122,6 +131,10 @@ module.setup.focus_budget = function()
       {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
     }
   )
+end
+
+module.setup.standup = function()
+  hs.urlevent.openURL("http://evantravers.com/")
 end
 
 module.start = function()
