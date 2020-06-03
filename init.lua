@@ -148,6 +148,9 @@ local headspace = require 'headspace'
 local toggl = require('toggl')
       toggl.start()
 
+local secrets = require('secrets')
+      secrets.start()
+
 hyper:bind({}, 'r', nil, function() hs.reload() end)
 
 hyper:bind({}, 'a', nil, function()

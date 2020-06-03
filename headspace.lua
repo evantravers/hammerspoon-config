@@ -134,7 +134,7 @@ module.setup.focus_budget = function()
 end
 
 module.setup.standup = function()
-  hs.urlevent.openURL("http://evantravers.com/")
+  hs.urlevent.openURL(hs.settings.get("standupURL"))
 end
 
 module.start = function()
