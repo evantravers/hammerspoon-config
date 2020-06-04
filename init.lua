@@ -200,9 +200,9 @@ config.spaces = {
     toggl_desc = "UX Standup"
   }
 }
-config.spaces.setup = {}
+config.setup = {}
 
-config.spaces.setup.review = function()
+config.setup.review = function()
   hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
   local things = hs_app.find('com.culturedcode.ThingsMac')
   things:selectMenuItem("Hide Sidebar")
@@ -225,7 +225,7 @@ config.spaces.setup.review = function()
   )
 end
 
-config.spaces.setup.focus_budget = function()
+config.setup.focus_budget = function()
   hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
   hs_app.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
 
@@ -248,7 +248,7 @@ config.spaces.setup.focus_budget = function()
   )
 end
 
-config.spaces.setup.standup = function()
+config.setup.standup = function()
   hs.urlevent.openURL(hs.settings.get("standupURL"))
   hs.urlevent.openURL(hs.settings.get("standupCall"))
 end

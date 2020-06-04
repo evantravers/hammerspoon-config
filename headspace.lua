@@ -73,8 +73,8 @@ module.start = function()
           util.launch(space.only)
         end
 
-        if config.spaces.setup[space.key] then
-          config.spaces.setup[space.key]()
+        if config.setup[space.key] then
+          config.setup[space.key]()
         end
       end
     end)
