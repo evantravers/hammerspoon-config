@@ -79,7 +79,7 @@ config.applications = {
   },
   ['com.ideasoncanvas.mindnode.macos'] = {
     bundleID = 'com.ideasoncanvas.mindnode.macos',
-    tags = {'#research', '#focusaid'},
+    tags = {'#research'},
     hyper_key = 'u',
     preferred_display = 1
   },
@@ -93,8 +93,7 @@ config.applications = {
     tags = {'#distraction'}
   },
   ['com.spotify.client'] = {
-    bundleID = 'com.spotify.client',
-    tags = {'#focusaid'}
+    bundleID = 'com.spotify.client'
   },
   ['com.figma.Desktop'] = {
     bundleID = 'com.figma.Desktop',
@@ -171,7 +170,7 @@ config.spaces = {
     subText = "You are allowed to do anything you want, as long as you write.",
     image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX'),
     key = "write",
-    only = {'#writing', '#focusaid'}
+    only = {'#writing'}
   },
   {
     text = "Design",
