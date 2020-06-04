@@ -43,7 +43,7 @@ config.applications = {
     bundleID = 'com.flexibits.fantastical2.mac',
     hyper_key = 'y',
     local_bindings = {']'},
-    tags = {'#planning', '#review'},
+    tags = {'#planning', '#review', '#calendar'},
     preferred_display = 2,
   },
   ['com.apple.finder'] = {
@@ -166,7 +166,7 @@ config.spaces = {
     image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
     key = "meetings",
     never = {'#distraction'},
-    always = {'com.flexibits.fantastical2.mac'},
+    always = {'#calendar'},
     toggl_proj = config.projects.meetings,
   },
   {
