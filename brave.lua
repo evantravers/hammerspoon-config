@@ -56,7 +56,7 @@ module.killTabsByDomain = function(domain)
 
     for (win of brave.windows()) {
       for (tab of win.tabs()) {
-        if (tab.url().match(/]] .. domain .. [[/)) {
+        if (tab.url().match(/]] .. string.gsub(domain, '/', '\\/') .. [[/)) {
           tab.close()
         }
       }
