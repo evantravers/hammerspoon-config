@@ -202,7 +202,7 @@ config.spaces = {
 }
 config.spaces.setup = {}
 
-config.setup.review = function()
+config.spaces.setup.review = function()
   hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
   local things = hs_app.find('com.culturedcode.ThingsMac')
   things:selectMenuItem("Hide Sidebar")
@@ -225,7 +225,7 @@ config.setup.review = function()
   )
 end
 
-config.setup.focus_budget = function()
+config.spaces.setup.focus_budget = function()
   hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
   hs_app.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
 
@@ -248,7 +248,7 @@ config.setup.focus_budget = function()
   )
 end
 
-config.setup.standup = function()
+config.spaces.setup.standup = function()
   hs.urlevent.openURL(hs.settings.get("standupURL"))
   hs.urlevent.openURL(hs.settings.get("standupCall"))
 end
