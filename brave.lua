@@ -31,10 +31,10 @@ module.launch = function(list)
   fn.map(list, function(tag_or_url)
     if util.isTag(tag_or_url) then -- tag
       fn.map(module.urlsTaggedWith(tag_or_url), function(site)
-        hs.urlevent.openURL(site.url)
+        hs.urlevent.openURL("http://" .. site.url)
       end)
     else -- url
-      hs.urlevent.openURL(tag_or_url)
+      hs.urlevent.openURL("http://" .. tag_or_url)
     end
   end)
 end

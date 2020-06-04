@@ -104,19 +104,19 @@ config.applications = {
 
 config.domains = {
   ['twitter.com'] = {
-    url = 'https://twitter.com',
+    url = 'twitter.com',
     tags = {'#distraction', '#socialmedia'}
   },
   ['instagram.com'] = {
-    url = 'https://instagram.com',
+    url = 'instagram.com',
     tags = {'#distraction', '#socialmedia'}
   },
   ['reddit.com'] = {
-    url = 'https://reddit.com',
+    url = 'reddit.com',
     tags = {'#distraction'}
   },
   ['instapaper.com'] = {
-    url = 'https://instapaper.com',
+    url = 'instapaper.com',
     tags = {'#distraction', '#reading'}
   }
 }
