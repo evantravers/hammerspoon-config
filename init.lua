@@ -117,6 +117,10 @@ config.domains = {
   ['instapaper.com'] = {
     url = 'instapaper.com',
     tags = {'#distraction', '#reading'}
+  },
+  ['youtube.com'] = {
+    url = 'youtube.com',
+    tags = {'#distraction'}
   }
 }
 
