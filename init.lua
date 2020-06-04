@@ -102,21 +102,21 @@ config.applications = {
   }
 }
 
-config.websites = {
+config.domains = {
   ['twitter.com'] = {
-    url = 'twitter.com',
+    url = 'https://twitter.com',
     tags = {'#distraction', '#socialmedia'}
   },
   ['instagram.com'] = {
-    url = 'instagram.com',
+    url = 'https://instagram.com',
     tags = {'#distraction', '#socialmedia'}
   },
   ['reddit.com'] = {
-    url = 'reddit.com',
+    url = 'https://reddit.com',
     tags = {'#distraction'}
   },
   ['instapaper.com'] = {
-    url = 'instapaper.com',
+    url = 'https://instapaper.com',
     tags = {'#distraction', '#reading'}
   }
 }

@@ -1,4 +1,5 @@
-local fn    = require('hs.fnutils')
+local fn   = require('hs.fnutils')
+local util = require('util')
 local module = {}
 
 module.jump = function(url)
@@ -20,12 +21,32 @@ module.jump = function(url)
   ]])
 end
 
-module.killTabsByTag = function(tag)
-  local toKill = fn.filter(config.websites, function(w)
-    return w.tags and fn.contains(w.tags, tag)
+module.urlsTaggedWith = function(tag)
+  return fn.filter(config.domains, function(domain)
+    return domain.tags and fn.contains(domain.tags, tag)
   end)
+end
 
-  fn.map(toKill, function(site) module.killTabsByDomain(site.url) end)
+module.launch = function(list)
+  fn.map(list, function(tag_or_url)
+    if util.isTag(tag_or_url) then -- tag
+      fn.map(module.urlsTaggedWith(tag_or_url), function(site)
+        hs.urlevent.openURL(site.url)
+      end)
+    else -- url
+      hs.urlevent.openURL(tag_or_url)
+    end
+  end)
+end
+
+module.kill = function(list)
+  fn.map(list, function(tag_or_url)
+    if util.isTag(tag_or_url) then -- tag
+      fn.map(module.urlsTaggedWith(tag_or_url), function(site) module.killTabsByDomain(site.url) end)
+    else -- url
+      module.killTabsByDomain(tag_or_url)
+    end
+  end)
 end
 
 module.killTabsByDomain = function(domain)

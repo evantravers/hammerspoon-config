@@ -42,6 +42,7 @@ local hyper  = require('hyper')
 local hs_app = require('hs.application')
 local fn     = require('hs.fnutils')
 local util   = require('util')
+local brave  = require('brave')
 local toggl  = require('toggl')
 
 module.start = function()
@@ -60,10 +61,12 @@ module.start = function()
 
         if space.always then
           util.launch(space.always)
+          brave.launch(space.always)
         end
 
         if space.never then
           util.kill(space.never)
+          brave.kill(space.never)
         end
 
         if space.only then
@@ -71,6 +74,7 @@ module.start = function()
             fn.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
           end)
           util.launch(space.only)
+          brave.launch(space.only)
         end
 
         if config.setup[space.key] then
