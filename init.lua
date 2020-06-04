@@ -130,6 +130,129 @@ config.projects = {
   research       = "160553882"
 }
 
+config.spaces = {
+  {
+    text = "Review",
+    subText = "Setup a Things 3 Review Session",
+    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
+    key = 'review',
+    toggl_proj = config.projects.planning,
+    toggl_desc = "Review",
+    never = {'#communication', '#distraction'},
+  },
+  {
+    text = "Plan a Focus Budget",
+    subText = "Setup Things 3 and Fantastical",
+    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
+    key = 'focus_budget',
+    never = {'#communication', '#distraction'},
+    toggl_proj = config.projects.planning,
+    toggl_desc = "Focus Budget",
+  },
+  {
+    text = "Communicate",
+    subText = "Intentionally engage with Slack and Email",
+    image = hs.image.imageFromAppBundle('com.tinyspeck.slackmacgap'),
+    key = "communicate",
+    always = {'#communication'},
+    toggl_proj = config.projects.communications
+  },
+  {
+    text = "Meetings",
+    subText = "Collaborating and catching up.",
+    image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
+    key = "meetings",
+    never = {'#distraction'},
+    always = {'com.flexibits.fantastical2.mac'},
+    toggl_proj = config.projects.meetings,
+  },
+  {
+    text = "Write",
+    subText = "You are allowed to do anything you want, as long as you write.",
+    image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX'),
+    key = "write",
+    only = {'#writing', '#focusaid'}
+  },
+  {
+    text = "Design",
+    subText = "Iterating and collaborating on Design artifacts in Figma",
+    image = hs.image.imageFromAppBundle('com.figma.Desktop'),
+    key = "design",
+    only = {'#design'},
+    toggl_proj = config.projects.design
+  },
+  {
+    text = "UX Research",
+    subText = "Engaged in uninterrupted user research",
+    image = hs.image.imageFromAppBundle('com.ideasoncanvas.mindnode.macos'),
+    key = "research",
+    only = {'#research'},
+    toggl_proj = config.projects.research
+  },
+  {
+    text = "Standup",
+    subText = "Run UX Standup",
+    image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
+    key = "standup",
+    always = {'#planning'},
+    never = {'#distraction', '#communication', '#coding'},
+    toggl_proj = config.projects.meetings,
+    toggl_desc = "UX Standup"
+  }
+}
+config.spaces.setup = {}
+
+config.setup.review = function()
+  hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
+  local things = hs_app.find('com.culturedcode.ThingsMac')
+  things:selectMenuItem("Hide Sidebar")
+
+  fn.imap(things:allWindows(), function(v) v:close() end)
+  things:selectMenuItem("New Things Window")
+  things:selectMenuItem("Today")
+
+  things:selectMenuItem("New Things Window")
+  if things:findMenuItem("Show Sidebar") then
+    things:selectMenuItem("Show Sidebar")
+  end
+  things:selectMenuItem("Anytime")
+
+  hs.layout.apply(
+    {
+      {"Things", "Anytime", hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
+      {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
+    }
+  )
+end
+
+config.setup.focus_budget = function()
+  hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
+  hs_app.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
+
+  local things = hs_app.find('com.culturedcode.ThingsMac')
+  local fantastical = hs_app.find('com.flexibits.fantastical2.mac')
+
+  local today = things:focusedWindow()
+  today:application():selectMenuItem("Hide Sidebar")
+  today:application():selectMenuItem("Today")
+
+  local cal = fantastical:focusedWindow()
+  cal:application():selectMenuItem("Hide Sidebar")
+  cal:application():selectMenuItem("By Week")
+
+  hs.layout.apply(
+    {
+      {"Fantastical", nil, hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
+      {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
+    }
+  )
+end
+
+config.setup.standup = function()
+  hs.urlevent.openURL(hs.settings.get("standupURL"))
+  hs.urlevent.openURL(hs.settings.get("standupCall"))
+end
+
 hyper = require 'hyper'
 hyper.start()
 movewindows = require 'movewindows'
