@@ -1,7 +1,36 @@
+-- HEADSPACE
+--
+-- You need in namespace a table at `config.spaces`.
+-- `config.spaces` is a table that is passed to a chooser, but can take some
+-- arguments based on what you want it to "never" open, "always" open, or
+-- "only" open.
+--
+-- Optionally, you can define a setup function at config.spaces.<key> that is
+-- run when the space is started.
+--
+-- # Example:
+--
+-- config.spaces = {
+--   text = "Example",
+--   subText = "More about the example",
+--   image = hs.image.imageFromAppBundle('foo.bar.com'),
+--   key = "example",
+--   always = {"table", "of", "#tags", "or" "bundleIDs"},
+--   never = {"table", "of", "#tags", "or" "bundleIDs"},
+--   only = {"table", "of", "#tags", "or" "bundleIDs"}
+--   toggl_proj = "id of toggl project",
+--   toggl_descr = "description of toggl timer
+-- }
+--
+-- config.spaces.setup.example = function()
+--   hs.urlevent.openURL("http://hammerspoon.org")
+-- end
+--
 -- The goal is to get into another space, even when working from home.
-
--- Custom Desktop Background with prompts for focus, writing, code?
+--
+-- Future expansions...
 -- DND status?
+-- Custom Desktop Background with prompts for focus, writing, code?
 -- Warnings set up for launching apps not tagged properly.
 -- timed sessions like a built-in Pomodoro to help box time.
 -- Preset screens for working.
