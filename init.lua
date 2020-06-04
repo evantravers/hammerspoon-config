@@ -203,11 +203,11 @@ config.spaces = {
 config.setup = {}
 
 config.setup.review = function()
-  hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
-  local things = hs_app.find('com.culturedcode.ThingsMac')
+  hs.application.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
+  local things = hs.application.find('com.culturedcode.ThingsMac')
   things:selectMenuItem("Hide Sidebar")
 
-  fn.imap(things:allWindows(), function(v) v:close() end)
+  hs.fnutils.imap(things:allWindows(), function(v) v:close() end)
   things:selectMenuItem("New Things Window")
   things:selectMenuItem("Today")
 
@@ -226,11 +226,11 @@ config.setup.review = function()
 end
 
 config.setup.focus_budget = function()
-  hs_app.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
-  hs_app.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
+  hs.application.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
+  hs.application.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
 
-  local things = hs_app.find('com.culturedcode.ThingsMac')
-  local fantastical = hs_app.find('com.flexibits.fantastical2.mac')
+  local things = hs.application.find('com.culturedcode.ThingsMac')
+  local fantastical = hs.application.find('com.flexibits.fantastical2.mac')
 
   local today = things:focusedWindow()
   today:application():selectMenuItem("Hide Sidebar")
