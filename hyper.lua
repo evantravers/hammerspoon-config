@@ -14,15 +14,17 @@ end
 hs.hotkey.bind({}, 'F19', hyper.pressed, hyper.released)
 
 hyper.allowed = function(app)
-  if hs.settings.get("only") then
-    return hs.fnutils.some(hs.settings.get("only"), function(tag)
-      return hs.fnutils.contains(app.tags, tag)
-    end)
-  else
-    if hs.settings.get("never") then
-      return hs.fnutils.every(hs.settings.get("never"), function(tag)
-        return not hs.fnutils.contains(app.tags, tag)
+  if app.tags then
+    if hs.settings.get("only") then
+      return hs.fnutils.some(hs.settings.get("only"), function(tag)
+        return hs.fnutils.contains(app.tags, tag)
       end)
+    else
+      if hs.settings.get("never") then
+        return hs.fnutils.every(hs.settings.get("never"), function(tag)
+          return not hs.fnutils.contains(app.tags, tag)
+        end)
+      end
     end
   end
   return true
