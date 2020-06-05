@@ -88,7 +88,7 @@ module.start = function()
       :choices(config.spaces)
       :showCallback(function()
         local current = toggl.current_timer()
-        if current.data then
+        if current and current.data then
           local timer = current.data
           local str = "🔴 :"
           if timer.description then
