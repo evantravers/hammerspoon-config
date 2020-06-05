@@ -86,6 +86,15 @@ module.start = function()
     chooser
       :placeholderText("Select a headspace…")
       :choices(config.spaces)
+      :showCallback(function()
+        local current = toggl.current_timer()
+        if current.data then
+          local descr = current.data.description or ""
+          local project = current.data.pid or ""
+          local duration = math.floor((hs.timer.secondsSinceEpoch() + current.data.duration) / 60) .. "m"
+          chooser:placeholderText("🔴 : " .. duration)
+        end
+      end)
       :show()
   end)
 end
