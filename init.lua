@@ -201,6 +201,11 @@ config.spaces = {
     never = {'#distraction', '#communication', '#coding'},
     toggl_proj = config.projects.meetings,
     toggl_desc = "UX Standup"
+  },
+  {
+    text = "Shutdown",
+    subText = "Work is done",
+    key = "shutdown"
   }
 }
 config.setup = {}
@@ -254,6 +259,15 @@ end
 config.setup.standup = function()
   hs.urlevent.openURL(hs.settings.get("standupURL"))
   hs.urlevent.openURL(hs.settings.get("standupCall"))
+end
+
+config.setup.shutdown = function()
+  -- shut down everything
+  fn.map(config.applications, function(app)
+    fn.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
+  end)
+
+  toggl.stop_timer()
 end
 
 hyper = require 'hyper'
