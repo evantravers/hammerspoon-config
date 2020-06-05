@@ -152,23 +152,6 @@ config.spaces = {
     toggl_desc = "Focus Budget",
   },
   {
-    text = "Communicate",
-    subText = "Intentionally engage with Slack and Email",
-    image = hs.image.imageFromAppBundle('com.tinyspeck.slackmacgap'),
-    key = "communicate",
-    always = {'#communication'},
-    toggl_proj = config.projects.communications
-  },
-  {
-    text = "Meetings",
-    subText = "Collaborating and catching up.",
-    image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
-    key = "meetings",
-    never = {'#distraction'},
-    always = {'#calendar'},
-    toggl_proj = config.projects.meetings,
-  },
-  {
     text = "Write",
     subText = "You are allowed to do anything you want, as long as you write.",
     image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX'),
@@ -190,6 +173,23 @@ config.spaces = {
     key = "research",
     only = {'#research'},
     toggl_proj = config.projects.research
+  },
+  {
+    text = "Communicate",
+    subText = "Intentionally engage with Slack and Email",
+    image = hs.image.imageFromAppBundle('com.tinyspeck.slackmacgap'),
+    key = "communicate",
+    always = {'#communication'},
+    toggl_proj = config.projects.communications
+  },
+  {
+    text = "Meetings",
+    subText = "Collaborating and catching up.",
+    image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
+    key = "meetings",
+    never = {'#distraction'},
+    always = {'#calendar'},
+    toggl_proj = config.projects.meetings,
   },
   {
     text = "Standup",
