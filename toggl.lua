@@ -56,7 +56,7 @@ module.get_project = function(pid)
   if hs.fnutils.contains(hs.settings.getKeys(), "toggl_key") then
     local key = hs.settings.get('toggl_key')
     http_number, body, headers = hs.http.get(
-      "GET https://www.toggl.com/api/v8/projects/" .. pid,
+      "https://www.toggl.com/api/v8/projects/" .. pid,
       {
         ["Content-Type"] = "application/json; charset=UTF-8",
         ["Authorization"] = "Basic " .. hs.base64.encode(key .. ":api_token")

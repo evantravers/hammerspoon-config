@@ -96,7 +96,9 @@ module.start = function()
           end
           if timer.pid then
             local project = toggl.get_project(timer.pid)
-            str = str .. " "  .. project.data.name
+            if project and project.data then
+              str = str .. " ("  .. project.data.name .. ")"
+            end
           end
           local duration = math.floor((hs.timer.secondsSinceEpoch() + current.data.duration) / 60) .. "m"
           chooser:placeholderText(str .. " :: " .. duration)
