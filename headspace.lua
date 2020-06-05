@@ -89,10 +89,17 @@ module.start = function()
       :showCallback(function()
         local current = toggl.current_timer()
         if current.data then
-          local descr = current.data.description or ""
-          local project = current.data.pid or ""
+          local timer = current.data
+          local str = "🔴 :"
+          if timer.description then
+            str = str .. " " .. timer.description
+          end
+          if timer.pid then
+            local project = toggl.get_project(timer.pid)
+            str = str .. " "  .. project.data.name
+          end
           local duration = math.floor((hs.timer.secondsSinceEpoch() + current.data.duration) / 60) .. "m"
-          chooser:placeholderText("🔴 : " .. duration)
+          chooser:placeholderText(str .. " :: " .. duration)
         end
       end)
       :show()

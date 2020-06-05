@@ -52,6 +52,27 @@ module.current_timer = function()
   end
 end
 
+module.get_project = function(pid)
+  if hs.fnutils.contains(hs.settings.getKeys(), "toggl_key") then
+    local key = hs.settings.get('toggl_key')
+    http_number, body, headers = hs.http.get(
+      "GET https://www.toggl.com/api/v8/projects/" .. pid,
+      {
+        ["Content-Type"] = "application/json; charset=UTF-8",
+        ["Authorization"] = "Basic " .. hs.base64.encode(key .. ":api_token")
+      }
+    )
+    if http_number == 200 then
+      return hs.json.decode(body)
+    else
+      print("problems!")
+      print(http_number)
+    end
+  else
+    print("You need to put a `toggl_key` in hs.settings.")
+  end
+end
+
 module.stop_timer = function()
   if hs.fnutils.contains(hs.settings.getKeys(), "toggl_key") then
     local current = module.current_timer()
