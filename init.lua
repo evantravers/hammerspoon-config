@@ -152,6 +152,14 @@ config.spaces = {
     toggl_desc = "Focus Budget",
   },
   {
+    text = "Deep",
+    subText = "Work deeply on focused work",
+    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
+    key = 'deep',
+    never = {'#distraction'},
+    toggl_proj = config.projects.design
+  },
+  {
     text = "Write",
     subText = "You are allowed to do anything you want, as long as you write.",
     image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX'),
@@ -253,6 +261,10 @@ config.setup.focus_budget = function()
       {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
     }
   )
+end
+
+config.setup.deep = function()
+  hs.urlevent.openURL("things:///show?id=anytime&filter=@ProctorU,$High")
 end
 
 config.setup.standup = function()
