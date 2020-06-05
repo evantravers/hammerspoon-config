@@ -29,23 +29,15 @@ end
 
 module.launch = function(list)
   fn.map(list, function(tag_or_url)
-    if util.isTag(tag_or_url) then -- tag
-      fn.map(module.urlsTaggedWith(tag_or_url), function(site)
-        hs.urlevent.openURL("http://" .. site.url)
-      end)
-    else -- url
-      hs.urlevent.openURL("http://" .. tag_or_url)
-    end
+    fn.map(module.urlsTaggedWith(tag_or_url), function(site)
+      hs.urlevent.openURL("http://" .. site.url)
+    end)
   end)
 end
 
 module.kill = function(list)
   fn.map(list, function(tag_or_url)
-    if util.isTag(tag_or_url) then -- tag
-      fn.map(module.urlsTaggedWith(tag_or_url), function(site) module.killTabsByDomain(site.url) end)
-    else -- url
-      module.killTabsByDomain(tag_or_url)
-    end
+    fn.map(module.urlsTaggedWith(tag_or_url), function(site) module.killTabsByDomain(site.url) end)
   end)
 end
 
