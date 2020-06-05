@@ -61,7 +61,7 @@ movewindows.start = function()
       local windows = hs.fnutils.map(hs.window.filter.new():getWindows(), function(win)
         if win ~= hs.window.focusedWindow() then
           return {
-            text = win:application():name() .. ": " .. win:title(),
+            text = win:title(),
             subText = win:application():title(),
             image = hs.image.imageFromAppBundle(win:application():bundleID()),
             id = win:id()
@@ -91,6 +91,7 @@ movewindows.start = function()
 
       chooser
         :placeholderText("Choose window for 50/50 split. Hold ⎇ for 70/30.")
+        :searchSubText(true)
         :choices(windows)
         :show()
 
