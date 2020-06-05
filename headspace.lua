@@ -31,7 +31,6 @@
 -- Future expansions...
 -- DND status?
 -- Custom Desktop Background with prompts for focus, writing, code?
--- Warnings set up for launching apps not tagged properly.
 -- timed sessions like a built-in Pomodoro to help box time.
 -- Preset screens for working.
 -- Musical cues?
