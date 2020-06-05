@@ -1,5 +1,6 @@
 -- Set the key you want to be HYPER to F19 in karabiner or keyboard
 local hyper = hs.hotkey.modal.new({}, nil)
+local util = require('util')
 
 hyper.pressed = function()
   hyper:enter()
@@ -12,8 +13,27 @@ end
 -- Bind the Hyper key to the hammerspoon modal
 hs.hotkey.bind({}, 'F19', hyper.pressed, hyper.released)
 
+hyper.allowed = function(app)
+  if hs.settings.get("only") then
+    return hs.fnutils.some(hs.settings.get("only"), function(tag)
+      return hs.fnutils.contains(app.tags, tag)
+    end)
+  else
+    if hs.settings.get("never") then
+      return hs.fnutils.every(hs.settings.get("never"), function(tag)
+        return not hs.fnutils.contains(app.tags, tag)
+      end)
+    end
+  end
+  return true
+end
+
 hyper.launch = function(app)
-  hs.application.launchOrFocusByBundleID(app.bundleID)
+  if hyper.allowed(app) then
+    hs.application.launchOrFocusByBundleID(app.bundleID)
+  else
+    hs.notify.show("Blocked " .. app.bundleID, "You have to switch headspaces", "")
+  end
 end
 
 hyper.start = function()

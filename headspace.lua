@@ -65,16 +65,22 @@ module.start = function()
         end
 
         if space.never then
+          hs.settings.set("never", space.never)
           util.kill(space.never)
           brave.kill(space.never)
+        else
+          hs.settings.clear("never")
         end
 
         if space.only then
           fn.map(config.applications, function(app)
             fn.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
           end)
+          hs.settings.set("only", space.only)
           util.launch(space.only)
           brave.launch(space.only)
+        else
+          hs.settings.clear("only")
         end
 
         if config.setup[space.key] then
