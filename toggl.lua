@@ -24,6 +24,7 @@ module.start_timer = function(project_id, description)
       },
       function(http_number, body, headers)
         print(http_number)
+        print(body)
       end
     )
   else
@@ -46,6 +47,7 @@ module.current_timer = function()
     else
       print("problems!")
       print(http_number)
+      print(body)
     end
   else
     print("You need to put a `toggl_key` in hs.settings.")
@@ -67,6 +69,7 @@ module.get_project = function(pid)
     else
       print("problems!")
       print(http_number)
+      print(body)
     end
   else
     print("You need to put a `toggl_key` in hs.settings.")
@@ -91,6 +94,7 @@ module.stop_timer = function()
     else
       print("problems!")
       print(http_number)
+      print(body)
     end
   else
     print("You need to put a `toggl_key` in hs.settings.")
