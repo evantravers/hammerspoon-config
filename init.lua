@@ -262,12 +262,13 @@ config.setup.standup = function()
 end
 
 config.setup.shutdown = function()
+  local toggl = require('toggl')
+  toggl.stop_timer()
   -- shut down everything
-  fn.map(config.applications, function(app)
-    fn.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
+  hs.fnutils.map(config.applications, function(app)
+    hs.fnutils.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
   end)
 
-  toggl.stop_timer()
 end
 
 hyper = require 'hyper'
@@ -285,8 +286,6 @@ local brave = require 'brave'
 
 local headspace = require 'headspace'
       headspace.start()
-
-local toggl = require('toggl')
 
 local secrets = require('secrets')
       secrets.start()
