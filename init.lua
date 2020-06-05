@@ -14,8 +14,7 @@ config.applications = {
   ['com.brave.browser'] = {
     bundleID = 'com.brave.browser',
     hyper_key = 'k',
-    preferred_display = 1,
-    tags = {'#coding'}
+    preferred_display = 1
   },
   ['org.mozilla.firefox'] = {
     bundleID = 'org.mozilla.firefox',
