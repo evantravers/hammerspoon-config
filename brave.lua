@@ -28,16 +28,16 @@ module.urlsTaggedWith = function(tag)
 end
 
 module.launch = function(list)
-  fn.map(list, function(tag_or_url)
-    fn.map(module.urlsTaggedWith(tag_or_url), function(site)
+  fn.map(list, function(tag)
+    fn.map(module.urlsTaggedWith(tag), function(site)
       hs.urlevent.openURL("http://" .. site.url)
     end)
   end)
 end
 
 module.kill = function(list)
-  fn.map(list, function(tag_or_url)
-    fn.map(module.urlsTaggedWith(tag_or_url), function(site) module.killTabsByDomain(site.url) end)
+  fn.map(list, function(tag)
+    fn.map(module.urlsTaggedWith(tag), function(site) module.killTabsByDomain(site.url) end)
   end)
 end
 
