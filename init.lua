@@ -158,6 +158,7 @@ config.spaces = {
     subText = "Work deeply on focused work",
     image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
     key = 'deep',
+    toggl_proj = config.projects.leadership,
     never = {'#distraction'}
   },
   {
