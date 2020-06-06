@@ -144,7 +144,7 @@ require('spaces/play')
 require('spaces/shutdown')
 
 hyper = require 'hyper'
-hyper.start()
+hyper.start(config)
 movewindows = require 'movewindows'
 movewindows.start()
 
