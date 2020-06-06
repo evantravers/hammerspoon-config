@@ -14,7 +14,7 @@
 --   text = "Example",
 --   subText = "More about the example",
 --   image = hs.image.imageFromAppBundle('foo.bar.com'),
---   key = "example",
+--   setup = "example",
 --   always = {"table", "of", "#tags", "or" "bundleIDs"},
 --   never = {"table", "of", "#tags", "or" "bundleIDs"},
 --   only = {"table", "of", "#tags", "or" "bundleIDs"}
@@ -80,8 +80,8 @@ module.choose = function()
         hs.settings.clear("only")
       end
 
-      if config.setup[space.key] then
-        config.setup[space.key]()
+      if config.setup[space.setup] then
+        config.setup[space.setup]()
       end
     end
   end)

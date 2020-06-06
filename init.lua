@@ -134,171 +134,22 @@ config.projects = {
   leadership     = "160553887"
 }
 
-config.spaces = {
-  {
-    text = "Review",
-    subText = "Setup a Things 3 Review Session",
-    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
-    key = 'review',
-    toggl_proj = config.projects.planning,
-    toggl_desc = "Review",
-    never = {'#communication', '#distraction'},
-  },
-  {
-    text = "Plan a Focus Budget",
-    subText = "Setup Things 3 and Fantastical",
-    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
-    key = 'focus_budget',
-    never = {'#communication', '#distraction'},
-    toggl_proj = config.projects.planning,
-    toggl_desc = "Focus Budget",
-  },
-  {
-    text = "Deep",
-    subText = "Work deeply on focused work",
-    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
-    key = 'deep',
-    toggl_proj = config.projects.leadership,
-    never = {'#distraction'}
-  },
-  {
-    text = "Shallow",
-    subText = "Work on low intensity tasks",
-    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
-    key = 'shallow'
-  },
-  {
-    text = "Write",
-    subText = "You are allowed to do anything you want, as long as you write.",
-    image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX'),
-    key = "write",
-    only = {'#writing'}
-  },
-  {
-    text = "Design",
-    subText = "Iterating and collaborating on Design artifacts in Figma",
-    image = hs.image.imageFromAppBundle('com.figma.Desktop'),
-    key = "design",
-    only = {'#design'},
-    toggl_proj = config.projects.design
-  },
-  {
-    text = "UX Research",
-    subText = "Engaged in uninterrupted user research",
-    image = hs.image.imageFromAppBundle('com.ideasoncanvas.mindnode.macos'),
-    key = "research",
-    only = {'#research'},
-    toggl_proj = config.projects.research
-  },
-  {
-    text = "Communicate",
-    subText = "Intentionally engage with Slack and Email",
-    image = hs.image.imageFromAppBundle('com.tinyspeck.slackmacgap'),
-    key = "communicate",
-    always = {'#communication'},
-    toggl_proj = config.projects.communications
-  },
-  {
-    text = "Meetings",
-    subText = "Collaborating and catching up.",
-    image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
-    key = "meetings",
-    never = {'#distraction'},
-    always = {'#calendar'},
-    toggl_proj = config.projects.meetings,
-  },
-  {
-    text = "Standup",
-    subText = "Run UX Standup",
-    image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
-    key = "standup",
-    always = {'#planning'},
-    never = {'#distraction', '#communication', '#coding'},
-    toggl_proj = config.projects.meetings,
-    toggl_desc = "UX Standup"
-  },
-  {
-    text = "Play",
-    subText = "Relax... but not for long.",
-    image = hs.image.imageFromAppBundle('com.valvesoftware.steam'),
-    toggl_proj = config.projects.play
-  },
-  {
-    text = "Shutdown",
-    subText = "Work is done",
-    key = "shutdown"
-  }
-}
+-- configure spaces for headspace
+config.spaces = {}
 config.setup = {}
 
-config.setup.review = function()
-  hs.application.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
-  local things = hs.application.find('com.culturedcode.ThingsMac')
-  things:selectMenuItem("Hide Sidebar")
-
-  hs.fnutils.imap(things:allWindows(), function(v) v:close() end)
-  things:selectMenuItem("New Things Window")
-  things:selectMenuItem("Today")
-
-  things:selectMenuItem("New Things Window")
-  if things:findMenuItem("Show Sidebar") then
-    things:selectMenuItem("Show Sidebar")
-  end
-  things:selectMenuItem("Anytime")
-
-  hs.layout.apply(
-    {
-      {"Things", "Anytime", hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
-      {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
-    }
-  )
-end
-
-config.setup.focus_budget = function()
-  hs.application.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
-  hs.application.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
-
-  local things = hs.application.find('com.culturedcode.ThingsMac')
-  local fantastical = hs.application.find('com.flexibits.fantastical2.mac')
-
-  local today = things:focusedWindow()
-  today:application():selectMenuItem("Hide Sidebar")
-  today:application():selectMenuItem("Today")
-
-  local cal = fantastical:focusedWindow()
-  cal:application():selectMenuItem("Hide Sidebar")
-  cal:application():selectMenuItem("By Week")
-
-  hs.layout.apply(
-    {
-      {"Fantastical", nil, hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
-      {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
-    }
-  )
-end
-
-config.setup.deep = function()
-  hs.urlevent.openURL("things:///show?id=anytime&filter=@ProctorU,$High")
-end
-
-config.setup.shallow = function()
-  hs.urlevent.openURL("things:///show?id=anytime&filter=@ProctorU,$Low")
-end
-
-config.setup.standup = function()
-  hs.urlevent.openURL(hs.settings.get("standupURL"))
-  hs.urlevent.openURL(hs.settings.get("standupCall"))
-end
-
-config.setup.shutdown = function()
-  local toggl = require('toggl')
-  toggl.stop_timer()
-  -- shut down everything
-  hs.fnutils.map(config.applications, function(app)
-    hs.fnutils.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
-  end)
-
-end
+require('spaces/review')
+require('spaces/focus_budget')
+require('spaces/deep')
+require('spaces/shallow')
+require('spaces/write')
+require('spaces/design')
+require('spaces/research')
+require('spaces/communicate')
+require('spaces/meetings')
+require('spaces/standup')
+require('spaces/play')
+require('spaces/shutdown')
 
 hyper = require 'hyper'
 hyper.start()
