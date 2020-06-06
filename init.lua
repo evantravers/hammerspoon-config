@@ -130,7 +130,8 @@ config.projects = {
   reading        = "160934258",
   design         = "160553877",
   research       = "160553882",
-  play           = "160825771"
+  play           = "160825771",
+  leadership     = "160553887"
 }
 
 config.spaces = {
