@@ -5,10 +5,10 @@
 local module = {}
 
 module.key = function()
-  if hs.settings.get("secrets").toggl_key then
-    return hs.settings.get("secrets").toggl_key
+  if hs.settings.get("secrets").toggl.key then
+    return hs.settings.get("secrets").toggl.key
   else
-    print("You need to load a Toggl.com API key in to hs.settings under secrets.toggl_key")
+    print("You need to load a Toggl.com API key in to hs.settings under secrets.toggl.key")
   end
 end
 

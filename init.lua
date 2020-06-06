@@ -1,5 +1,7 @@
-config = {}
+local secrets = require('secrets')
+      secrets.start()
 
+config = {}
 config.applications = {
   ['com.runningwithcrayons.Alfred'] = {
     bundleID = 'com.runningwithcrayons.Alfred',
@@ -123,20 +125,10 @@ config.domains = {
   }
 }
 
-config.projects = {
-  communications = "160553883",
-  meetings       = "160775332",
-  planning       = "160831759",
-  reading        = "160934258",
-  design         = "160553877",
-  research       = "160553882",
-  play           = "160825771",
-  leadership     = "160553887"
-}
-
 -- configure spaces for headspace
 config.spaces = {}
 config.setup = {}
+config.projects = hs.settings.get("secrets").toggl.projects
 
 require('spaces/review')
 require('spaces/focus_budget')
@@ -166,9 +158,6 @@ local brave = require 'brave'
 
 local headspace = require 'headspace'
 hyper:bind({}, 'l', nil, headspace.choose)
-
-local secrets = require('secrets')
-      secrets.start()
 
 hyper:bind({}, 'r', nil, function() hs.reload() end)
 
