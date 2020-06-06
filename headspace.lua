@@ -38,79 +38,76 @@
 local module = {}
 
 local hyper  = require('hyper')
-local hs_app = require('hs.application')
 local fn     = require('hs.fnutils')
 local util   = require('util')
 local brave  = require('brave')
 local toggl  = require('toggl')
 
-module.start = function()
-  hyper:bind({}, 'l', nil, function()
-    local chooser = hs.chooser.new(function(space)
-      if space ~= nil then
-        if not hs.eventtap.checkKeyboardModifiers()['shift'] then
-          if space.toggl_proj then
-            description = ""
-            if space.toggl_desc then
-              description = space.toggl_desc
-            end
-            toggl.start_timer(space.toggl_proj, description)
+module.choose = function()
+  local chooser = hs.chooser.new(function(space)
+    if space ~= nil then
+      if not hs.eventtap.checkKeyboardModifiers()['shift'] then
+        if space.toggl_proj then
+          description = ""
+          if space.toggl_desc then
+            description = space.toggl_desc
           end
-        end
-
-        if space.always then
-          util.launch(space.always)
-          brave.launch(space.always)
-        end
-
-        if space.never then
-          hs.settings.set("never", space.never)
-          util.kill(space.never)
-          brave.kill(space.never)
-        else
-          hs.settings.clear("never")
-        end
-
-        if space.only then
-          fn.map(config.applications, function(app)
-            fn.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
-          end)
-          hs.settings.set("only", space.only)
-          util.launch(space.only)
-          brave.launch(space.only)
-        else
-          hs.settings.clear("only")
-        end
-
-        if config.setup[space.key] then
-          config.setup[space.key]()
+          toggl.start_timer(space.toggl_proj, description)
         end
       end
-    end)
 
-    chooser
-      :placeholderText("Select a headspace…")
-      :choices(config.spaces)
-      :showCallback(function()
-        local current = toggl.current_timer()
-        if current and current.data then
-          local timer = current.data
-          local str = "🔴 :"
-          if timer.description then
-            str = str .. " " .. timer.description
-          end
-          if timer.pid then
-            local project = toggl.get_project(timer.pid)
-            if project and project.data then
-              str = str .. " ("  .. project.data.name .. ")"
-            end
-          end
-          local duration = math.floor((hs.timer.secondsSinceEpoch() + current.data.duration) / 60) .. "m"
-          chooser:placeholderText(str .. " :: " .. duration)
-        end
-      end)
-      :show()
+      if space.always then
+        util.launch(space.always)
+        brave.launch(space.always)
+      end
+
+      if space.never then
+        hs.settings.set("never", space.never)
+        util.kill(space.never)
+        brave.kill(space.never)
+      else
+        hs.settings.clear("never")
+      end
+
+      if space.only then
+        fn.map(config.applications, function(app)
+          fn.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
+        end)
+        hs.settings.set("only", space.only)
+        util.launch(space.only)
+        brave.launch(space.only)
+      else
+        hs.settings.clear("only")
+      end
+
+      if config.setup[space.key] then
+        config.setup[space.key]()
+      end
+    end
   end)
+
+  chooser
+    :placeholderText("Select a headspace…")
+    :choices(config.spaces)
+    :showCallback(function()
+      local current = toggl.current_timer()
+      if current and current.data then
+        local timer = current.data
+        local str = "🔴 :"
+        if timer.description then
+          str = str .. " " .. timer.description
+        end
+        if timer.pid then
+          local project = toggl.get_project(timer.pid)
+          if project and project.data then
+            str = str .. " ("  .. project.data.name .. ")"
+          end
+        end
+        local duration = math.floor((hs.timer.secondsSinceEpoch() + current.data.duration) / 60) .. "m"
+        chooser:placeholderText(str .. " :: " .. duration)
+      end
+    end)
+    :show()
 end
 
 return module

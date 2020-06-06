@@ -314,7 +314,7 @@ local airpods = require 'airpods'
 local brave = require 'brave'
 
 local headspace = require 'headspace'
-      headspace.start()
+hyper:bind({}, 'l', nil, headspace.choose)
 
 local secrets = require('secrets')
       secrets.start()
