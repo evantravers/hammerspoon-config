@@ -1,6 +1,5 @@
 -- Set the key you want to be HYPER to F19 in karabiner or keyboard
 local hyper = hs.hotkey.modal.new({}, nil)
-local util = require('util')
 
 hyper.pressed = function()
   hyper:enter()
