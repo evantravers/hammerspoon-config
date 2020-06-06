@@ -129,7 +129,8 @@ config.projects = {
   planning       = "160831759",
   reading        = "160934258",
   design         = "160553877",
-  research       = "160553882"
+  research       = "160553882",
+  play           = "160825771"
 }
 
 config.spaces = {
@@ -156,8 +157,13 @@ config.spaces = {
     subText = "Work deeply on focused work",
     image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
     key = 'deep',
-    never = {'#distraction'},
-    toggl_proj = config.projects.design
+    never = {'#distraction'}
+  },
+  {
+    text = "Shallow",
+    subText = "Work on low intensity tasks",
+    image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
+    key = 'shallow'
   },
   {
     text = "Write",
@@ -208,6 +214,12 @@ config.spaces = {
     never = {'#distraction', '#communication', '#coding'},
     toggl_proj = config.projects.meetings,
     toggl_desc = "UX Standup"
+  },
+  {
+    text = "Play",
+    subText = "Relax... but not for long.",
+    image = hs.image.imageFromAppBundle('com.valvesoftware.steam'),
+    toggl_proj = config.projects.play
   },
   {
     text = "Shutdown",
@@ -265,6 +277,10 @@ end
 
 config.setup.deep = function()
   hs.urlevent.openURL("things:///show?id=anytime&filter=@ProctorU,$High")
+end
+
+config.setup.shallow = function()
+  hs.urlevent.openURL("things:///show?id=anytime&filter=@ProctorU,$Low")
 end
 
 config.setup.standup = function()
