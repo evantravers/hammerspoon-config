@@ -60,13 +60,13 @@ module.choose = function()
       end
 
       if space.always then
-        launch(space.always)
+        module.launch(space.always)
         brave.launch(space.always)
       end
 
       if space.never then
         hs.settings.set("never", space.never)
-        kill(space.never)
+        module.kill(space.never)
         brave.kill(space.never)
       else
         hs.settings.clear("never")
@@ -77,7 +77,7 @@ module.choose = function()
           fn.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
         end)
         hs.settings.set("only", space.only)
-        launch(space.only)
+        module.launch(space.only)
         brave.launch(space.only)
       else
         hs.settings.clear("only")
