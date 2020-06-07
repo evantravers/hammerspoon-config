@@ -145,6 +145,7 @@ require('spaces/shutdown')
 
 hyper = require 'hyper'
 hyper.start(config)
+
 movewindows = require 'movewindows'
 movewindows.start()
 
@@ -157,7 +158,8 @@ local airpods = require 'airpods'
 local brave = require 'brave'
 
 local headspace = require 'headspace'
-hyper:bind({}, 'l', nil, headspace.choose)
+      headspace.start(config)
+      hyper:bind({}, 'l', nil, headspace.choose)
 
 hyper:bind({}, 'r', nil, function() hs.reload() end)
 

@@ -39,9 +39,13 @@ local module = {}
 
 local hyper  = require('hyper')
 local fn     = require('hs.fnutils')
-local util   = require('util')
 local brave  = require('brave')
 local toggl  = require('toggl')
+
+-- Expects a table with a key for "spaces" and a key for "setup".
+module.start = function(config_table)
+  module.config = config_table
+end
 
 module.choose = function()
   local chooser = hs.chooser.new(function(space)
@@ -57,13 +61,13 @@ module.choose = function()
       end
 
       if space.always then
-        util.launch(space.always)
+        launch(space.always)
         brave.launch(space.always)
       end
 
       if space.never then
         hs.settings.set("never", space.never)
-        util.kill(space.never)
+        kill(space.never)
         brave.kill(space.never)
       else
         hs.settings.clear("never")
@@ -74,7 +78,7 @@ module.choose = function()
           fn.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
         end)
         hs.settings.set("only", space.only)
-        util.launch(space.only)
+        launch(space.only)
         brave.launch(space.only)
       else
         hs.settings.clear("only")
@@ -108,6 +112,31 @@ module.choose = function()
       end
     end)
     :show()
+end
+
+module.appsTaggedWith = function(tag)
+  return hs.fnutils.filter(module.config, function(app)
+    return app.tags and hs.fnutils.contains(app.tags, tag)
+  end)
+end
+
+-- launches either by tag or by bundle id from a list
+module.launch = function(list)
+  hs.fnutils.map(list, function(tag)
+    hs.fnutils.map(module.appsTaggedWith(tag), function(app)
+      hs.application.launchOrFocusByBundleID(app.bundleID)
+    end)
+  end)
+end
+
+module.kill = function(list)
+  hs.fnutils.map(list, function(tag)
+    hs.fnutils.map(module.appsTaggedWith(tag), function(app)
+      hs.fnutils.map(hs.application.applicationsForBundleID(app.bundleID), function(app)
+        app:kill()
+      end)
+    end)
+  end)
 end
 
 return module

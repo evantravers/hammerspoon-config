@@ -1,5 +1,4 @@
 local fn   = require('hs.fnutils')
-local util = require('util')
 local module = {}
 
 module.jump = function(url)
