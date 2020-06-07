@@ -150,7 +150,7 @@ movewindows = require 'movewindows'
 movewindows.start()
 
 local autolayout = require 'autolayout'
-      autolayout.start()
+      autolayout.start(config)
       hyper:bind({}, 'return', nil, autolayout.autoLayout)
 
 local airpods = require 'airpods'
