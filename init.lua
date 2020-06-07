@@ -141,6 +141,7 @@ require('spaces/communicate')
 require('spaces/meetings')
 require('spaces/standup')
 require('spaces/play')
+require('spaces/weeklyreview')
 require('spaces/shutdown')
 
 hyper = require('hyper')
