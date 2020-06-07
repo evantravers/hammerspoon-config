@@ -17,8 +17,9 @@ config.setup.weeklyreview = function()
           "operation": "create",
         "attributes": {
           "title": "Weekly Review",
-          "notes": "1. Do a brain dump. Add any tasks or projects you come up with to the Things inbox.\n2. Process your physical inbox. Create tasks in Things for each item in your physical inbox that you want to take action on.\n3. Process your email inbox. Use Mail to Things to forward emails you need or want to take action on to your Things inbox.\n4. Process your Things inbox. Assign each task to an area or to a project.\n5. Go through each of your projects. One by one, ask:\n6. Identify what’s due soon. Use the Upcoming view.\n7. Identify which tasks are available for you to work on. Use the Anytime view.\n8. Plan what to work on next. Assign “when” dates, as you learned in the section on planning your days and weeks. Choose important tasks as well as urgent ones.",
+          "notes": "1. Do a brain dump. Add any tasks or projects you come up with to the Things inbox.\n2. Process your physical inbox. Create tasks in Things for each item in your physical inbox that you want to take action on.\n3. Process your email inbox. Use Mail to Things to forward emails you need or want to take action on to your Things inbox.\n4. Process your Things inbox. Assign each task to an area or to a project.\n5. Go through each of your projects.Use the checklists below.\n6. Identify what’s due soon. Use the Upcoming view.\n7. Identify which tasks are available for you to work on. Use the Anytime view.\n8. Plan what to work on next. Assign “when” dates, as you learned in the section on planning your days and weeks. Choose important tasks as well as urgent ones.",
           "when": "today",
+          "tags": "Ritual"
           "items": []
         },
       };
