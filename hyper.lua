@@ -11,9 +11,10 @@
 -- Shawn Blanc's OopsieThings.
 -- https://thesweetsetup.com/oopsiethings-applescript-for-things-on-mac/
 --
+-- Optional:
 -- Hyper hooks into Headspace's block lists. If you configure a space using
 -- Headspace, it'll block launching apps that are currently on the blocked
--- lists.
+-- lists via hs.settings.
 
 local hyper = hs.hotkey.modal.new({}, nil)
 
