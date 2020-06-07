@@ -161,7 +161,9 @@ local headspace = require('headspace')
       headspace.start(config)
       hyper:bind({}, 'l', nil, headspace.choose)
 
-hyper:bind({}, 'r', nil, function() hs.reload() end)
+-- Random bindings
+hyper:bind({}, 'r', nil, function() hs.console.hswindow():focus() end)
+hyper:bind({'shift'}, 'r', nil, function() hs.reload() end)
 
 hyper:bind({}, 'a', nil, function()
   local ok, output = airpods.toggle('Evan’s AirPods')
