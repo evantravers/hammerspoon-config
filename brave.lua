@@ -1,3 +1,12 @@
+-- BRAVE
+--
+-- Some utility functions for controlling Brave Browser.
+-- Probably would work super similarly on Chrome and Safari, or any webkit
+-- browser.
+--
+-- NOTE: May require you enable View -> Developer -> Allow Javascript from
+-- Apple Events in Brave's menu.
+
 local fn   = require('hs.fnutils')
 local module = {}
 

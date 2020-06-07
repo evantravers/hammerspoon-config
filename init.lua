@@ -1,5 +1,5 @@
 local secrets = require('secrets')
-      secrets.start()
+      secrets.start('.secrets.json')
 
 config = {}
 config.applications = {

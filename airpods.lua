@@ -1,3 +1,10 @@
+-- AIRPODS
+--
+-- Quick applescript for connecting/disconnecting Airpods.
+--
+-- NOTE: Requires that you enable "Show Bluetooth in Menu Bar" in OSX Bluetooth
+-- Preference Pane.
+--
 -- Found on: https://gist.githubusercontent.com/daGrevis/79b27b9c156ba828ad52976a118b29e0/raw/0e77383f4eb9301527caac3f0b71350e9499210b/init.lua
 local airpods = {}
 function airpods.toggle(deviceName)

@@ -1,6 +1,6 @@
 -- TOGGL
 --
--- Relies on a toggl api key in hs.settings.get('toggl_key')
+-- Relies on a toggl api key in `hs.settings.get('secrets').toggl.key`.
 
 local module = {}
 
