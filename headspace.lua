@@ -37,7 +37,6 @@
 
 local module = {}
 
-local hyper  = require('hyper')
 local fn     = require('hs.fnutils')
 local brave  = require('brave')
 local toggl  = require('toggl')
