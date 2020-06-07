@@ -2,8 +2,8 @@
 --
 -- Hyper is a hyper shortcut modal.
 --
--- Feel free to modify... I use karabiner.app on my laptop and QMK on my mech
--- keyboards to bind a single key to `F19`, which fires all this
+-- Feel free to modify... I use karabiner-elements.app on my laptop and QMK on
+-- my mech keyboards to bind a single key to `F19`, which fires all this
 -- Hammerspoon-powered OSX automation.
 --
 -- I chiefly use it to launch applications quickly from a single press,
