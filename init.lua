@@ -143,21 +143,21 @@ require('spaces/standup')
 require('spaces/play')
 require('spaces/shutdown')
 
-hyper = require 'hyper'
+hyper = require('hyper')
 hyper.start(config)
 
-movewindows = require 'movewindows'
+movewindows = require('movewindows')
 movewindows.start()
 
 local autolayout = require 'autolayout'
       autolayout.start(config)
       hyper:bind({}, 'return', nil, autolayout.autoLayout)
 
-local airpods = require 'airpods'
+local airpods = require('airpods')
 
-local brave = require 'brave'
+local brave = require('brave')
 
-local headspace = require 'headspace'
+local headspace = require('headspace')
       headspace.start(config)
       hyper:bind({}, 'l', nil, headspace.choose)
 
