@@ -73,7 +73,7 @@ module.choose = function()
       end
 
       if space.only then
-        fn.map(config.applications, function(app)
+        fn.map(module.config.applications, function(app)
           fn.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
         end)
         hs.settings.set("only", space.only)
@@ -83,15 +83,15 @@ module.choose = function()
         hs.settings.clear("only")
       end
 
-      if config.setup[space.setup] then
-        config.setup[space.setup]()
+      if module.config.setup[space.setup] then
+        module.config.setup[space.setup]()
       end
     end
   end)
 
   chooser
     :placeholderText("Select a headspace…")
-    :choices(config.spaces)
+    :choices(module.config.spaces)
     :showCallback(function()
       local current = toggl.current_timer()
       if current and current.data then
@@ -114,7 +114,7 @@ module.choose = function()
 end
 
 module.appsTaggedWith = function(tag)
-  return hs.fnutils.filter(module.config, function(app)
+  return hs.fnutils.filter(module.config.applications, function(app)
     return app.tags and hs.fnutils.contains(app.tags, tag)
   end)
 end
