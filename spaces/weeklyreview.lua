@@ -14,13 +14,46 @@ config.setup.weeklyreview = function()
     (function() {
       let review_proj = {
         "type": "project",
-          "operation": "create",
+        "operation": "create",
         "attributes": {
           "title": "Weekly Review",
-          "notes": "1. Do a brain dump. Add any tasks or projects you come up with to the Things inbox.\n2. Process your physical inbox. Create tasks in Things for each item in your physical inbox that you want to take action on.\n3. Process your email inbox. Use Mail to Things to forward emails you need or want to take action on to your Things inbox.\n4. Process your Things inbox. Assign each task to an area or to a project.\n5. Go through each of your projects.Use the checklists below.\n6. Identify what’s due soon. Use the Upcoming view.\n7. Identify which tasks are available for you to work on. Use the Anytime view.\n8. Plan what to work on next. Assign “when” dates, as you learned in the section on planning your days and weeks. Choose important tasks as well as urgent ones.",
+          "notes": "",
+          "tags": ["Rituals"],
           "when": "today",
-          "tags": "Ritual"
-          "items": []
+          "items": [
+            { "type": "heading", "attributes": { "title": "Prep" } },
+            {
+              "type": "to-do",
+              "attributes": {
+                title: "Do a brain dump. Add any tasks or projects you come up with to the Things inbox."
+              }
+            },
+            {
+              "type": "to-do",
+              "attributes": {
+                title: "Process your physical inbox. Create tasks in Things for each item in your physical inbox that you want to take action on."
+              }
+            },
+            {
+              "type": "to-do",
+              "attributes": {
+                title: "Process your email inbox. Use Mail to Things to forward emails you need or want to take action on to your Things inbox."
+              }
+            },
+            {
+              "type": "to-do",
+              "attributes": {
+                title: "Process your Things inbox. Assign each task to an area or to a project."
+              }
+            },
+            {
+              "type": "to-do",
+              "attributes": {
+                title: "Go through each of your projects. Use the checklists below."
+              }
+            },
+            { "type": "heading", "attributes": { "title": "Projects" } },
+          ]
         },
       };
 
@@ -107,6 +140,27 @@ config.setup.weeklyreview = function()
           )
         }
       }
+      review_proj["attributes"]["items"].push(
+        { "type": "heading", "attributes": { "title": "Plan" } },
+        {
+          "type": "to-do",
+          "attributes": {
+            title: "Identify what’s due soon. Use the Upcoming view."
+          }
+        },
+        {
+          "type": "to-do",
+          "attributes": {
+            title: "Identify which tasks are available for you to work on. Use the Anytime view."
+          }
+        },
+        {
+          "type": "to-do",
+          "attributes": {
+            title: "Plan what to work on next. Assign “when” dates, as you learned in the section on planning your days and weeks. Choose important tasks as well as urgent ones."
+          }
+        }
+      )
       let url = "things:///json?data=" + encodeURI(JSON.stringify([review_proj]));
       return url;
     })();
