@@ -5,7 +5,11 @@
 module = {}
 
 module.start = function(filename)
-  hs.settings.set("secrets", hs.json.read(filename))
+  if hs.fs.attributes(filename) then
+    hs.settings.set("secrets", hs.json.read(filename))
+  else
+    print("You need to create a file at " .. filename)
+  end
 end
 
 return module
