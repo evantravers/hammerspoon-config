@@ -3,100 +3,100 @@ local secrets = require('secrets')
 
 config = {}
 config.applications = {
-  ['com.runningwithcrayons.Alfred'] = {
+  ['Alfred'] = {
     bundleID = 'com.runningwithcrayons.Alfred',
     local_bindings = {'c', 'space', 'o'}
   },
-  ['net.kovidgoyal.kitty'] = {
+  ['Kitty'] = {
     bundleID = 'net.kovidgoyal.kitty',
     hyper_key = 'j',
     preferred_display = 1,
     tags = {'#coding'}
   },
-  ['com.brave.browser'] = {
+  ['Brave'] = {
     bundleID = 'com.brave.browser',
     hyper_key = 'k',
     preferred_display = 1
   },
-  ['org.mozilla.firefox'] = {
+  ['Firefox'] = {
     bundleID = 'org.mozilla.firefox',
     hyper_key = 'b',
     preferred_display = 1
   },
-  ['com.kapeli.dashdoc'] = {
+  ['Dash'] = {
     bundleID = 'com.kapeli.dashdoc',
     hyper_key = 'h',
     tags = {'#coding'}
   },
-  ['com.tinyspeck.slackmacgap'] = {
+  ['Slack'] = {
     bundleID = 'com.tinyspeck.slackmacgap',
     hyper_key = 'i',
     preferred_display = 2,
     tags = {'#distraction', '#communication'}
   },
-  ['com.readdle.smartemail-Mac'] = {
+  ['Spark'] = {
     bundleID = 'com.readdle.smartemail-Mac',
     hyper_key = 'e',
     preferred_display = 2,
     tags = {'#distraction', '#communication'}
   },
-  ['com.flexibits.fantastical2.mac'] = {
+  ['Fantastical'] = {
     bundleID = 'com.flexibits.fantastical2.mac',
     hyper_key = 'y',
     local_bindings = {']'},
     tags = {'#planning', '#review', '#calendar'},
     preferred_display = 2,
   },
-  ['com.apple.finder'] = {
+  ['Finder'] = {
     bundleID = 'com.apple.finder',
     hyper_key = 'f'
   },
-  ['com.hnc.Discord'] = {
+  ['Discord'] = {
     bundleID = 'com.hnc.Discord',
     preferred_display = 2,
     tags = {'#distraction'}
   },
-  ['com.tapbots.Tweetbot3Mac'] = {
+  ['Tweetbot'] = {
     bundleID = 'com.tapbots.Tweetbot3Mac',
     tags = {'#distraction', '#socialmedia'},
     local_bindings = {'\\'}
   },
-  ['com.culturedcode.ThingsMac'] = {
+  ['Things'] = {
     bundleID = 'com.culturedcode.ThingsMac',
     hyper_key = 't',
     preferred_display = 1,
     tags = {'#planning', '#review'},
     local_bindings = {',', '.'}
   },
-  ['com.agiletortoise.Drafts-OSX'] = {
+  ['Drafts'] = {
     bundleID = 'com.agiletortoise.Drafts-OSX',
     hyper_key ='d',
     tags = {'#review', '#writing', '#research'},
     local_bindings = {'x', ';'}
   },
-  ['com.toggl.toggldesktop.TogglDesktop'] = {
+  ['Toggl'] = {
     bundleID = 'com.toggl.toggldesktop.TogglDesktop',
     local_bindings = {'p'}
   },
-  ['com.ideasoncanvas.mindnode.macos'] = {
+  ['Mindnode'] = {
     bundleID = 'com.ideasoncanvas.mindnode.macos',
     tags = {'#research'},
     hyper_key = 'u',
     preferred_display = 1
   },
-  ['com.apple.iChat'] = {
+  ['Messages'] = {
     bundleID = 'com.apple.iChat',
     hyper_key = 'q',
     tags = {'#communication', '#distraction'}
   },
-  ['com.valvesoftware.steam'] = {
+  ['Steam'] = {
     bundleID = 'com.valvesoftware.steam',
     tags = {'#distraction'}
   },
-  ['com.spotify.client'] = {
+  ['Spotify'] = {
     bundleID = 'com.spotify.client'
   },
-  ['com.figma.Desktop'] = {
+  ['Figma'] = {
     bundleID = 'com.figma.Desktop',
     tags = {'#design'}
   }
