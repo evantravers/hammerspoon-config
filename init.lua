@@ -157,6 +157,7 @@ local autolayout = require 'autolayout'
 local airpods = require('airpods')
 
 local brave = require('brave')
+      brave.start(config)
 
 local headspace = require('headspace')
       headspace.start(config)

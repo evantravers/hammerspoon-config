@@ -10,6 +10,10 @@
 local fn   = require('hs.fnutils')
 local module = {}
 
+module.start = function(config_table)
+  module.config = config_table
+end
+
 module.jump = function(url)
   hs.osascript.javascript([[
   (function() {
@@ -30,7 +34,7 @@ module.jump = function(url)
 end
 
 module.urlsTaggedWith = function(tag)
-  return fn.filter(config.domains, function(domain)
+  return fn.filter(module.config.domains, function(domain)
     return domain.tags and fn.contains(domain.tags, tag)
   end)
 end
