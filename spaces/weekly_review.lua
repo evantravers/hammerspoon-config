@@ -77,92 +77,96 @@ config.setup.weeklyreview = function()
                 "title": "Go through each of your projects. Use the checklists below."
               }
             },
-            { "type": "heading", "attributes": { "title": "Projects" } },
           ]
         },
       };
 
       let Things = Application("Things");
       Things.launch();
-      for (proj of Things.projects()) {
-        if (proj.status() == "open" ) {
-          review_proj["attributes"]["items"].push(
-            {
-              "type": "to-do",
-              "attributes": {
-                "title": proj.name(),
-                "notes": "things:///show?id=" + proj.id(),
-                "checklist-items": [
-                  {
-                    "type": "checklist-item",
-                    "attributes": {
-                      "title": "Is this project still relevant?"
+      for (area of Things.areas()) {
+        review_proj["attributes"]["items"].push(
+          { "type": "heading", "attributes": { "title": "Projects: " + area.name() } },
+        )
+        for (proj of Things.projects().filter(p => p.area() != null && p.area().id() === area.id())) {
+          if (proj.status() == "open" ) {
+            review_proj["attributes"]["items"].push(
+              {
+                "type": "to-do",
+                "attributes": {
+                  "title": proj.name(),
+                  "notes": "things:///show?id=" + proj.id(),
+                  "checklist-items": [
+                    {
+                      "type": "checklist-item",
+                      "attributes": {
+                        "title": "Is this project still relevant?"
+                      }
+                    },
+                    {
+                      "type": "checklist-item",
+                      "attributes": {
+                        "title": "Can I delegate this project?"
+                      }
+                    },
+                    {
+                      "type": "checklist-item",
+                      "attributes": {
+                        "title": "Should I move this project to Someday?"
+                      }
+                    },
+                    {
+                      "type": "checklist-item",
+                      "attributes": {
+                        "title": "Are there are tasks I have already completed?"
+                      }
+                    },
+                    {
+                      "type": "checklist-item",
+                      "attributes": {
+                        "title": "Are there any tasks I want to delete?"
+                      }
+                    },
+                    {
+                      "type": "checklist-item",
+                      "attributes": {
+                        "title": "Am I happy with the structure of the project? E.g., should I add or change headings?"
+                      }
+                    },
+                    {
+                      "type": "checklist-item",
+                      "attributes": {
+                        "title": "Do all tasks with deadlines have the correct deadline set?"
+                      }
+                    },
+                    {
+                      "type": "checklist-item",
+                      "attributes": {
+                        "title": "Could I add useful notes to any tasks or to the project itself?"
+                      }
+                    },
+                    {
+                      "type": "checklist-item",
+                      "attributes": {
+                        "title": "Are any new tasks for this project not yet in Things?"
+                      }
+                    },
+                    {
+                      "type": "checklist-item",
+                      "attributes": {
+                        "title": "Should I convert any tasks to separate projects?"
+                      }
+                    },
+                    {
+                      "type": "checklist-item",
+                      "attributes": {
+                        "title": "Is there a clear 'next action' for this project? (If not, break down your projects or tasks into smaller tasks until there is a clear next action.)"
+                      }
                     }
-                  },
-                  {
-                    "type": "checklist-item",
-                    "attributes": {
-                      "title": "Can I delegate this project?"
-                    }
-                  },
-                  {
-                    "type": "checklist-item",
-                    "attributes": {
-                      "title": "Should I move this project to Someday?"
-                    }
-                  },
-                  {
-                    "type": "checklist-item",
-                    "attributes": {
-                      "title": "Are there are tasks I have already completed?"
-                    }
-                  },
-                  {
-                    "type": "checklist-item",
-                    "attributes": {
-                      "title": "Are there any tasks I want to delete?"
-                    }
-                  },
-                  {
-                    "type": "checklist-item",
-                    "attributes": {
-                      "title": "Am I happy with the structure of the project? E.g., should I add or change headings?"
-                    }
-                  },
-                  {
-                    "type": "checklist-item",
-                    "attributes": {
-                      "title": "Do all tasks with deadlines have the correct deadline set?"
-                    }
-                  },
-                  {
-                    "type": "checklist-item",
-                    "attributes": {
-                      "title": "Could I add useful notes to any tasks or to the project itself?"
-                    }
-                  },
-                  {
-                    "type": "checklist-item",
-                    "attributes": {
-                      "title": "Are any new tasks for this project not yet in Things?"
-                    }
-                  },
-                  {
-                    "type": "checklist-item",
-                    "attributes": {
-                      "title": "Should I convert any tasks to separate projects?"
-                    }
-                  },
-                  {
-                    "type": "checklist-item",
-                    "attributes": {
-                      "title": "Is there a clear 'next action' for this project? (If not, break down your projects or tasks into smaller tasks until there is a clear next action.)"
-                    }
-                  }
-                ]
+                  ]
+                }
               }
-            }
-          )
+            )
+          }
         }
       }
       review_proj["attributes"]["items"].push(
