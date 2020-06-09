@@ -164,7 +164,9 @@ local headspace = require('headspace')
       hyper:bind({}, 'l', nil, headspace.choose)
 
 -- Random bindings
-hyper:bind({}, 'r', nil, function() hs.console.hswindow():focus() end)
+hyper:bind({}, 'r', nil, function()
+  hs.application.launchOrFocusByBundleID('org.hammerspoon.Hammerspoon')
+end)
 hyper:bind({'shift'}, 'r', nil, function() hs.reload() end)
 
 hyper:bind({}, 'a', nil, function()
