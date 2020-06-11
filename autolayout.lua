@@ -16,8 +16,8 @@
 --
 -- Example:
 -- config.applications = {
---   ['com.brave.browser'] = {
---     bundleID = 'com.brave.browser',
+--   ['com.brave.Browser'] = {
+--     bundleID = 'com.brave.Browser',
 --     preferred_display = 1
 --   }
 -- }

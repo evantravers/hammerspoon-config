@@ -86,6 +86,11 @@ module.choose = function()
       if module.config.setup[space.setup] then
         module.config.setup[space.setup]()
       end
+
+      -- timed headspaces
+      if hs.eventtap.checkKeyboardModifiers()['alt'] then
+        module.choose_timer()
+      end
     end
   end)
 
@@ -111,6 +116,13 @@ module.choose = function()
       end
     end)
     :show()
+end
+
+module.choose_timer = function()
+  local ok, input = hs.dialog.textPrompt(
+    "how long?",
+    "Set up a timed HeadSpace"
+  )
 end
 
 module.appsTaggedWith = function(tag)

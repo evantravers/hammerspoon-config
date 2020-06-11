@@ -11,6 +11,11 @@ table.insert(config.spaces, {
 
 config.setup.standup = function()
   hs.urlevent.openURL(hs.settings.get("standupURL"))
+  local brave = hs.application('com.brave.Browser')
+  brave:focusedWindow():moveOneScreenWest()
+
+  brave:selectMenuItem("New Window")
   hs.urlevent.openURL(hs.settings.get("standupCall"))
+  brave:focusedWindow():moveOneScreenEast()
 end
 
