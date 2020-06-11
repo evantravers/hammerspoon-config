@@ -59,6 +59,10 @@ module.choose = function()
         end
       end
 
+      if space.manual_timer then
+        toggl.start_timer(nil, space.toggl_desc)
+      end
+
       if space.always then
         module.launch(space.always)
         brave.launch(space.always)
@@ -92,6 +96,24 @@ module.choose = function()
   chooser
     :placeholderText("Select a headspace…")
     :choices(module.config.spaces)
+    :queryChangedCallback(function(searchQuery)
+      local query = string.lower(searchQuery)
+      local results = fn.filter(module.config.spaces, function(space)
+        local text = string.lower(space.text)
+        local subText = string.lower(space.subText)
+        return (string.match(text, query) or string.match(subText, query))
+      end)
+
+      table.insert(results, {
+        text = searchQuery,
+        subText = "Start a toggl timer with this description...",
+        image = hs.image.imageFromAppBundle('com.toggl.toggldesktop.TogglDesktop'),
+        toggl_desc = searchQuery,
+        manual_timer = true
+      })
+
+      chooser:choices(results)
+    end)
     :showCallback(function()
       local current = toggl.current_timer()
       if current and current.data then
