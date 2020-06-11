@@ -86,11 +86,6 @@ module.choose = function()
       if module.config.setup[space.setup] then
         module.config.setup[space.setup]()
       end
-
-      -- timed headspaces
-      if hs.eventtap.checkKeyboardModifiers()['alt'] then
-        module.choose_timer()
-      end
     end
   end)
 
