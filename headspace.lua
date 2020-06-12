@@ -140,24 +140,24 @@ module.choose_timer = function()
 end
 
 module.appsTaggedWith = function(tag)
-  return hs.fnutils.filter(module.config.applications, function(app)
-    return app.tags and hs.fnutils.contains(app.tags, tag)
+  return fn.filter(module.config.applications, function(app)
+    return app.tags and fn.contains(app.tags, tag)
   end)
 end
 
 -- launches either by tag or by bundle id from a list
 module.launch = function(list)
-  hs.fnutils.map(list, function(tag)
-    hs.fnutils.map(module.appsTaggedWith(tag), function(app)
+  fn.map(list, function(tag)
+    fn.map(module.appsTaggedWith(tag), function(app)
       hs.application.launchOrFocusByBundleID(app.bundleID)
     end)
   end)
 end
 
 module.kill = function(list)
-  hs.fnutils.map(list, function(tag)
-    hs.fnutils.map(module.appsTaggedWith(tag), function(app)
-      hs.fnutils.map(hs.application.applicationsForBundleID(app.bundleID), function(app)
+  fn.map(list, function(tag)
+    fn.map(module.appsTaggedWith(tag), function(app)
+      fn.map(hs.application.applicationsForBundleID(app.bundleID), function(app)
         app:kill()
       end)
     end)
