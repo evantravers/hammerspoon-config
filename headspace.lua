@@ -49,18 +49,16 @@ end
 module.choose = function()
   local chooser = hs.chooser.new(function(space)
     if space ~= nil then
+
+      -- If not holding shift
       if not hs.eventtap.checkKeyboardModifiers()['shift'] then
-        if space.toggl_proj then
-          description = ""
+        if space.toggl_proj or space.toggl_desc then
+          local description = ""
           if space.toggl_desc then
             description = space.toggl_desc
           end
           toggl.start_timer(space.toggl_proj, description)
         end
-      end
-
-      if space.manual_timer then
-        toggl.start_timer(nil, space.toggl_desc)
       end
 
       if space.always then
@@ -108,8 +106,7 @@ module.choose = function()
         text = searchQuery,
         subText = "Start a toggl timer with this description...",
         image = hs.image.imageFromAppBundle('com.toggl.toggldesktop.TogglDesktop'),
-        toggl_desc = searchQuery,
-        manual_timer = true
+        toggl_desc = searchQuery
       })
 
       chooser:choices(results)
