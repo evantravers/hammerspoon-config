@@ -1,6 +1,6 @@
 table.insert(config.spaces, {
   text = "Standup",
-  subText = "Run UX Standup",
+  subText = "Run UX Standup. (Shallow)",
   image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
   setup = "standup",
   always = {'#planning'},

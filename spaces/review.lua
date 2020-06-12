@@ -1,6 +1,6 @@
 table.insert(config.spaces, {
   text = "Review",
-  subText = "Setup a Things 3 Review Session",
+  subText = "Setup a Things 3 Review Session (Deep)",
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   setup = 'review',
   toggl_proj = config.projects.planning,

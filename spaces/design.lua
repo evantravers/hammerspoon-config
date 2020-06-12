@@ -1,7 +1,7 @@
 if hs.application.pathForBundleID('com.figma.Desktop') then
   table.insert(config.spaces, {
     text = "Design",
-    subText = "Iterating and collaborating on Design artifacts in Figma",
+    subText = "Iterating and collaborating on Design artifacts in Figma (Deep)",
     image = hs.image.imageFromAppBundle('com.figma.Desktop'),
     only = {'#design'},
     toggl_proj = config.projects.design
