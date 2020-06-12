@@ -53,11 +53,7 @@ module.choose = function()
       -- If not holding shift
       if not hs.eventtap.checkKeyboardModifiers()['shift'] then
         if space.toggl_proj or space.toggl_desc then
-          local description = ""
-          if space.toggl_desc then
-            description = space.toggl_desc
-          end
-          toggl.start_timer(space.toggl_proj, description)
+          toggl.start_timer(space.toggl_proj, space.toggl_desc)
         end
       end
 
