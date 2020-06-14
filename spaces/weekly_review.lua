@@ -44,12 +44,6 @@ config.setup.weeklyreview = function()
             {
               "type": "to-do",
               "attributes": {
-                "title": "📓: Review journal."
-              }
-            },
-            {
-              "type": "to-do",
-              "attributes": {
                 "title": "Do a brain dump. Add any tasks or projects you come up with to the Things inbox."
               }
             },
