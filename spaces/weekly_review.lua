@@ -62,7 +62,7 @@ config.setup.weeklyreview = function()
             {
               "type": "to-do",
               "attributes": {
-                "title": "Process your Things inbox. Assign each task to an area or to a project."
+                "title": "Process your Things inbox. Assign each task to an area or to a project. Tag appropriately. (:estimate, $focus, !categorize, priority)"
               }
             },
             {
