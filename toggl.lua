@@ -30,7 +30,6 @@ module.start_timer = function(project_id, description)
       ["Authorization"] = "Basic " .. hs.base64.encode(key .. ":api_token")
     },
     function(http_number, body, headers)
-      print(http_number)
       print(body)
     end
   )
