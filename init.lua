@@ -103,7 +103,8 @@ config.applications = {
   ['Obsidian'] = {
     bundleID = 'md.obsidian',
     hyper_key = 'g',
-    tags = {'#research'}
+    tags = {'#research'},
+    preferred_display = 1
   }
 }
 

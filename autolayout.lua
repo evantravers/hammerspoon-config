@@ -26,9 +26,10 @@ local autolayout = {}
 
 autolayout.num_of_screens = 0
 
+-- target_display(int) :: hs.screen
+-- detect the current number of monitors
 autolayout.target_display = function(display_int)
-  -- detect the current number of monitors
-  displays = hs.screen.allScreens()
+  local displays = hs.screen.allScreens()
   if displays[display_int] ~= nil then
     return displays[display_int]
   else
@@ -36,20 +37,27 @@ autolayout.target_display = function(display_int)
   end
 end
 
+-- autolayout() :: nil
+-- evaluates module.config and obeys the rules.
 autolayout.autoLayout = function()
+  local layout = {}
   for _, app_config in pairs(module.config.applications) do
-    -- if we have a preferred display
-    if app_config.preferred_display ~= nil then
-      application = hs.application.find(app_config.bundleID)
-
-      if application ~= nil and application:mainWindow() ~= nil then
-        application
-        :mainWindow()
-        :moveToScreen(autolayout.target_display(app_config.preferred_display), false, true, 0)
-        :moveToUnit(hs.layout.maximized)
-      end
+    print(app_config.bundleID)
+    if app_config.preferred_display then
+      table.insert(
+        layout,
+        {
+          app_config.bundleID,
+          window,
+          autolayout.target_display(app_config.preferred_display),
+          hs.layout.maximized,
+          nil,
+          nil
+        }
+      )
     end
   end
+  hs.layout.apply(layout)
 end
 
 -- initialize watchers
