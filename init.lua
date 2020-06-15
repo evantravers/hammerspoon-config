@@ -99,6 +99,11 @@ config.applications = {
   ['Figma'] = {
     bundleID = 'com.figma.Desktop',
     tags = {'#design'}
+  },
+  ['Obsidian'] = {
+    bundleID = 'md.obsidian',
+    hyper_key = 'g',
+    tags = {'#research'}
   }
 }
 
