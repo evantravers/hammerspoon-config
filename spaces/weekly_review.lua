@@ -12,11 +12,13 @@ config.setup.weeklyreview = function()
   local buildThingsProjectUrl = function()
     return hs.osascript.javascript([[
     (function() {
+      let datestamp = new Date().toLocaleDateString("en-US")
+
       let review_proj = {
         "type": "project",
         "operation": "create",
         "attributes": {
-          "title": "Weekly Review",
+          "title": `Weekly Review: ${datestamp}` ,
           "notes": "",
           "tags": ["Rituals"],
           "when": "today",
