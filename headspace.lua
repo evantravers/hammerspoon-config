@@ -71,8 +71,17 @@ module.choose = function()
       end
 
       if space.only then
+        local protected = {}
+        fn.map(space.only, function(tag)
+          fn.map(module.appsTaggedWith(tag), function(app)
+            table.insert(protected, app.bundleID)
+          end)
+        end)
+
         fn.map(module.config.applications, function(app)
-          fn.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
+          if not fn.contains(protected, app.bundleID) then
+            fn.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
+          end
         end)
         hs.settings.set("only", space.only)
         module.launch(space.only)
