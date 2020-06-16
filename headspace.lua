@@ -71,20 +71,8 @@ module.choose = function()
       end
 
       if space.only then
-        local protected = {}
-        fn.map(space.only, function(tag)
-          fn.map(module.appsTaggedWith(tag), function(app)
-            table.insert(protected, app.bundleID)
-          end)
-        end)
-
-        fn.map(module.config.applications, function(app)
-          if not fn.contains(protected, app.bundleID) then
-            fn.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
-          end
-        end)
         hs.settings.set("only", space.only)
-        module.launch(space.only)
+        module.only(space.only)
         brave.launch(space.only)
       else
         hs.settings.clear("only")
@@ -166,6 +154,23 @@ module.kill = function(list)
         app:kill()
       end)
     end)
+  end)
+end
+
+module.only = function(list)
+  local protected = {}
+  fn.map(list, function(tag)
+    fn.map(module.appsTaggedWith(tag), function(app)
+      table.insert(protected, app)
+    end)
+  end)
+
+  fn.map(module.config.applications, function(app)
+    if not fn.contains(protected, app) then
+      fn.map(hs.application.applicationsForBundleID(app.bundleID), function(app)
+        app:kill()
+      end)
+    end
   end)
 end
 
