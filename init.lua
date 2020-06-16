@@ -151,6 +151,7 @@ require('spaces/weekly_review')
 require('spaces/shutdown')
 
 hyper = require('hyper')
+hyper:enable_blocking()
 hyper.start(config)
 
 movewindows = require('movewindows')
