@@ -1,6 +1,6 @@
 table.insert(config.spaces, {
   text = "Weekly Review",
-  subText = "Groom and evaluate projects in Things 3. (Deep)",
+  subText = "Groom and evaluate projects in Things 3.",
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   setup = 'weeklyreview',
   toggl_proj = config.projects.planning,
