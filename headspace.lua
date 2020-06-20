@@ -144,7 +144,7 @@ module.choose = function()
       end
 
       if toggl_str ~= "" or space_str ~= "" then
-        chooser:placeholderText(toggl_str .. space_str)
+        chooser:placeholderText(space_str .. toggl_str)
       end
     end)
     :show()
