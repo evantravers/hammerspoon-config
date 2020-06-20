@@ -109,21 +109,42 @@ module.choose = function()
       chooser:choices(results)
     end)
     :showCallback(function()
+      local descr     = ""
+      local proj      = ""
+      local space_str = ""
+      local toggl_str = ""
+
+      local space = hs.settings.get("headspace")
+      if space then
+        space_str = "🔘: " .. space.text .. " "
+      end
+
       local current = toggl.current_timer()
       if current and current.data then
         local timer = current.data
-        local str = "🔴 :"
+
         if timer.description then
-          str = str .. " " .. timer.description
+          descr = "💬: " .. timer.description .. " "
+
+          if timer.description == space.text then -- we've got a custom timer
+            space_str = ""
+          end
         end
+
         if timer.pid then
           local project = toggl.get_project(timer.pid)
           if project and project.data then
-            str = str .. " ("  .. project.data.name .. ")"
+            proj = "📂: "  .. project.data.name .. " "
           end
         end
+
         local duration = math.floor((hs.timer.secondsSinceEpoch() + current.data.duration) / 60) .. "m"
-        chooser:placeholderText(str .. " :: " .. duration)
+
+        toggl_str = "🔴 : " .. proj .. descr
+      end
+
+      if toggl_str ~= "" or space_str ~= "" then
+        chooser:placeholderText(toggl_str .. space_str)
       end
     end)
     :show()
