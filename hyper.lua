@@ -52,7 +52,12 @@ hyper.launch = function(app)
   if hyper.allowed(app) then
     hs.application.launchOrFocusByBundleID(app.bundleID)
   else
-    hs.notify.show("Blocked " .. app.bundleID, "You have to switch headspaces", "")
+    local space = hs.settings.get("headspace")
+    hs.notify.show(
+      "Blocked " .. app.bundleID,
+      "Current headspace: " .. space.text,
+      ""
+    )
   end
 end
 
