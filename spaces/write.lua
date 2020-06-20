@@ -8,6 +8,8 @@ table.insert(config.spaces, {
 })
 
 config.setup.distractionless_writing = function()
+  hs.application.launchOrFocusByBundleID('com.agiletortoise.Drafts-OSX')
+
   local drafts = hs.application("Drafts")
 
   drafts:selectMenuItem("Hide Draft List")
@@ -16,7 +18,12 @@ config.setup.distractionless_writing = function()
   drafts:selectMenuItem("Hide Toolbar")
   drafts:selectMenuItem("Hide Tag Entry")
   drafts:selectMenuItem("Hide Action Bar")
-  -- if drafts:findMenuItem("Typewriter Scrolling").ticked then
-  --   drafts:selectMenuItem("Typewriter Scrolling")
-  -- end
+
+  drafts
+    :mainWindow()
+    :setFullScreen(true)
+
+  if not drafts:findMenuItem("Typewriter Scrolling").enabled then
+    drafts:selectMenuItem("Typewriter Scrolling")
+  end
 end
