@@ -12,18 +12,11 @@ config.setup.distractionless_writing = function()
 
   local drafts = hs.application("Drafts")
 
-  drafts:selectMenuItem("Hide Draft List")
-  drafts:selectMenuItem("Hide Filters")
-  drafts:selectMenuItem("Hide Action List")
+  drafts:selectMenuItem("Enable Minimal Mode")
   drafts:selectMenuItem("Hide Toolbar")
   drafts:selectMenuItem("Hide Tag Entry")
-  drafts:selectMenuItem("Hide Action Bar")
 
   drafts
     :mainWindow()
     :setFullScreen(true)
-
-  if not drafts:findMenuItem("Typewriter Scrolling").enabled then
-    drafts:selectMenuItem("Typewriter Scrolling")
-  end
 end
