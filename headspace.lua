@@ -46,9 +46,19 @@ module.start = function(config_table)
   module.config = config_table
 end
 
+local store_settings = function(space)
+  hs.settings.set("headspace", {
+    text = space.text,
+    always = space.always,
+    never = space.never,
+    only = space.only
+  })
+end
+
 module.choose = function()
   local chooser = hs.chooser.new(function(space)
     if space ~= nil then
+      store_settings(space)
 
       -- If not holding shift
       if not hs.eventtap.checkKeyboardModifiers()['shift'] then
@@ -63,19 +73,13 @@ module.choose = function()
       end
 
       if space.never then
-        hs.settings.set("never", space.never)
         module.kill(space.never)
         brave.kill(space.never)
-      else
-        hs.settings.clear("never")
       end
 
       if space.only then
-        hs.settings.set("only", space.only)
         module.only(space.only)
         brave.launch(space.only)
-      else
-        hs.settings.clear("only")
       end
 
       if module.config.setup[space.setup] then
@@ -123,13 +127,6 @@ module.choose = function()
       end
     end)
     :show()
-end
-
-module.choose_timer = function()
-  local ok, input = hs.dialog.textPrompt(
-    "how long?",
-    "Set up a timed HeadSpace"
-  )
 end
 
 module.appsTaggedWith = function(tag)
