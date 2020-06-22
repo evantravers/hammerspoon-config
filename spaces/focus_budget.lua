@@ -3,7 +3,7 @@ table.insert(config.spaces, {
   subText = "Setup Things 3 and Fantastical",
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   setup = 'focus_budget',
-  never = {'#communication', '#distraction'},
+  blacklist = {'distraction'},
   toggl_proj = config.projects.planning,
   toggl_desc = "Focus Budget",
 })

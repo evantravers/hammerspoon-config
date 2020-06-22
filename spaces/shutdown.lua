@@ -8,6 +8,8 @@ table.insert(config.spaces, {
 
 config.setup.shutdown = function()
   toggl.stop_timer()
+  hs.settings.clear("headspace")
+
   -- shut down everything
   hs.fnutils.map(config.applications, function(app)
     hs.fnutils.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)

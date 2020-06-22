@@ -3,107 +3,110 @@ local secrets = require('secrets')
 
 config = {}
 config.applications = {
-  ['Alfred'] = {
+  ['com.runningwithcrayons.Alfred'] = {
     bundleID = 'com.runningwithcrayons.Alfred',
     local_bindings = {'c', 'space', 'o'}
   },
-  ['Kitty'] = {
+  ['net.kovidgoyal.kitty'] = {
     bundleID = 'net.kovidgoyal.kitty',
     hyper_key = 'j',
     preferred_display = 1,
-    tags = {'#coding'}
+    tags = {'coding'}
   },
-  ['Brave'] = {
+  ['com.brave.Browser'] = {
     bundleID = 'com.brave.Browser',
     hyper_key = 'k',
     preferred_display = 1
   },
-  ['Firefox'] = {
+  ['org.mozilla.firefox'] = {
     bundleID = 'org.mozilla.firefox',
     hyper_key = 'b',
     preferred_display = 1
   },
-  ['Dash'] = {
+  ['com.kapeli.dashdoc'] = {
     bundleID = 'com.kapeli.dashdoc',
     hyper_key = 'h',
-    tags = {'#coding'}
+    tags = {'coding'}
   },
-  ['Slack'] = {
+  ['com.tinyspeck.slackmacgap'] = {
     bundleID = 'com.tinyspeck.slackmacgap',
     hyper_key = 'i',
     preferred_display = 2,
-    tags = {'#distraction', '#communication'}
+    tags = {'distraction', 'communication'}
   },
-  ['Spark'] = {
+  ['com.readdle.smartemail-Mac'] = {
     bundleID = 'com.readdle.smartemail-Mac',
     hyper_key = 'e',
     preferred_display = 2,
-    tags = {'#distraction', '#communication'}
+    tags = {'distraction', 'communication'}
   },
-  ['Fantastical'] = {
+  ['com.flexibits.fantastical2.mac'] = {
     bundleID = 'com.flexibits.fantastical2.mac',
     hyper_key = 'y',
     local_bindings = {']'},
-    tags = {'#planning', '#review', '#calendar'},
+    tags = {'planning', 'review', 'calendar'},
+    whitelisted = true,
     preferred_display = 2,
   },
-  ['Finder'] = {
+  ['com.apple.finder'] = {
     bundleID = 'com.apple.finder',
     hyper_key = 'f'
   },
-  ['Discord'] = {
+  ['com.hnc.Discord'] = {
     bundleID = 'com.hnc.Discord',
     preferred_display = 2,
-    tags = {'#distraction'}
+    tags = {'distraction'}
   },
-  ['Tweetbot'] = {
+  ['com.tapbots.Tweetbot3Mac'] = {
     bundleID = 'com.tapbots.Tweetbot3Mac',
-    tags = {'#distraction', '#socialmedia'},
+    tags = {'distraction', 'socialmedia'},
     local_bindings = {'\\'}
   },
-  ['Things'] = {
+  ['com.culturedcode.ThingsMac'] = {
     bundleID = 'com.culturedcode.ThingsMac',
     hyper_key = 't',
     preferred_display = 1,
-    tags = {'#planning', '#review'},
+    tags = {'planning', 'review', 'tasks'},
+    whitelisted = true,
     local_bindings = {',', '.'}
   },
-  ['Drafts'] = {
+  ['com.agiletortoise.Drafts-OSX'] = {
     bundleID = 'com.agiletortoise.Drafts-OSX',
     hyper_key ='d',
-    tags = {'#review', '#writing', '#research'},
+    tags = {'review', 'writing', 'research', 'notes'},
+    whitelisted = true,
     local_bindings = {'x', ';'}
   },
-  ['Toggl'] = {
+  ['com.toggl.toggldesktop.TogglDesktop'] = {
     bundleID = 'com.toggl.toggldesktop.TogglDesktop',
     local_bindings = {'p'}
   },
-  ['Mindnode'] = {
+  ['com.ideasoncanvas.mindnode.macos'] = {
     bundleID = 'com.ideasoncanvas.mindnode.macos',
-    tags = {'#research'},
+    tags = {'research'},
     hyper_key = 'u',
     preferred_display = 1
   },
-  ['Messages'] = {
+  ['com.apple.iChat'] = {
     bundleID = 'com.apple.iChat',
     hyper_key = 'q',
-    tags = {'#communication', '#distraction'}
+    tags = {'communication', 'distraction'}
   },
-  ['Steam'] = {
+  ['com.valvesoftware.steam'] = {
     bundleID = 'com.valvesoftware.steam',
-    tags = {'#distraction'}
+    tags = {'distraction'}
   },
-  ['Spotify'] = {
+  ['com.spotify.client'] = {
     bundleID = 'com.spotify.client'
   },
-  ['Figma'] = {
+  ['com.figma.Desktop'] = {
     bundleID = 'com.figma.Desktop',
-    tags = {'#design'}
+    tags = {'design'}
   },
-  ['Obsidian'] = {
+  ['md.obsidian'] = {
     bundleID = 'md.obsidian',
     hyper_key = 'g',
-    tags = {'#research'},
+    tags = {'research', 'notes'},
     preferred_display = 1
   }
 }
@@ -111,23 +114,23 @@ config.applications = {
 config.domains = {
   ['twitter.com'] = {
     url = 'twitter.com',
-    tags = {'#distraction', '#socialmedia'}
+    tags = {'distraction', 'socialmedia'}
   },
   ['instagram.com'] = {
     url = 'instagram.com',
-    tags = {'#distraction', '#socialmedia'}
+    tags = {'distraction', 'socialmedia'}
   },
   ['reddit.com'] = {
     url = 'reddit.com',
-    tags = {'#distraction'}
+    tags = {'distraction'}
   },
   ['instapaper.com'] = {
     url = 'instapaper.com',
-    tags = {'#distraction', '#reading'}
+    tags = {'distraction', 'reading'}
   },
   ['youtube.com'] = {
     url = 'youtube.com',
-    tags = {'#distraction'}
+    tags = {'distraction'}
   }
 }
 
@@ -144,7 +147,8 @@ require('spaces/write')
 require('spaces/design')
 require('spaces/research')
 require('spaces/communicate')
-require('spaces/meetings')
+require('spaces/focused_meeting')
+require('spaces/collaboration')
 require('spaces/standup')
 require('spaces/play')
 require('spaces/weekly_review')

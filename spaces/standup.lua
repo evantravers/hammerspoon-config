@@ -3,8 +3,8 @@ table.insert(config.spaces, {
   subText = "Run UX Standup.",
   image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
   setup = "standup",
-  always = {'#planning'},
-  never = {'#distraction', '#communication', '#coding'},
+  launch = {'planning'},
+  blacklist = {'distraction', 'coding'},
   toggl_proj = config.projects.meetings,
   toggl_desc = "UX Standup"
 })
