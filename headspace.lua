@@ -155,15 +155,12 @@ module.choose = function()
       end
 
       if space.whitelist then
-        local protected = {}
-        module.tags_to_bundleID(space.whitelist, function(bundleID)
-          table.insert(protected, bundleID)
-        end)
-
         fn.map(module.config.applications, function(app_config)
-          if not fn.contains(protected, app_config.bundleID) then
+          if not allowed(app_config) then
             local app = hs.application.get(app_config.bundleID)
-            if app then app:kill() end
+            if app then
+              app:kill()
+            end
           end
         end)
       end
