@@ -5,6 +5,5 @@ table.insert(config.spaces, {
   launch = {'calendar'},
   blacklist = {'distraction'},
   whitelist = {'communication'},
-  toggl_proj = config.projects.meetings,
-  toggl_desc = "Collaboration"
+  toggl_proj = config.projects.meetings
 })
