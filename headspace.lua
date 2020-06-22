@@ -85,7 +85,7 @@ local allowed = function(app_config)
     if app_config.whitelisted then
       return true
     else
-      local space = get_space()
+      local space = hs.settings.get("headspace")
       if space then
         if space.whitelist then
           return fn.some(space.whitelist, function(tag)
@@ -118,7 +118,7 @@ module.start = function(config_table)
         if not allowed(app_config) then
           hs.notify.show(
             "Blocked " .. hsapp:name(),
-            "Current headspace: " .. get_space().text,
+            "Current headspace: " .. hs.settings.get("headspace").text,
             ""
           )
           hsapp:kill()
@@ -197,7 +197,7 @@ module.choose = function()
       local space_str = ""
       local toggl_str = ""
 
-      local space = get_space()
+      local space = hs.settings.get("headspace")
       if space then
         space_str = "🔘: " .. space.text .. " "
       end
