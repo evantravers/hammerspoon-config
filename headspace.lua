@@ -1,9 +1,21 @@
 -- HEADSPACE
 --
 -- You need in namespace a table at `config.spaces`.
--- `config.spaces` is a table that is passed to a chooser, but can take some
--- arguments based on what you want it to "never" open, "always" open, or
--- "only" open.
+-- `config.spaces` is a table that is passed to a chooser.
+--
+-- You can specify blocking of apps via a `whitelist`, `blacklist`, and you can
+-- say what you want to have `launch` when you launch that space.
+--
+-- A space with a `blacklist` will allow anything _but_ apps tagged with the
+-- blacklist tags, untagged apps, or apps with a whitelisted attribute.
+--
+-- A space with a `whitelist` will allow **only** the apps tagged with tags in
+-- the whitelist, untagged apps, or apps with a whitelisted attribute.
+--
+-- There is presently an interaction between the two where if an app is
+-- whitelisted by a tag and blacklisted by a tag, whitelist wins.
+--
+-- The `launch` list tells the space to auto launch certain things at startup.
 --
 -- Optionally, you can define a setup function at config.spaces.<key> that is
 -- run when the space is started.
@@ -14,10 +26,14 @@
 --   text = "Example",
 --   subText = "More about the example",
 --   image = hs.image.imageFromAppBundle('foo.bar.com'),
+
 --   setup = "example",
---   always = {"table", "of", "#tags", "or" "bundleIDs"},
---   never = {"table", "of", "#tags", "or" "bundleIDs"},
---   only = {"table", "of", "#tags", "or" "bundleIDs"}
+
+--   launch = {"table", "of", "tags"},
+--   blacklist = {"table", "of", "tags"},
+--   == OR ==
+--   whitelist = {"table", "of", "tags"}
+
 --   toggl_proj = "id of toggl project",
 --   toggl_descr = "description of toggl timer
 -- }
@@ -36,50 +52,120 @@
 -- Musical cues?
 
 local module = {}
+      module.tagged = {}
 
 local fn     = require('hs.fnutils')
-local brave  = require('brave')
 local toggl  = require('toggl')
+
+module.enable_watcher = function(self) self.watcher_enabled = true end
+
+local set_space = function(space)
+  hs.settings.set('headspace', {
+    text = space.text,
+    whitelist = space.whitelist,
+    blacklist = space.blacklist,
+    launch = space.launch
+  })
+end
+local get_space = function() return hs.settings.get('headspace') end
+
+local compute_tagged = function(list_of_applications)
+  fn.map(list_of_applications, function(app_config)
+    if app_config.tags then
+      fn.map(app_config.tags, function(tag)
+        if not module.tagged[tag] then module.tagged[tag] = {} end
+        table.insert(module.tagged[tag], app_config.bundleID)
+      end)
+    end
+  end)
+end
+
+local allowed = function(app_config)
+  if app_config and app_config.tags then
+    if app_config.whitelisted then
+      return true
+    else
+      local space = get_space()
+      if space then
+        if space.whitelist then
+          return fn.some(space.whitelist, function(tag)
+            return fn.contains(module.tagged[tag], app_config.bundleID)
+          end)
+        else
+          if space.blacklist then
+            return fn.every(space.blacklist, function(tag)
+              return not fn.contains(app_config.tags, tag)
+            end)
+          end
+        end
+      end
+    end
+  end
+  return true
+end
 
 -- Expects a table with a key for "spaces" and a key for "setup".
 module.start = function(config_table)
   module.config = config_table
-end
 
-local store_settings = function(space)
-  hs.settings.set("headspace", {
-    text = space.text,
-    always = space.always,
-    never = space.never,
-    only = space.only
-  })
+  compute_tagged(config_table.applications)
+
+  if module.watcher_enabled then
+    hs.application.watcher.new(function(app_name, event, hsapp)
+      if event == hs.application.watcher.launched then
+        local app_config = module.config.applications[hsapp:bundleID()]
+
+        if not allowed(app_config) then
+          hs.notify.show(
+            "Blocked " .. hsapp:name(),
+            "Current headspace: " .. get_space().text,
+            ""
+          )
+          hsapp:kill()
+        end
+      end
+    end):start()
+  end
 end
 
 module.choose = function()
   local chooser = hs.chooser.new(function(space)
     if space ~= nil then
-      store_settings(space)
+      -- Store headspace in hs.settings
+      set_space(space)
 
-      -- If not holding shift
+      -- Start timer unless holding shift
       if not hs.eventtap.checkKeyboardModifiers()['shift'] then
         if space.toggl_proj or space.toggl_desc then
           toggl.start_timer(space.toggl_proj, space.toggl_desc)
         end
       end
 
-      if space.always then
-        module.launch(space.always)
-        brave.launch(space.always)
+      if space.launch then
+        module.tags_to_bundleID(space.launch, function(bundleID)
+          hs.application.launchOrFocusByBundleID(bundleID)
+        end)
       end
 
-      if space.never then
-        module.kill(space.never)
-        brave.kill(space.never)
+      if space.blacklist then
+        module.tags_to_bundleID(space.blacklist, function(bundleID)
+          local app = hs.application.get(bundleID)
+          if app then app:kill() end
+        end)
       end
 
-      if space.only then
-        module.only(space.only)
-        brave.launch(space.only)
+      if space.whitelist then
+        local protected = {}
+        module.tags_to_bundleID(space.whitelist, function(bundleID)
+          table.insert(protected, bundleID)
+        end)
+
+        fn.map(module.config.applications, function(app_config)
+          if not fn.contains(protected, app_config.bundleID) then
+            local app = hs.application.get(app_config.bundleID)
+            if app then app:kill() end
+          end
+        end)
       end
 
       if module.config.setup[space.setup] then
@@ -114,7 +200,7 @@ module.choose = function()
       local space_str = ""
       local toggl_str = ""
 
-      local space = hs.settings.get("headspace")
+      local space = get_space()
       if space then
         space_str = "🔘: " .. space.text .. " "
       end
@@ -151,44 +237,14 @@ module.choose = function()
 end
 
 module.appsTaggedWith = function(tag)
-  return fn.filter(module.config.applications, function(app)
-    return app.tags and fn.contains(app.tags, tag)
-  end)
+  return module.tagged[tag]
 end
 
--- launches either by tag or by bundle id from a list
-module.launch = function(list)
-  fn.map(list, function(tag)
-    fn.map(module.appsTaggedWith(tag), function(app)
-      hs.application.launchOrFocusByBundleID(app.bundleID)
+module.tags_to_bundleID = function(list_of_tags, func)
+  fn.map(list_of_tags, function(tag)
+    fn.map(module.appsTaggedWith(tag), function(app_config)
+      func(app_config)
     end)
-  end)
-end
-
-module.kill = function(list)
-  fn.map(list, function(tag)
-    fn.map(module.appsTaggedWith(tag), function(app)
-      fn.map(hs.application.applicationsForBundleID(app.bundleID), function(app)
-        app:kill()
-      end)
-    end)
-  end)
-end
-
-module.only = function(list)
-  local protected = {}
-  fn.map(list, function(tag)
-    fn.map(module.appsTaggedWith(tag), function(app)
-      table.insert(protected, app)
-    end)
-  end)
-
-  fn.map(module.config.applications, function(app)
-    if not fn.contains(protected, app) then
-      fn.map(hs.application.applicationsForBundleID(app.bundleID), function(app)
-        app:kill()
-      end)
-    end
   end)
 end
 

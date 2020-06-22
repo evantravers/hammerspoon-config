@@ -167,6 +167,7 @@ local brave = require('brave')
       brave.start(config)
 
 local headspace = require('headspace')
+      headspace:enable_watcher()
       headspace.start(config)
       hyper:bind({}, 'l', nil, headspace.choose)
 
