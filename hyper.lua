@@ -10,11 +10,6 @@
 -- although I also use it to create "universal" local bindings inspired by
 -- Shawn Blanc's OopsieThings.
 -- https://thesweetsetup.com/oopsiethings-applescript-for-things-on-mac/
---
--- Optional:
--- Hyper hooks into Headspace's block lists. If you configure a space using
--- Headspace, it'll block launching apps that are currently on the blocked
--- lists via hs.settings.
 
 local hyper = hs.hotkey.modal.new({}, nil)
 
@@ -30,35 +25,8 @@ end
 -- Bind the Hyper key to the hammerspoon modal
 hs.hotkey.bind({}, 'F19', hyper.pressed, hyper.released)
 
-hyper.allowed = function(app)
-  if hyper.blocking_enabled and app.tags and hs.settings.get("headspace") then
-    local space = hs.settings.get("headspace")
-    if space.only then
-      return hs.fnutils.some(space.only, function(tag)
-        return hs.fnutils.contains(app.tags, tag)
-      end)
-    else
-      if space.never then
-        return hs.fnutils.every(space.never, function(tag)
-          return not hs.fnutils.contains(app.tags, tag)
-        end)
-      end
-    end
-  end
-  return true
-end
-
 hyper.launch = function(app)
-  if hyper.allowed(app) then
-    hs.application.launchOrFocusByBundleID(app.bundleID)
-  else
-    local space = hs.settings.get("headspace")
-    hs.notify.show(
-      "Blocked " .. app.bundleID,
-      "Current headspace: " .. space.text,
-      ""
-    )
-  end
+  hs.application.launchOrFocusByBundleID(app.bundleID)
 end
 
 -- Expects a configuration table with an applications key that has the
@@ -67,7 +35,7 @@ end
 --   ['com.culturedcode.ThingsMac'] = {
 --     bundleID = 'com.culturedcode.ThingsMac',
 --     hyper_key = 't',
---     tags = {'#planning', '#review'},
+--     tags = {'planning', 'review'},
 --     local_bindings = {',', '.'}
 --   },
 -- }
@@ -102,10 +70,6 @@ hyper.start = function(config_table)
       end)
     end
   end)
-end
-
-hyper.enable_blocking = function(self)
-  self.blocking_enabled = true
 end
 
 return hyper
