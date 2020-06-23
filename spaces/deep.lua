@@ -3,7 +3,7 @@ table.insert(config.spaces, {
   subText = "Work deeply on focused work",
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   toggl_proj = config.projects.deep,
-  blacklist = {'distraction'},
+  blacklist = {'distraction', 'communication'},
   setup = 'deep'
 })
 

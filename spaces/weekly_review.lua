@@ -5,7 +5,7 @@ table.insert(config.spaces, {
   setup = 'weeklyreview',
   toggl_proj = config.projects.planning,
   toggl_desc = "Weekly Review",
-  blacklist = {'distraction'}
+  blacklist = {'distraction', 'communication'}
 })
 
 config.setup.weeklyreview = function()

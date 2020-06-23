@@ -32,13 +32,13 @@ config.applications = {
     bundleID = 'com.tinyspeck.slackmacgap',
     hyper_key = 'i',
     preferred_display = 2,
-    tags = {'distraction', 'communication'}
+    tags = {'communication'}
   },
   ['com.readdle.smartemail-Mac'] = {
     bundleID = 'com.readdle.smartemail-Mac',
     hyper_key = 'e',
     preferred_display = 2,
-    tags = {'distraction', 'communication'}
+    tags = {'communication'}
   },
   ['com.flexibits.fantastical2.mac'] = {
     bundleID = 'com.flexibits.fantastical2.mac',
