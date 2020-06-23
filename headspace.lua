@@ -67,7 +67,6 @@ local set_space = function(space)
     launch = space.launch
   })
 end
-local get_space = function() return hs.settings.get('headspace') end
 
 local compute_tagged = function(list_of_applications)
   fn.map(list_of_applications, function(app_config)
