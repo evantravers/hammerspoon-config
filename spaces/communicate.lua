@@ -4,7 +4,7 @@ table.insert(config.spaces, {
   image = hs.image.imageFromAppBundle('com.tinyspeck.slackmacgap'),
   whitelist = {'communication'},
   launch = {'communication'},
-  toggl_proj = config.projects.communications,
+  toggl_proj = config.projects.communication,
   setup = 'agendaFor'
 })
 

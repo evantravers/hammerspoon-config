@@ -4,5 +4,5 @@ table.insert(config.spaces, {
   image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
   blacklist = {'distraction', 'communication'},
   launch = {'calendar'},
-  toggl_proj = config.projects.focused_meetings,
+  toggl_proj = config.projects.focused_meeting,
 })
