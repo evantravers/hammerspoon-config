@@ -235,7 +235,7 @@ module.choose = function()
 
         local duration = math.floor((hs.timer.secondsSinceEpoch() + current.data.duration) / 60) .. "m"
 
-        toggl_str = proj .. descr
+        toggl_str = proj .. descr .. " (" .. duration .. ")"
       end
 
       if toggl_str ~= "" or space_str ~= "" then
