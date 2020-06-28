@@ -4,9 +4,11 @@ table.insert(config.spaces, {
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   toggl_proj = config.projects.deep,
   blacklist = {'distraction', 'communication'},
-  setup = 'deep'
+  funcs = 'deep'
 })
 
-config.setup.deep = function()
-  hs.urlevent.openURL("things:///show?id=anytime&filter=@ProctorU,$High")
-end
+config.funcs.deep = {
+  setup = function()
+    hs.urlevent.openURL("things:///show?id=anytime&filter=@ProctorU,$High")
+  end
+}

@@ -3,9 +3,11 @@ table.insert(config.spaces, {
   subText = "Work on low intensity tasks.",
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   toggl_proj = config.projects.shallow,
-  setup = 'shallow'
+  funcs = 'shallow'
 })
 
-config.setup.shallow = function()
-  hs.urlevent.openURL("things:///show?id=anytime&filter=@ProctorU,$Low")
-end
+config.funcs.shallow = {
+  setup = function()
+    hs.urlevent.openURL("things:///show?id=anytime&filter=@ProctorU,$Low")
+  end
+}

@@ -5,9 +5,11 @@ table.insert(config.spaces, {
   whitelist = {'communication'},
   launch = {'communication'},
   toggl_proj = config.projects.communication,
-  setup = 'agendaFor'
+  funcs = 'agendaFor'
 })
 
-config.setup.agendaFor = function()
-  hs.urlevent.openURL("things:///show?id=anytime&filter=@ProctorU,Agenda%20For")
-end
+config.funcs.agendaFor = {
+  setup = function()
+    hs.urlevent.openURL("things:///show?id=anytime&filter=@ProctorU,Agenda%20For")
+  end
+}

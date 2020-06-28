@@ -4,12 +4,13 @@ table.insert(config.spaces, {
   image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX'),
   toggl_proj = config.projects.deep,
   whitelist = {'writing'},
-  setup = 'distractionless_writing'
+  funcs = 'distractionless_writing'
 })
 
-config.setup.distractionless_writing = function()
-  hs.application.launchOrFocusByBundleID('com.agiletortoise.Drafts-OSX')
-  hs.timer.waitWhile(
+config.funcs.distractionless_writing = {
+  setup = function()
+    hs.application.launchOrFocusByBundleID('com.agiletortoise.Drafts-OSX')
+    hs.timer.waitWhile(
     function()
       return not hs.application.get('com.agiletortoise.Drafts-OSX'):isFrontmost()
     end,
@@ -20,8 +21,17 @@ config.setup.distractionless_writing = function()
       drafts:selectMenuItem("Hide Tag Entry")
 
       drafts
-        :mainWindow()
-        :setFullScreen(true)
+      :mainWindow()
+      :setFullScreen(true)
     end
-  )
-end
+    )
+  end,
+  teardown = function()
+    local drafts = hs.application("Drafts")
+    drafts:selectMenuItem("Disable Minimal Mode")
+
+    drafts
+    :mainWindow()
+    :setFullScreen(false)
+  end
+}
