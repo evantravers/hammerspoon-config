@@ -136,7 +136,7 @@ config.domains = {
 
 -- configure spaces for headspace
 config.spaces = {}
-config.setup = {}
+config.funcs = {}
 config.projects = hs.settings.get("secrets").toggl.projects
 
 require('spaces/review')

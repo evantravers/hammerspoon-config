@@ -64,7 +64,8 @@ local set_space = function(space)
     text = space.text,
     whitelist = space.whitelist,
     blacklist = space.blacklist,
-    launch = space.launch
+    launch = space.launch,
+    funcs = space.funcs
   })
 end
 
@@ -127,8 +128,18 @@ module.start = function(config_table)
   end
 end
 
+local has_func = function(key, func)
+  return module.config.funcs[key] and module.config.funcs[key][func]
+end
+
 module.choose = function()
   local chooser = hs.chooser.new(function(space)
+    local current = hs.settings.get('headspace')
+    -- teardown the previous space
+    if has_func(current.funcs, 'teardown') then
+      module.config.funcs[current.funcs].teardown()
+    end
+
     if space ~= nil then
       -- Store headspace in hs.settings
       set_space(space)
@@ -164,8 +175,8 @@ module.choose = function()
         end)
       end
 
-      if module.config.setup[space.setup] then
-        module.config.setup[space.setup]()
+      if has_func(space.funcs, 'setup') then
+        module.config.funcs[space.funcs].setup()
       end
     end
   end)
