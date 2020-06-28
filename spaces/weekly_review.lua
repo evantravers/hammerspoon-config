@@ -90,7 +90,7 @@ config.funcs.weeklyreview = {
               {
                 "type": "to-do",
                 "attributes": {
-                  "title": proj.name(),
+                  "title": "Review: " + proj.name(),
                   "notes": "things:///show?id=" + proj.id(),
                   "checklist-items": [
                   {
@@ -213,6 +213,6 @@ config.funcs.weeklyreview = {
       print("something wrong with the jxa to build a review project.")
     end
 
-    config.setup.review() -- use the same format as the Daily review?
+    config.funcs.review.setup() -- use the same format as the Daily review?
   end
 }
