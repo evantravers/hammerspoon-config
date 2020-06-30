@@ -111,7 +111,7 @@ module.start = function(config_table)
   compute_tagged(config_table.applications)
 
   if module.watcher_enabled then
-    hs.application.watcher.new(function(app_name, event, hsapp)
+    module.watcher = hs.application.watcher.new(function(app_name, event, hsapp)
       if event == hs.application.watcher.launched then
         local app_config = module.config.applications[hsapp:bundleID()]
 
