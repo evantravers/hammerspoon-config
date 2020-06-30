@@ -64,10 +64,10 @@ end
 autolayout.start = function(config_table)
   module.config = config_table
 
-  hs.screen.watcher.new(function()
-    if num_of_screens ~= #hs.screen.allScreens() then
+  module.watcher = hs.screen.watcher.new(function()
+    if module.num_of_screens ~= #hs.screen.allScreens() then
       autolayout.autoLayout()
-      num_of_screens = #hs.screen.allScreens()
+      module.num_of_screens = #hs.screen.allScreens()
     end
   end):start()
 end
