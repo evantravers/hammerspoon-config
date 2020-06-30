@@ -229,7 +229,11 @@ module.choose = function()
         if timer.pid then
           local project = toggl.get_project(timer.pid)
           if project and project.data then
-            proj = "📂: "  .. project.data.name .. " "
+            if space.text ~= project.data.name then
+              proj = "📂: "  .. project.data.name .. " "
+            else
+              proj = " "
+            end
           end
         end
 
