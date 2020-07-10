@@ -199,7 +199,7 @@ config.funcs.weeklyreview = {
           }
         }
         )
-        let url = "things:///json?data=" + encodeURI(JSON.stringify([review_proj]));
+        let url = "things:///json?data=" + encodeURIComponent(JSON.stringify([review_proj]));
         return url;
       })();
       ]])
