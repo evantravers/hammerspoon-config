@@ -27,7 +27,7 @@ config.funcs.focus_budget = {
     hs.layout.apply(
     {
       {"Fantastical", nil, hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
-      {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
+      {"Things", nil, hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
     }
     )
   end
