@@ -2,7 +2,7 @@ local toggl = require('toggl')
 
 table.insert(config.spaces, {
   text = "Shutdown",
-  subText = "Work is done",
+  subText = "Work is done, or going to lunch.",
   funcs = "shutdown"
 })
 
