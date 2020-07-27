@@ -18,10 +18,11 @@ config.funcs.focus_budget = {
 
     local today = things:focusedWindow()
     today:application():selectMenuItem("Hide Sidebar")
-    today:application():selectMenuItem("Today")
+    today:application():selectMenuItem("Upcoming")
 
     local cal = fantastical:focusedWindow()
     cal:application():selectMenuItem("Hide Sidebar")
+    cal:application():selectMenuItem("Focus Budget")
     cal:application():selectMenuItem("By Week")
 
     hs.layout.apply(
@@ -30,5 +31,10 @@ config.funcs.focus_budget = {
       {"Things", nil, hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
     }
     )
+  end,
+  teardown = function()
+    local fantastical = hs.application.find('com.flexibits.fantastical2.mac')
+    fantastical:selectMenuItem("Show Sidebar")
+    fantastical:selectMenuItem("Daily Focus")
   end
 }
