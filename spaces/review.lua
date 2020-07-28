@@ -22,11 +22,11 @@ config.funcs.review = {
     if things:findMenuItem("Show Sidebar") then
       things:selectMenuItem("Show Sidebar")
     end
-    things:selectMenuItem("Anytime")
+    things:selectMenuItem("Inbox")
 
     hs.layout.apply(
       {
-        {"Things", "Anytime", hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
+        {"Things", "Inbox", hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
         {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
       }
     )
