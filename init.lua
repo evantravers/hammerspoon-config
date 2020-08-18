@@ -34,8 +34,8 @@ config.applications = {
     preferred_display = 2,
     tags = {'communication'}
   },
-  ['com.readdle.smartemail-Mac'] = {
-    bundleID = 'com.readdle.smartemail-Mac',
+  ['com.apple.mail'] = {
+    bundleID = 'com.apple.mail',
     hyper_key = 'e',
     preferred_display = 2,
     tags = {'communication'}
