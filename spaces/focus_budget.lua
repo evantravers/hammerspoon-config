@@ -16,9 +16,9 @@ config.funcs.focus_budget = {
     local things = hs.application.find('com.culturedcode.ThingsMac')
     local fantastical = hs.application.find('com.flexibits.fantastical2.mac')
 
-    local today = things:focusedWindow()
-    today:application():selectMenuItem("Hide Sidebar")
-    today:application():selectMenuItem("Upcoming")
+    local upcoming = things:focusedWindow()
+    upcoming:application():selectMenuItem("Hide Sidebar")
+    upcoming:application():selectMenuItem("Upcoming")
 
     local cal = fantastical:focusedWindow()
     cal:application():selectMenuItem("Hide Sidebar")
