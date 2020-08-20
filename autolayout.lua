@@ -48,7 +48,7 @@ autolayout.autoLayout = function()
         layout,
         {
           app_config.bundleID,
-          window,
+          nil,
           autolayout.target_display(app_config.preferred_display),
           hs.layout.maximized,
           nil,
