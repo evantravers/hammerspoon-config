@@ -57,6 +57,13 @@ local module = {}
 local fn     = require('hs.fnutils')
 local toggl  = require('toggl')
 
+local moduleStyle = hs.alert.defaultStyle
+      moduleStyle.atScreenEdge = 1
+      moduleStyle.strokeColor = { white = 1, alpha = 0 }
+      moduleStyle.textSize = 18
+      moduleStyle.radius = 18
+      moduleStyle.textStyle = { paragraphStyle = { alignment = "center" }}
+
 module.enable_watcher = function(self) self.watcher_enabled = true end
 
 local set_space = function(space)
@@ -116,10 +123,10 @@ module.start = function(config_table)
         local app_config = module.config.applications[hsapp:bundleID()]
 
         if not allowed(app_config) then
-          hs.notify.show(
-            "Blocked " .. hsapp:name(),
+          hs.alert(
+            "Blocked " .. hsapp:name() .. "\n" ..
             "Current headspace: " .. hs.settings.get("headspace").text,
-            ""
+            moduleStyle
           )
           hsapp:kill()
         end
