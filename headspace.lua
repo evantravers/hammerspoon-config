@@ -61,8 +61,7 @@ local moduleStyle = hs.alert.defaultStyle
       moduleStyle.atScreenEdge = 1
       moduleStyle.strokeColor = { white = 1, alpha = 0 }
       moduleStyle.textSize = 18
-      moduleStyle.radius = 18
-      moduleStyle.textStyle = { paragraphStyle = { alignment = "center" }}
+      moduleStyle.radius = 9
 
 module.enable_watcher = function(self) self.watcher_enabled = true end
 
@@ -124,8 +123,8 @@ module.start = function(config_table)
 
         if not allowed(app_config) then
           hs.alert(
-            "Blocked " .. hsapp:name() .. "\n" ..
-            "Current headspace: " .. hs.settings.get("headspace").text,
+            "🛑: " .. hsapp:name() .. "\n" ..
+            "📂: " .. hs.settings.get("headspace").text,
             moduleStyle
           )
           hsapp:kill()
