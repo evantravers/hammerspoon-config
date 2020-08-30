@@ -96,6 +96,7 @@ movewindows.start = function()
             })
           end
           toRead:raise()
+          focused:focus()
         end
       end)
 
