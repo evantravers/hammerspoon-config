@@ -47,6 +47,12 @@ config.funcs.weeklyreview = {
             {
               "type": "to-do",
               "attributes": {
+                "title": "📄: Journal a one sentence summary of the week."
+              }
+            },
+            {
+              "type": "to-do",
+              "attributes": {
                 "title": "Do a brain dump. Add any tasks or projects you come up with to the Things inbox."
               }
             },
