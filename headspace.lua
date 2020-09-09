@@ -193,7 +193,11 @@ module.choose = function()
     :placeholderText("Select a headspace…")
     :choices(module.config.spaces)
     :queryChangedCallback(function(searchQuery)
-      local query = module.lowerOrEmpty(searchQuery)
+      local searchOptions = module.process_query(searchQuery)
+      print(hs.inspect(searchOptions))
+
+      local query = module.lowerOrEmpty(searchOptions.query)
+
       local results = fn.filter(module.config.spaces, function(space)
         local text = module.lowerOrEmpty(space.text)
         local subText = module.lowerOrEmpty(space.subText)
@@ -201,10 +205,10 @@ module.choose = function()
       end)
 
       table.insert(results, {
-        text = searchQuery,
+        text = query,
         subText = "Start a toggl timer with this description...",
         image = hs.image.imageFromAppBundle('com.toggl.toggldesktop.TogglDesktop'),
-        toggl_desc = searchQuery
+        toggl_desc = searchOptions.description
       })
 
       chooser:choices(results)
@@ -255,16 +259,32 @@ module.choose = function()
     :show()
 end
 
-module.appsTaggedWith = function(tag)
-  return module.tagged[tag]
-end
-
 module.lowerOrEmpty = function(str)
   if str then
     return string.lower(str)
   else
     return ""
   end
+end
+
+module.process_query = function(query)
+  -- extract out description
+  local description_pattern = "[\'\"](.+)[\'\"]"
+  local duration_pattern    = ":(%d+)"
+  local description = string.match(query, description_pattern)
+  local duration    = string.match(query, duration_pattern)
+  return {
+    description = description,
+    duration = duration,
+    query = query
+            :gsub(description_pattern, "")
+            :gsub(duration_pattern, "")
+            :gsub("^%s*(.-)%s*$", "%1") -- trim
+  }
+end
+
+module.appsTaggedWith = function(tag)
+  return module.tagged[tag]
 end
 
 module.tags_to_bundleID = function(list_of_tags, func)
