@@ -177,7 +177,7 @@ config.funcs.weeklyreview = {
         {
           "type": "to-do",
           "attributes": {
-            "title": "Identify what’s due soon. Use the Upcoming view."
+            "title": "Identify what’s due soon. Use the Upcoming and Deadlines views."
           }
         },
         {
