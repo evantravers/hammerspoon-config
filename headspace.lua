@@ -57,7 +57,7 @@ local module = {}
 local fn     = require('hs.fnutils')
 local toggl  = require('toggl')
 
-local moduleStyle = hs.alert.defaultStyle
+local moduleStyle = fn.copy(hs.alert.defaultStyle)
       moduleStyle.atScreenEdge = 1
       moduleStyle.strokeColor = { white = 1, alpha = 0 }
       moduleStyle.textSize = 18
