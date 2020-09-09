@@ -60,7 +60,7 @@ local toggl  = require('toggl')
 local moduleStyle = fn.copy(hs.alert.defaultStyle)
       moduleStyle.atScreenEdge = 1
       moduleStyle.strokeColor = { white = 1, alpha = 0 }
-      moduleStyle.textSize = 18
+      moduleStyle.textSize = 36
       moduleStyle.radius = 9
 
 module.enable_watcher = function(self) self.watcher_enabled = true end
