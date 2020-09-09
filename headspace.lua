@@ -148,6 +148,8 @@ module.choose = function()
       end
     end
 
+    print(hs.inspect(space))
+
     if space ~= nil then
       -- Store headspace in hs.settings
       set_space(space)
@@ -210,6 +212,12 @@ module.choose = function()
         image = hs.image.imageFromAppBundle('com.toggl.toggldesktop.TogglDesktop'),
         toggl_desc = parsedQuery.description
       })
+
+      results = fn.map(results, function(result)
+        local new_result = result
+        new_result.query = parsedQuery
+        return new_result
+      end)
 
       chooser:choices(results)
     end)
