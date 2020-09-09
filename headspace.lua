@@ -269,7 +269,7 @@ module.choose = function()
 
         local duration = ""
         if module.timer then
-          duration = "-" .. math.floor(module.timer:nextTrigger() / 60) .. "m"
+          duration = "-" .. math.ceil(module.timer:nextTrigger() / 60) .. "m"
         else
           duration = math.floor((hs.timer.secondsSinceEpoch() + current.data.duration) / 60) .. "m"
         end
