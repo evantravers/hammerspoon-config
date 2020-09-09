@@ -201,7 +201,6 @@ module.choose = function()
     :choices(module.config.spaces)
     :queryChangedCallback(function(searchQuery)
       local parsedQuery = module.parseQuery(searchQuery)
-      print(hs.inspect(parsedQuery))
 
       local query = module.lowerOrEmpty(parsedQuery.query)
       module.parsedQuery = parsedQuery -- store this for later
@@ -216,7 +215,7 @@ module.choose = function()
         text = query,
         subText = "Start a toggl timer with this description...",
         image = hs.image.imageFromAppBundle('com.toggl.toggldesktop.TogglDesktop'),
-        toggl_desc = parsedQuery.description
+        toggl_desc = parsedQuery.query
       })
 
       chooser:choices(results)
