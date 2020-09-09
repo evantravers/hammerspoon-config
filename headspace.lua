@@ -187,10 +187,10 @@ module.choose = function()
     :placeholderText("Select a headspace…")
     :choices(module.config.spaces)
     :queryChangedCallback(function(searchQuery)
-      local query = string.lower(searchQuery)
+      local query = module.lowerOrEmpty(searchQuery)
       local results = fn.filter(module.config.spaces, function(space)
-        local text = string.lower(space.text)
-        local subText = string.lower(space.subText)
+        local text = module.lowerOrEmpty(space.text)
+        local subText = module.lowerOrEmpty(space.subText)
         return (string.match(text, query) or string.match(subText, query))
       end)
 
@@ -251,6 +251,14 @@ end
 
 module.appsTaggedWith = function(tag)
   return module.tagged[tag]
+end
+
+module.lowerOrEmpty = function(str)
+  if str then
+    return string.lower(str)
+  else
+    return ""
+  end
 end
 
 module.tags_to_bundleID = function(list_of_tags, func)
