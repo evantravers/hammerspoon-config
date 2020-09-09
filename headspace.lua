@@ -156,8 +156,15 @@ module.choose = function()
 
       -- Start timer unless holding shift
       if not hs.eventtap.checkKeyboardModifiers()['shift'] then
-        if space.toggl_proj or space.toggl_desc then
-          toggl.start_timer(space.toggl_proj, space.toggl_desc)
+        local description = nil
+        if module.parsedQuery.description then
+          description = module.parsedQuery.description
+        else
+          description = space.toggl_desc
+        end
+
+        if space.toggl_proj or description then
+          toggl.start_timer(space.toggl_proj, description)
         end
       end
 
