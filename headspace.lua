@@ -203,6 +203,7 @@ module.choose = function()
               moduleStyle
             )
             module.choose()
+            module.timer = nil
           end)
       end
     end
@@ -266,7 +267,12 @@ module.choose = function()
           end
         end
 
-        local duration = math.floor((hs.timer.secondsSinceEpoch() + current.data.duration) / 60) .. "m"
+        local duration = ""
+        if module.timer then
+          duration = "-" .. math.floor(module.timer:nextTrigger() / 60) .. "m"
+        else
+          duration = math.floor((hs.timer.secondsSinceEpoch() + current.data.duration) / 60) .. "m"
+        end
 
         toggl_str = proj .. descr .. "(" .. duration .. ")"
       end
