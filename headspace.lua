@@ -20,6 +20,16 @@
 -- Optionally, you can define a setup function at config.spaces.<key> that is
 -- run when the space is started.
 --
+-- OPTIONS:
+--
+-- If you are using toggl timer, putting anything in quotes will pass that as a
+-- custom description to toggl. e.g. Design "Working on jira ticket" will match
+-- a space named Design, but pass a custom description to your timer.
+--
+-- If you want a pomodoro countdown, add a colon followed by integers. e.g. :45
+-- will count down 45 minutes, then play a musical cue and prompt you to choose
+-- a new space.
+--
 -- # Example:
 --
 -- config.spaces = {
@@ -47,8 +57,6 @@
 -- Future expansions...
 -- DND status?
 -- Custom Desktop Background with prompts for focus, writing, code?
--- timed sessions like a built-in Pomodoro to help box time.
--- Preset screens for working.
 -- Musical cues?
 
 local module = {}
