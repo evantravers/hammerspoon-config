@@ -148,7 +148,7 @@ module.choose = function()
       end
     end
 
-    print(hs.inspect(space))
+    print(hs.inspect(module.parsedQuery))
 
     if space ~= nil then
       -- Store headspace in hs.settings
@@ -199,6 +199,7 @@ module.choose = function()
       print(hs.inspect(parsedQuery))
 
       local query = module.lowerOrEmpty(parsedQuery.query)
+      module.parsedQuery = parsedQuery -- store this for later
 
       local results = fn.filter(module.config.spaces, function(space)
         local text = module.lowerOrEmpty(space.text)
@@ -212,12 +213,6 @@ module.choose = function()
         image = hs.image.imageFromAppBundle('com.toggl.toggldesktop.TogglDesktop'),
         toggl_desc = parsedQuery.description
       })
-
-      results = fn.map(results, function(result)
-        local new_result = result
-        new_result.query = parsedQuery
-        return new_result
-      end)
 
       chooser:choices(results)
     end)
