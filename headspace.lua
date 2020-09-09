@@ -148,8 +148,6 @@ module.choose = function()
       end
     end
 
-    print(hs.inspect(module.parsedQuery))
-
     if space ~= nil then
       -- Store headspace in hs.settings
       set_space(space)
@@ -287,7 +285,7 @@ module.parseQuery = function(query)
 
   return {
     description = description,
-    duration = duration,
+    duration = tonumber(duration),
     query = query
             :gsub(description_pattern, "")
             :gsub(duration_pattern, "")
