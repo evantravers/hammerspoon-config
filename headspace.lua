@@ -193,10 +193,10 @@ module.choose = function()
     :placeholderText("Select a headspace…")
     :choices(module.config.spaces)
     :queryChangedCallback(function(searchQuery)
-      local searchOptions = module.process_query(searchQuery)
-      print(hs.inspect(searchOptions))
+      local parsedQuery = module.parseQuery(searchQuery)
+      print(hs.inspect(parsedQuery))
 
-      local query = module.lowerOrEmpty(searchOptions.query)
+      local query = module.lowerOrEmpty(parsedQuery.query)
 
       local results = fn.filter(module.config.spaces, function(space)
         local text = module.lowerOrEmpty(space.text)
@@ -208,7 +208,7 @@ module.choose = function()
         text = query,
         subText = "Start a toggl timer with this description...",
         image = hs.image.imageFromAppBundle('com.toggl.toggldesktop.TogglDesktop'),
-        toggl_desc = searchOptions.description
+        toggl_desc = parsedQuery.description
       })
 
       chooser:choices(results)
@@ -267,12 +267,14 @@ module.lowerOrEmpty = function(str)
   end
 end
 
-module.process_query = function(query)
-  -- extract out description
+module.parseQuery = function(query)
+  -- extract out description: any "string" or 'string'
   local description_pattern = "[\'\"](.+)[\'\"]"
-  local duration_pattern    = ":(%d+)"
   local description = string.match(query, description_pattern)
+  -- extract out duration: a colon followed by number of minutes (:45)
+  local duration_pattern    = ":(%d+)"
   local duration    = string.match(query, duration_pattern)
+
   return {
     description = description,
     duration = duration,
