@@ -197,6 +197,7 @@ module.choose = function()
       if module.parsedQuery.duration then -- make this a timed session
         module.timer =
           hs.timer.doAfter(module.parsedQuery.duration * 60, function()
+            hs.sound.getByName("Blow"):play()
             hs.alert(
               "⏲: Time is up!",
               moduleStyle
