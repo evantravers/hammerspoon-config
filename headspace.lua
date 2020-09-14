@@ -162,6 +162,9 @@ module.choose = function()
 
       -- Start timer unless holding shift
       if not hs.eventtap.checkKeyboardModifiers()['shift'] then
+
+        -- Get either the space's default description or one passed between
+        -- quotes.
         local description = nil
         if module.parsedQuery.description then
           description = module.parsedQuery.description
