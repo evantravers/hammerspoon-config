@@ -149,11 +149,11 @@ end
 module.choose = function()
   local chooser = hs.chooser.new(function(space)
     if space ~= nil then
-      local current = hs.settings.get('headspace')
+      local previous_space = hs.settings.get('headspace')
       -- teardown the previous space
-      if current then
-        if has_func(current.funcs, 'teardown') then
-          module.config.funcs[current.funcs].teardown()
+      if previous_space then
+        if has_func(previous_space.funcs, 'teardown') then
+          module.config.funcs[previous_space.funcs].teardown()
         end
       end
 
