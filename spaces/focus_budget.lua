@@ -10,6 +10,8 @@ table.insert(config.spaces, {
 
 config.funcs.focus_budget = {
   setup = function()
+    hs.urlevent.openURL("things:///show?id=upcoming&filter=%40Proctoru%2CEstimates")
+
     hs.application.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
     hs.application.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
 
