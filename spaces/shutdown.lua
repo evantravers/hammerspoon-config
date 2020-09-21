@@ -15,5 +15,8 @@ config.funcs.shutdown = {
     hs.fnutils.map(config.applications, function(app)
       hs.fnutils.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
     end)
+  end,
+  teardown = function()
+    hs.application.launchOrFocusByBundleID("com.toggl.toggldesktop.TogglDesktop")
   end
 }
