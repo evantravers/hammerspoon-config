@@ -1,6 +1,6 @@
 table.insert(config.spaces, {
-  text = "Plan a Focus Budget",
-  subText = "Setup Things 3 and Fantastical",
+  text = "Schedule",
+  subText = "Setup Things 3 and Fantastical for Focus Budget or Week Planning",
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   funcs = 'focus_budget',
   blacklist = {'distraction', 'communication'},
