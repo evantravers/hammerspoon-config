@@ -24,7 +24,7 @@ config.funcs.weeklyreview = {
             "tags": ["Rituals"],
             "when": "today",
             "items": [
-            { "type": "heading", "attributes": { "title": "Prep" } },
+            { "type": "heading", "attributes": { "title": "📓 Prep" } },
             {
               "type": "to-do",
               "attributes": {
@@ -88,7 +88,7 @@ config.funcs.weeklyreview = {
         Things.launch();
         for (area of Things.areas()) {
           review_proj["attributes"]["items"].push(
-          { "type": "heading", "attributes": { "title": "Projects: " + area.name() } },
+          { "type": "heading", "attributes": { "title": "📂 Projects: " + area.name() } },
           )
           for (proj of Things.projects().filter(p => p.area() != null && p.area().id() === area.id())) {
             if (proj.status() == "open" ) {
@@ -173,23 +173,26 @@ config.funcs.weeklyreview = {
           }
         }
         review_proj["attributes"]["items"].push(
-        { "type": "heading", "attributes": { "title": "Plan" } },
+        { "type": "heading", "attributes": { "title": "📅 Plan" } },
         {
           "type": "to-do",
           "attributes": {
-            "title": "Identify what’s due soon. Use the Upcoming and Deadlines views."
+            "title": "Look ahead at the week.",
+            "notes": "Using Deadlines and Upcoming, examine the week and month to find tasks that need to be done, and space them out through the week."
           }
         },
         {
           "type": "to-do",
           "attributes": {
-            "title": "Identify which tasks are available for you to work on. Use the Anytime view."
+            "title": "Create Focus Budget for next week.",
+            "notes": "Start 'Scheduling' headspace. Create 45 minute Focus Blocks."
           }
         },
         {
           "type": "to-do",
           "attributes": {
-            "title": "Plan what to work on next. Assign “when” dates, as you learned in the section on planning your days and weeks. Choose important tasks as well as urgent ones."
+            "title": "Schedule in the most important task for the day.",
+            "notes": "Using Upcoming, schedule the important task for the day. things:///show?id=upcoming&filter=%40ProctorU%2CEstimates"
           }
         },
         {
@@ -201,7 +204,7 @@ config.funcs.weeklyreview = {
         {
           "type": "to-do",
           "attributes": {
-            "title": "⭐️: What is essential for next week?"
+            "title": "⭐️: Set Goals in BuJo. What is essential for next week?"
           }
         }
         )
