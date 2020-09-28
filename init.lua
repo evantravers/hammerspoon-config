@@ -140,7 +140,7 @@ config.funcs = {}
 config.projects = hs.settings.get("secrets").toggl.projects
 
 require('spaces/review')
-require('spaces/focus_budget')
+require('spaces/schedule')
 require('spaces/deep')
 require('spaces/shallow')
 require('spaces/write')

@@ -20,7 +20,6 @@ config.funcs.focus_budget = {
 
     local upcoming = things:focusedWindow()
     upcoming:application():selectMenuItem("Hide Sidebar")
-    upcoming:application():selectMenuItem("Upcoming")
 
     local cal = fantastical:focusedWindow()
     cal:application():selectMenuItem("Hide Sidebar")
@@ -28,10 +27,10 @@ config.funcs.focus_budget = {
     cal:application():selectMenuItem("By Week")
 
     hs.layout.apply(
-    {
-      {"Fantastical", nil, hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
-      {"Things", nil, hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
-    }
+      {
+        {"Fantastical", nil, hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
+        {"Things", nil, hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
+      }
     )
   end,
   teardown = function()
