@@ -10,7 +10,12 @@ table.insert(config.spaces, {
 
 config.funcs.focus_budget = {
   setup = function()
-    hs.urlevent.openURL("things:///show?id=upcoming&filter=%40Proctoru%2CEstimates")
+
+    if os.date("%a") == "Sun" or os.date("%a") == "Sat" then
+      hs.urlevent.openURL("things:///show?id=upcoming&filter=%40Proctoru%2CEstimates")
+    else
+      hs.urlevent.openURL("things:///show?id=today&filter=%40Proctoru%2CEstimates")
+    end
 
     hs.application.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
     hs.application.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
