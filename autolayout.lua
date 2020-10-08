@@ -8,6 +8,9 @@
 -- simplified. I also don't roll with more than two monitors, but this should
 -- scale theoretically.
 --
+-- But if you need more than one monitor and another default layout than maximized,
+-- this script also got you covered.
+--
 -- When you start it, it starts the watcher. You can also trigger an autolayout
 -- by calling autolayout.autolayout()
 --
@@ -18,9 +21,20 @@
 -- config.applications = {
 --   ['com.brave.Browser'] = {
 --     bundleID = 'com.brave.Browser',
---     preferred_display = 1
+--     preferred_display = 1,
+--     preferred_layout = 'left'
 --   }
 -- }
+
+
+-- predefine some layout for windows
+local window_layout_preset = {
+  ['left'] = hs.layout.left50,
+  ['right'] = hs.layout.right50,
+  ['top'] = {0,0,1,0.5},
+  ['bot'] = {0,0.5,1,0.5},
+  ['max'] = hs.layout.maximized
+}
 
 local autolayout = {}
 
@@ -50,7 +64,7 @@ autolayout.autoLayout = function()
           app_config.bundleID,
           nil,
           autolayout.target_display(app_config.preferred_display),
-          hs.layout.maximized,
+          (window_layout_preset[app_config.preferred_layout] or hs.layout.maximized),
           nil,
           nil
         }
