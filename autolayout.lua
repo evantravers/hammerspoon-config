@@ -49,13 +49,6 @@ end
 -- autolayout() :: nil
 -- evaluates autolayout.config and obeys the rules.
 autolayout.autoLayout = function()
-  hs.layout.apply(autolayout.layouts)
-end
-
--- initialize watchers
-autolayout.start = function(config_table)
-  autolayout.config = config_table
-
   autolayout.layouts = {}
   fn.map(autolayout.config.applications, function(app_config)
     local bundleID = app_config['bundleID']
@@ -75,6 +68,13 @@ autolayout.start = function(config_table)
       end)
     end
   end)
+
+  hs.layout.apply(autolayout.layouts)
+end
+
+-- initialize watchers
+autolayout.start = function(config_table)
+  autolayout.config = config_table
 
   autolayout.watcher = hs.screen.watcher.new(function()
     if autolayout.num_of_screens ~= #hs.screen.allScreens() then
