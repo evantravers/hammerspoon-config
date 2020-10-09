@@ -40,7 +40,7 @@ config.applications = {
     hyper_key = 'i',
     tags = {'communication'},
     rules = {
-      {nil, 2, hs.layout.maximized}
+      {nil, 2, hs.layout.right50}
     }
   },
   ['com.apple.mail'] = {
@@ -109,7 +109,10 @@ config.applications = {
   ['com.apple.iChat'] = {
     bundleID = 'com.apple.iChat',
     hyper_key = 'q',
-    tags = {'communication', 'distraction'}
+    tags = {'communication', 'distraction'},
+    rules = {
+      {nil, 1, hs.layout.right50}
+    }
   },
   ['com.valvesoftware.steam'] = {
     bundleID = 'com.valvesoftware.steam',
