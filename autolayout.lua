@@ -39,8 +39,8 @@ autolayout.num_of_screens = 0
 
 autolayout.screen = function(num)
   local displays = hs.screen.allScreens()
-  if displays[displays_int] ~= nil then
-    return displays[displays_int]
+  if displays[num] ~= nil then
+    return displays[num]
   else
     return hs.screen.primaryScreen()
   end
