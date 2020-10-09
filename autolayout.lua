@@ -36,7 +36,7 @@ autolayout.screen = function(num)
 end
 
 -- autolayout() :: nil
--- evaluates module.config and obeys the rules.
+-- evaluates autolayout.config and obeys the rules.
 autolayout.autoLayout = function()
   local layouts = {}
   for _, app_config in pairs(module.config.applications) do
@@ -64,10 +64,10 @@ end
 autolayout.start = function(config_table)
   module.config = config_table
 
-  module.watcher = hs.screen.watcher.new(function()
-    if module.num_of_screens ~= #hs.screen.allScreens() then
+  autolayout.watcher = hs.screen.watcher.new(function()
+    if autolayout.num_of_screens ~= #hs.screen.allScreens() then
       autolayout.autoLayout()
-      module.num_of_screens = #hs.screen.allScreens()
+      autolayout.num_of_screens = #hs.screen.allScreens()
     end
   end):start()
 end
