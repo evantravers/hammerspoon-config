@@ -23,6 +23,7 @@
 -- }
 
 local autolayout = {}
+local fn = hs.fnutils
 
 autolayout.num_of_screens = 0
 
@@ -38,13 +39,20 @@ end
 -- autolayout() :: nil
 -- evaluates autolayout.config and obeys the rules.
 autolayout.autoLayout = function()
-  local layouts = {}
-  for _, app_config in pairs(module.config.applications) do
+  hs.layout.apply(autolayout.layouts)
+end
+
+-- initialize watchers
+autolayout.start = function(config_table)
+  autolayout.config = config_table
+
+  autolayout.layouts = {}
+  fn.map(autolayout.config.applications, function(app_config)
     local bundleID = app_config['bundleID']
     if app_config.rules then
-      for _, rule in pairs(app_config.rules) do
+      fn.map(app_config.rules, function(rule)
         local title_pattern, screen, layout = rule[1], rule[2], rule[3]
-        table.insert(layouts,
+        table.insert(autolayout.layouts,
           {
             hs.application.get(bundleID),  -- application name
             hs.window.find(title_pattern), -- window title
@@ -54,15 +62,9 @@ autolayout.autoLayout = function()
             nil
           }
         )
-      end
+      end)
     end
-  end
-  hs.layout.apply(layouts)
-end
-
--- initialize watchers
-autolayout.start = function(config_table)
-  module.config = config_table
+  end)
 
   autolayout.watcher = hs.screen.watcher.new(function()
     if autolayout.num_of_screens ~= #hs.screen.allScreens() then
