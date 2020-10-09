@@ -12,13 +12,23 @@
 -- by calling autolayout.autolayout()
 --
 -- Expects a table with a key for `applications` with sub-tables with a
--- bundleID and preferred_display:
+-- bundleID and a set of rules following this pattern:
+--
+-- rules = {
+--   {
+--     <window title string or nil>,
+--     <int of preferred monitor>,
+--     <layout from hs.layout>
+--   }
+-- }
 --
 -- Example:
 -- config.applications = {
 --   ['com.brave.Browser'] = {
 --     bundleID = 'com.brave.Browser',
---     preferred_display = 1
+--     rules = {
+--       {"Meet - ", 2, hs.layout.maximized}
+--     }
 --   }
 -- }
 
