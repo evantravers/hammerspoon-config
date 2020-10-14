@@ -40,7 +40,7 @@ config.applications = {
     hyper_key = 'i',
     tags = {'communication'},
     rules = {
-      {nil, 2, hs.layout.right50}
+      {nil, 2, hs.layout.maximized}
     }
   },
   ['com.apple.mail'] = {
