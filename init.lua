@@ -111,7 +111,7 @@ config.applications = {
     hyper_key = 'q',
     tags = {'communication', 'distraction'},
     rules = {
-      {nil, 1, hs.layout.right50}
+      {nil, 2, hs.layout.right30}
     }
   },
   ['com.valvesoftware.steam'] = {
