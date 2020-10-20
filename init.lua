@@ -125,6 +125,14 @@ config.applications = {
     bundleID = 'com.figma.Desktop',
     tags = {'design'}
   },
+  ['com.reederapp.5.macOS'] = {
+    bundleID = 'com.reederapp.5.macOS',
+    hyper_key = 'n',
+    tags = {'distraction'},
+    rules = {
+      {nil, 1, hs.layout.maximized}
+    }
+  },
   ['md.obsidian'] = {
     bundleID = 'md.obsidian',
     hyper_key = 'g',
