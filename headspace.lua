@@ -245,36 +245,28 @@ module.choose = function()
       chooser:choices(results)
     end)
     :showCallback(function()
-      local descr     = ""
-      local proj      = ""
-      local space_str = ""
-      local toggl_str = ""
+      -- local proj      = ""
+      -- local space_str = ""
+      -- local toggl_str = ""
+
+      local str = ""
 
       local space = hs.settings.get("headspace")
-      if space then
-        space_str = "🔘: " .. space.text .. " "
-      end
+      local running_timer = toggl.current_timer()
 
-      local current = toggl.current_timer()
-      if current and current.data then
-        local timer = current.data
+      if running_timer and running_timer.data then
+        local timer = running_timer.data
 
+        local descr = ""
         if timer.description then
-          descr = "💬: " .. timer.description .. " "
-
-          if timer.description == space.text then -- we've got a custom timer
-            space_str = ""
-          end
+          descr = '"' .. timer.description .. '" '
         end
 
+        local proj = ""
         if timer.pid then
           local project = toggl.get_project(timer.pid)
           if project and project.data then
-            if space.text ~= project.data.name then
-              proj = "📂: "  .. project.data.name .. " "
-            else
-              proj = " "
-            end
+            proj = project.data.name .. " "
           end
         end
 
@@ -282,14 +274,18 @@ module.choose = function()
         if module.timer then
           duration = "-" .. math.ceil(module.timer:nextTrigger() / 60) .. "m"
         else
-          duration = math.floor((hs.timer.secondsSinceEpoch() + current.data.duration) / 60) .. "m"
+          duration = math.floor((hs.timer.secondsSinceEpoch() + running_timer.data.duration) / 60) .. "m"
         end
 
-        toggl_str = proj .. descr .. "(" .. duration .. ")"
+        str = proj .. descr .. "(" .. duration .. ")"
+      else
+        if space then
+          str = "📂: " .. space.text .. " "
+        end
       end
 
-      if toggl_str ~= "" or space_str ~= "" then
-        chooser:placeholderText(space_str .. toggl_str)
+      if str ~= "" then
+        chooser:placeholderText(str)
       end
     end)
     :show()
