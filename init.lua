@@ -123,7 +123,10 @@ config.applications = {
   },
   ['com.figma.Desktop'] = {
     bundleID = 'com.figma.Desktop',
-    tags = {'design'}
+    tags = {'design'},
+    rules = {
+      {nil, 1, hs.layout.maximized}
+    }
   },
   ['com.reederapp.5.macOS'] = {
     bundleID = 'com.reederapp.5.macOS',
