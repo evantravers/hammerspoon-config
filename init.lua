@@ -143,6 +143,12 @@ config.applications = {
     rules = {
       {nil, 1, hs.layout.maximized}
     }
+  },
+  ['us.zoom.xos'] = {
+    bundleID = 'us.zoom.xos',
+    rules = {
+      {"Zoom Meeting", 2, hs.layout.maximized}
+    }
   }
 }
 
