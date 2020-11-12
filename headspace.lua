@@ -179,6 +179,7 @@ module.choose = function()
         end
       end
 
+      -- launch / close apps
       if space.launch then
         module.tags_to_bundleID(space.launch, function(bundleID)
           hs.application.launchOrFocusByBundleID(bundleID)
@@ -203,11 +204,13 @@ module.choose = function()
         end)
       end
 
+      -- use layout
       if space.layouts then
         module.config.layouts = space.layouts
         autolayout.autoLayout()
       end
 
+      -- run setup()
       if has_func(space.funcs, 'setup') then
         module.config.funcs[space.funcs].setup()
       end
