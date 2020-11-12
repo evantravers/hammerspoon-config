@@ -9,7 +9,7 @@
 -- scale theoretically.
 --
 -- When you start it, it starts the watcher. You can also trigger an autolayout
--- by calling autolayout.autolayout()
+-- by calling module.autoLayout()
 --
 -- Expects a table with a key for `applications` with sub-tables with a
 -- bundleID and a set of rules following this pattern:
@@ -32,12 +32,12 @@
 --   }
 -- }
 
-local autolayout = {}
+local module = {}
 local fn = hs.fnutils
 
-autolayout.num_of_screens = 0
+module.num_of_screens = 0
 
-autolayout.screen = function(num)
+module.screen = function(num)
   local displays = hs.screen.allScreens()
   if displays[num] ~= nil then
     return displays[num]
@@ -46,11 +46,12 @@ autolayout.screen = function(num)
   end
 end
 
--- autolayout() :: nil
--- evaluates autolayout.config and obeys the rules.
-autolayout.autoLayout = function()
+-- autoLayout() :: nil
+-- Evaluates module.config and obeys the rules.
+-- Includes any rules in module.config.layout as overrides.
+module.autoLayout = function()
   local layouts = {}
-  fn.map(autolayout.config.applications, function(app_config)
+  fn.map(module.config.applications, function(app_config)
     local bundleID = app_config['bundleID']
     if app_config.rules then
       fn.map(app_config.rules, function(rule)
@@ -59,7 +60,7 @@ autolayout.autoLayout = function()
           {
             hs.application.get(bundleID),  -- application name
             hs.window.find(title_pattern), -- window title
-            autolayout.screen(screen),     -- window title
+            module.screen(screen),         -- window title
             layout,                        -- layout
             nil,
             nil
@@ -69,19 +70,23 @@ autolayout.autoLayout = function()
     end
   end)
 
+  if module.config.layouts then
+    layouts = fn.concat(layouts, module.config.layouts)
+  end
+
   hs.layout.apply(layouts)
 end
 
 -- initialize watchers
-autolayout.start = function(config_table)
-  autolayout.config = config_table
+module.start = function(config_table)
+  module.config = config_table
 
-  autolayout.watcher = hs.screen.watcher.new(function()
-    if autolayout.num_of_screens ~= #hs.screen.allScreens() then
-      autolayout.autoLayout()
-      autolayout.num_of_screens = #hs.screen.allScreens()
+  module.watcher = hs.screen.watcher.new(function()
+    if module.num_of_screens ~= #hs.screen.allScreens() then
+      module.autoLayout()
+      module.num_of_screens = #hs.screen.allScreens()
     end
   end):start()
 end
 
-return autolayout
+return module
