@@ -204,15 +204,15 @@ module.choose = function()
         end)
       end
 
+      -- run setup()
+      if has_func(space.funcs, 'setup') then
+        module.config.funcs[space.funcs].setup()
+      end
+
       -- use layout
       if space.layouts then
         module.config.layouts = space.layouts
         autolayout.autoLayout()
-      end
-
-      -- run setup()
-      if has_func(space.funcs, 'setup') then
-        module.config.funcs[space.funcs].setup()
       end
 
       if module.parsedQuery.duration then -- make this a timed session
