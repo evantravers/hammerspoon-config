@@ -201,7 +201,7 @@ hyper.start(config)
 movewindows = require('movewindows')
 movewindows.start()
 
-local autolayout = require 'autolayout'
+local autolayout = require('autolayout')
       autolayout.start(config)
       hyper:bind({}, 'return', nil, autolayout.autoLayout)
 

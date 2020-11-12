@@ -62,8 +62,9 @@
 local module = {}
       module.tagged = {}
 
-local fn     = require('hs.fnutils')
-local toggl  = require('toggl')
+local fn         = require('hs.fnutils')
+local toggl      = require('toggl')
+local autolayout = require('autolayout')
 
 local moduleStyle = fn.copy(hs.alert.defaultStyle)
       moduleStyle.atScreenEdge = 1
@@ -156,6 +157,7 @@ module.choose = function()
           module.config.funcs[previous_space.funcs].teardown()
         end
       end
+      module.config.layouts = nil
 
       -- Store headspace in hs.settings
       set_space(space)
@@ -199,6 +201,11 @@ module.choose = function()
             end
           end
         end)
+      end
+
+      if space.layouts then
+        module.config.layouts = space.layouts
+        autolayout.autoLayout()
       end
 
       if has_func(space.funcs, 'setup') then
