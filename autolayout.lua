@@ -49,13 +49,13 @@ end
 -- autolayout() :: nil
 -- evaluates autolayout.config and obeys the rules.
 autolayout.autoLayout = function()
-  autolayout.layouts = {}
+  local layouts = {}
   fn.map(autolayout.config.applications, function(app_config)
     local bundleID = app_config['bundleID']
     if app_config.rules then
       fn.map(app_config.rules, function(rule)
         local title_pattern, screen, layout = rule[1], rule[2], rule[3]
-        table.insert(autolayout.layouts,
+        table.insert(layouts,
           {
             hs.application.get(bundleID),  -- application name
             hs.window.find(title_pattern), -- window title
@@ -69,7 +69,7 @@ autolayout.autoLayout = function()
     end
   end)
 
-  hs.layout.apply(autolayout.layouts)
+  hs.layout.apply(layouts)
 end
 
 -- initialize watchers
