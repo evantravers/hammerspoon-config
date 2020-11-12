@@ -4,12 +4,12 @@ table.insert(config.spaces, {
   image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX'),
   toggl_proj = config.projects.deep,
   whitelist = {'writing'},
+  launch = {'writing'},
   funcs = 'distractionless_writing'
 })
 
 config.funcs.distractionless_writing = {
   setup = function()
-    hs.application.launchOrFocusByBundleID('com.agiletortoise.Drafts-OSX')
     hs.timer.waitWhile(
     function()
       return not hs.application.get('com.agiletortoise.Drafts-OSX'):isFrontmost()
