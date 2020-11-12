@@ -20,8 +20,8 @@ config.applications = {
     hyper_key = 'k',
     rules = {
       {nil, 1, hs.layout.maximized},
+      {"Confluence", 1, hs.layout.maximized},
       {"Meet - ", 2, hs.layout.maximized},
-      {"Confluence", 1, hs.layout.maximized}
     }
   },
   ['org.mozilla.firefox'] = {
