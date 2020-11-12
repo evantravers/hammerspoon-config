@@ -3,32 +3,25 @@ table.insert(config.spaces, {
   subText = "Setup a Things 3 Review Session.",
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   funcs = 'review',
+  launch = {'planning'},
   toggl_proj = config.projects.planning,
   toggl_desc = "Review",
   blacklist = {'distraction', 'communication'},
+  layouts = {
+    {"Things", "Inbox", hs.screen.primaryScreen():name(), hs.layout.left70, 0, 0},
+    {"Things", "Today", hs.screen.primaryScreen():name(), hs.layout.right30, 0, 0}
+  }
 })
 
 config.funcs.review = {
-    setup = function()
-    hs.application.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
+  setup = function()
     local things = hs.application.find('com.culturedcode.ThingsMac')
-    things:selectMenuItem("Hide Sidebar")
-
     hs.fnutils.imap(things:allWindows(), function(v) v:close() end)
-    things:selectMenuItem("New Things Window")
-    things:selectMenuItem("Today")
+    hs.urlevent.openURL("things:///show?id=inbox")
+    things:selectMenuItem("Show Sidebar")
 
     things:selectMenuItem("New Things Window")
-    if things:findMenuItem("Show Sidebar") then
-      things:selectMenuItem("Show Sidebar")
-    end
-    things:selectMenuItem("Inbox")
-
-    hs.layout.apply(
-      {
-        {"Things", "Inbox", hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
-        {"Things", "Today", hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
-      }
-    )
+    hs.urlevent.openURL("things:///show?id=today")
+    things:selectMenuItem("Hide Sidebar")
   end
 }
