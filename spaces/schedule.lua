@@ -3,6 +3,7 @@ table.insert(config.spaces, {
   subText = "Setup Things 3 and Fantastical for Focus Budget or Week Planning",
   image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
   funcs = 'focus_budget',
+  launch = {'planning'},
   blacklist = {'distraction', 'communication'},
   toggl_proj = config.projects.planning,
   toggl_desc = "Focus Budget",
@@ -19,9 +20,6 @@ config.funcs.focus_budget = {
     else
       hs.urlevent.openURL("things:///show?id=today&filter=%40Proctoru%2CEstimates")
     end
-
-    hs.application.launchOrFocusByBundleID('com.culturedcode.ThingsMac')
-    hs.application.launchOrFocusByBundleID('com.flexibits.fantastical2.mac')
 
     local things = hs.application.find('com.culturedcode.ThingsMac')
     local fantastical = hs.application.find('com.flexibits.fantastical2.mac')
