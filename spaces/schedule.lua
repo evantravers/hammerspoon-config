@@ -6,11 +6,14 @@ table.insert(config.spaces, {
   blacklist = {'distraction', 'communication'},
   toggl_proj = config.projects.planning,
   toggl_desc = "Focus Budget",
+  layouts = {
+    {"Fantastical", nil, hs.screen.primaryScreen():name(), hs.layout.left70, 0, 0},
+    {"Things", nil, hs.screen.primaryScreen():name(), hs.layout.right30, 0, 0}
+  }
 })
 
 config.funcs.focus_budget = {
   setup = function()
-
     if os.date("%a") == "Sun" or os.date("%a") == "Sat" then
       hs.urlevent.openURL("things:///show?id=upcoming&filter=%40Proctoru%2CEstimates")
     else
@@ -30,13 +33,6 @@ config.funcs.focus_budget = {
     cal:application():selectMenuItem("Hide Sidebar")
     cal:application():selectMenuItem("Focus Budget")
     cal:application():selectMenuItem("By Week")
-
-    hs.layout.apply(
-      {
-        {"Fantastical", nil, hs.screen.primaryScreen(), hs.layout.left70, 0, 0},
-        {"Things", nil, hs.screen.primaryScreen(), hs.layout.right30, 0, 0}
-      }
-    )
   end,
   teardown = function()
     local fantastical = hs.application.find('com.flexibits.fantastical2.mac')
