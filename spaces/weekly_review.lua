@@ -22,7 +22,7 @@ config.funcs.weeklyreview = {
           "attributes": {
             "title": `Weekly Review: ${datestamp}` ,
             "notes": "",
-            "tags": ["Rituals"],
+            "tags": ["Rituals: Weekly"],
             "when": "today",
             "items": [
             { "type": "heading", "attributes": { "title": "📓 Prep" } },
