@@ -5,6 +5,7 @@ table.insert(config.spaces, {
   funcs = 'weeklyreview',
   toggl_proj = config.projects.planning,
   toggl_desc = "Weekly Review",
+  launch = {'planning'},
   blacklist = {'distraction', 'communication'}
 })
 
