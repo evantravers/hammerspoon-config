@@ -107,8 +107,8 @@ config.applications = {
       {nil, 1, hs.layout.maximized}
     }
   },
-  ['com.apple.iChat'] = {
-    bundleID = 'com.apple.iChat',
+  ['com.apple.MobileSMS'] = {
+    bundleID = 'com.apple.MobileSMS',
     hyper_key = 'q',
     tags = {'communication', 'distraction'},
     rules = {
