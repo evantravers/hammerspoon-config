@@ -23,5 +23,9 @@ config.funcs.review = {
     things:selectMenuItem("New Things Window")
     hs.urlevent.openURL("things:///show?id=today")
     things:selectMenuItem("Hide Sidebar")
+  end,
+  teardown = function()
+    local things = hs.application.find('com.culturedcode.ThingsMac')
+    things:selectMenuItem("Update with Things Cloud")
   end
 }
