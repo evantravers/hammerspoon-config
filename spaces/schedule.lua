@@ -15,14 +15,14 @@ table.insert(config.spaces, {
 
 config.funcs.focus_budget = {
   setup = function()
-    if os.date("%a") == "Sun" or os.date("%a") == "Sat" then
-      hs.urlevent.openURL("things:///show?id=upcoming&filter=%40Proctoru%2CEstimates")
-    else
-      if os.date("%H") > 15 then
-        hs.urlevent.openURL("things:///show?id=tomorrow&filter=%40Proctoru%2CEstimates")
+    if tonumber(os.date("%H")) > 15 then
+      if os.date("%a") == "Sun" or os.date("%a") == "Sat" or os.date("%a") == "Fri" then
+        hs.urlevent.openURL("things:///show?id=upcoming&filter=%40Proctoru%2CEstimates")
       else
-        hs.urlevent.openURL("things:///show?id=today&filter=%40Proctoru%2CEstimates")
+        hs.urlevent.openURL("things:///show?id=tomorrow&filter=%40Proctoru%2CEstimates")
       end
+    else
+      hs.urlevent.openURL("things:///show?id=today&filter=%40Proctoru%2CEstimates")
     end
 
     local things = hs.application.find('com.culturedcode.ThingsMac')
