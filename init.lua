@@ -255,7 +255,7 @@ hyper:bind({}, 's', nil, function()
     -- stolen from: https://gist.github.com/gabeanzelini/1931128eb233b0da8f51a8d165b418fa
 
     if (count of theSelectionFromBrave()) is greater than 0 then
-      set str to "tags: #link\n\n" & theTitleFromBrave() & "\n\n> " & theSelectionFromBrave() & "\n\n[" & theTitleFromBrave() & "](" & theCurrentUrlInBrave() & ")"
+      set str to "" & theTitleFromBrave() & "\n\n> " & theSelectionFromBrave() & "\n\n[" & theTitleFromBrave() & "](" & theCurrentUrlInBrave() & ")"
 
       tell application "Drafts"
         make new draft with properties {content:str, tags: {"link"}}
