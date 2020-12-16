@@ -65,6 +65,7 @@ local module = {}
 local fn         = require('hs.fnutils')
 local toggl      = require('toggl')
 local autolayout = require('autolayout')
+                   require('hs.ipc')
 
 local moduleStyle = fn.copy(hs.alert.defaultStyle)
       moduleStyle.atScreenEdge = 1
@@ -147,88 +148,98 @@ local has_func = function(key, func)
   return module.config.funcs[key] and module.config.funcs[key][func]
 end
 
-module.choose = function()
-  local chooser = hs.chooser.new(function(space)
-    if space ~= nil then
-      local previous_space = hs.settings.get('headspace')
-      -- teardown the previous space
-      if previous_space then
-        if has_func(previous_space.funcs, 'teardown') then
-          module.config.funcs[previous_space.funcs].teardown()
-        end
-      end
-      module.config.layouts = nil
+module.switch_space_by_name = function(name)
+  module.switch_space(
+    hs.fnutils.find(
+      module.config.spaces,
+      function(spc) return spc.text == name end)
+  )
+end
 
-      -- Store headspace in hs.settings
-      set_space(space)
-
-      -- Start timer unless holding shift
-      if not hs.eventtap.checkKeyboardModifiers()['shift'] then
-
-        -- Get either the space's default description or one passed between
-        -- quotes.
-        local description = nil
-        if module.parsedQuery.description then
-          description = module.parsedQuery.description
-        else
-          description = space.toggl_desc
-        end
-
-        if space.toggl_proj or description then
-          toggl.start_timer(space.toggl_proj, description)
-        end
-      end
-
-      -- launch / close apps
-      if space.launch then
-        module.tags_to_bundleID(space.launch, function(bundleID)
-          hs.application.launchOrFocusByBundleID(bundleID)
-        end)
-      end
-
-      if space.blacklist then
-        module.tags_to_bundleID(space.blacklist, function(bundleID)
-          local app = hs.application.get(bundleID)
-          if app then app:kill() end
-        end)
-      end
-
-      if space.whitelist then
-        fn.map(module.config.applications, function(app_config)
-          if not allowed(app_config) then
-            local app = hs.application.get(app_config.bundleID)
-            if app then
-              app:kill()
-            end
-          end
-        end)
-      end
-
-      -- run setup()
-      if has_func(space.funcs, 'setup') then
-        module.config.funcs[space.funcs].setup()
-      end
-
-      -- use layout
-      if space.layouts then
-        module.config.layouts = space.layouts
-        autolayout.autoLayout()
-      end
-
-      if module.parsedQuery.duration then -- make this a timed session
-        module.timer =
-          hs.timer.doAfter(module.parsedQuery.duration * 60, function()
-            hs.sound.getByName("Blow"):play()
-            hs.alert(
-              "⏲: Time is up!",
-              moduleStyle
-            )
-            module.choose()
-            module.timer = nil
-          end)
+module.switch_space = function(space)
+  if space ~= nil then
+    local previous_space = hs.settings.get('headspace')
+    -- teardown the previous space
+    if previous_space then
+      if has_func(previous_space.funcs, 'teardown') then
+        module.config.funcs[previous_space.funcs].teardown()
       end
     end
-  end)
+    module.config.layouts = nil
+
+    -- Store headspace in hs.settings
+    set_space(space)
+
+    -- Start timer unless holding shift
+    if not hs.eventtap.checkKeyboardModifiers()['shift'] then
+
+      -- Get either the space's default description or one passed between
+      -- quotes.
+      local description = nil
+      if module.parsedQuery.description then
+        description = module.parsedQuery.description
+      else
+        description = space.toggl_desc
+      end
+
+      if space.toggl_proj or description then
+        toggl.start_timer(space.toggl_proj, description)
+      end
+    end
+
+    -- launch / close apps
+    if space.launch then
+      module.tags_to_bundleID(space.launch, function(bundleID)
+        hs.application.launchOrFocusByBundleID(bundleID)
+      end)
+    end
+
+    if space.blacklist then
+      module.tags_to_bundleID(space.blacklist, function(bundleID)
+        local app = hs.application.get(bundleID)
+        if app then app:kill() end
+      end)
+    end
+
+    if space.whitelist then
+      fn.map(module.config.applications, function(app_config)
+        if not allowed(app_config) then
+          local app = hs.application.get(app_config.bundleID)
+          if app then
+            app:kill()
+          end
+        end
+      end)
+    end
+
+    -- run setup()
+    if has_func(space.funcs, 'setup') then
+      module.config.funcs[space.funcs].setup()
+    end
+
+    -- use layout
+    if space.layouts then
+      module.config.layouts = space.layouts
+      autolayout.autoLayout()
+    end
+
+    if module.parsedQuery.duration then -- make this a timed session
+      module.timer =
+        hs.timer.doAfter(module.parsedQuery.duration * 60, function()
+          hs.sound.getByName("Blow"):play()
+          hs.alert(
+            "⏲: Time is up!",
+            moduleStyle
+          )
+          module.choose()
+          module.timer = nil
+        end)
+    end
+  end
+end
+
+module.choose = function()
+  local chooser = hs.chooser.new(module.switch_space)
 
   chooser
     :placeholderText("Select a headspace…")
