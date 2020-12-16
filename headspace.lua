@@ -148,6 +148,22 @@ local has_func = function(key, func)
   return module.config.funcs[key] and module.config.funcs[key][func]
 end
 
+module.json = function()
+  return hs.json.encode({
+    items =
+      fn.map(module.config.spaces, function(space)
+        return
+        {
+          title = space.text,
+          subtitle = space.subText,
+          arg = space.text
+        }
+      end)
+  })
+end
+
+
+
 module.switch_space_by_name = function(name)
   module.switch_space(
     hs.fnutils.find(

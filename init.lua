@@ -5,7 +5,7 @@ config = {}
 config.applications = {
   ['com.runningwithcrayons.Alfred'] = {
     bundleID = 'com.runningwithcrayons.Alfred',
-    local_bindings = {'c', 'space', 'o'}
+    local_bindings = {'c', 'space', 'o', 'l'}
   },
   ['net.kovidgoyal.kitty'] = {
     bundleID = 'net.kovidgoyal.kitty',
@@ -214,7 +214,7 @@ local brave = require('brave')
 headspace = require('headspace')
       headspace:enable_watcher()
       headspace.start(config)
-      hyper:bind({}, 'l', nil, headspace.choose)
+      -- hyper:bind({}, 'l', nil, headspace.choose)
 
 -- Random bindings
 hyper:bind({}, 'r', nil, function()
