@@ -287,10 +287,6 @@ module.choose = function()
       chooser:choices(results)
     end)
     :showCallback(function()
-      -- local proj      = ""
-      -- local space_str = ""
-      -- local toggl_str = ""
-
       if module.timer_str() ~= "" then
         chooser:placeholderText(module.timer_str())
       end
