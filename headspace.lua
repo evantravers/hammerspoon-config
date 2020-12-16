@@ -150,13 +150,18 @@ end
 
 module.json = function()
   return hs.json.encode({
+    rerun = 1,
+    variables = {
+      timer_str = module.timer_str()
+    },
     items =
       fn.map(module.config.spaces, function(space)
         return
         {
           title = space.text,
           subtitle = space.subText,
-          arg = space.text
+          arg = space.text,
+          match = space.text .. ' ' .. space.subText
         }
       end)
   })
@@ -286,46 +291,50 @@ module.choose = function()
       -- local space_str = ""
       -- local toggl_str = ""
 
-      local str = ""
-
-      local space = hs.settings.get("headspace")
-      local running_timer = toggl.current_timer()
-
-      if running_timer and running_timer.data then
-        local timer = running_timer.data
-
-        local descr = ""
-        if timer.description then
-          descr = '"' .. timer.description .. '" '
-        end
-
-        local proj = ""
-        if timer.pid then
-          local project = toggl.get_project(timer.pid)
-          if project and project.data then
-            proj = project.data.name .. " "
-          end
-        end
-
-        local duration = ""
-        if module.timer then
-          duration = "-" .. math.ceil(module.timer:nextTrigger() / 60) .. "m"
-        else
-          duration = math.floor((hs.timer.secondsSinceEpoch() + running_timer.data.duration) / 60) .. "m"
-        end
-
-        str = proj .. descr .. "(" .. duration .. ")"
-      else
-        if space then
-          str = "📂: " .. space.text .. " "
-        end
-      end
-
-      if str ~= "" then
-        chooser:placeholderText(str)
+      if module.timer_str() ~= "" then
+        chooser:placeholderText(module.timer_str())
       end
     end)
     :show()
+end
+
+module.timer_str = function()
+  local str = ""
+
+  local space = hs.settings.get("headspace")
+  local running_timer = toggl.current_timer()
+
+  if running_timer and running_timer.data then
+    local timer = running_timer.data
+
+    local descr = ""
+    if timer.description then
+      descr = '"' .. timer.description .. '" '
+    end
+
+    local proj = ""
+    if timer.pid then
+      local project = toggl.get_project(timer.pid)
+      if project and project.data then
+        proj = project.data.name .. " "
+      end
+    end
+
+    local duration = ""
+    if module.timer then
+      duration = "-" .. math.ceil(module.timer:nextTrigger() / 60) .. "m"
+    else
+      duration = math.floor((hs.timer.secondsSinceEpoch() + running_timer.data.duration) / 60) .. "m"
+    end
+
+    str = proj .. descr .. "(" .. duration .. ")"
+  else
+    if space then
+      str = "📂: " .. space.text .. " "
+    end
+  end
+
+  return str
 end
 
 module.lowerOrEmpty = function(str)
