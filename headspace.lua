@@ -149,10 +149,10 @@ local has_func = function(key, func)
 end
 
 module.alfred = function(query)
-  return module.spaces_to_json(module.filter_spaces(query))
+  return module.to_json(module.filter(query))
 end
 
-module.spaces_to_json = function(spaces)
+module.to_json = function(spaces)
   return hs.json.encode({
     rerun = 1,
     variables = {
@@ -174,14 +174,14 @@ end
 
 
 module.switch_space_by_name = function(name)
-  module.switch_space(
+  module.switch(
     hs.fnutils.find(
       module.config.spaces,
       function(spc) return spc.text == name end)
   )
 end
 
-module.switch_space = function(space)
+module.switch = function(space)
   if space ~= nil then
     local previous_space = hs.settings.get('headspace')
     -- teardown the previous space
@@ -263,7 +263,7 @@ module.switch_space = function(space)
   end
 end
 
-module.filter_spaces = function(searchQuery)
+module.filter = function(searchQuery)
   local parsedQuery = module.parseQuery(searchQuery)
 
   local query = module.lowerOrEmpty(parsedQuery.query)
@@ -286,13 +286,13 @@ module.filter_spaces = function(searchQuery)
 end
 
 module.choose = function()
-  local chooser = hs.chooser.new(module.switch_space)
+  local chooser = hs.chooser.new(module.switch)
 
   chooser
     :placeholderText("Select a headspace…")
     :choices(module.config.spaces)
     :queryChangedCallback(function(query)
-      chooser:choices(module.filter_spaces(query))
+      chooser:choices(module.filter(query))
     end)
     :showCallback(function()
       if module.timer_str() ~= "" then
