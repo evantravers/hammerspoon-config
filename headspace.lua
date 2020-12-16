@@ -148,14 +148,18 @@ local has_func = function(key, func)
   return module.config.funcs[key] and module.config.funcs[key][func]
 end
 
-module.json = function()
+module.alfred = function(query)
+  return module.spaces_to_json(module.filter_spaces(query))
+end
+
+module.spaces_to_json = function(spaces)
   return hs.json.encode({
     rerun = 1,
     variables = {
       timer_str = module.timer_str()
     },
     items =
-      fn.map(module.config.spaces, function(space)
+      fn.map(spaces, function(space)
         return
         {
           title = space.text,
@@ -259,32 +263,36 @@ module.switch_space = function(space)
   end
 end
 
+module.filter_spaces = function(searchQuery)
+  local parsedQuery = module.parseQuery(searchQuery)
+
+  local query = module.lowerOrEmpty(parsedQuery.query)
+  module.parsedQuery = parsedQuery -- store this for later
+
+  local results = fn.filter(module.config.spaces, function(space)
+    local text = module.lowerOrEmpty(space.text)
+    local subText = module.lowerOrEmpty(space.subText)
+    return (string.match(text, query) or string.match(subText, query))
+  end)
+
+  table.insert(results, {
+    text = query,
+    subText = "Start a toggl timer with this description...",
+    image = hs.image.imageFromAppBundle('com.toggl.toggldesktop.TogglDesktop'),
+    toggl_desc = parsedQuery.query
+  })
+
+  return results
+end
+
 module.choose = function()
   local chooser = hs.chooser.new(module.switch_space)
 
   chooser
     :placeholderText("Select a headspace…")
     :choices(module.config.spaces)
-    :queryChangedCallback(function(searchQuery)
-      local parsedQuery = module.parseQuery(searchQuery)
-
-      local query = module.lowerOrEmpty(parsedQuery.query)
-      module.parsedQuery = parsedQuery -- store this for later
-
-      local results = fn.filter(module.config.spaces, function(space)
-        local text = module.lowerOrEmpty(space.text)
-        local subText = module.lowerOrEmpty(space.subText)
-        return (string.match(text, query) or string.match(subText, query))
-      end)
-
-      table.insert(results, {
-        text = query,
-        subText = "Start a toggl timer with this description...",
-        image = hs.image.imageFromAppBundle('com.toggl.toggldesktop.TogglDesktop'),
-        toggl_desc = parsedQuery.query
-      })
-
-      chooser:choices(results)
+    :queryChangedCallback(function(query)
+      chooser:choices(module.filter_spaces(query))
     end)
     :showCallback(function()
       if module.timer_str() ~= "" then
