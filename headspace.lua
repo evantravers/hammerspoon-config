@@ -171,8 +171,6 @@ module.to_json = function(spaces)
   })
 end
 
-
-
 module.switch_space_by_name = function(name)
   module.switch(
     hs.fnutils.find(

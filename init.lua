@@ -214,7 +214,7 @@ local brave = require('brave')
 headspace = require('headspace')
       headspace:enable_watcher()
       headspace.start(config)
-      -- hyper:bind({}, 'l', nil, headspace.choose)
+      hyper:bind({}, 'l', nil, headspace.choose)
 
 -- Random bindings
 hyper:bind({}, 'r', nil, function()
