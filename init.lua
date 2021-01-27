@@ -206,8 +206,6 @@ local autolayout = require('autolayout')
       autolayout.start(config)
       hyper:bind({}, 'return', nil, autolayout.autoLayout)
 
-local airpods = require('airpods')
-
 local brave = require('brave')
       brave.start(config)
 
@@ -221,15 +219,6 @@ hyper:bind({}, 'r', nil, function()
   hs.application.launchOrFocusByBundleID('org.hammerspoon.Hammerspoon')
 end)
 hyper:bind({'shift'}, 'r', nil, function() hs.reload() end)
-
-hyper:bind({}, 'a', nil, function()
-  local ok, output = airpods.toggle('Evan’s AirPods')
-  if ok then
-    hs.alert.show(output)
-  else
-    hs.alert.show("Couldn't connect to AirPods!")
-  end
-end)
 
 -- Jump to google hangout or zoom
 hyper:bind({}, 'z', nil, function()
