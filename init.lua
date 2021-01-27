@@ -238,31 +238,35 @@ hyper:bind({}, 'v', nil, function()
   end
 end)
 
--- Snip current highlight in Brave
+-- https://stackoverflow.com/questions/19326368/iterate-over-lines-including-blank-lines
+function magiclines(s)
+  if s:sub(-1)~="\n" then s=s.."\n" end
+  return s:gmatch("(.-)\n")
+end
+
+-- Snip current highlight
 hyper:bind({}, 's', nil, function()
-  hs.osascript.applescript([[
-    -- stolen from: https://gist.github.com/gabeanzelini/1931128eb233b0da8f51a8d165b418fa
+  local win = hs.window.focusedWindow()
 
-    if (count of theSelectionFromBrave()) is greater than 0 then
-      set str to "" & theTitleFromBrave() & "\n\n> " & theSelectionFromBrave() & "\n\n[" & theTitleFromBrave() & "](" & theCurrentUrlInBrave() & ")"
+  -- get the window title
+  local title = win:title()
+  -- get the highlighted item
+  hs.eventtap.keyStroke('command', 'c')
+  local highlight = hs.pasteboard.readString()
+  local quote = ""
+  for line in magiclines(highlight) do
+    quote = quote .. "> " .. line .. "\n"
+  end
+  -- get the URL
+  hs.eventtap.keyStroke('command', 'l')
+  hs.eventtap.keyStroke('command', 'c')
+  local url = hs.pasteboard.readString()
+  --
+  local template = string.format([[%s
 
-      tell application "Drafts"
-        make new draft with properties {content:str, tags: {"link"}}
-      end tell
-    end if
-
-
-    on theCurrentUrlInBrave()
-      tell application "Brave Browser" to get the URL of the active tab in the first window
-    end theCurrentUrlInBrave
-
-    on theSelectionFromBrave()
-      tell application "Brave Browser" to execute front window's active tab javascript "getSelection().toString();"
-    end theSelectionFromBrave
-
-    on theTitleFromBrave()
-      tell application "Brave Browser" to get the title of the active tab in the first window
-    end theTitleFromBrave
-  ]])
+%s
+[%s](%s)]], title, quote, title, url)
+  -- format and send to drafts
+  hs.urlevent.openURL("drafts://x-callback-url/create?tag=links&text=" .. hs.http.encodeForQuery(template))
   hs.notify.show("Snipped!", "The snippet has been sent to Drafts", "")
 end)
