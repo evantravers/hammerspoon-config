@@ -176,6 +176,11 @@ config.domains = {
   }
 }
 
+-- provide the ability to override config per computer
+if (hs.fs.displayName('./local_config.lua')) then
+  require('local_config')
+end
+
 -- configure spaces for headspace
 config.spaces = {}
 config.funcs = {}
