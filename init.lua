@@ -255,6 +255,8 @@ hyper:bind({}, 's', nil, function()
 
   -- get the window title
   local title = win:title()
+                   :gsub("- Brave", "")
+                   :gsub("- Google Chrome", "")
   -- get the highlighted item
   hs.eventtap.keyStroke('command', 'c')
   local highlight = hs.pasteboard.readString()
