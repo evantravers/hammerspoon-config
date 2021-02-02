@@ -229,6 +229,8 @@ hyper:bind({'shift'}, 'r', nil, function() hs.reload() end)
 hyper:bind({}, 'z', nil, function()
   if hs.application.find('us.zoom.xos') then
     hs.application.launchOrFocusByBundleID('us.zoom.xos')
+  elseif hs.application.find('com.microsoft.teams') then
+    hs.application.launchOrFocusByBundleID('com.microsoft.teams')
   else
     brave.jump("meet.google.com|hangouts.google.com.call")
   end
