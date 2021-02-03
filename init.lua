@@ -269,7 +269,7 @@ hyper:bind({}, 's', nil, function()
   -- get the URL
   hs.eventtap.keyStroke('command', 'l')
   hs.eventtap.keyStroke('command', 'c')
-  local url = hs.pasteboard.readString()
+  local url = hs.pasteboard.readString():gsub("?utm_source=.*", "")
   --
   local template = string.format([[%s
 
