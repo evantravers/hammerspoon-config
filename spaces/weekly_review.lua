@@ -185,8 +185,8 @@ config.funcs.weeklyreview = {
         {
           "type": "to-do",
           "attributes": {
-            "title": "Create Focus Budget for next week.",
-            "notes": "Start 'Scheduling' headspace. Create 45 minute Focus Blocks."
+            "title": "Make time for important work.",
+            "notes": "Create 4 hour strategic blocks and identify some buffer blocks."
           }
         },
         {
@@ -199,7 +199,7 @@ config.funcs.weeklyreview = {
         {
           "type": "to-do",
           "attributes": {
-            "title": "🖊: Build spread for next week."
+            "title": "🖊: Build spread for next week"
           }
         },
         {
