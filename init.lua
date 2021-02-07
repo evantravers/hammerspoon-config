@@ -1,8 +1,8 @@
 local secrets = require('secrets')
       secrets.start('.secrets.json')
 
-config = {}
-config.applications = {
+Config = {}
+Config.applications = {
   ['com.runningwithcrayons.Alfred'] = {
     bundleID = 'com.runningwithcrayons.Alfred',
     local_bindings = {'c', 'space', 'o', 'l'}
@@ -153,7 +153,7 @@ config.applications = {
   }
 }
 
-config.domains = {
+Config.domains = {
   ['twitter.com'] = {
     url = 'twitter.com',
     tags = {'distraction', 'socialmedia'}
@@ -182,9 +182,9 @@ if (hs.fs.displayName('./local_config.lua')) then
 end
 
 -- configure spaces for headspace
-config.spaces = {}
-config.funcs = {}
-config.projects = hs.settings.get("secrets").toggl.projects
+Config.spaces = {}
+Config.funcs = {}
+Config.projects = hs.settings.get("secrets").toggl.projects
 
 require('spaces/review')
 require('spaces/schedule')
@@ -201,32 +201,32 @@ require('spaces/play')
 require('spaces/weekly_review')
 require('spaces/shutdown')
 
-hyper = require('hyper')
-hyper.start(config)
+Hyper = require('hyper')
+Hyper.start(Config)
 
-movewindows = require('movewindows')
-movewindows.start()
+Movewindows = require('movewindows')
+Movewindows.start()
 
 local autolayout = require('autolayout')
-      autolayout.start(config)
-      hyper:bind({}, 'return', nil, autolayout.autoLayout)
+      autolayout.start(Config)
+      Hyper:bind({}, 'return', nil, autolayout.autoLayout)
 
 local brave = require('brave')
-      brave.start(config)
+      brave.start(Config)
 
-headspace = require('headspace')
-      headspace:enable_watcher()
-      headspace.start(config)
-      hyper:bind({}, 'l', nil, headspace.choose)
+Headspace = require('headspace')
+      Headspace:enable_watcher()
+      Headspace.start(Config)
+      Hyper:bind({}, 'l', nil, Headspace.choose)
 
 -- Random bindings
-hyper:bind({}, 'r', nil, function()
+Hyper:bind({}, 'r', nil, function()
   hs.application.launchOrFocusByBundleID('org.hammerspoon.Hammerspoon')
 end)
-hyper:bind({'shift'}, 'r', nil, function() hs.reload() end)
+Hyper:bind({'shift'}, 'r', nil, function() hs.reload() end)
 
 -- Jump to google hangout or zoom
-hyper:bind({}, 'z', nil, function()
+Hyper:bind({}, 'z', nil, function()
   if hs.application.find('us.zoom.xos') then
     hs.application.launchOrFocusByBundleID('us.zoom.xos')
   elseif hs.application.find('com.microsoft.teams') then
@@ -237,7 +237,7 @@ hyper:bind({}, 'z', nil, function()
 end)
 
 -- Jump to figma
-hyper:bind({}, 'v', nil, function()
+Hyper:bind({}, 'v', nil, function()
   if hs.application.find('com.figma.Desktop') then
     hs.application.launchOrFocusByBundleID('com.figma.Desktop')
   else
@@ -252,7 +252,7 @@ local function magiclines(s)
 end
 
 -- Snip current highlight
-hyper:bind({}, 's', nil, function()
+Hyper:bind({}, 's', nil, function()
   local win = hs.window.focusedWindow()
 
   -- get the window title

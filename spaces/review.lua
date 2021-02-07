@@ -1,10 +1,10 @@
-table.insert(config.spaces, {
+table.insert(Config.spaces, {
   text = "Review",
   subText = "Setup a Things 3 Review Session.",
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   funcs = 'review',
   launch = {'planning'},
-  toggl_proj = config.projects.planning,
+  toggl_proj = Config.projects.planning,
   toggl_desc = "Review",
   blacklist = {'distraction', 'communication'},
   layouts = {
@@ -13,7 +13,7 @@ table.insert(config.spaces, {
   }
 })
 
-config.funcs.review = {
+Config.funcs.review = {
   setup = function()
     local things = hs.application.find('com.culturedcode.ThingsMac')
     hs.fnutils.imap(things:allWindows(), function(v) v:close() end)

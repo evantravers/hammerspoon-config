@@ -1,14 +1,14 @@
-table.insert(config.spaces, {
+table.insert(Config.spaces, {
   text = "Write",
   subText = "You are allowed to do anything you want, as long as you write.",
   image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX'),
-  toggl_proj = config.projects.deep,
+  toggl_proj = Config.projects.deep,
   whitelist = {'writing'},
   launch = {'writing'},
   funcs = 'distractionless_writing'
 })
 
-config.funcs.distractionless_writing = {
+Config.funcs.distractionless_writing = {
   setup = function()
     hs.timer.waitWhile(
     function()

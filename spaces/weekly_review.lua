@@ -1,15 +1,15 @@
-table.insert(config.spaces, {
+table.insert(Config.spaces, {
   text = "Weekly Review",
   subText = "Groom and evaluate projects in Things 3.",
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   funcs = 'weeklyreview',
-  toggl_proj = config.projects.planning,
+  toggl_proj = Config.projects.planning,
   toggl_desc = "Weekly Review",
   launch = {'planning'},
   blacklist = {'distraction', 'communication'}
 })
 
-config.funcs.weeklyreview = {
+Config.funcs.weeklyreview = {
   setup = function()
     local buildThingsProjectUrl = function()
       return hs.osascript.javascript([[
@@ -223,6 +223,6 @@ config.funcs.weeklyreview = {
       print("something wrong with the jxa to build a review project.")
     end
 
-    config.funcs.review.setup() -- use the same format as the Daily review?
+    Config.funcs.review.setup() -- use the same format as the Daily review?
   end
 }

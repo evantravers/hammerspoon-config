@@ -1,11 +1,11 @@
-table.insert(config.spaces, {
+table.insert(Config.spaces, {
   text = "Schedule",
   subText = "Setup Things 3 and Fantastical for Focus Budget or Week Planning",
   image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
   funcs = 'focus_budget',
   launch = {'planning'},
   blacklist = {'distraction', 'communication'},
-  toggl_proj = config.projects.planning,
+  toggl_proj = Config.projects.planning,
   toggl_desc = "Focus Budget",
   layouts = {
     {"Fantastical", nil, hs.screen.primaryScreen():name(), hs.layout.left70, 0, 0},
@@ -13,7 +13,7 @@ table.insert(config.spaces, {
   }
 })
 
-config.funcs.focus_budget = {
+Config.funcs.focus_budget = {
   setup = function()
     if tonumber(os.date("%H")) > 15 then
       if os.date("%a") == "Sun" or os.date("%a") == "Sat" or os.date("%a") == "Fri" then
