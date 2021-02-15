@@ -68,7 +68,7 @@ movewindows.start = function()
       movewindows:exit()
     end)
     :bind('', 'v', function()
-      local windows = hs.fnutils.map(hs.window.filter.default:getWindows(), function(win)
+      local windows = hs.fnutils.map(hs.window.orderedWindows(), function(win)
         if win ~= hs.window.focusedWindow() then
           return {
             text = win:title(),
