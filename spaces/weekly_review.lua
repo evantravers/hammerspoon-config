@@ -213,7 +213,10 @@ Config.funcs.weeklyreview = {
           }
         }
         )
-        let url = "things:///json?data=" + encodeURIComponent(JSON.stringify([review_proj]));
+        let json = JSON.stringify([review_proj]);
+        let url = "things:///json?data=" + encodeURIComponent(json)
+                                             .replace("(", "%28")
+                                             .replace(")", "%29")
         return url;
       })();
       ]])
