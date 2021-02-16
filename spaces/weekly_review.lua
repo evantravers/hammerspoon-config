@@ -6,7 +6,11 @@ table.insert(Config.spaces, {
   toggl_proj = Config.projects.planning,
   toggl_desc = "Weekly Review",
   launch = {'planning'},
-  blacklist = {'distraction', 'communication'}
+  blacklist = {'distraction', 'communication'},
+  layouts = {
+    {"Things", "Inbox", hs.screen.primaryScreen():name(), hs.layout.left70, 0, 0},
+    {"Things", "Today", hs.screen.primaryScreen():name(), hs.layout.right30, 0, 0}
+  }
 })
 
 Config.funcs.weeklyreview = {
@@ -223,6 +227,13 @@ Config.funcs.weeklyreview = {
       print("something wrong with the jxa to build a review project.")
     end
 
-    Config.funcs.review.setup() -- use the same format as the Daily review?
+    local things = hs.application.find('com.culturedcode.ThingsMac')
+    hs.fnutils.imap(things:allWindows(), function(v) v:close() end)
+    hs.urlevent.openURL("things:///show?id=inbox")
+    things:selectMenuItem("Show Sidebar")
+
+    things:selectMenuItem("New Things Window")
+    hs.urlevent.openURL("things:///show?id=today")
+    things:selectMenuItem("Hide Sidebar")
   end
 }
