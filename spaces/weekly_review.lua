@@ -176,6 +176,9 @@ Config.funcs.weeklyreview = {
               )
             }
           }
+          review_proj["attributes"]["items"].push(
+            { "type": "to-do", "attributes": { "title": "Are your projects in correct priority order?" } },
+          )
         }
         review_proj["attributes"]["items"].push(
         { "type": "heading", "attributes": { "title": "📅 Plan" } },
