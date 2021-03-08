@@ -44,6 +44,13 @@ Config.applications = {
       {nil, 2, hs.layout.maximized}
     }
   },
+  ['com.microsoft.teams'] = {
+    bundleID = 'com.microsoft.teams',
+    tags = {'communication'},
+    rules = {
+      {nil, 2, hs.layout.maximized}
+    }
+  },
   ['com.apple.mail'] = {
     bundleID = 'com.apple.mail',
     hyper_key = 'e',
