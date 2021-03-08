@@ -181,6 +181,17 @@ end
 
 module.switch = function(space)
   if space ~= nil then
+    if space.requires_note and not module.parsedQuery.description then
+      local button, prompt =
+        hs.dialog.textPrompt(
+          "Intention",
+          "What are you intending to do?",
+          "I'm working on…"
+        )
+
+      module.parsedQuery.description = prompt
+    end
+
     local previous_space = hs.settings.get('headspace')
     -- teardown the previous space
     if previous_space then
