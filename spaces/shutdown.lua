@@ -15,6 +15,9 @@ Config.funcs.shutdown = {
     hs.fnutils.map(Config.applications, function(app)
       hs.fnutils.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
     end)
+
+    -- screensaver
+    hs.caffeinate.startScreensaver()
   end,
   teardown = function()
     hs.application.launchOrFocusByBundleID("com.toggl.toggldesktop.TogglDesktop")
