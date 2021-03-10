@@ -1,8 +1,8 @@
 local toggl = require('toggl')
 
 table.insert(Config.spaces, {
-  text = "Shutdown",
-  subText = "Work is done, or going to lunch.",
+  text = "Work is done.",
+  subText = "End of the day, or going to lunch.",
   funcs = "shutdown"
 })
 
