@@ -297,6 +297,10 @@ module.choose = function()
         suggestions = space.suggestions
       end
 
+      table.insert(suggestions, {
+        text = hs.window.frontmostWindow():title()
+      })
+
       intention
       :placeholderText("What do you intend?")
       :choices(suggestions)
