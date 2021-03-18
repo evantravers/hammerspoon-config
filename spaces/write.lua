@@ -5,7 +5,8 @@ table.insert(Config.spaces, {
   toggl_proj = Config.projects.deep,
   whitelist = {'writing'},
   launch = {'writing'},
-  funcs = 'distractionless_writing'
+  funcs = 'distractionless_writing',
+  require_intent = true
 })
 
 Config.funcs.distractionless_writing = {

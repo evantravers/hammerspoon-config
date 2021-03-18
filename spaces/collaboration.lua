@@ -5,7 +5,9 @@ table.insert(Config.spaces, {
   launch = {'calendar'},
   blacklist = {'distraction'},
   toggl_proj = Config.projects.meeting,
-  funcs = 'agendaFor'
+  funcs = 'agendaFor',
+  intent_required = true,
+  suggestions = hs.settings.get("secrets").collaborative_meetings
 })
 
 Config.funcs.agendaFor = {
