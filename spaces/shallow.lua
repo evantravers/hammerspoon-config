@@ -4,7 +4,7 @@ table.insert(Config.spaces, {
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   toggl_proj = Config.projects.shallow,
   funcs = 'shallow',
-  requires_note = true
+  intent_required = true
 })
 
 Config.funcs.shallow = {

@@ -181,16 +181,6 @@ end
 
 module.switch = function(space)
   if space ~= nil then
-    if space.requires_note and not module.parsedQuery.description then
-      local button, prompt =
-        hs.dialog.textPrompt(
-          "Intention",
-          "What are you intending to do?",
-          "I'm working on…"
-        )
-
-      module.parsedQuery.description = prompt
-    end
 
     local previous_space = hs.settings.get('headspace')
     -- teardown the previous space
@@ -295,7 +285,39 @@ module.filter = function(searchQuery)
 end
 
 module.choose = function()
-  local chooser = hs.chooser.new(module.switch)
+  local chooser = hs.chooser.new(function(space)
+    if space.intent_required and not module.parsedQuery.description then
+      local intention = hs.chooser.new(function(descr)
+        module.parsedQuery.description = descr.text
+        module.switch(space)
+      end)
+
+      local suggestions = {}
+      if space.suggestions then
+        suggestions = space.suggestions
+      end
+
+      intention
+      :placeholderText("What do you intend?")
+      :choices(suggestions)
+      :queryChangedCallback(function(query)
+        local choices = fn.filter(suggestions, function(choice)
+          hs.inspect(choice)
+          return string.match(choice.text, query)
+        end)
+
+        table.insert(choices, {
+          text = query,
+          toggl_desc = query
+        })
+
+        intention:choices(choices)
+      end)
+      :show()
+    else
+      module.switch(space)
+    end
+  end)
 
   chooser
     :placeholderText("Select a headspace…")
