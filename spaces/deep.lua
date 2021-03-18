@@ -4,6 +4,7 @@ table.insert(Config.spaces, {
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   toggl_proj = Config.projects.deep,
   blacklist = {'distraction', 'communication'},
+  intent_required = true,
   funcs = 'deep'
 })
 
