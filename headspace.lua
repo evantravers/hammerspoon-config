@@ -297,8 +297,9 @@ module.choose = function()
         suggestions = space.suggestions
       end
 
+      local focused = hs.window.frontmostWindow()
       table.insert(suggestions, 1, {
-        text = hs.window.frontmostWindow():title()
+        text = focused:title():gsub(' . ' .. focused:application():name() , '')
       })
 
       intention
