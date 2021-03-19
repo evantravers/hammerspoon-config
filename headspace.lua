@@ -297,7 +297,7 @@ module.choose = function()
         suggestions = space.suggestions
       end
 
-      table.insert(suggestions, {
+      table.insert(suggestions, 1, {
         text = hs.window.frontmostWindow():title()
       })
 
