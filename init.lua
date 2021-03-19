@@ -157,6 +157,10 @@ Config.applications = {
     rules = {
       {"Zoom Meeting", 2, hs.layout.maximized}
     }
+  },
+  ['org.whispersystems.signal-desktop'] = {
+    bundleID = 'org.whispersystems.signal-desktop',
+    tags = {'distraction', 'communication'}
   }
 }
 
