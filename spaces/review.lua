@@ -4,8 +4,8 @@ table.insert(Config.spaces, {
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   funcs = 'review',
   launch = {'planning'},
-  toggl_proj = Config.projects.planning,
-  toggl_desc = "Review",
+  togglProj = Config.projects.planning,
+  togglDesc = "Review",
   blacklist = {'distraction', 'communication'},
   layouts = {
     {"Things", "Today", hs.screen.primaryScreen():name(), hs.layout.maximized, 0, 0}

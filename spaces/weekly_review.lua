@@ -3,8 +3,8 @@ table.insert(Config.spaces, {
   subText = "Groom and evaluate projects in Things 3.",
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   funcs = 'weeklyreview',
-  toggl_proj = Config.projects.planning,
-  toggl_desc = "Weekly Review",
+  togglProj = Config.projects.planning,
+  togglDesc = "Weekly Review",
   launch = {'planning'},
   blacklist = {'distraction', 'communication'},
   layouts = {

@@ -2,9 +2,9 @@ table.insert(Config.spaces, {
   text = "Shallow",
   subText = "Work on low intensity tasks.",
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
-  toggl_proj = Config.projects.shallow,
+  togglProj = Config.projects.shallow,
   funcs = 'shallow',
-  intent_required = true
+  intentRequired = true
 })
 
 Config.funcs.shallow = {

@@ -5,8 +5,8 @@ table.insert(Config.spaces, {
   funcs = "standup",
   launch = {'planning'},
   blacklist = {'distraction', 'coding'},
-  toggl_proj = Config.projects.meeting,
-  toggl_desc = "UX Standup"
+  togglProj = Config.projects.meeting,
+  togglDesc = "UX Standup"
 })
 
 Config.funcs.standup = {

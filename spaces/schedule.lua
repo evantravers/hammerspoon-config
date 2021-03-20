@@ -5,8 +5,8 @@ table.insert(Config.spaces, {
   funcs = 'focus_budget',
   launch = {'planning'},
   blacklist = {'distraction', 'communication'},
-  toggl_proj = Config.projects.planning,
-  toggl_desc = "Focus Budget",
+  togglProj = Config.projects.planning,
+  togglDesc = "Focus Budget",
   layouts = {
     {"Fantastical", nil, hs.screen.primaryScreen():name(), hs.layout.left70, 0, 0},
     {"Things", nil, hs.screen.primaryScreen():name(), hs.layout.right30, 0, 0}

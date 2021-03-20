@@ -4,7 +4,7 @@ if hs.application.pathForBundleID('com.figma.Desktop') then
     subText = "Iterating on Design artifacts in Figma",
     image = hs.image.imageFromAppBundle('com.figma.Desktop'),
     whitelist = {'design', 'research'},
-    toggl_proj = Config.projects.design,
-    require_intent = true
+    togglProj = Config.projects.design,
+    requireIntent = true
   })
 end

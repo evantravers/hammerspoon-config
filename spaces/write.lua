@@ -2,11 +2,11 @@ table.insert(Config.spaces, {
   text = "Write",
   subText = "You are allowed to do anything you want, as long as you write.",
   image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX'),
-  toggl_proj = Config.projects.deep,
+  togglProj = Config.projects.deep,
   whitelist = {'writing'},
   launch = {'writing'},
   funcs = 'distractionless_writing',
-  require_intent = true
+  requireIntent = true
 })
 
 Config.funcs.distractionless_writing = {

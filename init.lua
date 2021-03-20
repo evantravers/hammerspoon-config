@@ -225,9 +225,11 @@ local autolayout = require('autolayout')
 local brave = require('brave')
       brave.start(Config)
 
-package.path = package.path .. ';' .. '~/src/github.com/evantravers/headspace.spoon/init.lua'
 hs.loadSpoon('Headspace')
-spoon.Headspace.start(Config)
+spoon.Headspace:start()
+               :loadConfig(Config)
+
+Hyper:bind({}, 'l', nil, spoon.Headspace.choose)
 
 -- Random bindings
 Hyper:bind({}, 'r', nil, function()

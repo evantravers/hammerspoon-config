@@ -1,4 +1,4 @@
-local toggl = require('toggl')
+-- local toggl = require('toggl')
 
 table.insert(Config.spaces, {
   text = "Work is done.",
@@ -8,7 +8,7 @@ table.insert(Config.spaces, {
 
 Config.funcs.shutdown = {
   setup = function()
-    toggl.stop_timer()
+    -- toggl.stop_timer()
     hs.settings.clear("headspace")
 
     -- shut down everything

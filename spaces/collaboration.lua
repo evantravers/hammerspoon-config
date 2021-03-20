@@ -4,10 +4,10 @@ table.insert(Config.spaces, {
   image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
   launch = {'calendar'},
   blacklist = {'distraction'},
-  toggl_proj = Config.projects.meeting,
+  togglProj = Config.projects.meeting,
   funcs = 'agendaFor',
-  intent_required = true,
-  suggestions = hs.settings.get("secrets").collaborative_meetings
+  intentRequired = true,
+  intentSuggestions = hs.settings.get("secrets").collaborativeMeetings
 })
 
 Config.funcs.agendaFor = {
