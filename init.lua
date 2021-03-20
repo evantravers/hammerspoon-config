@@ -228,6 +228,7 @@ local brave = require('brave')
 hs.loadSpoon('Headspace')
 spoon.Headspace:start()
                :loadConfig(Config)
+               :setTogglKey(hs.settings.get('secrets').toggl.key)
 
 Hyper:bind({}, 'l', nil, spoon.Headspace.choose)
 
