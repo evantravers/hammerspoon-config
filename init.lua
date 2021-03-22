@@ -36,16 +36,9 @@ Config.applications = {
     hyper_key = 'h',
     tags = {'coding'}
   },
-  ['com.tinyspeck.slackmacgap'] = {
-    bundleID = 'com.tinyspeck.slackmacgap',
-    hyper_key = 'i',
-    tags = {'communication'},
-    rules = {
-      {nil, 2, hs.layout.maximized}
-    }
-  },
   ['com.microsoft.teams'] = {
     bundleID = 'com.microsoft.teams',
+    hyper_key = 'i',
     tags = {'communication'},
     rules = {
       {nil, 2, hs.layout.maximized}
