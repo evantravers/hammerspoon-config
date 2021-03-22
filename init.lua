@@ -73,6 +73,13 @@ Config.applications = {
       {nil, 2, hs.layout.maximized}
     }
   },
+  ['com.tinyspeck.slackmacgap'] = {
+    bundleID = 'com.tinyspeck.slackmacgap',
+    tags = {'distraction', 'communication'},
+    rules = {
+      {nil, 2, hs.layout.maximized}
+    }
+  },
   ['com.tapbots.Tweetbot3Mac'] = {
     bundleID = 'com.tapbots.Tweetbot3Mac',
     tags = {'distraction', 'socialmedia'},
