@@ -1,0 +1,3 @@
+[submodule "Spoons/headspace.spoon"]
+	path = Spoons/headspace.spoon
+	url = https://github.com/evantravers/headspace.spoon
