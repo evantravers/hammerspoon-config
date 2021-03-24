@@ -47,7 +47,7 @@ Config.applications = {
   ['com.apple.mail'] = {
     bundleID = 'com.apple.mail',
     hyper_key = 'e',
-    tags = {'communication'},
+    tags = {'communication', 'distraction'},
     rules = {
       {nil, 2, hs.layout.maximized}
     }
