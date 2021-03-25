@@ -50,6 +50,25 @@ end
 -- Evaluates module.config and obeys the rules.
 -- Includes any rules in module.config.layout as overrides.
 module.autoLayout = function()
+  local layouts = module.config.layouts
+
+  if hs.settings.get('headspace') then
+    local space = hs.fnutils.find(Config.spaces, function(s)
+      return s.text == hs.settings.get('headspace').text
+    end)
+
+    if space and space.layouts then
+      layouts = fn.concat(layouts, space.layouts)
+    end
+  end
+
+  hs.layout.apply(layouts, string.match)
+end
+
+-- initialize watchers
+module.start = function(config_table)
+  module.config = config_table
+
   local layouts = {}
   fn.map(module.config.applications, function(app_config)
     local bundleID = app_config['bundleID']
@@ -70,16 +89,7 @@ module.autoLayout = function()
     end
   end)
 
-  if module.config.layouts then
-    layouts = fn.concat(layouts, module.config.layouts)
-  end
-
-  hs.layout.apply(layouts, string.match)
-end
-
--- initialize watchers
-module.start = function(config_table)
-  module.config = config_table
+  module.config.layouts = layouts
 
   module.watcher = hs.screen.watcher.new(function()
     if module.num_of_screens ~= #hs.screen.allScreens() then
