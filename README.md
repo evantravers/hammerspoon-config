@@ -10,12 +10,6 @@ To install: `git clone git@github.com:evantravers/hammerspoon-config.git ~/.hamm
 
 ## Modules
 
-### Airpods
-
-Using a script from
-[here](https://gist.githubusercontent.com/daGrevis/79b27b9c156ba828ad52976a118b29e0/raw/0e77383f4eb9301527caac3f0b71350e9499210b/init.lua),
-connect and disconnect my AirPods.
-
 ### Autolayout
 
 - Listens to display changes and moves and maximizes windows based on screen
@@ -26,7 +20,6 @@ connect and disconnect my AirPods.
 - Provides bindings for Brave Browser
     - Focus tab by domain in any window
     - Kill tabs by domain
-    - Kill tabs by tag
 
 ### Hyper
 
@@ -38,12 +31,7 @@ connect and disconnect my AirPods.
 
 ### Headspace
 
-Tool for configuring custom layouts and workspaces.
-
-- `hs.chooser` UI for picking a space.
-- Supports time-tracking via Toggl.
-- Launch or kill applications and tabs by tag.
-- Block killed application's Hyper shortcuts until the space is changed.
+Moved to [https://github.com/evantravers/headspace.spoon](https://github.com/evantravers/headspace.spoon)
 
 ### Movewindows
 
