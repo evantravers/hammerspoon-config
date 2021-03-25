@@ -5,6 +5,6 @@ if hs.application.pathForBundleID('com.figma.Desktop') then
     image = hs.image.imageFromAppBundle('com.figma.Desktop'),
     whitelist = {'design', 'research'},
     togglProj = Config.projects.design,
-    requireIntent = true
+    intentRequired = true
   })
 end
