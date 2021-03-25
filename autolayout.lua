@@ -37,7 +37,7 @@ local fn = hs.fnutils
 
 module.num_of_screens = 0
 
-module.screen = function(num)
+module.whichScreen = function(num)
   local displays = hs.screen.allScreens()
   if displays[num] ~= nil then
     return displays[num]
@@ -58,10 +58,10 @@ module.autoLayout = function()
         local title_pattern, screen, layout = rule[1], rule[2], rule[3]
         table.insert(layouts,
           {
-            hs.application.get(bundleID),  -- application name
-            hs.window.find(title_pattern), -- window title
-            module.screen(screen),         -- window title
-            layout,                        -- layout
+            hs.application.get(bundleID), -- application name
+            title_pattern,                -- window title
+            module.whichScreen(screen),   -- window title
+            layout,                       -- layout
             nil,
             nil
           }
@@ -74,7 +74,7 @@ module.autoLayout = function()
     layouts = fn.concat(layouts, module.config.layouts)
   end
 
-  hs.layout.apply(layouts)
+  hs.layout.apply(layouts, string.match)
 end
 
 -- initialize watchers
