@@ -7,7 +7,6 @@
 -- NOTE: May require you enable View -> Developer -> Allow Javascript from
 -- Apple Events in Brave's menu.
 
-local fn   = require('hs.fnutils')
 local module = {}
 
 module.start = function(config_table)
@@ -31,26 +30,6 @@ module.jump = function(url)
     }
   })();
   ]])
-end
-
-module.urlsTaggedWith = function(tag)
-  return fn.filter(module.config.domains, function(domain)
-    return domain.tags and fn.contains(domain.tags, tag)
-  end)
-end
-
-module.launch = function(list)
-  fn.map(list, function(tag)
-    fn.map(module.urlsTaggedWith(tag), function(site)
-      hs.urlevent.openURL("http://" .. site.url)
-    end)
-  end)
-end
-
-module.kill = function(list)
-  fn.map(list, function(tag)
-    fn.map(module.urlsTaggedWith(tag), function(site) module.killTabsByDomain(site.url) end)
-  end)
 end
 
 module.killTabsByDomain = function(domain)
