@@ -1,36 +1,36 @@
--- AUTOLAYOUT
---
--- This is largely stolen from @megalithic's epic work. This lets application's
--- windows automatically re-settle depending on whether I'm on a single laptop
--- or a dock with an external (and now primary) monitor.
---
--- I prefer applications full screened (for the most part, so this is
--- simplified. I also don't roll with more than two monitors, but this should
--- scale theoretically.
---
--- When you start it, it starts the watcher. You can also trigger an autolayout
--- by calling module.autoLayout()
---
--- Expects a table with a key for `applications` with sub-tables with a
--- bundleID and a set of rules following this pattern:
---
--- rules = {
---   {
---     <window title string or nil>,
---     <int of preferred monitor>,
---     <layout from hs.layout>
---   }
--- }
---
--- Example:
--- config.applications = {
---   ['com.brave.Browser'] = {
---     bundleID = 'com.brave.Browser',
---     rules = {
---       {"Meet - ", 2, hs.layout.maximized}
---     }
---   }
--- }
+--- === AUTOLAYOUT ===
+---
+--- This is largely stolen from @megalithic's epic work. This lets application's
+--- windows automatically re-settle depending on whether I'm on a single laptop
+--- or a dock with an external (and now primary) monitor.
+---
+--- I prefer applications full screened (for the most part, so this is
+--- simplified. I also don't roll with more than two monitors, but this should
+--- scale theoretically.
+---
+--- When you start it, it starts the watcher. You can also trigger an autolayout
+--- by calling module.autoLayout()
+---
+--- Expects a table with a key for `applications` with sub-tables with a
+--- bundleID and a set of rules following this pattern:
+---
+--- rules = {
+---   {
+---     <window title string or nil>,
+---     <int of preferred monitor>,
+---     <layout from hs.layout>
+---   }
+--- }
+---
+--- Example:
+--- config.applications = {
+---   ['com.brave.Browser'] = {
+---     bundleID = 'com.brave.Browser',
+---     rules = {
+---       {"Meet - ", 2, hs.layout.maximized}
+---     }
+---   }
+--- }
 
 local module = {}
 local fn = hs.fnutils
