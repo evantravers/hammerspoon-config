@@ -79,7 +79,7 @@ module.start = function(config_table)
           {
             hs.application.get(bundleID), -- application name
             title_pattern,                -- window title
-            module.whichScreen(screen),   -- window title
+            module.whichScreen(screen),   -- screen
             layout,                       -- layout
             nil,
             nil
