@@ -18,14 +18,15 @@ Config.funcs.weeklyreview = {
     local buildThingsProjectUrl = function()
       return hs.osascript.javascript([[
       (function() {
-        let datestamp = new Date().toLocaleDateString("en-US")
+        let d = new Date();
+        let datestamp = `${d.getFullYear()}-${((d.getMonth()+1).toString()).padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
 
         let review_proj = {
           "type": "project",
           "operation": "create",
           "attributes": {
             "title": `Weekly Review: ${datestamp}` ,
-            "notes": "",
+            "notes": `obsidian://open?vault=wiki&file=weeklyreview%2F${datestamp}`,
             "tags": ["Rituals: Weekly"],
             "when": "today",
             "items": [
