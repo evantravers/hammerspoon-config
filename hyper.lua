@@ -26,27 +26,27 @@ end
 
 -- Expects a configuration table with an applications key that has the
 -- following form:
--- config_table.applications = {
+-- configTable.applications = {
 --   ['com.culturedcode.ThingsMac'] = {
 --     bundleID = 'com.culturedcode.ThingsMac',
---     hyper_key = 't',
+--     hyperKey = 't',
 --     tags = {'planning', 'review'},
---     local_bindings = {',', '.'}
+--     localBindings = {',', '.'}
 --   },
 -- }
-hyper.start = function(config_table)
-  -- Use the hyper key with the application config to use the `hyper_key`
-  hs.fnutils.map(config_table.applications, function(app)
+hyper.start = function(configTable)
+  -- Use the hyper key with the application config to use the `hyperKey`
+  hs.fnutils.map(configTable.applications, function(app)
     -- Apps that I want to jump to
-    if app.hyper_key then
-      hyper:bind({}, app.hyper_key, function() hyper.launch(app); end)
+    if app.hyperKey then
+      hyper:bind({}, app.hyperKey, function() hyper.launch(app); end)
     end
 
     -- I use hyper to power some shortcuts in different apps If the app is closed
     -- and I press the shortcut, open the app and send the shortcut, otherwise
     -- just send the shortcut.
-    if app.local_bindings then
-      hs.fnutils.map(app.local_bindings, function(key)
+    if app.localBindings then
+      hs.fnutils.map(app.localBindings, function(key)
         hyper:bind({}, key, nil, function()
           if hs.application.get(app.bundleID) then
             hs.eventtap.keyStroke({'cmd','alt','shift','ctrl'}, key)
