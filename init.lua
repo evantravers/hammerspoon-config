@@ -1,6 +1,9 @@
 local secrets = require('secrets')
       secrets.start('.secrets.json')
 
+hs.loadSpoon('Hyper')
+hs.loadSpoon('Headspace')
+
 Config = require('config')
 
 -- provide the ability to override config per computer
@@ -28,7 +31,6 @@ require('spaces/play')
 require('spaces/weekly_review')
 require('spaces/shutdown')
 
-hs.loadSpoon('Hyper')
 Hyper = spoon.Hyper
              :start(Config)
              :setHyperKey('F19')
@@ -43,7 +45,6 @@ local autolayout = require('autolayout')
 local brave = require('brave')
       brave.start(Config)
 
-hs.loadSpoon('Headspace')
 spoon.Headspace:start()
                :loadConfig(Config)
                :setTogglKey(hs.settings.get('secrets').toggl.key)
