@@ -28,8 +28,10 @@ require('spaces/play')
 require('spaces/weekly_review')
 require('spaces/shutdown')
 
-Hyper = require('hyper')
-Hyper.start(Config)
+hs.loadSpoon('Hyper')
+Hyper = spoon.Hyper
+             :start(Config)
+             :setHyperKey('F19')
 
 Movewindows = require('movewindows')
 Movewindows.start()

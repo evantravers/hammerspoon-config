@@ -36,7 +36,7 @@ movewindows.grid = {
 }
 
 movewindows.start = function()
-  local hyper = require("hyper")
+  local hyper = spoon.Hyper
   hs.window.animationDuration = 0
 
   hyper:bind({}, 'm', nil, function() movewindows:enter() end)
