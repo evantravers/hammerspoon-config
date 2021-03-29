@@ -23,6 +23,8 @@ To install: `git clone git@github.com:evantravers/hammerspoon-config.git ~/.hamm
 
 ### Hyper
 
+Moved to [https://github.com/evantravers/Hyper.spoon](https://github.com/evantravers/Hyper.spoon)
+
 - Provides a modal layer for the other plugins, based on F19.
 - Supports holding mods with your hyper, unlike most hyper solutions.
 - Launch/focus an app.
