@@ -50,19 +50,17 @@ end
 -- Evaluates module.config and obeys the rules.
 -- Includes any rules in module.config.layout as overrides.
 module.autoLayout = function()
-  local layouts = module.config.layouts
-
   if hs.settings.get('headspace') then
     local space = hs.fnutils.find(Config.spaces, function(s)
       return s.text == hs.settings.get('headspace').text
     end)
 
     if space and space.layouts then
-      layouts = fn.concat(layouts, space.layouts)
+      hs.layout.apply(fn.concat(module.config.layouts, space.layouts), string.match)
+    else
+      hs.layout.apply(module.config.layouts, string.match)
     end
   end
-
-  hs.layout.apply(layouts, string.match)
 end
 
 -- initialize watchers
