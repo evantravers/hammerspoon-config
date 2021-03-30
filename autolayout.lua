@@ -50,16 +50,17 @@ end
 -- Evaluates module.config and obeys the rules.
 -- Includes any rules in module.config.layout as overrides.
 module.autoLayout = function()
+  local space = nil
   if hs.settings.get('headspace') then
-    local space = hs.fnutils.find(Config.spaces, function(s)
+    space = hs.fnutils.find(Config.spaces, function(s)
       return s.text == hs.settings.get('headspace').text
     end)
+  end
 
-    if space and space.layouts then
-      hs.layout.apply(fn.concat(module.config.layouts, space.layouts), string.match)
-    else
-      hs.layout.apply(module.config.layouts, string.match)
-    end
+  if space and space.layouts then
+    hs.layout.apply(fn.concat(module.config.layouts, space.layouts), string.match)
+  else
+    hs.layout.apply(module.config.layouts, string.match)
   end
 end
 
