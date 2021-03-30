@@ -58,8 +58,7 @@ Hyper:bind({}, 'r', nil, function()
 end)
 Hyper:bind({'shift'}, 'r', nil, function() hs.reload() end)
 
-Teamz = spoon.Teamz
-             :start()
+Teamz = spoon.Teamz:start()
 
 -- Jump to google hangout or zoom
 Hyper:bind({}, 'z', nil, function()

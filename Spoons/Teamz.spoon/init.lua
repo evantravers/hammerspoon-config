@@ -8,14 +8,17 @@ local m = {
   homepage = "https://github.com/evantravers/Teamz.spoon",
 }
 
-function m:start() 
+function m:start()
   m.watcher = hs.application.watcher.new(function(appName, event, hsApp)
     if hsApp:bundleID() == 'com.microsoft.teams' then
       if event == hs.application.watcher.launching then
-        hs.timer.waitUntil(function() return hsApp:mainWindow() ~= nil end,
+        hs.timer.waitUntil(function()
+          return hsApp:mainWindow() ~= nil and not string.match(hsApp:mainWindow():title(), "Loading")
+        end,
         function()
           m.app = hsApp
           m.firstWindow = hsApp:mainWindow()
+          print(hs.inspect(m.firstWindow))
         end)
       end
     end
@@ -40,15 +43,9 @@ end
 
 function m:callWindow()
   return hs.fnutils.find(m.app:allWindows(), function(window)
-    if window == m.firstWindow then
-      return false
-    end
-    if string.match(window:title(), 'Notification') then
-      return false
-    end
-    if string.match(window:title(), 'in progress') then
-      return false
-    end
+    if window == m.firstWindow then return false end
+    if string.match(window:title(), 'Notification') then return false end
+    if string.match(window:title(), 'in progress') then return false end
     return true
   end)
 end
