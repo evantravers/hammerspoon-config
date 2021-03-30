@@ -18,7 +18,6 @@ function m:start()
         function()
           m.app = hsApp
           m.firstWindow = hsApp:mainWindow()
-          print(hs.inspect(m.firstWindow))
         end)
       end
     end
