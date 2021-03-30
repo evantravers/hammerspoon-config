@@ -1,8 +1,8 @@
 [submodule "Spoons/headspace.spoon"]
-	path = Spoons/headspace.spoon
-	url = git://github.com/evantravers/headspace.spoon.git
+	path = Spoons/Headspace.spoon
+	url = git://github.com/evantravers/Headspace.spoon.git
 [submodule "Spoons/split.spoon"]
-	path = Spoons/split.spoon
+	path = Spoons/Split.spoon
 	url = git://github.com/evantravers/Split.spoon.git
 [submodule "Spoons/Hyper.spoon"]
 	path = Spoons/Hyper.spoon
