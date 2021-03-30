@@ -1,4 +1,7 @@
 --- === Teamz ===
+--- Microsoft Teams is difficult to work with... they don't name their windows
+--- consistently. This is a wrapper that keeps track of a Microsoft Teams
+--- application, and isolating the hs.window that contains the call.
 
 local m = {
   name = "Teamz",
@@ -8,6 +11,13 @@ local m = {
   homepage = "https://github.com/evantravers/Teamz.spoon",
 }
 
+--- Teamz:start() -> table
+--- Method
+--- Starts an hs.application.watcher that listens for Microsoft Teams and
+--- stores the first real window created.
+---
+--- Returns:
+---  * self
 function m:start()
   m.watcher = hs.application.watcher.new(function(appName, event, hsApp)
     if hsApp:bundleID() == 'com.microsoft.teams' then
@@ -27,19 +37,43 @@ function m:start()
   return self
 end
 
+--- Teamz:stop() -> table
+--- Method
+--- Kills the watcher and destroy it
+---
+--- Returns:
+---  * self
 function m:stop()
   m.watcher:stop()
   m.watcher = nil
+
+  return self
 end
 
+--- Teamz:isRunning() -> table
+--- Method
+--- Answers whether Teamz is running and attached to a Microsoft Teams
+--- hs.application.
+---
+--- Returns:
+---  * self
 function m:isRunning()
   if m.app then
     return true
   else
     return false
   end
+
+  return self
 end
 
+--- Teamz:callWindow() -> table
+--- Method
+--- Returns the hs.window that is most likely going to be the window with the
+--- video call in it. I usually wind up using Teamz:callWindow():focus()
+---
+--- Returns:
+---  * hs.window
 function m:callWindow()
   return hs.fnutils.find(m.app:allWindows(), function(window)
     if window == m.firstWindow then return false end
