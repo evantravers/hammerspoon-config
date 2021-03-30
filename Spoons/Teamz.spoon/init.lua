@@ -11,10 +11,11 @@ local m = {
 function m:start() 
   m.watcher = hs.application.watcher.new(function(appName, event, hsApp)
     if hsApp:bundleID() == 'com.microsoft.teams' then
-      if event == hs.application.watcher.launched then
-        local wait = hs.timer.doAfter(1, function()
+      if event == hs.application.watcher.launching then
+        hs.timer.waitUntil(function() return hsApp:mainWindow() ~= nil end,
+        function()
           m.app = hsApp
-          m.mainWindow = hsApp:mainWindow()
+          m.firstWindow = hsApp:mainWindow()
         end)
       end
     end
@@ -39,7 +40,7 @@ end
 
 function m:callWindow()
   return hs.fnutils.find(m.app:allWindows(), function(window)
-    if window == m.mainWindow then
+    if window == m.firstWindow then
       return false
     end
     if string.match(window:title(), 'Notification') then
