@@ -8,14 +8,14 @@ return {
       bundleID = 'net.kovidgoyal.kitty',
       hyperKey = 'j',
       tags = {'coding'},
-      rules = {
+      layouts = {
         {nil, 1, hs.layout.maximized}
       }
     },
     ['com.brave.Browser'] = {
       bundleID = 'com.brave.Browser',
       hyperKey = 'k',
-      rules = {
+      layouts = {
         {nil, 1, hs.layout.maximized},
         {"Confluence", 1, hs.layout.maximized},
         {"Meet - ", 2, hs.layout.maximized},
@@ -24,7 +24,7 @@ return {
     ['org.mozilla.firefox'] = {
       bundleID = 'org.mozilla.firefox',
       hyperKey = 'b',
-      rules = {
+      layouts = {
         {nil, 1, hs.layout.maximized}
       }
     },
@@ -37,7 +37,7 @@ return {
       bundleID = 'com.microsoft.teams',
       hyperKey = 'i',
       tags = {'communication'},
-      rules = {
+      layouts = {
         {nil, 2, hs.layout.maximized}
       }
     },
@@ -45,7 +45,7 @@ return {
       bundleID = 'com.apple.mail',
       hyperKey = 'e',
       tags = {'communication', 'distraction'},
-      rules = {
+      layouts = {
         {nil, 2, hs.layout.maximized}
       }
     },
@@ -55,7 +55,7 @@ return {
       localBindings = {']'},
       tags = {'planning', 'review', 'calendar'},
       whitelisted = true,
-      rules = {
+      layouts = {
         {nil, 2, hs.layout.maximized}
       }
     },
@@ -66,14 +66,14 @@ return {
     ['com.hnc.Discord'] = {
       bundleID = 'com.hnc.Discord',
       tags = {'distraction'},
-      rules = {
+      layouts = {
         {nil, 2, hs.layout.maximized}
       }
     },
     ['com.tinyspeck.slackmacgap'] = {
       bundleID = 'com.tinyspeck.slackmacgap',
       tags = {'distraction', 'communication'},
-      rules = {
+      layouts = {
         {nil, 2, hs.layout.maximized}
       }
     },
@@ -88,7 +88,7 @@ return {
       tags = {'planning', 'review', 'tasks'},
       whitelisted = true,
       localBindings = {',', '.'},
-      rules = {
+      layouts = {
         {nil, 1, hs.layout.maximized}
       }
     },
@@ -107,7 +107,7 @@ return {
       bundleID = 'com.ideasoncanvas.mindnode.macos',
       tags = {'research'},
       hyperKey = 'u',
-      rules = {
+      layouts = {
         {nil, 1, hs.layout.maximized}
       }
     },
@@ -115,7 +115,7 @@ return {
       bundleID = 'com.apple.MobileSMS',
       hyperKey = 'q',
       tags = {'communication', 'distraction'},
-      rules = {
+      layouts = {
         {nil, 2, hs.layout.right30}
       }
     },
@@ -129,7 +129,7 @@ return {
     ['com.figma.Desktop'] = {
       bundleID = 'com.figma.Desktop',
       tags = {'design'},
-      rules = {
+      layouts = {
         {nil, 1, hs.layout.maximized}
       }
     },
@@ -137,7 +137,7 @@ return {
       bundleID = 'com.reederapp.5.macOS',
       hyperKey = 'n',
       tags = {'distraction'},
-      rules = {
+      layouts = {
         {nil, 1, hs.layout.maximized}
       }
     },
@@ -145,13 +145,13 @@ return {
       bundleID = 'md.obsidian',
       hyperKey = 'g',
       tags = {'research', 'notes'},
-      rules = {
+      layouts = {
         {nil, 1, hs.layout.maximized}
       }
     },
     ['us.zoom.xos'] = {
       bundleID = 'us.zoom.xos',
-      rules = {
+      layouts = {
         {"Zoom Meeting", 2, hs.layout.maximized}
       }
     },
