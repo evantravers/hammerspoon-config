@@ -45,7 +45,3 @@ My personal bindings for a Moom.app like interface for moving windows around.
 
 Simple loading of API keys or secret variables into `hs.settings` via
 `hs.json`.
-
-### Toggl
-
-Simple toggl client. Used by Headspace.
