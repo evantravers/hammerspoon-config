@@ -50,37 +50,58 @@ function m:stop()
   return self
 end
 
---- Teamz:isRunning() -> table
---- Method
---- Answers whether Teamz is running and attached to a Microsoft Teams
---- hs.application.
----
---- Returns:
----  * self
-function m:isRunning()
-  if m.app then
-    return true
-  else
-    return false
+local function checkAttachment()
+  if m.app == nil then
+    m.app = hs.application.find('com.microsoft.teams')
   end
 
-  return self
+  if m.firstWindow == nil then
+    local count = 0
+    for k,v in ipairs(m.app:allWindows()) do
+      count = count + 1
+    end
+
+    -- if there's only one window, that's it
+    if count == 1 then
+      m.firstWindow = m.app:mainWindow()
+    else
+      hs.chooser.new(function(choice)
+        m.firstWindow = hs.window.find(choice.id)
+      end)
+      :placeholderText("Which of these is the chat window?")
+      :choices(hs.fnutils.map(m.app:allWindows(), function(win)
+        return {
+          text = win:title(),
+          id = win:id()
+        }
+      end))
+      :show()
+    end
+  end
 end
 
---- Teamz:callWindow() -> table
+--- Teamz.callWindow() -> table
 --- Method
 --- Returns the hs.window that is most likely going to be the window with the
 --- video call in it. I usually wind up using Teamz:callWindow():focus()
 ---
 --- Returns:
 ---  * hs.window
-function m:callWindow()
+function m.callWindow()
+  checkAttachment()
+
   return hs.fnutils.find(m.app:allWindows(), function(window)
-    if window == m.firstWindow then return false end
+    if window == m.chatWindow() then return false end
     if string.match(window:title(), 'Notification') then return false end
     if string.match(window:title(), 'in progress') then return false end
     return true
   end)
+end
+
+function m.chatWindow()
+  checkAttachment()
+
+  return m.firstWindow
 end
 
 return m

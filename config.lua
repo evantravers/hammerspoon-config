@@ -35,7 +35,6 @@ return {
     },
     ['com.microsoft.teams'] = {
       bundleID = 'com.microsoft.teams',
-      hyperKey = 'i',
       tags = {'communication'},
       layouts = {
         {nil, 2, hs.layout.maximized}

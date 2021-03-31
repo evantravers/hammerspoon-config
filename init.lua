@@ -3,7 +3,7 @@ local secrets = require('secrets')
 
 hs.loadSpoon('Hyper')
 hs.loadSpoon('Headspace')
-hs.loadSpoon('Teamz')
+hs.loadSpoon('Teamz'):start()
 
 Config = require('config')
 
@@ -58,14 +58,12 @@ Hyper:bind({}, 'r', nil, function()
 end)
 Hyper:bind({'shift'}, 'r', nil, function() hs.reload() end)
 
-Teamz = spoon.Teamz:start()
-
 -- Jump to google hangout or zoom
 Hyper:bind({}, 'z', nil, function()
   if hs.application.find('us.zoom.xos') then
     hs.application.launchOrFocusByBundleID('us.zoom.xos')
-  elseif Teamz:isRunning() then
-    Teamz:callWindow():focus()
+  elseif hs.application.find('com.microsoft.teams') then
+    spoon.Teamz.callWindow():focus()
   else
     brave.jump("meet.google.com|hangouts.google.com.call")
   end
