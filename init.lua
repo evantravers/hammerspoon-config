@@ -7,11 +7,6 @@ hs.loadSpoon('Teamz')
 
 Config = require('config')
 
--- provide the ability to override config per computer
-if (hs.fs.displayName('./local_config.lua')) then
-  require('local_config')
-end
-
 -- configure spaces for headspace
 Config.spaces = {}
 Config.funcs = {}
@@ -35,6 +30,11 @@ require('spaces/shutdown')
 Hyper = spoon.Hyper
              :start(Config)
              :setHyperKey('F19')
+
+-- provide the ability to override config per computer
+if (hs.fs.displayName('./localConfig.lua')) then
+  require('localConfig')
+end
 
 Movewindows = require('movewindows')
 Movewindows.start()
