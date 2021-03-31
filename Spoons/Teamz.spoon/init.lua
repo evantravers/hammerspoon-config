@@ -83,7 +83,7 @@ end
 --- Teamz.callWindow() -> table
 --- Method
 --- Returns the hs.window that is most likely going to be the window with the
---- video call in it. I usually wind up using Teamz:callWindow():focus()
+--- video call in it. I usually wind up using Teamz.callWindow():focus()
 ---
 --- Returns:
 ---  * hs.window
@@ -98,6 +98,13 @@ function m.callWindow()
   end)
 end
 
+--- Teamz.chatWindow() -> table
+--- Method
+--- Returns the first window launched in Teams. I use it combined with a
+--- hs.hotkey binding and hs.window:focus to jump to chat.
+---
+--- Returns:
+---  * hs.window
 function m.chatWindow()
   checkAttachment()
 
