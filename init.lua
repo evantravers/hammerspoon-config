@@ -27,14 +27,14 @@ require('spaces/play')
 require('spaces/weekly_review')
 require('spaces/shutdown')
 
-Hyper = spoon.Hyper
-             :start(Config)
-             :setHyperKey('F19')
-
 -- provide the ability to override config per computer
 if (hs.fs.displayName('./localConfig.lua')) then
   require('localConfig')
 end
+
+Hyper = spoon.Hyper
+             :start(Config)
+             :setHyperKey('F19')
 
 Movewindows = require('movewindows')
 Movewindows.start()
