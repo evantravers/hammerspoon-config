@@ -52,6 +52,7 @@ end
 
 local function checkAttachment()
   if m.app == nil then
+    hs.application.launchOrFocusByBundleID('com.microsoft.teams')
     m.app = hs.application.find('com.microsoft.teams')
   end
 
