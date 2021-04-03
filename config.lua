@@ -122,6 +122,10 @@ return {
       bundleID = 'com.valvesoftware.steam',
       tags = {'distraction'}
     },
+    ['net.battle.app'] = {
+      bundleID = 'net.battle.app',
+      tags = {'distraction'}
+    },
     ['com.spotify.client'] = {
       bundleID = 'com.spotify.client'
     },
