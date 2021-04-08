@@ -9,7 +9,7 @@ table.insert(Config.spaces, {
 
 Config.funcs.shallow = {
   setup = function()
-    hs.urlevent.openURL("things:///show?id=anytime&filter=@ProctorU,$Low")
+    hs.urlevent.openURL("things:///show?id=anytime&filter=@Meazure%20Learning,$Low")
   end,
   teardown = function()
     hs.urlevent.openURL("things:///show?id=today")

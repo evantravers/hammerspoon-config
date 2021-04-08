@@ -10,7 +10,7 @@ table.insert(Config.spaces, {
 
 Config.funcs.deep = {
   setup = function()
-    hs.urlevent.openURL("things:///show?id=anytime&filter=@ProctorU,$High")
+    hs.urlevent.openURL("things:///show?id=anytime&filter=@Meazure%20Learning,$High")
   end,
   teardown = function()
     hs.urlevent.openURL("things:///show?id=today")

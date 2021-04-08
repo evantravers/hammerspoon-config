@@ -201,7 +201,7 @@ Config.funcs.weeklyreview = {
           "type": "to-do",
           "attributes": {
             "title": "Schedule in the most important task for the day.",
-            "notes": "Using Upcoming, schedule the important task for the day. things:///show?id=upcoming&filter=%40ProctorU%2CEstimates"
+            "notes": "Using Upcoming, schedule the important task for the day. things:///show?id=upcoming&filter=%40Meazure%20Learning%2CEstimates"
           }
         },
         {
