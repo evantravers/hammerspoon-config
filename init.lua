@@ -5,7 +5,8 @@ hs.loadSpoon('Hyper')
 hs.loadSpoon('Headspace')
 hs.loadSpoon('Teamz'):start()
 
-Config = require('config')
+Config = {}
+Config.applications = require('configApplications')
 
 -- configure spaces for headspace
 Config.spaces = {}
