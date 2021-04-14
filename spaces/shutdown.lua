@@ -7,7 +7,6 @@ table.insert(Config.spaces, {
 Config.funcs.shutdown = {
   setup = function()
     spoon.Headspace.stopToggl()
-    hs.settings.clear("headspace")
 
     -- shut down everything
     hs.fnutils.map(Config.applications, function(app)
