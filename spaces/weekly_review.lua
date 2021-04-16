@@ -26,7 +26,7 @@ Config.funcs.weeklyreview = {
           "operation": "create",
           "attributes": {
             "title": `Weekly Review: ${datestamp}` ,
-            "notes": `obsidian://open?vault=wiki&file=weeklyreview%2F${datestamp}`,
+            "notes": `obsidian://new?vault=wiki&file=journal%2Fweekly%2F${datestamp}`,
             "tags": ["Rituals: Weekly"],
             "when": "today",
             "items": [
