@@ -8,8 +8,9 @@ table.insert(Config.spaces, {
   launch = {'planning'},
   blacklist = {'distraction', 'communication'},
   layouts = {
-    {"Things", "Inbox", hs.screen.primaryScreen():name(), hs.layout.left70, 0, 0},
-    {"Things", "Today", hs.screen.primaryScreen():name(), hs.layout.right30, 0, 0}
+    {"Things", nil, hs.screen.primaryScreen():name(), hs.layout.left70, 0, 0},
+    {"Things", "Today", hs.screen.primaryScreen():name(), hs.layout.right30, 0, 0},
+    {"Things", "Weekly Review", hs.screen.primaryScreen():name(), hs.layout.right30, 0, 0}
   }
 })
 
