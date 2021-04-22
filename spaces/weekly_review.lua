@@ -22,12 +22,23 @@ Config.funcs.weeklyreview = {
         let d = new Date();
         let datestamp = `${d.getFullYear()}-${((d.getMonth()+1).toString()).padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
 
+        Date.prototype.getWeek = function() {
+          var date = new Date(this.getTime());
+          date.setHours(0, 0, 0, 0);
+          // Thursday in current week decides the year.
+          date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+          // January 4 is always in week 1.
+          var week1 = new Date(date.getFullYear(), 0, 4);
+          // Adjust to Thursday in week 1 and count number of weeks from date to week1.
+          return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+        }
+
         let review_proj = {
           "type": "project",
           "operation": "create",
           "attributes": {
             "title": `Weekly Review: ${datestamp}` ,
-            "notes": `obsidian://new?vault=wiki&file=journal%2Fweekly%2F${datestamp}`,
+            "notes": `obsidian://new?vault=wiki&file=journal%2Fweekly%2F${d.getFullYear().toString()}-W${d.getWeek().toString().padStart(2, '0')}`,
             "tags": ["Rituals: Weekly"],
             "when": "today",
             "items": [
