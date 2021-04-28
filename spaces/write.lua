@@ -6,7 +6,7 @@ table.insert(Config.spaces, {
   whitelist = {'writing'},
   launch = {'writing'},
   funcs = 'distractionless_writing',
-  requireIntent = true
+  intentRequired = true
 })
 
 Config.funcs.distractionless_writing = {
