@@ -242,7 +242,6 @@ Config.funcs.weeklyreview = {
     if ok then
       hs.urlevent.openURL(url)
     else
-      print(result)
       print("something wrong with the jxa to build a review project.")
     end
 
