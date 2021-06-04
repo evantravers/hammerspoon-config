@@ -58,9 +58,9 @@ local function checkAttachment()
 
   if m.firstWindow == nil then
     local count = 0
-    for k,v in ipairs(m.app:allWindows()) do
+    hs.fnutils.each(m.app:allWindows(), function()
       count = count + 1
-    end
+    end)
 
     -- if there's only one window, that's it
     if count == 1 then
