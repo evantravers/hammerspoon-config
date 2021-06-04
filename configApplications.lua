@@ -97,9 +97,9 @@ return {
     whitelisted = true,
     localBindings = {'x', ';'}
   },
-  ['com.toggl.toggldesktop.TogglDesktop'] = {
-    bundleID = 'com.toggl.toggldesktop.TogglDesktop',
-    localBindings = {'p'}
+  ['com.joehribar.toggl'] = {
+    bundleID = 'com.joehribar.toggl',
+    hyperKey = 'p'
   },
   ['com.ideasoncanvas.mindnode.macos'] = {
     bundleID = 'com.ideasoncanvas.mindnode.macos',
