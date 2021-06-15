@@ -18,6 +18,7 @@ Config.funcs.review = {
     hs.fnutils.imap(things:allWindows(), function(v) v:close() end)
     hs.urlevent.openURL("things:///show?id=today")
     things:selectMenuItem("Hide Sidebar")
+    hs.urlevent.openURL("obsidian://new?vault=wiki&file=journal%2Fdaily%2F" .. os.date("%Y-%m-%d"))
   end,
   teardown = function()
     local things = hs.application.find('com.culturedcode.ThingsMac')
