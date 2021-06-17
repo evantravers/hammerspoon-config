@@ -38,7 +38,7 @@ Config.funcs.weeklyreview = {
           "operation": "create",
           "attributes": {
             "title": `Weekly Review: ${datestamp}` ,
-            "notes": `obsidian://new?vault=wiki&file=journal%2Fweekly%2F${d.getFullYear().toString()}-W${d.getWeek().toString().padStart(2, '0')}`,
+            "notes": "obsidian://advanced-uri?vault=wiki&commandname=Periodic%20Notes%3A%20Open%20weekly%20note",
             "tags": ["Rituals: Weekly"],
             "when": "today",
             "items": [
