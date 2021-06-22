@@ -19,7 +19,7 @@ Config.funcs.weeklyreview = {
     local buildThingsProjectUrl = function()
       return hs.osascript.javascript([[
       (function() {
-        local notes = `Live _coram deo_. Plan this week in the presence of God.
+        let notes = `Live _coram deo_. Plan this week in the presence of God.
 
 obsidian://advanced-uri?vault=wiki&commandname=Periodic%20Notes%3A%20Open%20weekly%20note`
         let d = new Date();
