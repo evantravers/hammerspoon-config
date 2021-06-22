@@ -19,6 +19,9 @@ Config.funcs.weeklyreview = {
     local buildThingsProjectUrl = function()
       return hs.osascript.javascript([[
       (function() {
+        local notes = `Live _coram deo_. Plan this week in the presence of God.
+
+obsidian://advanced-uri?vault=wiki&commandname=Periodic%20Notes%3A%20Open%20weekly%20note`
         let d = new Date();
         let datestamp = `${d.getFullYear()}-${((d.getMonth()+1).toString()).padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
 
@@ -38,7 +41,7 @@ Config.funcs.weeklyreview = {
           "operation": "create",
           "attributes": {
             "title": `Weekly Review: ${datestamp}` ,
-            "notes": "obsidian://advanced-uri?vault=wiki&commandname=Periodic%20Notes%3A%20Open%20weekly%20note",
+            "notes": notes,
             "tags": ["Rituals: Weekly"],
             "when": "today",
             "items": [
@@ -182,6 +185,12 @@ Config.funcs.weeklyreview = {
                     "type": "checklist-item",
                     "attributes": {
                       "title": "Is there a clear 'next action' for this project? (If not, break down your projects or tasks into smaller tasks until there is a clear next action.)"
+                    }
+                  },
+                  {
+                    "type": "checklist-item",
+                    "attributes": {
+                      "title": "How can you serve and surprise in this area?"
                     }
                   }
                   ]
