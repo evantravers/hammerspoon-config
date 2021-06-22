@@ -46,6 +46,13 @@ Config.funcs.weeklyreview = {
             {
               "type": "to-do",
               "attributes": {
+                "title": "🙏: Pray.",
+                "notes": "Ask the Lord for wisdom and clarity on what is important eternally."
+              }
+            },
+            {
+              "type": "to-do",
+              "attributes": {
                 "title": "📓: Review journal."
               }
             },
