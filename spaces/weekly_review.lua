@@ -57,7 +57,7 @@ obsidian://advanced-uri?vault=wiki&commandname=Periodic%20Notes%3A%20Open%20week
             {
               "type": "to-do",
               "attributes": {
-                "title": "📓: Review journal."
+                "title": "📓: Review journal and daily notes."
               }
             },
             {
