@@ -8,8 +8,8 @@ table.insert(Config.spaces, {
   togglDesc = "Review",
   blacklist = {'distraction', 'communication'},
   layouts = {
-    {"Things", "Today", hs.screen.primaryScreen():name(), hs.layout.right50, 0, 0},
-    {"Obsidian", nil, hs.screen.primaryScreen():name(), hs.layout.left50, 0, 0}
+    {"Things", "Today", hs.screen.primaryScreen():name(), hs.layout.right30, 0, 0},
+    {"Obsidian", nil, hs.screen.primaryScreen():name(), hs.layout.left70, 0, 0}
   }
 })
 
