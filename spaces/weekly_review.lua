@@ -187,12 +187,6 @@ obsidian://advanced-uri?vault=wiki&commandname=Periodic%20Notes%3A%20Open%20week
                     "attributes": {
                       "title": "Is there a clear 'next action' for this project? (If not, break down your projects or tasks into smaller tasks until there is a clear next action.)"
                     }
-                  },
-                  {
-                    "type": "checklist-item",
-                    "attributes": {
-                      "title": "How can you serve and surprise in this area?"
-                    }
                   }
                   ]
                 }
@@ -202,6 +196,9 @@ obsidian://advanced-uri?vault=wiki&commandname=Periodic%20Notes%3A%20Open%20week
           }
           review_proj["attributes"]["items"].push(
             { "type": "to-do", "attributes": { "title": "Are your projects in correct priority order?" } },
+          )
+          review_proj["attributes"]["items"].push(
+            { "type": "checklist-item", "attributes": { "title": "How can you serve and surprise in this area?" } }
           )
         }
         review_proj["attributes"]["items"].push(
