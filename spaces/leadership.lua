@@ -13,5 +13,6 @@ table.insert(Config.spaces, {
 Config.funcs.leadership = {
   setup = function()
     hs.urlevent.openURL("obsidian://open?vault=wiki&file=career%2F07%20ProctorU%2FMeazure%20Learning")
+    hs.urlevent.openURL("things:///show?id=FmRoB23gESK4AT8dR2zN4J")
   end
 }
