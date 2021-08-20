@@ -7,7 +7,11 @@ table.insert(Config.spaces, {
   togglProj = Config.projects.leadership,
   intentRequired = true,
   suggestions = hs.settings.get("secrets"),
-  funcs = "leadership"
+  funcs = "leadership",
+  layouts = {
+    {"Obsidian", nil, hs.screen.primaryScreen():name(), hs.layout.left50, 0, 0},
+    {"Things", nil, hs.screen.primaryScreen():name(), hs.layout.right50, 0, 0}
+  }
 })
 
 Config.funcs.leadership = {
