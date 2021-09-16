@@ -4,5 +4,6 @@ table.insert(Config.spaces, {
   image = hs.image.imageFromAppBundle('com.culturedcode.ThingsMac'),
   launch = {'planning'},
   togglProj = Config.projects.shallow,
+  togglDesc = "Morning Prep",
   funcs = 'launch'
 })
