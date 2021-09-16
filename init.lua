@@ -27,6 +27,7 @@ require('spaces/leadership')
 require('spaces/standup')
 require('spaces/play')
 require('spaces/weekly_review')
+require('spaces/start')
 require('spaces/shutdown')
 
 Hyper = spoon.Hyper

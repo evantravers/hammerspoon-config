@@ -9,8 +9,8 @@ Config.funcs.shutdown = {
     spoon.Headspace.stopToggl()
 
     -- shut down everything
-    hs.fnutils.map(Config.applications, function(app)
-      hs.fnutils.map(hs.application.applicationsForBundleID(app.bundleID), function(a) a:kill() end)
+    hs.fnutils.map(hs.application.runningApplications(), function(app)
+      app:kill()
     end)
 
     -- screensaver
