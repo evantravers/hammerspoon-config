@@ -7,3 +7,9 @@ table.insert(Config.spaces, {
   togglDesc = "Morning Prep",
   funcs = 'launch'
 })
+
+Config.funcs.launch = {
+  setup = function()
+    hs.application.launchOrFocusByBundleID("com.toggl.toggldesktop.TogglDesktop")
+  end
+}

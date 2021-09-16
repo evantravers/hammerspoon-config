@@ -9,14 +9,16 @@ Config.funcs.shutdown = {
     spoon.Headspace.stopToggl()
 
     -- shut down everything
-    hs.fnutils.map(hs.application.runningApplications(), function(app)
+    local dockedApplications =
+      hs.fnutils.filter(hs.application.runningApplications(), function(app)
+        return app:kind() == 1
+      end)
+
+    hs.fnutils.map(dockedApplications, function(app)
       app:kill()
     end)
 
     -- screensaver
     hs.caffeinate.startScreensaver()
-  end,
-  teardown = function()
-    hs.application.launchOrFocusByBundleID("com.toggl.toggldesktop.TogglDesktop")
   end
 }
