@@ -12,7 +12,7 @@ table.insert(Config.spaces, {
 
 Config.funcs.agendaFor = {
   setup = function()
-    hs.urlevent.openURL("things:///show?id=anytime&filter=@Meazure%20Learning,!AgendaFor")
+    hs.urlevent.openURL("things:///show?id=anytime&filter=@Meazure%20Learning,People")
   end,
   teardown = function()
     hs.urlevent.openURL("things:///show?id=today")
