@@ -85,3 +85,4 @@ Hyper:bind({}, 'v', nil, function()
 end)
 
 require('browserSnip')
+elgato = require('elgato')
