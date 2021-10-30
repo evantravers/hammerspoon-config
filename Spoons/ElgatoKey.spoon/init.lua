@@ -1,3 +1,6 @@
+--- === Elgato Key Light ===
+--- I wanted to control my Key light depending on whether I'm in a meeting or
+--- not.
 local m = {
   name = "Teamz",
   version = "0.5",
