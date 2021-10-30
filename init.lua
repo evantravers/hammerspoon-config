@@ -4,6 +4,7 @@ local secrets = require('secrets')
 hs.loadSpoon('Hyper')
 hs.loadSpoon('Headspace')
 hs.loadSpoon('Teamz'):start()
+hs.loadSpoon('ElgatoKey'):start()
 
 Config = {}
 Config.applications = require('configApplications')
@@ -85,4 +86,3 @@ Hyper:bind({}, 'v', nil, function()
 end)
 
 require('browserSnip')
-elgato = require('elgato')
