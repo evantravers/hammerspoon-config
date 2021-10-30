@@ -6,6 +6,12 @@ hs.loadSpoon('Headspace')
 hs.loadSpoon('Teamz'):start()
 hs.loadSpoon('ElgatoKey'):start()
 
+IsDocked = function()
+  return hs.fnutils.some(hs.usb.attachedDevices(), function(device)
+    return device.productName == "CalDigit Thunderbolt 3 Audio"
+  end)
+end
+
 Config = {}
 Config.applications = require('configApplications')
 
