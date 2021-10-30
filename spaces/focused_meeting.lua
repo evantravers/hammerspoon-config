@@ -6,6 +6,7 @@ table.insert(Config.spaces, {
   launch = {'calendar'},
   togglProj = Config.projects.focused_meeting,
   intentRequired = true,
+  funcs = 'agendaFor',
   suggestions = hs.settings.get("secrets").focused_meetings
 })
 

@@ -18,6 +18,8 @@ Config.funcs.shutdown = {
       app:kill()
     end)
 
+    spoon.ElgatoKey:off()
+
     -- screensaver
     hs.caffeinate.startScreensaver()
   end
