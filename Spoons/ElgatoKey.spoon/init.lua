@@ -2,7 +2,7 @@
 --- I wanted to control my Key light depending on whether I'm in a meeting or
 --- not.
 local m = {
-  name = "Teamz",
+  name = "Elgato Key Light Controls",
   version = "0.5",
   author = "Evan Travers <evantravers@gmail.com>",
   license = "MIT <https://opensource.org/licenses/MIT>"
