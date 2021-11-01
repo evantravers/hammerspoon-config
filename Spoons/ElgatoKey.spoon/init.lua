@@ -15,8 +15,10 @@ function m:start()
     m.service = service
     service:resolve(function(serviceObj, result)
       if result == "resolved" then
-        m.ip = service:addresses()[1] -- 192.168.1.113
-        m.port = service:port() --9123
+        m.ip = hs.fnutils.find(service:addresses(), function(addr)
+          return addr:match("192.168.1.%d+")
+        end)
+        m.port = service:port()
         browserObject:stop()
       end
     end)
