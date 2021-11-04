@@ -1,24 +1,24 @@
 --- === Elgato Key Light ===
 --- I wanted to control my Key light depending on whether I'm in a meeting or
 --- not.
-local m = {
+local M = {
   name = "Elgato Key Light Controls",
   version = "0.5",
   author = "Evan Travers <evantravers@gmail.com>",
   license = "MIT <https://opensource.org/licenses/MIT>"
 }
 
-function m:start()
+function M:start()
   local browser = hs.bonjour.new()
 
   browser:findServices('_elg._tcp', function(browserObject, domain, advertised, service, terminated)
-    m.service = service
+    M.service = service
     service:resolve(function(serviceObj, result)
       if result == "resolved" then
-        m.ip = hs.fnutils.find(service:addresses(), function(addr)
+        M.ip = hs.fnutils.find(service:addresses(), function(addr)
           return addr:match("%d%d%d.%d%d%d.%d.%d+")
         end)
-        m.port = service:port()
+        M.port = service:port()
         browserObject:stop()
       end
     end)
@@ -28,22 +28,22 @@ function m:start()
 end
 
 local function onOff(i)
-  local status, body, headers = hs.http.get("http://" .. m.ip .. ":" .. m.port .. "/elgato/lights")
-  settings = hs.json.decode(body)
+  local status, body, headers = hs.http.get("http://" .. M.ip .. ":" .. M.port .. "/elgato/lights")
+  local settings = hs.json.decode(body)
   settings.lights[1].on = i
-  local status, response, header = hs.http.doRequest("http://" .. m.ip .. ":" .. m.port .. "/elgato/lights", "PUT", hs.json.encode(settings))
+  local status, response, header = hs.http.doRequest("http://" .. M.ip .. ":" .. M.port .. "/elgato/lights", "PUT", hs.json.encode(settings))
 end
 
-function m:off()
+function M:off()
   onOff(0)
 
   return self
 end
 
-function m:on()
+function M:on()
   onOff(1)
 
   return self
 end
 
-return m
+return M
