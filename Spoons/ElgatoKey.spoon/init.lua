@@ -28,6 +28,10 @@ function M:start()
 end
 
 local function onOff(i)
+  if not M.ip then
+    M:start()
+  end
+
   local status, body, headers = hs.http.get("http://" .. M.ip .. ":" .. M.port .. "/elgato/lights")
   local settings = hs.json.decode(body)
   settings.lights[1].on = i
