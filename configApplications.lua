@@ -50,7 +50,7 @@ return {
   ['com.flexibits.fantastical2.mac'] = {
     bundleID = 'com.flexibits.fantastical2.mac',
     hyperKey = 'y',
-    localBindings = {']'},
+    localBindings = {'/'},
     tags = {'planning', 'review', 'calendar'},
     whitelisted = true,
     layouts = {
@@ -78,7 +78,6 @@ return {
   ['com.tapbots.Tweetbot3Mac'] = {
     bundleID = 'com.tapbots.Tweetbot3Mac',
     tags = {'distraction', 'socialmedia'},
-    localBindings = {'\\'}
   },
   ['com.culturedcode.ThingsMac'] = {
     bundleID = 'com.culturedcode.ThingsMac',
