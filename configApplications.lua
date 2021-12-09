@@ -22,7 +22,6 @@ return {
   },
   ['org.mozilla.firefox'] = {
     bundleID = 'org.mozilla.firefox',
-    hyperKey = 'b',
     layouts = {
       {nil, 1, hs.layout.maximized}
     }
@@ -103,7 +102,6 @@ return {
   ['com.ideasoncanvas.mindnode.macos'] = {
     bundleID = 'com.ideasoncanvas.mindnode.macos',
     tags = {'research'},
-    hyperKey = 'u',
     layouts = {
       {nil, 1, hs.layout.maximized}
     }
@@ -159,5 +157,9 @@ return {
   ['org.whispersystems.signal-desktop'] = {
     bundleID = 'org.whispersystems.signal-desktop',
     tags = {'distraction', 'communication'}
+  },
+  ['com.surteesstudios.Bartender'] = {
+    bundleID = 'com.surteesstudios.Bartender',
+    localBindings = {'b', 'u'}
   }
 }
