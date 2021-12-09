@@ -76,7 +76,7 @@ end)
 Hyper:bind({'option'}, 'q', nil, function()
   local group =
     hs.fnutils.filter(Config.applications, function(app)
-      return app.tags and hs.application.find(app.bundleID) and hs.fnutils.contains(app.tags, "personal")
+      return app.tags and hs.fnutils.contains(app.tags, "personal")
     end)
 
   local choices = {}
@@ -96,6 +96,7 @@ Hyper:bind({'option'}, 'q', nil, function()
       hs.settings.set("group." .. "personal", app.bundleID)
     end
   end)
+  :placeholderText("Choose an application for HYPER+" .. "q")
   :choices(choices)
   :show()
 end)
