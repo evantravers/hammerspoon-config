@@ -69,7 +69,7 @@ return {
   },
   ['com.tinyspeck.slackmacgap'] = {
     bundleID = 'com.tinyspeck.slackmacgap',
-    tags = {'distraction', 'communication'},
+    tags = {'distraction', 'communication', 'personal'},
     layouts = {
       {nil, 2, hs.layout.maximized}
     }
@@ -108,8 +108,7 @@ return {
   },
   ['com.apple.MobileSMS'] = {
     bundleID = 'com.apple.MobileSMS',
-    hyperKey = 'q',
-    tags = {'communication', 'distraction'},
+    tags = {'communication', 'distraction', 'personal'},
     layouts = {
       {nil, 2, hs.layout.right30}
     }
@@ -156,7 +155,7 @@ return {
   },
   ['org.whispersystems.signal-desktop'] = {
     bundleID = 'org.whispersystems.signal-desktop',
-    tags = {'distraction', 'communication'}
+    tags = {'distraction', 'communication', 'personal'}
   },
   ['com.surteesstudios.Bartender'] = {
     bundleID = 'com.surteesstudios.Bartender',
