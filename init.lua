@@ -69,37 +69,38 @@ Hyper:bind({}, 'r', nil, function()
 end)
 Hyper:bind({'shift'}, 'r', nil, function() hs.reload() end)
 
--- Personal chat
-Hyper:bind({}, 'q', nil, function()
-  hs.application.launchOrFocusByBundleID(hs.settings.get("group." .. "personal"))
-end)
-Hyper:bind({'option'}, 'q', nil, function()
-  local group =
-    hs.fnutils.filter(Config.applications, function(app)
-      return app.tags and hs.fnutils.contains(app.tags, "personal")
-    end)
+local hyperGroup = function(key, tag)
+  Hyper:bind({}, key, nil, function()
+    hs.application.launchOrFocusByBundleID(hs.settings.get("group." .. tag))
+  end)
+  Hyper:bind({'option'}, key, nil, function()
+    local group =
+      hs.fnutils.filter(Config.applications, function(app)
+        return app.tags and hs.fnutils.contains(app.tags, tag)
+      end)
 
-  local choices = {}
-  hs.fnutils.each(group, function(app)
-    local a = hs.application.find(app.bundleID)
-    if a then
+    local choices = {}
+    hs.fnutils.each(group, function(app)
       table.insert(choices, {
-        text = a:name(),
+        text = hs.application.nameForBundleID(app.bundleID),
         image = hs.image.imageFromAppBundle(app.bundleID),
         bundleID = app.bundleID
       })
-    end
-  end)
+    end)
 
-  hs.chooser.new(function(app)
-    if app then
-      hs.settings.set("group." .. "personal", app.bundleID)
-    end
+    hs.chooser.new(function(app)
+      if app then
+        hs.settings.set("group." .. tag, app.bundleID)
+      end
+    end)
+    :placeholderText("Choose an application for HYPER+" .. key)
+    :choices(choices)
+    :show()
   end)
-  :placeholderText("Choose an application for HYPER+" .. "q")
-  :choices(choices)
-  :show()
-end)
+end
+
+hyperGroup('q', 'personal')
+hyperGroup('k', 'browsers')
 
 -- Jump to google hangout or zoom
 Hyper:bind({}, 'z', nil, function()

@@ -13,7 +13,7 @@ return {
   },
   ['com.brave.Browser'] = {
     bundleID = 'com.brave.Browser',
-    hyperKey = 'k',
+    tags = {'browsers'},
     layouts = {
       {nil, 1, hs.layout.maximized},
       {"Confluence", 1, hs.layout.maximized},
@@ -22,6 +22,7 @@ return {
   },
   ['org.mozilla.firefox'] = {
     bundleID = 'org.mozilla.firefox',
+    tags = {'browsers'},
     layouts = {
       {nil, 1, hs.layout.maximized}
     }
