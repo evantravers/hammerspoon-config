@@ -92,6 +92,12 @@ local hyperGroup = function(key, tag)
 
     if #choices == 1 then
       local app = choices[1]
+
+      hs.notify.new(nil)
+      :title("Switching hyper+" .. key .. " to " .. hs.application.nameForBundleID(app.bundleID))
+      :contentImage(hs.image.imageFromAppBundle(app.bundleID))
+      :send()
+
       hs.settings.set("group." .. tag, app.bundleID)
       hs.application.launchOrFocusByBundleID(app.bundleID)
     else
@@ -101,7 +107,7 @@ local hyperGroup = function(key, tag)
           hs.application.launchOrFocusByBundleID(app.bundleID)
         end
       end)
-      :placeholderText("Choose an application for HYPER+" .. key .. ":")
+      :placeholderText("Choose an application for hyper+" .. key .. ":")
       :choices(choices)
       :show()
     end
