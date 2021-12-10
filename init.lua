@@ -76,7 +76,9 @@ local hyperGroup = function(key, tag)
   Hyper:bind({'option'}, key, nil, function()
     local group =
       hs.fnutils.filter(Config.applications, function(app)
-        return app.tags and hs.fnutils.contains(app.tags, tag)
+        return app.tags and 
+               hs.fnutils.contains(app.tags, tag) and
+               app.bundleID ~= hs.settings.get("group." .. tag)
       end)
 
     local choices = {}
