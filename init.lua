@@ -76,7 +76,7 @@ local hyperGroup = function(key, tag)
   Hyper:bind({'option'}, key, nil, function()
     local group =
       hs.fnutils.filter(Config.applications, function(app)
-        return app.tags and 
+        return app.tags and
                hs.fnutils.contains(app.tags, tag) and
                app.bundleID ~= hs.settings.get("group." .. tag)
       end)
@@ -90,15 +90,21 @@ local hyperGroup = function(key, tag)
       })
     end)
 
-    hs.chooser.new(function(app)
-      if app then
-        hs.settings.set("group." .. tag, app.bundleID)
-        hs.application.launchOrFocusByBundleID(app.bundleID)
-      end
-    end)
-    :placeholderText("Choose an application for HYPER+" .. key .. ":")
-    :choices(choices)
-    :show()
+    if #choices == 1 then
+      local app = choices[1]
+      hs.settings.set("group." .. tag, app.bundleID)
+      hs.application.launchOrFocusByBundleID(app.bundleID)
+    else
+      hs.chooser.new(function(app)
+        if app then
+          hs.settings.set("group." .. tag, app.bundleID)
+          hs.application.launchOrFocusByBundleID(app.bundleID)
+        end
+      end)
+      :placeholderText("Choose an application for HYPER+" .. key .. ":")
+      :choices(choices)
+      :show()
+    end
   end)
 end
 
