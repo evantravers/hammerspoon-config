@@ -91,9 +91,10 @@ local hyperGroup = function(key, tag)
     hs.chooser.new(function(app)
       if app then
         hs.settings.set("group." .. tag, app.bundleID)
+        hs.application.launchOrFocusByBundleID(app.bundleID)
       end
     end)
-    :placeholderText("Choose an application for HYPER+" .. key)
+    :placeholderText("Choose an application for HYPER+" .. key .. ":")
     :choices(choices)
     :show()
   end)
