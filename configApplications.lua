@@ -34,7 +34,7 @@ return {
   },
   ['com.microsoft.teams'] = {
     bundleID = 'com.microsoft.teams',
-    tags = {'communication'},
+    tags = {'communication', 'chat'},
     layouts = {
       {nil, 2, hs.layout.maximized}
     }
@@ -63,14 +63,14 @@ return {
   },
   ['com.hnc.Discord'] = {
     bundleID = 'com.hnc.Discord',
-    tags = {'distraction'},
+    tags = {'distraction', 'chat'},
     layouts = {
       {nil, 2, hs.layout.maximized}
     }
   },
   ['com.tinyspeck.slackmacgap'] = {
     bundleID = 'com.tinyspeck.slackmacgap',
-    tags = {'distraction', 'communication', 'personal'},
+    tags = {'distraction', 'communication', 'chat'},
     layouts = {
       {nil, 2, hs.layout.maximized}
     }

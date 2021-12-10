@@ -101,6 +101,7 @@ end
 
 hyperGroup('q', 'personal')
 hyperGroup('k', 'browsers')
+hyperGroup('i', 'chat')
 
 -- Jump to google hangout or zoom
 Hyper:bind({}, 'z', nil, function()
