@@ -134,7 +134,6 @@ return {
   },
   ['com.reederapp.5.macOS'] = {
     bundleID = 'com.reederapp.5.macOS',
-    hyperKey = 'n',
     tags = {'distraction'},
     layouts = {
       {nil, 1, hs.layout.maximized}
