@@ -8,6 +8,9 @@ Config.funcs.shutdown = {
   setup = function()
     spoon.Headspace.stopToggl()
 
+    -- turn off DND
+    hs.shortcuts.run("Leave Deep Focus")
+
     -- shut down everything
     local dockedApplications =
       hs.fnutils.filter(hs.application.runningApplications(), function(app)
