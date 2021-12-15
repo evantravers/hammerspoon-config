@@ -11,10 +11,10 @@ table.insert(Config.spaces, {
 Config.funcs.deep = {
   setup = function()
     hs.urlevent.openURL("things:///show?id=anytime&filter=@Meazure%20Learning,$High")
-    hs.urlevent.openURL("shortcuts://run-shortcut?name=Deep%20Focus")
+    hs.shortcuts.run("Deep Focus")
   end,
   teardown = function()
     hs.urlevent.openURL("things:///show?id=today")
-    hs.urlevent.openURL("shortcuts://run-shortcut?name=Leave%20Deep%20Focus")
+    hs.shortcuts.run("Leave Deep Focus")
   end
 }
