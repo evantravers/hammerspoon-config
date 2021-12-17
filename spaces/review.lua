@@ -23,6 +23,8 @@ Config.funcs.review = {
   end,
   teardown = function()
     local things = hs.application.find('com.culturedcode.ThingsMac')
-    things:selectMenuItem("Update with Things Cloud")
+    if things then
+      things:selectMenuItem("Update with Things Cloud")
+    end
   end
 }
