@@ -38,14 +38,23 @@ require('spaces/shutdown')
 
 Hyper = spoon.Hyper
 
+Hyper:bindHotKeys({hyperKey = {{}, 'F19'}})
+
+hs.fnutils.each(Config.applications, function(appConfig)
+  if appConfig.hyperKey then
+    Hyper:bind({}, appConfig.hyperKey, function() hs.application.launchOrFocusByBundleID(appConfig.bundleID) end)
+  end
+  if appConfig.localBindings then
+    hs.fnutils.each(appConfig.localBindings, function(key)
+      Hyper:passThrough(key, appConfig.bundleID)
+    end)
+  end
+end)
+
 -- provide the ability to override config per computer
 if (hs.fs.displayName('./localConfig.lua')) then
   require('localConfig')
 end
-
-Hyper
-:start(Config)
-:setHyperKey('F19')
 
 Movewindows = require('movewindows')
 Movewindows.start()
