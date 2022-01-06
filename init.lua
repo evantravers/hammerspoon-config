@@ -46,7 +46,7 @@ hs.fnutils.each(Config.applications, function(appConfig)
   end
   if appConfig.localBindings then
     hs.fnutils.each(appConfig.localBindings, function(key)
-      Hyper:passThrough(key, appConfig.bundleID)
+      Hyper:bindPassThrough(key, appConfig.bundleID)
     end)
   end
 end)
