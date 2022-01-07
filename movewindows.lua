@@ -10,7 +10,7 @@ local hyper = spoon.Hyper
 function movewindows:entered()
   movewindows.isOpen = true
   movewindows.alertUuids = hs.fnutils.map(hs.screen.allScreens(), function(screen)
-    local prompt = string.format("◱ : %s",
+    local prompt = string.format("🖥 : %s",
                                  hs.window.focusedWindow():application():title())
     return hs.alert.show(prompt, hs.alert.defaultStyle, screen, true)
   end)
