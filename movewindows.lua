@@ -3,9 +3,13 @@
 hs.loadSpoon('Split')
 
 local movewindows = hs.hotkey.modal.new()
+movewindows.isOpen = false
+
+local hyper = spoon.Hyper
 
 function movewindows:entered()
-  alertUuids = hs.fnutils.map(hs.screen.allScreens(), function(screen)
+  movewindows.isOpen = true
+  movewindows.alertUuids = hs.fnutils.map(hs.screen.allScreens(), function(screen)
     local prompt = string.format("◱ : %s",
                                  hs.window.focusedWindow():application():title())
     return hs.alert.show(prompt, hs.alert.defaultStyle, screen, true)
@@ -13,7 +17,8 @@ function movewindows:entered()
 end
 
 function movewindows:exited()
-  hs.fnutils.ieach(alertUuids, function(uuid)
+  movewindows.isOpen = false
+  hs.fnutils.ieach(movewindows.alertUuids, function(uuid)
     hs.alert.closeSpecific(uuid)
   end)
 end
@@ -35,11 +40,18 @@ movewindows.grid = {
   { key='space', unit=hs.layout.maximized },
 }
 
-movewindows.start = function()
-  local hyper = spoon.Hyper
+function movewindows:toggle()
+  if movewindows.isOpen then
+    movewindows:exit()
+  else
+    movewindows:enter()
+  end
+end
+
+function movewindows:start()
   hs.window.animationDuration = 0
 
-  hyper:bind({}, 'm', nil, function() movewindows:enter() end)
+  hyper:bind({}, 'm', nil, function() movewindows:toggle() end)
 
   hs.fnutils.each(movewindows.grid, function(entry)
     movewindows:bind('shift', entry.key, function()

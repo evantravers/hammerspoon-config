@@ -57,7 +57,7 @@ if (hs.fs.displayName('./localConfig.lua')) then
 end
 
 Movewindows = require('movewindows')
-Movewindows.start()
+Movewindows:start()
 
 local autolayout = require('autolayout')
       autolayout.start(Config)
