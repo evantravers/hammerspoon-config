@@ -39,7 +39,9 @@ Moved to [https://github.com/evantravers/headspace.spoon](https://github.com/eva
 
 My personal bindings for a Moom.app like interface for moving windows around.
 
-- One interesting binding for auto splitting an reference application, moved out to [https://github.com/evantravers/split.spoon](https://github.com/evantravers/split.spoon)
+Moved to [https://github.com/evantravers/MoveWindows.spoon/](https://github.com/evantravers/MoveWindows.spoon/)
+
+One interesting binding for auto splitting an reference application, moved out to [https://github.com/evantravers/split.spoon](https://github.com/evantravers/split.spoon)
 
 ### Secrets
 
