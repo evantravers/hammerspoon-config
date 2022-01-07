@@ -7,3 +7,6 @@
 [submodule "Spoons/Headspace.spoon"]
 	path = Spoons/Headspace.spoon
 	url = git@github.com:evantravers/Headspace.spoon.git
+[submodule "Spoons/MoveWindows.spoon"]
+	path = Spoons/MoveWindows.spoon
+	url = https://github.com/evantravers/MoveWindows.spoon
