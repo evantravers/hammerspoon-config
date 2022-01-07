@@ -5,6 +5,7 @@ hs.loadSpoon('Hyper')
 hs.loadSpoon('Headspace')
 hs.loadSpoon('Teamz'):start()
 hs.loadSpoon('ElgatoKey'):start()
+hs.loadSpoon('MoveWindows')
 
 IsDocked = function()
   return hs.fnutils.some(hs.usb.attachedDevices(), function(device)
@@ -56,8 +57,31 @@ if (hs.fs.displayName('./localConfig.lua')) then
   require('localConfig')
 end
 
-Movewindows = require('movewindows')
-Movewindows:start()
+MoveWindows = spoon.MoveWindows
+MoveWindows
+  :start()
+  :bind('', ',', function()
+    hs.window.focusedWindow()
+      :application()
+      :selectMenuItem("Tile Window to Left of Screen")
+    MoveWindows:exit()
+  end)
+  :bind('', '.', function()
+    hs.window.focusedWindow()
+      :application()
+      :selectMenuItem("Tile Window to Right of Screen")
+    MoveWindows:exit()
+  end)
+  :bind('', 'v', function()
+    spoon.Split.split()
+    MoveWindows:exit()
+  end)
+  :bind('', 'tab', function ()
+    hs.window.focusedWindow():centerOnScreen()
+    MoveWindows:exit()
+  end)
+
+Hyper:bind({}, 'm', function() MoveWindows:toggle() end)
 
 local autolayout = require('autolayout')
       autolayout.start(Config)
