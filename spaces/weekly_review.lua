@@ -226,18 +226,6 @@ obsidian://advanced-uri?vault=wiki&commandname=Periodic%20Notes%3A%20Open%20week
             "title": "Schedule in the most important task for the day.",
             "notes": "Using Upcoming, schedule the important task for the day. things:///show?id=upcoming&filter=%40Meazure%20Learning%2CEstimates"
           }
-        },
-        {
-          "type": "to-do",
-          "attributes": {
-            "title": "🖊: Build spread for next week"
-          }
-        },
-        {
-          "type": "to-do",
-          "attributes": {
-            "title": "⭐️: Set Goals in BuJo. What is essential for next week?"
-          }
         }
         )
         let json = JSON.stringify([review_proj]);
