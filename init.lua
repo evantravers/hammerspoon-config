@@ -59,6 +59,7 @@ if (hs.fs.displayName('./localConfig.lua')) then
 end
 
 MoveWindows = spoon.MoveWindows
+hs.window.highlight.ui.overlay = true
 MoveWindows
   :start()
   :bind('', ',', function()
