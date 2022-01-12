@@ -25,19 +25,11 @@ To install: `git clone git@github.com:evantravers/hammerspoon-config.git ~/.hamm
 
 Moved to [https://github.com/evantravers/Hyper.spoon](https://github.com/evantravers/Hyper.spoon)
 
-- Provides a modal layer for the other plugins, based on F19.
-- Supports holding mods with your hyper, unlike most hyper solutions.
-- Launch/focus an app.
-- Allows an application to use "hyper shortcuts" by passing on
-  ⌘+⌥+⌃+⇧+&lt;char&gt;.
-
 ### Headspace
 
 Moved to [https://github.com/evantravers/headspace.spoon](https://github.com/evantravers/headspace.spoon)
 
 ### Movewindows
-
-My personal bindings for a Moom.app like interface for moving windows around.
 
 Moved to [https://github.com/evantravers/MoveWindows.spoon/](https://github.com/evantravers/MoveWindows.spoon/)
 
@@ -47,3 +39,7 @@ One interesting binding for auto splitting an reference application, moved out t
 
 Simple loading of API keys or secret variables into `hs.settings` via
 `hs.json`.
+
+### Browsersnip
+
+Quickly snipping ZK-style notes from browsers into Drafts.app

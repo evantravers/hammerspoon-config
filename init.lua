@@ -7,6 +7,7 @@ hs.loadSpoon('Teamz'):start()
 hs.loadSpoon('ElgatoKey'):start()
 hs.loadSpoon('MoveWindows')
 hs.loadSpoon('Split')
+hs.loadSpoon('AutoLayout')
 
 IsDocked = function()
   return hs.fnutils.some(hs.usb.attachedDevices(), function(device)
@@ -85,8 +86,8 @@ MoveWindows
 
 Hyper:bind({}, 'm', function() MoveWindows:toggle() end)
 
-local autolayout = require('autolayout')
-      autolayout.start(Config)
+local autolayout = spoon.AutoLayout
+      autolayout:start(Config)
       Hyper:bind({}, 'return', nil, autolayout.autoLayout)
 
 local brave = require('brave')
@@ -158,7 +159,10 @@ Hyper:bind({}, 'z', nil, function()
   if hs.application.find('us.zoom.xos') then
     hs.application.launchOrFocusByBundleID('us.zoom.xos')
   elseif hs.application.find('com.microsoft.teams') then
-    spoon.Teamz.callWindow():focus()
+    local call = spoon.Teamz.callWindow()
+    if call then
+      call:focus()
+    end
   else
     brave.jump("meet.google.com|hangouts.google.com.call")
   end
