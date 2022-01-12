@@ -87,8 +87,33 @@ MoveWindows
 Hyper:bind({}, 'm', function() MoveWindows:toggle() end)
 
 local autolayout = spoon.AutoLayout
-      autolayout:start(Config)
-      Hyper:bind({}, 'return', nil, autolayout.autoLayout)
+
+local layouts = {}
+-- build a table of layouts for AutoLayout from Config
+hs.fnutils.map(Config.applications, function(app_config)
+  local bundleID = app_config['bundleID']
+  if app_config.layouts then
+    hs.fnutils.map(app_config.layouts, function(rule)
+      local title_pattern, screen, layout = rule[1], rule[2], rule[3]
+      table.insert(layouts,
+        {
+          hs.application.get(bundleID),   -- application name
+          title_pattern,                  -- window title
+          autolayout.whichScreen(screen), -- screen
+          layout,                         -- layout
+          nil,
+          nil
+        }
+      )
+    end)
+  end
+end)
+
+autolayout
+:setLayouts(layouts)
+:start()
+
+Hyper:bind({}, 'return', nil, autolayout.autoLayout)
 
 local brave = require('brave')
       brave.start(Config)
