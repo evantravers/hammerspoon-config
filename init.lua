@@ -110,7 +110,7 @@ hs.fnutils.map(Config.applications, function(app_config)
 end)
 
 autolayout
-:setLayouts(layouts)
+:setDefault(layouts)
 :start()
 
 Hyper:bind({}, 'return', nil, autolayout.autoLayout)
