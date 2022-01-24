@@ -204,4 +204,54 @@ Hyper:bind({}, 'v', nil, function()
   end
 end)
 
+Hyper:bind({}, 'p', nil, function()
+  local _success, projects, _output = hs.osascript.javascript([[
+    (function() {
+      var Things = Application("Things");
+      var divider = /## Resources/;
+
+      Things.launch();
+
+      let getUrls = function(proj) {
+        if (proj.notes() && proj.notes().match(divider)) {
+          return proj.notes()
+                     .split(divider)[1]
+                     .replace(divider, "")
+                     .split("\n")
+                     .map(str => str.replace(/^- /, ""))
+                     .filter(s => s != "")
+        }
+        else {
+          return false;
+        }
+      }
+
+      let projects =
+        Things
+        .projects()
+        .filter(t => t.status() == "open")
+        .map(function(proj) {
+          return {
+            text: proj.name(),
+            subText: proj.area().name(),
+            urls: getUrls(proj)
+          }
+        })
+        .filter(function(proj) {
+          return proj.urls
+        });
+
+      return projects;
+    })();
+  ]])
+
+  hs.chooser.new(function(choice)
+    print(hs.inspect(choice.urls))
+    hs.fnutils.each(choice.urls, hs.urlevent.openURL)
+  end)
+  :placeholderText("Choose a project…")
+  :choices(projects)
+  :show()
+end)
+
 require('browserSnip')

@@ -98,7 +98,7 @@ return {
   },
   ['com.joehribar.toggl'] = {
     bundleID = 'com.joehribar.toggl',
-    hyperKey = 'p'
+    hyperKey = 'n'
   },
   ['com.ideasoncanvas.mindnode.macos'] = {
     bundleID = 'com.ideasoncanvas.mindnode.macos',
