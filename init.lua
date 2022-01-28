@@ -234,7 +234,8 @@ Hyper:bind({}, 'p', nil, function()
           return {
             text: proj.name(),
             subText: proj.area().name(),
-            urls: getUrls(proj)
+            urls: getUrls(proj),
+            id: proj.id()
           }
         })
         .filter(function(proj) {
@@ -246,8 +247,8 @@ Hyper:bind({}, 'p', nil, function()
   ]])
 
   hs.chooser.new(function(choice)
-    print(hs.inspect(choice.urls))
     hs.fnutils.each(choice.urls, hs.urlevent.openURL)
+    hs.urlevent.openURL("things:///show?id=" .. choice.id)
   end)
   :placeholderText("Choose a project…")
   :choices(projects)
