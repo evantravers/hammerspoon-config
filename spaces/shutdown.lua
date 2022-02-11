@@ -21,7 +21,7 @@ Config.funcs.shutdown = {
       app:kill()
     end)
 
-    if IsDocked() then
+    if IsDocked() and spoon.ElgatoKey.ip then
       spoon.ElgatoKey:off()
     end
 
