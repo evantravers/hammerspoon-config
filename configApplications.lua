@@ -27,6 +27,13 @@ return {
       {nil, 1, hs.layout.maximized}
     }
   },
+  ['com.apple.Safari'] = {
+    bundleID = 'com.apple.Safari',
+    tags = {'browsers'},
+    layouts = {
+      {nil, 1, hs.layout.maximized}
+    }
+  },
   ['com.kapeli.dashdoc'] = {
     bundleID = 'com.kapeli.dashdoc',
     hyperKey = 'h',
