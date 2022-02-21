@@ -85,12 +85,20 @@ MoveWindows
   end)
   :bind('', 'd', function()
     -- demo mode!
-    hs.shortcuts.run("DND On")
-    local demo = hs.window.focusedWindow()
-    hs.fnutils.map(demo:otherWindowsSameScreen(), function(win)
-      win:minimize()
-    end)
-    demo:centerOnScreen()
+    if MoveWindows.demo then
+      hs.execute("defaults write com.apple.finder CreateDesktop -bool true; killall Finder")
+      hs.shortcuts.run("DND Off")
+      MoveWindows.demo = false
+    else
+      hs.shortcuts.run("DND On")
+      local demo = hs.window.focusedWindow()
+      hs.execute("defaults write com.apple.finder CreateDesktop -bool false; killAll Finder")
+      hs.fnutils.map(demo:otherWindowsSameScreen(), function(win)
+        win:minimize()
+      end)
+      demo:centerOnScreen()
+      MoveWindows.demo = true
+    end
     MoveWindows:exit()
   end)
 
