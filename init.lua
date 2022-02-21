@@ -83,6 +83,16 @@ MoveWindows
     hs.window.focusedWindow():centerOnScreen()
     MoveWindows:exit()
   end)
+  :bind('', 'd', function()
+    -- demo mode!
+    hs.shortcuts.run("DND On")
+    local demo = hs.window.focusedWindow()
+    hs.fnutils.map(demo:otherWindowsSameScreen(), function(win)
+      win:minimize()
+    end)
+    demo:centerOnScreen()
+    MoveWindows:exit()
+  end)
 
 Hyper:bind({}, 'm', function() MoveWindows:toggle() end)
 
