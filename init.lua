@@ -115,10 +115,10 @@ hs.fnutils.map(Config.applications, function(app_config)
       local title_pattern, screen, layout = rule[1], rule[2], rule[3]
       table.insert(layouts,
         {
-          hs.application.get(bundleID),   -- application name
-          title_pattern,                  -- window title
-          autolayout.whichScreen(screen), -- screen
-          layout,                         -- layout
+          hs.application.get(bundleID),                  -- application name
+          title_pattern,                                 -- window title
+          function() autolayout.whichScreen(screen) end, -- screen
+          layout,                                        -- layout
           nil,
           nil
         }
