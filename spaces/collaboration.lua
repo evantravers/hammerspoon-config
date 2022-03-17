@@ -14,14 +14,14 @@ Config.funcs.agendaFor = {
   setup = function()
     hs.urlevent.openURL("things:///show?id=anytime&filter=@Meazure%20Learning,People")
 
-    if IsDocked() then
+    if IsDocked() and spoon.ElgatoKey.ip then
       spoon.ElgatoKey:on()
     end
   end,
   teardown = function()
     hs.urlevent.openURL("things:///show?id=today")
 
-    if IsDocked() then
+    if IsDocked() and spoon.ElgatoKey.ip then
       spoon.ElgatoKey:off()
     end
   end
