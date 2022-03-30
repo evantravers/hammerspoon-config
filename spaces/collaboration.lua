@@ -12,6 +12,7 @@ table.insert(Config.spaces, {
 
 Config.funcs.agendaFor = {
   setup = function()
+    hs.shortcuts.run("DND On")
     hs.urlevent.openURL("things:///show?id=anytime&filter=@Meazure%20Learning,People")
 
     if IsDocked() and spoon.ElgatoKey.ip then
@@ -19,6 +20,7 @@ Config.funcs.agendaFor = {
     end
   end,
   teardown = function()
+    hs.shortcuts.run("DND Off")
     hs.urlevent.openURL("things:///show?id=today")
 
     if IsDocked() and spoon.ElgatoKey.ip then
