@@ -1,5 +1,5 @@
 table.insert(Config.spaces, {
-  text = "Write",
+  text = "Hemingway",
   subText = "You are allowed to do anything you want, as long as you write.",
   image = hs.image.imageFromAppBundle('com.agiletortoise.Drafts-OSX'),
   togglProj = Config.projects.deep,
