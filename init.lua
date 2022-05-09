@@ -215,6 +215,8 @@ end)
 Hyper:bind({}, 'v', nil, function()
   if hs.application.find('com.figma.Desktop') then
     hs.application.launchOrFocusByBundleID('com.figma.Desktop')
+  if hs.application.find('com.electron.realtimeboard') then
+    hs.application.launchOrFocusByBundleID('com.electron.realtimeboard')
   elseif hs.application.find('com.adobe.LightroomClassicCC7') then
     hs.application.launchOrFocusByBundleID('com.adobe.LightroomClassicCC7')
   else
