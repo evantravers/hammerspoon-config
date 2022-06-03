@@ -22,7 +22,7 @@ Config.funcs.weeklyreview = {
       (function() {
         let notes = `Live _coram deo_. Plan this week in the presence of God.
 
-obsidian://advanced-uri?vault=wiki&commandname=Periodic%20Notes%3A%20Open%20weekly%20note`
+obsidian://open?vault=wiki&file=templates%2Frituals%2FWeekly%20Review`
         let d = new Date();
         let datestamp = `${d.getFullYear()}-${((d.getMonth()+1).toString()).padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
 
@@ -45,65 +45,7 @@ obsidian://advanced-uri?vault=wiki&commandname=Periodic%20Notes%3A%20Open%20week
             "notes": notes,
             "tags": ["Rituals: Weekly"],
             "when": "today",
-            "items": [
-            { "type": "heading", "attributes": { "title": "📓 Prep" } },
-            {
-              "type": "to-do",
-              "attributes": {
-                "title": "🙏: Pray.",
-                "notes": "Ask the Lord for wisdom and clarity on what is important eternally."
-              }
-            },
-            {
-              "type": "to-do",
-              "attributes": {
-                "title": "📓: Review journal and daily notes."
-              }
-            },
-            {
-              "type": "to-do",
-              "attributes": {
-                "title": "✅: What did you accomplish?",
-                "notes": "things:///show?id=logbook"
-              }
-            },
-            {
-              "type": "to-do",
-              "attributes": {
-                "title": "💭: What can you learn from last week?"
-              }
-            },
-            {
-              "type": "to-do",
-              "attributes": {
-                "title": "Do a brain dump. Add any tasks or projects you come up with to the Things inbox."
-              }
-            },
-            {
-              "type": "to-do",
-              "attributes": {
-                "title": "Process your physical inbox. Create tasks in Things for each item in your physical inbox that you want to take action on."
-              }
-            },
-            {
-              "type": "to-do",
-              "attributes": {
-                "title": "Process your email inbox. Use Mail to Things to forward emails you need or want to take action on to your Things inbox."
-              }
-            },
-            {
-              "type": "to-do",
-              "attributes": {
-                "title": "Process your Things inbox. Assign each task to an area or to a project. Tag appropriately. (:estimate, $focus, !categorize, priority)"
-              }
-            },
-            {
-              "type": "to-do",
-              "attributes": {
-                "title": "Go through each of your projects. Use the checklists below."
-              }
-            },
-            ]
+            "items": []
           },
         };
 
@@ -204,30 +146,6 @@ obsidian://advanced-uri?vault=wiki&commandname=Periodic%20Notes%3A%20Open%20week
             { "type": "to-do", "attributes": { "title": "Are your projects in correct priority order?" } },
           )
         }
-        review_proj["attributes"]["items"].push(
-        { "type": "heading", "attributes": { "title": "📅 Plan" } },
-        {
-          "type": "to-do",
-          "attributes": {
-            "title": "Look ahead at the week.",
-            "notes": "Using Deadlines and Upcoming, examine the week and month to find tasks that need to be done, and space them out through the week."
-          }
-        },
-        {
-          "type": "to-do",
-          "attributes": {
-            "title": "Make time for important work.",
-            "notes": "Create 4 hour strategic blocks and identify some buffer blocks."
-          }
-        },
-        {
-          "type": "to-do",
-          "attributes": {
-            "title": "Schedule in the most important task for the day.",
-            "notes": "Using Upcoming, schedule the important task for the day. things:///show?id=upcoming&filter=%40Meazure%20Learning%2CEstimates"
-          }
-        }
-        )
         let json = JSON.stringify([review_proj]);
         let url = "things:///json?data=" + encodeURIComponent(json)
                                              .replace("(", "%28")
