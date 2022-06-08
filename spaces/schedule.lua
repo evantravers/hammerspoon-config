@@ -1,6 +1,6 @@
 table.insert(Config.spaces, {
-  text = "Schedule",
-  subText = "Setup Things 3 and Fantastical for Focus Budget or Week Planning",
+  text = "Time Block",
+  subText = "Schedule tasks into your day.",
   image = hs.image.imageFromAppBundle('com.flexibits.fantastical2.mac'),
   funcs = 'focus_budget',
   launch = {'planning'},
