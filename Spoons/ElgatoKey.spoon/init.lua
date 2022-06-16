@@ -9,20 +9,19 @@ local M = {
 }
 
 function M:start()
-  M.cache = {}
-  M:findServices()
+  M.findServices()
 
   return self
 end
 
-function M:findServices()
+function M.findServices()
   local browser = hs.bonjour.new()
+  M.cache = {}
 
   browser:findServices('_elg._tcp', function(browserObject, domain, advertised, service, terminated)
     M.service = service
     service:resolve(function(serviceObj, result)
       if result == "resolved" then
-        print("yey")
         M.cache.ip = service:addresses()[1]
         M.cache.port = service:port()
         browserObject:stop()
@@ -33,7 +32,7 @@ function M:findServices()
   end)
 end
 
-function M:ip()
+function M.ip()
   if M.cache.ip then
     return M.cache.ip
   else
@@ -41,7 +40,7 @@ function M:ip()
   end
 end
 
-function M:port()
+function M.port()
   if M.cache.port then
     return M.cache.port
   else
@@ -50,10 +49,10 @@ function M:port()
 end
 
 local function onOff(i)
-  local status, body, headers = hs.http.get("http://" .. M:ip() .. ":" .. M:port() .. "/elgato/lights")
+  local status, body, headers = hs.http.get("http://" .. M.ip() .. ":" .. M.port() .. "/elgato/lights")
   local settings = hs.json.decode(body)
   settings.lights[1].on = i
-  local status, response, header = hs.http.doRequest("http://" .. M.ip() .. ":" .. M:port() .. "/elgato/lights", "PUT", hs.json.encode(settings))
+  local status, response, header = hs.http.doRequest("http://" .. M.ip() .. ":" .. M.port() .. "/elgato/lights", "PUT", hs.json.encode(settings))
 end
 
 function M:off()
