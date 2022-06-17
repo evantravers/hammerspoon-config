@@ -88,9 +88,11 @@ MoveWindows
     if MoveWindows.demo then
       hs.execute("defaults write com.apple.finder CreateDesktop -bool true; killall Finder")
       hs.shortcuts.run("DND Off")
+      spoon.ElgatoKey.off()
       MoveWindows.demo = false
     else
       hs.shortcuts.run("DND On")
+      spoon.ElgatoKey.on()
       local demo = hs.window.focusedWindow()
       hs.execute("defaults write com.apple.finder CreateDesktop -bool false; killAll Finder")
       hs.fnutils.map(demo:otherWindowsSameScreen(), function(win)
