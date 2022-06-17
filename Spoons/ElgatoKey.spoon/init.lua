@@ -22,7 +22,7 @@ function M.findServices()
     M.service = service
     service:resolve(function(serviceObj, result)
       if result == "resolved" then
-        M.cache.ip = service:addresses()[1]
+        M.cache.ip   = service:addresses()[1]
         M.cache.port = service:port()
         browserObject:stop()
 
@@ -50,7 +50,7 @@ end
 
 local function onOff(i)
   local status, body, headers = hs.http.get("http://" .. M.ip() .. ":" .. M.port() .. "/elgato/lights")
-  local settings = hs.json.decode(body)
+  local settings        = hs.json.decode(body)
   settings.lights[1].on = i
   local status, response, header = hs.http.doRequest("http://" .. M.ip() .. ":" .. M.port() .. "/elgato/lights", "PUT", hs.json.encode(settings))
 end
