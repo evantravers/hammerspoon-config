@@ -36,7 +36,7 @@ function M.ip()
   if M.cache.ip then
     return M.cache.ip
   else
-    return M:findServices()["ip"]
+    return M.findServices()["ip"]
   end
 end
 
@@ -44,7 +44,7 @@ function M.port()
   if M.cache.port then
     return M.cache.port
   else
-    return M:findServices()["port"]
+    return M.findServices()["port"]
   end
 end
 
