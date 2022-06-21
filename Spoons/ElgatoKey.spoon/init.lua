@@ -67,4 +67,8 @@ function M:on()
   return self
 end
 
+function M.isConnected()
+  return M.cache.ip
+end
+
 return M

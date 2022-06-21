@@ -15,7 +15,7 @@ Config.funcs.agendaFor = {
     hs.shortcuts.run("DND On")
     hs.urlevent.openURL("things:///show?id=anytime&filter=@Meazure%20Learning,People")
 
-    if IsDocked() and spoon.ElgatoKey.ip then
+    if IsDocked() and spoon.ElgatoKey.isConnected() then
       spoon.ElgatoKey:on()
     end
   end,
@@ -23,7 +23,7 @@ Config.funcs.agendaFor = {
     hs.shortcuts.run("DND Off")
     hs.urlevent.openURL("things:///show?id=today")
 
-    if IsDocked() and spoon.ElgatoKey.ip then
+    if IsDocked() and spoon.ElgatoKey.isConnected() then
       spoon.ElgatoKey:off()
     end
   end
