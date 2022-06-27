@@ -14,7 +14,7 @@ table.insert(Config.spaces, {
 
 Config.funcs.review = {
   setup = function()
-    hs.urlevent.openURL("obsidian://advanced-uri?vault=wiki&commandname=Periodic%20Notes%3A%20Open%20daily%20note")
+    hs.urlevent.openURL("obsidian://open?vault=wiki&file=templates%2Frituals%2FWorkday%20Shutdown")
   end,
   teardown = function()
   end
