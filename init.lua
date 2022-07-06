@@ -278,3 +278,5 @@ Hyper:bind({}, 'p', nil, function()
 end)
 
 require('browserSnip')
+
+require('david')
