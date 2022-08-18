@@ -167,5 +167,9 @@ return {
   ['com.surteesstudios.Bartender'] = {
     bundleID = 'com.surteesstudios.Bartender',
     localBindings = {'b', 'u'}
+  },
+  ['com.loom.desktop'] = {
+    bundleID = 'com.loom.desktop',
+    localBindings = {'a'}
   }
 }
