@@ -200,16 +200,29 @@ hyperGroup('k', 'browsers')
 hyperGroup('i', 'chat')
 
 -- Jump to google hangout or zoom
+Z_count = 0
 Hyper:bind({}, 'z', nil, function()
-  if hs.application.find('us.zoom.xos') then
-    hs.application.launchOrFocusByBundleID('us.zoom.xos')
-  elseif hs.application.find('com.microsoft.teams') then
-    local call = spoon.Teamz.callWindow()
-    if call then
-      call:focus()
-    end
+  Z_count = Z_count + 1
+
+  hs.timer.doAfter(1, function()
+    Z_count = 0
+  end)
+
+  if Z_count == 2 then
+    spoon.ElgatoKey:toggle()
   else
-    brave.jump("meet.google.com|hangouts.google.com.call")
+    -- start a timer
+    -- if not pressed again then
+    if hs.application.find('us.zoom.xos') then
+      hs.application.launchOrFocusByBundleID('us.zoom.xos')
+    elseif hs.application.find('com.microsoft.teams') then
+      local call = spoon.Teamz.callWindow()
+      if call then
+        call:focus()
+      end
+    else
+      brave.jump("meet.google.com|hangouts.google.com.call")
+    end
   end
 end)
 
