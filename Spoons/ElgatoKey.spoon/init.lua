@@ -48,11 +48,20 @@ function M.port()
   end
 end
 
-local function onOff(i)
+local function getSettings()
   local status, body, headers = hs.http.get("http://" .. M.ip() .. ":" .. M.port() .. "/elgato/lights")
-  local settings        = hs.json.decode(body)
-  settings.lights[1].on = i
+  return hs.json.decode(body)
+end
+
+local function setSettings(settings)
   local status, response, header = hs.http.doRequest("http://" .. M.ip() .. ":" .. M.port() .. "/elgato/lights", "PUT", hs.json.encode(settings))
+end
+
+local function onOff(i)
+  local settings = getSettings()
+  settings.lights[1].on = i
+
+  setSettings(settings)
 end
 
 function M:off()
@@ -63,6 +72,17 @@ end
 
 function M:on()
   onOff(1)
+
+  return self
+end
+
+function M:toggle()
+  local state = getSettings().lights[1].on
+  if state == 1 then
+    M:off()
+  else
+    M:on()
+  end
 
   return self
 end
