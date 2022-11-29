@@ -1,7 +1,7 @@
 return {
   ['com.runningwithcrayons.Alfred'] = {
     bundleID = 'com.runningwithcrayons.Alfred',
-    localBindings = {'c', 'space', 'o', 'l'}
+    localBindings = {'c', 'space', 'o'}
   },
   ['net.kovidgoyal.kitty'] = {
     bundleID = 'net.kovidgoyal.kitty',
