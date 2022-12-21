@@ -10,6 +10,6 @@ table.insert(Config.spaces, {
 
 Config.funcs.launch = {
   setup = function()
-    hs.application.launchOrFocusByBundleID("com.toggl.toggldesktop.TogglDesktop")
+    hs.application.launchOrFocusByBundleID("com.toggl.daneel")
   end
 }
