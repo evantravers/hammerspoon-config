@@ -170,6 +170,9 @@ return {
   },
   ['com.loom.desktop'] = {
     bundleID = 'com.loom.desktop',
-    localBindings = {'a'}
+  },
+  ['company.thebrowser.Browser'] = {
+    bundleID = 'company.thebrowser.Browser',
+    tags = {'browsers'}
   }
 }
