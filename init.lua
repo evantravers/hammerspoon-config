@@ -204,7 +204,7 @@ Z_count = 0
 Hyper:bind({}, 'z', nil, function()
   Z_count = Z_count + 1
 
-  hs.timer.doAfter(0.5, function()
+  hs.timer.doAfter(0.2, function()
     Z_count = 0
   end)
 
