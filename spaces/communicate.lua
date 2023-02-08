@@ -1,7 +1,7 @@
 table.insert(Config.spaces, {
   text = "Communication",
   subText = "Intentionally engage with Slack and Email.",
-  image = hs.image.imageFromAppBundle('com.tinyspeck.slackmacgap'),
+  image = hs.image.imageFromAppBundle('com.apple.mail'),
   whitelist = {'communication'},
   launch = {'communication'},
   togglProj = Config.projects.communication,
