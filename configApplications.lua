@@ -1,6 +1,6 @@
 return {
-  ['com.runningwithcrayons.Alfred'] = {
-    bundleID = 'com.runningwithcrayons.Alfred',
+  ['com.raycast.macos'] = {
+    bundleID = 'com.raycast.macos',
     localBindings = {'c', 'space', 'o'}
   },
   ['net.kovidgoyal.kitty'] = {
