@@ -7,7 +7,6 @@ hs.loadSpoon('Teamz'):start()
 hs.loadSpoon('ElgatoKey'):start()
 hs.loadSpoon('MoveWindows')
 hs.loadSpoon('Split')
-hs.loadSpoon('AutoLayout')
 
 IsDocked = function()
   return hs.fnutils.some(hs.usb.attachedDevices(), function(device)
@@ -100,35 +99,6 @@ MoveWindows
   end)
 
 Hyper:bind({}, 'm', function() MoveWindows:toggle() end)
-
-local autolayout = spoon.AutoLayout
-
-local layouts = {}
--- build a table of layouts for AutoLayout from Config
-hs.fnutils.map(Config.applications, function(app_config)
-  local bundleID = app_config['bundleID']
-  if app_config.layouts then
-    hs.fnutils.map(app_config.layouts, function(rule)
-      local title_pattern, screen, layout = rule[1], rule[2], rule[3]
-      table.insert(layouts,
-        {
-          hs.application.get(bundleID),                  -- application name
-          title_pattern,                                 -- window title
-          function() autolayout.whichScreen(screen) end, -- screen
-          layout,                                        -- layout
-          nil,
-          nil
-        }
-      )
-    end)
-  end
-end)
-
-autolayout
-:setDefault(layouts)
-:start()
-
-Hyper:bind({}, 'return', nil, autolayout.autoLayout)
 
 local brave = require('brave')
       brave.start(Config)
