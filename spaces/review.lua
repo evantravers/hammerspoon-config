@@ -14,11 +14,8 @@ table.insert(Config.spaces, {
 
 Config.funcs.review = {
   setup = function()
-    hs.urlevent.openURL("obsidian://open?vault=wiki&file=templates%2Frituals%2FWorkday%20Shutdown")
-    hs.urlevent.openURL("obsidian://advanced-uri?vault=wiki&commandid=workspace%253Aclose-others")
-    hs.urlevent.openURL("obsidian://advanced-uri?vault=wiki&commandid=workspace%253Asplit-right")
-    hs.urlevent.openURL("obsidian://advanced-uri?vault=wiki&commandid=editor%253Afocus-right")
-    hs.urlevent.openURL("obsidian://advanced-uri?vault=wiki&commandid=periodic-notes%253Aopen-daily-note")
+    hs.urlevent.openURL("obsidian://open?vault=wiki&file=templates%2Frituals%2FWorkday%20Shutdown&viewmode=preview&openmode=split")
+    hs.urlevent.openURL("obsidian://advanced-uri?vault=wiki&commandid=periodic-notes%253Aopen-daily-note&viewmode=live&openmode=split")
   end,
   teardown = function()
   end
