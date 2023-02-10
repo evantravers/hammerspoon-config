@@ -18,10 +18,23 @@ end
 Config = {}
 Config.applications = require('configApplications')
 
--- configure spaces for headspace
-Config.spaces = {}
-Config.funcs = {}
+-- -- sync tags to OSX
+Config.appsync = function()
+  hs.fnutils.map(Config.applications, function(a)
+    if a["tags"] and a["bundleID"] then
+      local app_path = hs.application.pathForBundleID(a["bundleID"]) -- may not be installed!
+      if app_path then
+        if not a["bundleID"]:find("apple") then
+          print("attempting " .. app_path)
+          print(hs.inspect(a["tags"]))
+          hs.fs.tagsSet(app_path, a["tags"])
+        end
+      end
+    end
+  end)
+end
 
+-- configure spaces for headspace
 Config.spaces = {
   {
     text = "Deep",
