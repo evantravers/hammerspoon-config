@@ -17,7 +17,7 @@ table.insert(Config.spaces, {
 
 Config.funcs.weeklyreview = {
   setup = function()
-    hs.shortcuts.run("Weekly Review")
+    hs.shortcuts.run("Create Weekly Review Project")
 
     local things = hs.application.find('com.culturedcode.ThingsMac')
     hs.fnutils.imap(things:allWindows(), function(v) v:close() end)
