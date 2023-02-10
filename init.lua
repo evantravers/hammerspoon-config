@@ -2,7 +2,7 @@ local secrets = require('secrets')
       secrets.start('.secrets.json')
 
 hs.loadSpoon('Hyper')
-hs.loadSpoon('Headspace')
+hs.loadSpoon('Headspace'):start()
 hs.loadSpoon('Teamz'):start()
 hs.loadSpoon('ElgatoKey'):start()
 hs.loadSpoon('MoveWindows')
@@ -33,36 +33,6 @@ Config.appsync = function()
     end
   end)
 end
-
--- configure spaces for headspace
-Config.spaces = {
-  {
-    text = "Deep",
-    blacklist = {'distraction', 'communication'},
-  },
-  {
-    text = "Shallow",
-  },
-  {
-    text = "Design",
-    whitelist = {'design', 'research'},
-  },
-  {
-    text = "UX Research",
-    whitelist = {'research'},
-  },
-  {
-    text = "Communication",
-    whitelist = {'communication'},
-  },
-  {
-    text = "Meeting",
-    blacklist = {'distraction'},
-  },
-  {
-    text = "Play",
-  },
-}
 
 Hyper = spoon.Hyper
 
@@ -162,9 +132,6 @@ Hyper:bind({}, 'return', nil, autolayout.autoLayout)
 
 local brave = require('brave')
       brave.start(Config)
-
-spoon.Headspace:start()
-               :loadConfig(Config)
 
 -- Random bindings
 Hyper:bind({}, 'r', nil, function()
