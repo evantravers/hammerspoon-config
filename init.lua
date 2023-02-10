@@ -21,23 +21,35 @@ Config.applications = require('configApplications')
 -- configure spaces for headspace
 Config.spaces = {}
 Config.funcs = {}
-Config.projects = hs.settings.get("secrets").toggl.projects
 
-require('spaces/review')
-require('spaces/schedule')
-require('spaces/deep')
-require('spaces/shallow')
-require('spaces/hemingway')
-require('spaces/design')
-require('spaces/research')
-require('spaces/communicate')
-require('spaces/focused_meeting')
-require('spaces/collaboration')
-require('spaces/leadership')
-require('spaces/play')
-require('spaces/weekly_review')
-require('spaces/start')
-require('spaces/shutdown')
+Config.spaces = {
+  {
+    text = "Deep",
+    blacklist = {'distraction', 'communication'},
+  },
+  {
+    text = "Shallow",
+  },
+  {
+    text = "Design",
+    whitelist = {'design', 'research'},
+  },
+  {
+    text = "UX Research",
+    whitelist = {'research'},
+  },
+  {
+    text = "Communication",
+    whitelist = {'communication'},
+  },
+  {
+    text = "Meeting",
+    blacklist = {'distraction'},
+  },
+  {
+    text = "Play",
+  },
+}
 
 Hyper = spoon.Hyper
 
@@ -140,9 +152,6 @@ local brave = require('brave')
 
 spoon.Headspace:start()
                :loadConfig(Config)
-               :setTogglKey(hs.settings.get('secrets').toggl.key)
-
-Hyper:bind({}, 'l', nil, spoon.Headspace.choose)
 
 -- Random bindings
 Hyper:bind({}, 'r', nil, function()
