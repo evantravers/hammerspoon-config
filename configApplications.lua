@@ -1,7 +1,7 @@
 return {
   ['com.raycast.macos'] = {
     bundleID = 'com.raycast.macos',
-    localBindings = {'c', 'space', 'o'}
+    localBindings = {'c', 'space', 'o', 'u'}
   },
   ['net.kovidgoyal.kitty'] = {
     bundleID = 'net.kovidgoyal.kitty',
@@ -166,7 +166,7 @@ return {
   },
   ['com.surteesstudios.Bartender'] = {
     bundleID = 'com.surteesstudios.Bartender',
-    localBindings = {'b', 'u'}
+    localBindings = {'b'}
   },
   ['com.loom.desktop'] = {
     bundleID = 'com.loom.desktop',
