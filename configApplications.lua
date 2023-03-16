@@ -103,8 +103,8 @@ return {
     whitelisted = true,
     localBindings = {'x', ';'}
   },
-  ['com.toggl.daneel'] = {
-    bundleID = 'com.toggl.daneel',
+  ['com.joehribar.toggl'] = {
+    bundleID = 'com.joehribar.toggl',
     hyperKey = 'n'
   },
   ['com.ideasoncanvas.mindnode.macos'] = {
