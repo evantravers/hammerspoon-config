@@ -174,5 +174,9 @@ return {
   ['company.thebrowser.Browser'] = {
     bundleID = 'company.thebrowser.Browser',
     tags = {'browsers'}
+  },
+  ['com.dexterleng.Homerow'] = {
+    bundleID = 'com.dexterleng.Homerow',
+    localBindings = {'l'}
   }
 }
