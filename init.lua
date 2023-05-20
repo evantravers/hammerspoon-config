@@ -97,6 +97,10 @@ MoveWindows
     end
     MoveWindows:exit()
   end)
+  :bind('', ';', function()
+    hs.urlevent.openURL("raycast://extensions/raycast/system/toggle-system-appearance")
+    MoveWindows:exit()
+  end)
 
 Hyper:bind({}, 'm', function() MoveWindows:toggle() end)
 
