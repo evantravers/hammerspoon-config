@@ -5,10 +5,6 @@ hs.loadSpoon('ElgatoKey'):start()
 hs.loadSpoon('MoveWindows')
 hs.loadSpoon('Split')
 
-hs.loadSpoon('Secrets')
-
-spoon.Secrets:start('.secrets.json')
-
 IsDocked = function()
   return hs.fnutils.some(hs.usb.attachedDevices(), function(device)
     return device.productName == "CalDigit Thunderbolt 3 Audio"
