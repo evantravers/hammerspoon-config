@@ -1,12 +1,13 @@
-local secrets = require('secrets')
-      secrets.start('.secrets.json')
-
 hs.loadSpoon('Hyper')
 hs.loadSpoon('Headspace'):start()
 hs.loadSpoon('Teamz'):start()
 hs.loadSpoon('ElgatoKey'):start()
 hs.loadSpoon('MoveWindows')
 hs.loadSpoon('Split')
+
+hs.loadSpoon('Secrets')
+
+spoon.Secrets:start('.secrets.json')
 
 IsDocked = function()
   return hs.fnutils.some(hs.usb.attachedDevices(), function(device)
