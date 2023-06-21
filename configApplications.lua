@@ -1,7 +1,7 @@
 return {
   ['com.raycast.macos'] = {
     bundleID = 'com.raycast.macos',
-    localBindings = {'c', 'space', 'o', 'u'}
+    localBindings = {'c', 'space', 'o'}
   },
   ['com.github.wez.wezterm'] = {
     bundleID = 'com.github.wez.wezterm',
@@ -178,5 +178,9 @@ return {
   ['com.dexterleng.Homerow'] = {
     bundleID = 'com.dexterleng.Homerow',
     localBindings = {'l'}
+  },
+  ['com.flexibits.cardhop.mac'] = {
+    bundleID = 'com.flexibits.cardhop.mac',
+    localBindings = {'u'}
   }
 }
