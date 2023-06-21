@@ -14,7 +14,8 @@ end
 Config = {}
 Config.applications = require('configApplications')
 
--- -- sync tags to OSX
+-- sync tags to OSX
+-- Currently unused, because of permissions
 Config.appsync = function()
   hs.fnutils.map(Config.applications, function(a)
     if a["tags"] and a["bundleID"] then
