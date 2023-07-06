@@ -55,6 +55,13 @@ MoveWindows = spoon.MoveWindows
 hs.window.highlight.ui.overlay = true
 MoveWindows
   :start()
+  :bind('', 'f', function()
+    local focused = hs.window.focusedWindow()
+    hs.fnutils.map(focused:otherWindowsAllScreens(), function(win)
+      win:application():hide()
+    end)
+    MoveWindows:exit()
+  end)
   :bind('', ',', function()
     hs.window.focusedWindow()
       :application()
