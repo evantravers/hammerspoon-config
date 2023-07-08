@@ -85,7 +85,6 @@ MoveWindows
   :bind('', 'd', function()
     -- demo mode!
     hs.shortcuts.run("Enable 1on1 for an hour")
-    spoon.ElgatoKey.on()
     local demo = hs.window.focusedWindow()
     hs.execute("defaults write com.apple.finder CreateDesktop -bool false; killAll Finder")
     hs.fnutils.map(demo:otherWindowsSameScreen(), function(win)
@@ -97,7 +96,6 @@ MoveWindows
   :bind({'shift'}, 'd', function()
     hs.execute("defaults write com.apple.finder CreateDesktop -bool true; killall Finder")
     hs.shortcuts.run("Disable Focus")
-    spoon.ElgatoKey.off()
     MoveWindows:exit()
   end)
   :bind('', ';', function()
