@@ -14,23 +14,6 @@ end
 Config = {}
 Config.applications = require('configApplications')
 
--- sync tags to OSX
--- Currently unused, because of permissions
-Config.appsync = function()
-  hs.fnutils.map(Config.applications, function(a)
-    if a["tags"] and a["bundleID"] then
-      local app_path = hs.application.pathForBundleID(a["bundleID"]) -- may not be installed!
-      if app_path then
-        if not a["bundleID"]:find("apple") then
-          print("attempting " .. app_path)
-          print(hs.inspect(a["tags"]))
-          hs.fs.tagsSet(app_path, a["tags"])
-        end
-      end
-    end
-  end)
-end
-
 Hyper = spoon.Hyper
 
 Hyper:bindHotKeys({hyperKey = {{}, 'F19'}})
@@ -256,3 +239,20 @@ Hyper:bind({}, 'p', nil, function()
 end)
 
 require('browserSnip')
+
+-- sync tags to OSX
+-- Currently unused, because of permissions
+Config.appsync = function()
+  hs.fnutils.map(Config.applications, function(a)
+    if a["tags"] and a["bundleID"] then
+      local app_path = hs.application.pathForBundleID(a["bundleID"]) -- may not be installed!
+      if app_path then
+        if not a["bundleID"]:find("apple") then
+          print("attempting " .. app_path)
+          print(hs.inspect(a["tags"]))
+          hs.fs.tagsSet(app_path, a["tags"])
+        end
+      end
+    end
+  end)
+end

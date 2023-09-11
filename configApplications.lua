@@ -6,33 +6,19 @@ return {
   ['com.github.wez.wezterm'] = {
     bundleID = 'com.github.wez.wezterm',
     hyperKey = 'j',
-    tags = {'coding'},
-    layouts = {
-      {nil, 1, hs.layout.maximized}
-    }
+    tags = {'coding'}
   },
   ['com.brave.Browser'] = {
     bundleID = 'com.brave.Browser',
     tags = {'browsers'},
-    layouts = {
-      {nil, 1, hs.layout.maximized},
-      {"Confluence", 1, hs.layout.maximized},
-      {"Meet - ", 2, hs.layout.maximized},
-    }
   },
   ['org.mozilla.firefox'] = {
     bundleID = 'org.mozilla.firefox',
-    tags = {'browsers'},
-    layouts = {
-      {nil, 1, hs.layout.maximized}
-    }
+    tags = {'browsers'}
   },
   ['com.apple.Safari'] = {
     bundleID = 'com.apple.Safari',
-    tags = {'browsers'},
-    layouts = {
-      {nil, 1, hs.layout.maximized}
-    }
+    tags = {'browsers'}
   },
   ['com.kapeli.dashdoc'] = {
     bundleID = 'com.kapeli.dashdoc',
@@ -41,18 +27,12 @@ return {
   },
   ['com.microsoft.teams'] = {
     bundleID = 'com.microsoft.teams',
-    tags = {'communication', 'chat'},
-    layouts = {
-      {nil, 2, hs.layout.maximized}
-    }
+    tags = {'communication', 'chat'}
   },
   ['com.apple.mail'] = {
     bundleID = 'com.apple.mail',
     hyperKey = 'e',
-    tags = {'communication', 'distraction'},
-    layouts = {
-      {nil, 2, hs.layout.maximized}
-    }
+    tags = {'communication', 'distraction'}
   },
   ['com.flexibits.fantastical2.mac'] = {
     bundleID = 'com.flexibits.fantastical2.mac',
@@ -60,9 +40,6 @@ return {
     localBindings = {'/'},
     tags = {'planning', 'review', 'calendar'},
     whitelisted = true,
-    layouts = {
-      {nil, 2, hs.layout.maximized}
-    }
   },
   ['com.apple.finder'] = {
     bundleID = 'com.apple.finder',
@@ -71,16 +48,10 @@ return {
   ['com.hnc.Discord'] = {
     bundleID = 'com.hnc.Discord',
     tags = {'distraction', 'chat'},
-    layouts = {
-      {nil, 2, hs.layout.maximized}
-    }
   },
   ['com.tinyspeck.slackmacgap'] = {
     bundleID = 'com.tinyspeck.slackmacgap',
     tags = {'distraction', 'communication', 'chat'},
-    layouts = {
-      {nil, 2, hs.layout.maximized}
-    }
   },
   ['com.tapbots.Tweetbot3Mac'] = {
     bundleID = 'com.tapbots.Tweetbot3Mac',
@@ -92,9 +63,6 @@ return {
     tags = {'planning', 'review', 'tasks'},
     whitelisted = true,
     localBindings = {',', '.'},
-    layouts = {
-      {nil, 1, hs.layout.maximized}
-    }
   },
   ['com.agiletortoise.Drafts-OSX'] = {
     bundleID = 'com.agiletortoise.Drafts-OSX',
@@ -110,16 +78,10 @@ return {
   ['com.ideasoncanvas.mindnode.macos'] = {
     bundleID = 'com.ideasoncanvas.mindnode.macos',
     tags = {'research'},
-    layouts = {
-      {nil, 1, hs.layout.maximized}
-    }
   },
   ['com.apple.MobileSMS'] = {
     bundleID = 'com.apple.MobileSMS',
     tags = {'communication', 'distraction', 'personal'},
-    layouts = {
-      {nil, 2, hs.layout.right30}
-    }
   },
   ['com.valvesoftware.steam'] = {
     bundleID = 'com.valvesoftware.steam',
@@ -135,30 +97,18 @@ return {
   ['com.figma.Desktop'] = {
     bundleID = 'com.figma.Desktop',
     tags = {'design'},
-    layouts = {
-      {nil, 1, hs.layout.maximized}
-    }
   },
   ['com.reederapp.5.macOS'] = {
     bundleID = 'com.reederapp.5.macOS',
     tags = {'distraction'},
-    layouts = {
-      {nil, 1, hs.layout.maximized}
-    }
   },
   ['md.obsidian'] = {
     bundleID = 'md.obsidian',
     hyperKey = 'g',
     tags = {'research', 'notes'},
-    layouts = {
-      {nil, 1, hs.layout.maximized}
-    }
   },
   ['us.zoom.xos'] = {
     bundleID = 'us.zoom.xos',
-    layouts = {
-      {"Zoom Meeting", 2, hs.layout.maximized}
-    }
   },
   ['org.whispersystems.signal-desktop'] = {
     bundleID = 'org.whispersystems.signal-desktop',
