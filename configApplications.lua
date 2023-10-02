@@ -20,6 +20,10 @@ return {
     bundleID = 'com.apple.Safari',
     tags = {'browsers'}
   },
+  ['com.google.Chrome'] = {
+    bundleID = 'com.google.Chrome',
+    tags = {'browsers'}
+  },
   ['com.kapeli.dashdoc'] = {
     bundleID = 'com.kapeli.dashdoc',
     hyperKey = 'h',
