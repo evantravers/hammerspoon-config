@@ -20,7 +20,7 @@ local m = {
 ---  * self
 function m:start()
   m.watcher = hs.application.watcher.new(function(appName, event, hsApp)
-    if hsApp:bundleID() == 'com.microsoft.teams' then
+    if hsApp:bundleID() == 'com.microsoft.teams2' then
       if event == hs.application.watcher.launching then
         hs.timer.waitUntil(function()
           return hsApp:mainWindow() ~= nil and not string.match(hsApp:mainWindow():title(), "Loading")
@@ -52,8 +52,8 @@ end
 
 local function checkAttachment()
   if m.app == nil then
-    hs.application.launchOrFocusByBundleID('com.microsoft.teams')
-    m.app = hs.application.find('com.microsoft.teams')
+    hs.application.launchOrFocusByBundleID('com.microsoft.teams2')
+    m.app = hs.application.find('com.microsoft.teams2')
   end
 
   if m.firstWindow == nil then

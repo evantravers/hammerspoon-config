@@ -29,8 +29,8 @@ return {
     hyperKey = 'h',
     tags = {'coding'}
   },
-  ['com.microsoft.teams'] = {
-    bundleID = 'com.microsoft.teams',
+  ['com.microsoft.teams2'] = {
+    bundleID = 'com.microsoft.teams2',
     tags = {'communication', 'chat'}
   },
   ['com.apple.mail'] = {

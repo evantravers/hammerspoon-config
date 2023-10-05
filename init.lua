@@ -170,7 +170,8 @@ Hyper:bind({}, 'z', nil, function()
     -- if not pressed again then
     if hs.application.find('us.zoom.xos') then
       hs.application.launchOrFocusByBundleID('us.zoom.xos')
-    elseif hs.application.find('com.microsoft.teams') then
+    elseif hs.application.find('com.microsoft.teams2') then
+      hs.application.launchOrFocusByBundleID('com.microsoft.teams2')
       local call = spoon.Teamz.callWindow()
       if call then
         call:focus()
@@ -263,3 +264,20 @@ Config.appsync = function()
     end
   end)
 end
+
+-- change audio settings based on output
+hs.audiodevice.watcher.setCallback(function(event)
+  if event == "dOut" then
+    local name = hs.audiodevice.defaultOutputDevice():name()
+    if name == "Evan’s AirPods Pro" then
+      hs.shortcuts.run("Airpods")
+    end
+    if name == "WH-1000XM4" then
+      hs.shortcuts.run("XM4")
+    end
+    if name == "MacBook Pro Speakers" then
+      hs.shortcuts.run("Macbook Pro Speakers")
+    end
+  end
+end)
+hs.audiodevice.watcher.start()
