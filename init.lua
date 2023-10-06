@@ -96,7 +96,7 @@ MoveWindows
     local win = hs.window.focusedWindow()
     local screenWidth = win:screen():frame().w
     hs.window.focusedWindow()
-    :move(hs.geometry.rect(screenWidth/2-300, 0, 600, 400))
+    :move(hs.geometry.rect((screenWidth/2)-400, 0, 600, 400))
     MoveWindows:exit()
   end)
 
