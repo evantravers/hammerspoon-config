@@ -92,6 +92,13 @@ MoveWindows
     hs.urlevent.openURL("raycast://extensions/raycast/system/toggle-system-appearance")
     MoveWindows:exit()
   end)
+  :bind('', 'c', function()
+    local win = hs.window.focusedWindow()
+    local screenWidth = win:screen():frame().w
+    hs.window.focusedWindow()
+    :move(hs.geometry.rect(screenWidth/2-300, 0, 600, 400))
+    MoveWindows:exit()
+  end)
 
 Hyper:bind({}, 'm', function() MoveWindows:toggle() end)
 
