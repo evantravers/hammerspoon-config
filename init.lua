@@ -276,9 +276,9 @@ end
 hs.audiodevice.watcher.setCallback(function(event)
   if event == "dOut" then
     local name = hs.audiodevice.defaultOutputDevice():name()
-    if name == "Evan’s AirPods Pro" then
-      hs.shortcuts.run("Airpods")
-    end
+    -- if name == "Evan’s AirPods Pro" then
+    --   hs.shortcuts.run("Airpods")
+    -- end
     if name == "WH-1000XM4" then
       hs.shortcuts.run("XM4")
     end
