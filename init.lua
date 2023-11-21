@@ -179,10 +179,8 @@ Hyper:bind({}, 'z', nil, function()
       hs.application.launchOrFocusByBundleID('us.zoom.xos')
     elseif hs.application.find('com.microsoft.teams2') then
       hs.application.launchOrFocusByBundleID('com.microsoft.teams2')
-      local call = spoon.Teamz.callWindow()
-      if call then
-        call:focus()
-      end
+      local call = hs.settings.get("call")
+      call:focus()
     else
       brave.jump("meet.google.com|hangouts.google.com.call")
     end
@@ -276,9 +274,6 @@ end
 hs.audiodevice.watcher.setCallback(function(event)
   if event == "dOut" then
     local name = hs.audiodevice.defaultOutputDevice():name()
-    -- if name == "Evan’s AirPods Pro" then
-    --   hs.shortcuts.run("Airpods")
-    -- end
     if name == "WH-1000XM4" then
       hs.shortcuts.run("XM4")
     end

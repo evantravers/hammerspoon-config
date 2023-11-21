@@ -112,4 +112,8 @@ function m.chatWindow()
   return m.firstWindow
 end
 
+function m.setCallWindow()
+  m.callWindow = hs.window.focusedWindow()
+end
+
 return m
