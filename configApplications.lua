@@ -118,6 +118,10 @@ return {
     bundleID = 'org.whispersystems.signal-desktop',
     tags = {'distraction', 'communication', 'personal'}
   },
+  ['ru.keepcoder.Telegram'] = {
+    bundleID = 'ru.keepcoder.Telegram',
+    tags = {'distraction', 'communication', 'personal'}
+  },
   ['com.surteesstudios.Bartender'] = {
     bundleID = 'com.surteesstudios.Bartender',
     localBindings = {'b'}
