@@ -283,3 +283,7 @@ hs.audiodevice.watcher.setCallback(function(event)
   end
 end)
 hs.audiodevice.watcher.start()
+
+Hyper:bind({}, 'w', nil, function()
+  hs.window.focusedWindow():application():selectMenuItem({"Edit", "Start Dictation"})
+end)
