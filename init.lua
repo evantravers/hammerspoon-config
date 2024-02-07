@@ -2,7 +2,7 @@ hs.loadSpoon('Hyper')
 hs.loadSpoon('Headspace'):start()
 hs.loadSpoon('Teamz'):start()
 hs.loadSpoon('ElgatoKey'):start()
-hs.loadSpoon('MoveWindows')
+hs.loadSpoon('HyperModal')
 hs.loadSpoon('Split')
 
 IsDocked = function()
@@ -34,73 +34,48 @@ if (hs.fs.displayName('./localConfig.lua')) then
   require('localConfig')
 end
 
-MoveWindows = spoon.MoveWindows
-hs.window.highlight.ui.overlay = true
-MoveWindows
+-- https://github.com/dmitriiminaev/Hammerspoon-HyperModal/blob/master/.hammerspoon/yabai.lua
+local yabai = function(args, completion)
+    local yabai_output = ""
+    local yabai_error = ""
+    -- Runs in background very fast
+    local yabai_task = hs.task.new("/run/current-system/sw/bin/yabai", function(err, stdout, stderr)
+        print()
+    end, function(task, stdout, stderr)
+        -- print("stdout:"..stdout, "stderr:"..stderr)
+        if stdout ~= nil then
+            yabai_output = yabai_output .. stdout
+        end
+        if stderr ~= nil then
+            yabai_error = yabai_error .. stderr
+        end
+        return true
+    end, args)
+    if type(completion) == "function" then
+        yabai_task:setCallback(function()
+            completion(yabai_output, yabai_error)
+        end)
+    end
+    yabai_task:start()
+end
+
+HyperModal = spoon.HyperModal
+HyperModal
   :start()
-  :bind('', 'f', function()
-    local focused = hs.window.focusedWindow()
-    hs.fnutils.map(focused:otherWindowsAllScreens(), function(win)
-      win:application():hide()
-    end)
-    MoveWindows:exit()
+  :bind('', "1", function()
+    yabai({"-m", "window", "--warp", "first"})
+    HyperModal:exit()
   end)
-  :bind('', ',', function()
-    hs.window.focusedWindow()
-      :application()
-      :selectMenuItem("Tile Window to Left of Screen")
-    MoveWindows:exit()
-  end)
-  :bind('', '.', function()
-    hs.window.focusedWindow()
-      :application()
-      :selectMenuItem("Tile Window to Right of Screen")
-    MoveWindows:exit()
-  end)
-  :bind('', 'v', function()
-    spoon.Split.split()
-    MoveWindows:exit()
-  end)
-  :bind('', 'tab', function ()
-    hs.window.focusedWindow():centerOnScreen()
-    MoveWindows:exit()
-  end)
-  :bind('', 'd', function()
-    -- demo mode!
-    hs.shortcuts.run("Enable 1on1 for an hour")
-    local demo = hs.window.focusedWindow()
-    hs.execute("defaults write com.apple.finder CreateDesktop -bool false; killAll Finder")
-    hs.fnutils.map(demo:otherWindowsSameScreen(), function(win)
-      win:minimize()
-    end)
-    demo:centerOnScreen()
-    MoveWindows:exit()
-  end)
-  :bind('', 'o', function()
-    local demo = hs.window.focusedWindow()
-    hs.fnutils.map(demo:otherWindowsSameScreen(), function(win)
-      win:minimize()
-    end)
-    MoveWindows:exit()
-  end)
-  :bind({'shift'}, 'd', function()
-    hs.execute("defaults write com.apple.finder CreateDesktop -bool true; killall Finder")
-    hs.shortcuts.run("Disable Focus")
-    MoveWindows:exit()
+  :bind('', "space", function()
+    yabai({"-m", "window", "--toggle", "zoom-parent"})
+    HyperModal:exit()
   end)
   :bind('', ';', function()
     hs.urlevent.openURL("raycast://extensions/raycast/system/toggle-system-appearance")
-    MoveWindows:exit()
-  end)
-  :bind('', 'c', function()
-    local win = hs.window.focusedWindow()
-    local screenWidth = win:screen():frame().w
-    hs.window.focusedWindow()
-    :move(hs.geometry.rect((screenWidth/2)-400, 0, 600, 400))
-    MoveWindows:exit()
+    HyperModal:exit()
   end)
 
-Hyper:bind({}, 'm', function() MoveWindows:toggle() end)
+Hyper:bind({}, 'm', function() HyperModal:toggle() end)
 
 local brave = require('brave')
       brave.start(Config)
