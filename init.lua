@@ -63,7 +63,7 @@ HyperModal = spoon.HyperModal
 HyperModal
   :start()
   :bind('', "1", function()
-    yabai({"-m", "window", "--warp", "first"})
+    yabai({"-m", "window", "--swap", "first"})
     HyperModal:exit()
   end)
   :bind('', "z", function()
