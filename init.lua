@@ -1,9 +1,7 @@
 hs.loadSpoon('Hyper')
 hs.loadSpoon('Headspace'):start()
 hs.loadSpoon('Teamz'):start()
-hs.loadSpoon('ElgatoKey'):start()
 hs.loadSpoon('HyperModal')
-hs.loadSpoon('Split')
 
 IsDocked = function()
   return hs.fnutils.some(hs.usb.attachedDevices(), function(device)
