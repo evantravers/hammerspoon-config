@@ -1,5 +1,10 @@
 # Personal Hammerspoon Setup
 
+> [!Archived]
+> Currently maintained as part of my darwin-nix setup at: https://github.com/evantravers/dotfiles/tree/master/config/hammerspoon
+
+---
+
 Intended to live in `~/.hammerspoon`
 To install: `git clone git@github.com:evantravers/hammerspoon-config.git ~/.hammerspoon`
 
