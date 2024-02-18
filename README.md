@@ -1,6 +1,6 @@
 # Personal Hammerspoon Setup
 
-> [!Archived]
+> [!CAUTION]
 > Currently maintained as part of my darwin-nix setup at: https://github.com/evantravers/dotfiles/tree/master/config/hammerspoon
 
 ---
